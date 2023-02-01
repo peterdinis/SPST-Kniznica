@@ -1,7 +1,7 @@
 const MyProfile: React.FC = () => {
     return (
         <>
-        
+        tttt
         </>
     )
 }

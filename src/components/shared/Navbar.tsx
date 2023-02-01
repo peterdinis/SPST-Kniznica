@@ -59,22 +59,22 @@ export default function Navbar() {
             >
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                 <li className="text-black text-xl">
-                  <Link href="https://www.facebook.com/peto.dinis/">Domov</Link>
+                  <Link href="/">Domov</Link>
                 </li>
                 <li className="text-black text-xl">
-                  <Link href="https://github.com/peterdinis?tab=repositories">O Stránke</Link>
+                  <Link href="/about">O Stránke</Link>
                 </li>
                 <li className="text-black text-xl">
-                  <Link href="https://www.instagram.com/peterdinis1/">Knihy</Link>
+                  <Link href="/books">Knihy</Link>
                 </li>
                 <li className="text-black text-xl">
-                  <Link href="https://www.linkedin.com/in/peter-dinis-58520b214/">Kategórie</Link>
+                  <Link href="/category">Kategórie</Link>
                 </li>
                 <li className="text-black text-xl">
-                  <Link href="https://www.linkedin.com/in/peter-dinis-58520b214/">Prihlásenie žiak</Link>
+                  <Link href="/student/login">Prihlásenie žiak</Link>
                 </li>
                 <li className="text-black text-xl">
-                  <Link href="https://www.linkedin.com/in/peter-dinis-58520b214/">Prihlásenie učiteľ</Link>
+                  <Link href="/teacher/login">Prihlásenie učiteľ</Link>
                 </li>
               </ul>
             </div>

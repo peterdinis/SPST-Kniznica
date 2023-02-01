@@ -1,6 +1,20 @@
 import DateTimePicker from "../shared/DateTimePicker"
+import {useQuery} from "@tanstack/react-query"
+import * as api from "../../api/queries/exampleQuery"
+import FallbackLoader from "../shared/FallbackLoader";
+import FallbackRender from "../shared/FallbackRender";
 
 function Hero() {
+  const {isLoading, isError} = useQuery(["example"], api.getExampleData);
+
+  if(isLoading) {
+    return <FallbackLoader />
+  }
+
+  if(isError) {
+    return <FallbackRender error={"Something went wrong"} />
+  }
+
   return (
     <>
       <div className="pt-32 lg:flex items-center relative z-10 container mx-auto">

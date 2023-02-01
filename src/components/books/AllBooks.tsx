@@ -1,7 +1,9 @@
+import Header from "../shared/Header";
+
 const AllBooks: React.FC = () => {
     return (
         <>
-        BOOKS
+         <Header name="Všetky knihy" />
         </>
     )
 }

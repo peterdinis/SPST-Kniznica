@@ -1,7 +1,9 @@
+import Header from "../shared/Header";
+
 const AllCategory: React.FC = () => {
     return (
         <>
-        gggggg
+         <Header name="Všetky kategórie" />
         </>
     )
 }

@@ -1,10 +1,9 @@
+import BookInfo from "@/components/books/BookInfo";
 import { NextPage } from "next";
 
 const BookDetailPage: NextPage = () => {
     return (
-        <>
-ddd
-        </>
+       <BookInfo />
     )
 }
 

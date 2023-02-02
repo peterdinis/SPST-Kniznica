@@ -89,6 +89,7 @@ const BookInfo: React.FC = () => {
                   </div>
                 </>
               )}
+              <button onClick={navigateToBooks} className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">Návrat na knihy</button>
             </div>
           </div>
         </div>

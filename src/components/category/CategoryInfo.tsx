@@ -8,9 +8,7 @@ const CategoryInfo: React.FC = () => {
 
     const {id}= router.query;
 
-    console.log(Number(id));
-
-    const { data, isError } = useQuery(
+    const { data, isError, isLoading } = useQuery(
         ['categoryDetail', Number(id)],
         () => api.getOneCategory(Number(id) as any));
 

@@ -11,5 +11,5 @@ export const getOneBook = (id: string) => {
     return;
   }
 
-  return api.get(`books/${id}`).then((res) => res.data);
+  return api.get(`book/${id}`).then((res) => res.data);
 };

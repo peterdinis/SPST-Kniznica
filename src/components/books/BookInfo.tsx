@@ -2,6 +2,9 @@ import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
+import FallbackRender from "../shared/FallbackRender";
+import FallbackLoader from "../shared/FallbackLoader";
+import { placeholderBook } from "@/data/placeholderBook";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -10,10 +13,18 @@ const BookInfo: React.FC = () => {
 
   const { data, isError, isLoading } = useQuery(
     ["categoryDetail", Number(id)],
-    () => api.getOneBook(Number(id) as any)
+    () => api.getOneBook(Number(id) as any), {
+      placeholderData: placeholderBook
+    }
   );
 
-  console.log(data);
+  if(isError) {
+    return <FallbackRender error="Something went wrong" />
+  }
+
+  if(isLoading) {
+    return <FallbackLoader />
+  }
 
   const navigateToBooks = () => {
     router.push("/books");

@@ -6,9 +6,12 @@ import FallbackRender from "../shared/FallbackRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { IBook } from "@/api/interfaces";
+import { placeholderBook } from "@/data/placeholderBook";
 
 const AllBooks: React.FC = () => {
-  const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks);
+  const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
+    placeholderData: placeholderBook
+  });
 
   if (isLoading) {
     return <FallbackLoader />;

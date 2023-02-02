@@ -5,11 +5,14 @@ import * as api from "../../api/queries/categoryQueries";
 import { ICategory } from "@/api/interfaces";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
+import { placeholderCategory } from "@/data/placeholderCategory";
 
 const AllCategory: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
     ["categories"],
-    api.getCategories
+    api.getCategories, {
+      placeholderData: placeholderCategory
+    }
   );
 
   if (isLoading) {

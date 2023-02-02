@@ -12,18 +12,19 @@ const BookInfo: React.FC = () => {
   const { id } = router.query;
 
   const { data, isError, isLoading } = useQuery(
-    ["categoryDetail", Number(id)],
-    () => api.getOneBook(Number(id) as any), {
-      placeholderData: placeholderBook
+    ["bookDetail", Number(id)],
+    () => api.getOneBook(Number(id) as any),
+    {
+      placeholderData: placeholderBook,
     }
   );
 
-  if(isError) {
-    return <FallbackRender error="Something went wrong" />
+  if (isError) {
+    return <FallbackRender error="Something went wrong" />;
   }
 
-  if(isLoading) {
-    return <FallbackLoader />
+  if (isLoading) {
+    return <FallbackLoader />;
   }
 
   const navigateToBooks = () => {
@@ -67,6 +68,27 @@ const BookInfo: React.FC = () => {
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold"> Rok</span>: {data.year}
               </p>
+              <hr className="mt-6" />
+              {data.status === "Dostupná" ? (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
+                    <span className="font-bold"> Kniha je:</span>:{" "}
+                    <span className="text-green-800">{data.status}</span><br />
+                    <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+                      Požičaj knihu
+                    </button>
+                  </p>
+                </>
+              ) : (
+                <>
+                  <div className="text-2xl mt-3 font-light leading-relaxed  mb-4">
+                    <span className="font-bold text-red-800">
+                      {" "}
+                      Kniha nie je dostupná
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

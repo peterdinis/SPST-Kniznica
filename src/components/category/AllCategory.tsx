@@ -10,9 +10,10 @@ import { placeholderCategory } from "@/data/placeholderCategory";
 const AllCategory: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
     ["categories"],
-    api.getCategories, {
+    api.getCategories,
+    {
       retry: 2,
-      placeholderData: placeholderCategory
+      placeholderData: placeholderCategory,
     }
   );
 
@@ -26,6 +27,15 @@ const AllCategory: React.FC = () => {
   return (
     <>
       <Header name="Všetky kategórie" />
+      <div className="flex justify-center align-top">
+        <form>
+          <input
+            name="form"
+            className="text-gray-600 mt-4 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
+            placeholder="Hľadaj knihu"
+          />
+        </form>
+      </div>
       <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {data &&
           data.map((item: ICategory) => {

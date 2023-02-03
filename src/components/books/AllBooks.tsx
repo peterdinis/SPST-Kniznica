@@ -11,7 +11,7 @@ import { placeholderBook } from "@/data/placeholderBook";
 const AllBooks: React.FC = () => {
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
     retry: 2,
-    placeholderData: placeholderBook
+    placeholderData: placeholderBook,
   });
 
   if (isLoading) {
@@ -24,6 +24,15 @@ const AllBooks: React.FC = () => {
   return (
     <>
       <Header name="Všetky knihy" />
+      <div className="flex justify-center align-top">
+        <form>
+          <input
+            name="form"
+            className="text-gray-600 mt-4 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
+            placeholder="Hľadaj knihu"
+          />
+        </form>
+      </div>
       <div className="grid gap-8 space-x-1 lg:grid-cols-6">
         {data &&
           data.map((item: IBook, i: IBook) => {

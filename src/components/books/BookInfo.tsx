@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
-import Image from "next/image";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -42,17 +41,13 @@ const BookInfo: React.FC = () => {
             data.image === undefined ||
             !data.image ||
             data.image === "string" ? (
-              <Image
-                width={200}
-                height={200}
+              <img
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
                 src="https://bitsofco.de/content/images/2018/12/broken-1.png"
               />
             ) : (
-              <Image
-                width={200}
-                height={200}
+              <img
                 alt="ecommerce"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
                 src={data.image}

@@ -5,14 +5,16 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 
 function Hero() {
-  const {isLoading, isError} = useQuery(["example"], api.getExampleData);
+  const {isLoading, isError} = useQuery(["example"], api.getExampleData, {
+    retry: 2
+  });
 
   if(isLoading) {
     return <FallbackLoader />
   }
 
   if(isError) {
-    return <FallbackRender error={"Something went wrong"} />
+    return <FallbackRender error={"Nastala chyba"} />
   }
 
   return (

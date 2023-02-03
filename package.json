@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tests": "playwright test"
+    "test": "playwright test"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.8.1",

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
+import { BookingModal } from "../booking/BookingModal";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -81,10 +82,11 @@ const BookInfo: React.FC = () => {
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                     <span className="font-bold"> Kniha je:</span>:{" "}
-                    <span className="text-green-800">{data.status}</span><br />
-                    <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
-                      Požičaj knihu
-                    </button>
+                    <span className="text-green-800">{data.status}</span>
+                    <br />
+                    <BookingModal btnName="Chcem si požičať knihu">
+                      I AM CHILDREN
+                    </BookingModal>
                   </p>
                 </>
               ) : (
@@ -97,7 +99,12 @@ const BookInfo: React.FC = () => {
                   </div>
                 </>
               )}
-              <button onClick={navigateToBooks} className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">Návrat na knihy</button>
+              <button
+                onClick={navigateToBooks}
+                className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold"
+              >
+                Návrat na knihy
+              </button>
             </div>
           </div>
         </div>

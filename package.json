@@ -26,8 +26,10 @@
     "eslint-config-next": "13.1.6",
     "next": "13.1.6",
     "react": "18.2.0",
+    "react-animated-modal": "^1.1.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.0",
+    "react-spring": "^9.6.1",
     "typescript": "4.9.5"
   },
   "devDependencies": {

@@ -11,6 +11,7 @@ const AllCategory: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
     ["categories"],
     api.getCategories, {
+      retry: 2,
       placeholderData: placeholderCategory
     }
   );

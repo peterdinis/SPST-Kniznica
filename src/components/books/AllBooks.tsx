@@ -10,6 +10,7 @@ import { placeholderBook } from "@/data/placeholderBook";
 
 const AllBooks: React.FC = () => {
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
+    retry: 2,
     placeholderData: placeholderBook
   });
 

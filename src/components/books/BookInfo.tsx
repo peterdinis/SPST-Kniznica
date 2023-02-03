@@ -16,6 +16,7 @@ const BookInfo: React.FC = () => {
     ["bookDetail", Number(id)],
     () => api.getOneBook(Number(id) as any),
     {
+      retry: 2,
       placeholderData: placeholderBook,
     }
   );

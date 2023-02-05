@@ -6,6 +6,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { queryClient } from "@/api/queryClient";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "@next/font/google";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className={inter.className}>
           <Layout>
             <Component {...pageProps} />
+            <ToastContainer />
             <ReactQueryDevtools />
           </Layout>
         </div>

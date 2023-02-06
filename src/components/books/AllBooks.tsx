@@ -67,7 +67,10 @@ const AllBooks: React.FC = () => {
       {/* TODO: Add here search result later */}
 
       <div className="grid gap-8 space-x-1 lg:grid-cols-6" ref={parentRef}>
-        {data &&
+
+        {data.length === 0 && <div ref={parentRef}>Nenašli sa žiadne knihy</div>}
+
+        {data &&  
           data.map((item: IBook) => {
             return (
               <>

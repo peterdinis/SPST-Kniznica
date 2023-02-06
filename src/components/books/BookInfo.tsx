@@ -85,7 +85,21 @@ const BookInfo: React.FC = () => {
                     <span className="text-green-800">{data.status}</span>
                     <br />
                     <BookingModal btnName="Chcem si požičať knihu">
-                      I AM CHILDREN
+                      <form>
+                        <input
+                          className="mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                          placeholder="Email"
+                        />
+                        <input
+                          className="mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                          placeholder="Email"
+                        />
+                        <input
+                          className="mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                          placeholder="Email"
+                        />
+                        <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">Požičať Knihu</button>
+                      </form>
                     </BookingModal>
                   </p>
                 </>

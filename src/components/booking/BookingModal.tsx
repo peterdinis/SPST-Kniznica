@@ -73,7 +73,7 @@ export const BookingModal: React.FC<IModalProps> = ({children, btnName}: IModalP
       >
         <Fade in={open}>
           <Box sx={style}>
-            <h2 className="text-center mt-2 text-2xl font-bold">Vyplnte udaje</h2>
+            <h2 className="text-center mt-2 text-3xl font-bold">Vyplnte udaje</h2>
             <div className="mt-4">
                 {children}
             </div>

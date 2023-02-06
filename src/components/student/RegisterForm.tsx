@@ -143,6 +143,7 @@ const RegisterForm: React.FC = () => {
               id="Heslo"
               type="password"
               autoFocus
+              autoComplete="current-password"
               placeholder="Heslo"
               {...register('password', {
                 required: 'You must specify a password',

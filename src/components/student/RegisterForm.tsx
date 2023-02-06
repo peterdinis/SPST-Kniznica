@@ -13,7 +13,8 @@ const RegisterForm: React.FC = () => {
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
 
   const mutation = useMutation(api.registerStudent, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log(data);
       notify();
     },
 
@@ -140,7 +141,7 @@ const RegisterForm: React.FC = () => {
             <input
               className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
               id="Heslo"
-              type="text"
+              type="password"
               autoFocus
               placeholder="Heslo"
               {...register('password', {

@@ -63,6 +63,9 @@ const AllBooks: React.FC = () => {
           {isSearching && <div className="mt-4 font-bold">Searching ...</div>}
         </form>
       </div>
+
+      {/* TODO: Add here search result later */}
+
       <div className="grid gap-8 space-x-1 lg:grid-cols-6" ref={parentRef}>
         {data &&
           data.map((item: IBook) => {

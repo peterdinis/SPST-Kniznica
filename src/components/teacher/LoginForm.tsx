@@ -1,10 +1,11 @@
-import Header from "../shared/Header"
+import Header from "../shared/Header";
+import GoogleButton from "../shared/auth/GoogleButton";
 
 const LoginForm: React.FC = () => {
-    return (
-        <>
-          <Header name="Prihlásenie učiteľ" />
-          <form>
+  return (
+    <>
+      <Header name="Prihlásenie učiteľ" />
+      <form>
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
           <div className="mb-4">
             <div className="mb-2">
@@ -55,12 +56,17 @@ const LoginForm: React.FC = () => {
             {/*  <p className="text-red-800">
               {errors.password && errors.password.message}
             </p> */}
-            <button>Zobraziť heslo</button>
           </div>
           <div>
-            <button className="mt-4 bg-red-700 rounded-lg p-2 text-white" type="submit">
+            <button
+              className="mt-4 bg-red-700 rounded-lg p-2 text-white"
+              type="submit"
+            >
               Prihlásenie
             </button>
+            <div className="mt-4">
+              <GoogleButton />
+            </div>
             <div>
               <a
                 className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
@@ -72,8 +78,8 @@ const LoginForm: React.FC = () => {
           </div>
         </div>
       </form>
-        </>
-    )
-}
+    </>
+  );
+};
 
-export default LoginForm
+export default LoginForm;

@@ -18,7 +18,8 @@ const RegisterForm: React.FC = () => {
       notify();
     },
 
-    onError: () => {
+    onError: (data) => {
+      console.log(data);
       errorRegister();
     },
   });
@@ -145,25 +146,25 @@ const RegisterForm: React.FC = () => {
               autoFocus
               autoComplete="current-password"
               placeholder="Heslo"
-              {...register('password', {
-                required: 'You must specify a password',
+              {...register("password", {
+                required: "You must specify a password",
                 pattern: {
                   value:
-                    '^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[d]){1,})(?=(.*[W]){    1,})(?!.*s).{8,}$' as any,
+                    "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[d]){1,})(?=(.*[W]){    1,})(?!.*s).{8,}$" as any,
                   message:
-                    'Password should contain at least one number and one    special character',
+                    "Password should contain at least one number and one    special character",
                 },
                 minLength: {
                   value: 8,
-                  message: 'Password must be more than 8 characters',
+                  message: "Password must be more than 8 characters",
                 },
                 maxLength: {
                   value: 20,
-                  message: 'Password must be less than 20 characters',
+                  message: "Password must be less than 20 characters",
                 },
               })}
               onKeyUp={() => {
-                trigger('password');
+                trigger("password");
               }}
             />
 
@@ -188,9 +189,22 @@ const RegisterForm: React.FC = () => {
               value="STUDENT"
               readOnly
             />
+          </div>
+
+          <div className="mb-2">
+            <label className="block text-grey-darker text-sm font-bold mb-2">
+              Pohlavie
+            </label>
+            <select
+              {...register("gender")}
+              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+            >
+              <option value="MALE">MALE</option>
+              <option value="FEMALE">FEMALE</option>
+            </select>
 
             <p className="text-red-800">
-              {errors.lastName && errors.lastName.message}
+              {errors.gender && errors.gender.message}
             </p>
           </div>
           <div>
@@ -198,7 +212,7 @@ const RegisterForm: React.FC = () => {
               className="mt-4 bg-red-700 rounded-lg p-2 text-white"
               type="submit"
             >
-             Registrácia
+              Registrácia
             </button>
             <div>
               <a

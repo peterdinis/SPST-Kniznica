@@ -8,11 +8,15 @@ import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
 import { IBook } from "@/api/interfaces/IBook";
 import useDebounce from "@/hooks/useDebounce";
-import { useState } from "react";
+import { useState, useEffect, useRef} from "react";
+import autoAnimate from "@formkit/auto-animate";
 
 const AllBooks: React.FC = () => {
-  const [filter, setFilter] = useState(undefined)
-  const debouncedFilter = useDebounce(filter, 500);
+  const [searchTerm, setSearchTerm] = useState("");
+  const parentRef = useRef(null)
+  const [results, setResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
     retry: 2,
     placeholderData: placeholderBook,
@@ -25,6 +29,25 @@ const AllBooks: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      api.searchForBooks(debouncedSearchTerm).then((results: any) => {
+        setIsSearching(false);
+        setResults(results);
+      });
+    } else {
+      setResults([]);
+      setIsSearching(false);
+    }
+  }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    if (parentRef.current) {
+      autoAnimate(parentRef.current);   
+    }
+  }, [parent]);
+
   return (
     <>
       <Header name="Všetky knihy" />
@@ -34,17 +57,18 @@ const AllBooks: React.FC = () => {
             name="form"
             className="text-gray-600 mt-4 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
             placeholder="Hľadaj knihu"
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
+
+          {isSearching && <div className="mt-4 font-bold">Searching ...</div>}
         </form>
       </div>
-      <div className="grid gap-8 space-x-1 lg:grid-cols-6">
+      <div className="grid gap-8 space-x-1 lg:grid-cols-6" ref={parentRef}>
         {data &&
           data.map((item: IBook) => {
             return (
               <>
-                <div
-                  className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center"
-                >
+                <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                   <div className="mb-8">
                     <img
                       alt="Placeholder"

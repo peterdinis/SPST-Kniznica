@@ -34,7 +34,7 @@ const RegisterForm: React.FC = () => {
       mutation.mutate(data);
       router.push("/student/login");
     } catch (err) {
-      console.error(err);
+      alert(err);
     }
   };
 

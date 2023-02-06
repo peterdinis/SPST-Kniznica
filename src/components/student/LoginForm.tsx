@@ -59,7 +59,6 @@ const LoginForm: React.FC = () => {
             {/*  <p className="text-red-800">
               {errors.password && errors.password.message}
             </p> */}
-            <button>Zobraziť heslo</button>
           </div>
           <div>
             <button className="mt-4 bg-red-700 rounded-lg p-2 text-white" type="submit">

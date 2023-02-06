@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form"
 import {useMutation} from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
 import {toast} from "react-toastify";
+import GoogleButton from "../shared/auth/GoogleButton";
 
 const LoginForm: React.FC = () => {
   return (
@@ -63,7 +64,10 @@ const LoginForm: React.FC = () => {
           <div>
             <button className="mt-4 bg-red-700 rounded-lg p-2 text-white" type="submit">
               Prihlásenie
-            </button>
+            </button> <br />
+            <div className="mt-4">
+            <GoogleButton />
+            </div>
             <div>
               <a
                 className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"

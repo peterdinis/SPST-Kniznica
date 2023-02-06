@@ -81,7 +81,7 @@ const BookInfo: React.FC = () => {
               {data.status === "Dostupná" && data.quantity !== 0 ? (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
-                    <span className="font-bold"> Kniha je:</span>:{" "}
+                    <span className="font-bold"> Kniha je:</span>{" "}
                     <span className="text-green-800">{data.status}</span>
                     <br />
                     <BookingModal btnName="Chcem si požičať knihu">

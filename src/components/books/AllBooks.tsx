@@ -5,10 +5,14 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
-import { IBook } from "@/api/interfaces";
 import { placeholderBook } from "@/data/placeholderBook";
+import { IBook } from "@/api/interfaces/IBook";
+import useDebounce from "@/hooks/useDebounce";
+import { useState } from "react";
 
 const AllBooks: React.FC = () => {
+  const [filter, setFilter] = useState(undefined)
+  const debouncedFilter = useDebounce(filter, 500);
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
     retry: 2,
     placeholderData: placeholderBook,
@@ -35,11 +39,10 @@ const AllBooks: React.FC = () => {
       </div>
       <div className="grid gap-8 space-x-1 lg:grid-cols-6">
         {data &&
-          data.map((item: IBook, i: IBook) => {
+          data.map((item: IBook) => {
             return (
               <>
                 <div
-                  key={i.id}
                   className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center"
                 >
                   <div className="mb-8">

@@ -7,16 +7,8 @@ import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
 import { IBook } from "@/api/interfaces/IBook";
-import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect, useRef} from "react";
-import autoAnimate from "@formkit/auto-animate";
 
 const AllBooks: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const parentRef = useRef(null)
-  const [results, setResults] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
     retry: 2,
     placeholderData: placeholderBook,
@@ -29,48 +21,13 @@ const AllBooks: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      setIsSearching(true);
-      api.searchForBooks(debouncedSearchTerm).then((results: any) => {
-        setIsSearching(false);
-        setResults(results);
-      });
-    } else {
-      setResults([]);
-      setIsSearching(false);
-    }
-  }, [debouncedSearchTerm]);
-
-  useEffect(() => {
-    if (parentRef.current) {
-      autoAnimate(parentRef.current);   
-    }
-  }, [parent]);
-
   return (
     <>
       <Header name="Všetky knihy" />
-      <div className="flex justify-center align-top">
-        <form>
-          <input
-            name="form"
-            className="text-gray-600 mt-4 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
-            placeholder="Hľadaj knihu"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+      <div className="grid gap-8 space-x-1 lg:grid-cols-6">
+        {data.length === 0 && <div>Nenašli sa žiadne knihy</div>}
 
-          {isSearching && <div className="mt-4 font-bold">Searching ...</div>}
-        </form>
-      </div>
-
-      {/* TODO: Add here search result later */}
-
-      <div className="grid gap-8 space-x-1 lg:grid-cols-6" ref={parentRef}>
-
-        {data.length === 0 && <div ref={parentRef}>Nenašli sa žiadne knihy</div>}
-
-        {data &&  
+        {data &&
           data.map((item: IBook) => {
             return (
               <>

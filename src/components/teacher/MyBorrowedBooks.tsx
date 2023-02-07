@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-const TeacherBorrowedBooks: NextPage = () => {
+const MyTeacherBorrowedBooks: NextPage = () => {
     return (
         <>
             <h1>gkflpdeowpqú</h1>
@@ -8,4 +8,4 @@ const TeacherBorrowedBooks: NextPage = () => {
     )
 }
 
-export default TeacherBorrowedBooks
+export default MyTeacherBorrowedBooks

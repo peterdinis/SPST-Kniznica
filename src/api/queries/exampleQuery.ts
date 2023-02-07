@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const baseEnv = process.env.NODE_ENV !== "production" ? process.env.NEXT_PUBLIC_BACKEND_URL as string : process.env.NEXT_PUBLIC_PRODUCTION_URL as string
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string
+  baseURL: baseEnv,
 });
 
 export const getExampleData = () => api.get("example").then((res) => res.data);

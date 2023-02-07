@@ -17,6 +17,7 @@ export const queryClient = new QueryClient({
     },
     mutations: {
       networkMode: "offlineFirst",
+      
     },
   },
   logger: {
@@ -34,8 +35,3 @@ export const queryClient = new QueryClient({
     },
   },
 });
-
-/* export const persister = createSyncStoragePersister({
-  storage: window.localStorage,
-});
- */

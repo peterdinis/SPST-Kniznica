@@ -1,12 +1,14 @@
 import Header from "../shared/Header";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/bookQueries";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
+import { queryClient } from "@/api/queryClient";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
 import { IBook } from "@/api/interfaces/IBook";
+import InfiniteScroll from 'react-infinite-scroller';
 
 const AllBooks: React.FC = () => {
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {

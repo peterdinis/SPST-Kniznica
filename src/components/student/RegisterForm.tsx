@@ -5,6 +5,7 @@ import { IRegisterUser } from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
+import Link from "next/link";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -215,12 +216,12 @@ const RegisterForm: React.FC = () => {
               Registrácia
             </button>
             <div>
-              <a
+              <Link
                 className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
                 href="/student/login"
               >
                 Prihlásenie
-              </a>
+              </Link>
             </div>
           </div>
         </div>

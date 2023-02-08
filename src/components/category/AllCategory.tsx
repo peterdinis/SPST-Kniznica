@@ -5,12 +5,9 @@ import * as api from "../../api/queries/categoryQueries";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import { placeholderCategory } from "@/data/placeholderCategory";
-import autoAnimate from "@formkit/auto-animate";
-import {useEffect, useRef} from "react";
 import { ICategory } from "@/api/interfaces/ICategory";
 
 const AllCategory: React.FC = () => {
-  const parentRef = useRef(null);
   const { data, isLoading, isError } = useQuery(
     ["categories"],
     api.getCategories,
@@ -27,16 +24,10 @@ const AllCategory: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  useEffect(() => {
-    if (parentRef.current) {
-      autoAnimate(parentRef.current);   
-    }
-  }, [parent]);
-
   return (
     <>
       <Header name="Všetky kategórie" />
-      <div ref={parentRef} className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {data &&
           data.map((item: ICategory) => {
             return (

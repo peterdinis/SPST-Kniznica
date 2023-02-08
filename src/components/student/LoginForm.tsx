@@ -4,6 +4,7 @@ import {useMutation} from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
 import {toast} from "react-toastify";
 import GoogleButton from "../shared/auth/GoogleButton";
+import Link from "next/link";
 
 const LoginForm: React.FC = () => {
   return (
@@ -69,12 +70,12 @@ const LoginForm: React.FC = () => {
             <GoogleButton />
             </div>
             <div>
-              <a
+              <Link
                 className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
                 href="/student/register"
               >
                 Registrácia tu
-              </a>
+              </Link>
             </div>
           </div>
         </div>

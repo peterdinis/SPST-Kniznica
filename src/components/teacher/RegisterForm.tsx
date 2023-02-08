@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Header from "../shared/Header"
 
 const RegisterForm: React.FC = () => {
@@ -62,12 +63,12 @@ const RegisterForm: React.FC = () => {
               Prihlásenie
             </button>
             <div>
-              <a
+              <Link
                 className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
                 href="/student/register"
               >
                 Registrácia tu
-              </a>
+              </Link>
             </div>
           </div>
         </div>

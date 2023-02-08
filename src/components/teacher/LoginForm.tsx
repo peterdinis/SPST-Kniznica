@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "../shared/Header";
 import GoogleButton from "../shared/auth/GoogleButton";
 
@@ -68,12 +69,12 @@ const LoginForm: React.FC = () => {
               <GoogleButton />
             </div>
             <div>
-              <a
+              <Link
                 className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
                 href="/student/register"
               >
                 Registrácia tu
-              </a>
+              </Link>
             </div>
           </div>
         </div>

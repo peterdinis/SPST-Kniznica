@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const NotFoundComponent: React.FC = () => {
   return (
     <>
@@ -13,7 +15,7 @@ const NotFoundComponent: React.FC = () => {
             <span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#FF6A3D] group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
             <span className="relative block px-8 py-3 bg-[#1A2238] border border-current">
-              <a href="/">Návrat domov</a>
+              <Link href="/">Návrat domov</Link>
             </span>
           </a>
         </button>

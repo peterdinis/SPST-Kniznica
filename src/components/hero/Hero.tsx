@@ -3,6 +3,7 @@ import {useQuery} from "@tanstack/react-query"
 import * as api from "../../api/queries/exampleQuery"
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
+import Link from "next/link";
 
 function Hero() {
   const {isLoading, isError} = useQuery(["example"], api.getExampleData, {
@@ -39,10 +40,10 @@ function Hero() {
 
           <div className="ml-8">
             <button className="test bg-blue-500 font-bold py-2 px-4 rounded">
-              <a href="https://www.spsbj.sk/">Školská Stránka</a>
+              <Link href="https://www.spsbj.sk/">Školská Stránka</Link>
             </button>
             <button className="newTest ml-10 bg-red-500 font-bold py-2 px-4 rounded">
-              <a href="/books">Všetky Knihy</a>
+              <Link href="/books">Všetky Knihy</Link>
             </button>
           </div>
         </div>

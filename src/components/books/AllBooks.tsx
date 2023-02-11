@@ -24,6 +24,9 @@ const AllBooks: React.FC = () => {
   return (
     <>
       <Header name="Všetky knihy" />
+      <div className="mt-4 font-bold text-center text-red-800 text-xl">
+        <Link href="/books/search">Hľadať konkretnú knihu</Link>
+      </div>
       <AnimatePresence>
         <div className="grid gap-8 space-x-1 lg:grid-cols-6">
           {data.length === 0 && <div>Nenašli sa žiadne knihy</div>}

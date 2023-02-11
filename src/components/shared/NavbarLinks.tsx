@@ -10,7 +10,7 @@ const NavbarLinks: React.FC = () => {
         <Link href="/about">O Stránke</Link>
       </li>
       <li className="text-black text-xl">
-        <Link href="/books">Knihy</Link>
+        <Link href="/books/all">Knihy</Link>
       </li>
       <li className="text-black text-xl">
         <Link href="/category">Kategórie</Link>

@@ -13,8 +13,10 @@ import { useState, useEffect} from "react";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const AllBooks: React.FC = () => {
+  /* TODO: Update this later */
+  const initialSearchValue: never[] = [];
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<any>(); // TODO: Fix later typing
+  const [results, setResults] = useState<any>(initialSearchValue); // TODO: Fix later typing
   const [isSearching, setIsSearching] = useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
@@ -40,8 +42,6 @@ const AllBooks: React.FC = () => {
       setIsSearching(false);
     }
   }, [debouncedSearchTerm]);
-
-  console.log(results.data);
 
   return (
     <>

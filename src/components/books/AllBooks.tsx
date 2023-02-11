@@ -8,6 +8,7 @@ import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
 import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const AllBooks: React.FC = () => {
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
@@ -36,8 +37,6 @@ const AllBooks: React.FC = () => {
                   <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                     <div className="mb-8">
                       <img
-                        width={300}
-                        height={300}
                         alt="Placeholder"
                         className="h-auto w-full"
                         src={item.image}

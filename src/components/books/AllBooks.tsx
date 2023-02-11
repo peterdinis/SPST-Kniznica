@@ -6,14 +6,15 @@ import FallbackRender from "../shared/FallbackRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
-import { IBook, IBookResult } from "@/api/interfaces/IBook";
+import { IBook} from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect} from "react";
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const AllBooks: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<IBookResult |any>(); // TODO: Fix later typing
+  const [results, setResults] = useState<any>(); // TODO: Fix later typing
   const [isSearching, setIsSearching] = useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
@@ -40,7 +41,7 @@ const AllBooks: React.FC = () => {
     }
   }, [debouncedSearchTerm]);
 
-  console.log(results!.data)
+  console.log(results.data);
 
   return (
     <>
@@ -55,6 +56,8 @@ const AllBooks: React.FC = () => {
           />
 
           {isSearching && <div className="mt-4 font-bold">Hľadám ...</div>}
+
+          {results.data === undefined || results.data.length === 0 && <div className="font-bold mt-4">Kniha nebola najdená <SentimentVeryDissatisfiedIcon /></div>}
         </form>
       </div>
       <AnimatePresence>

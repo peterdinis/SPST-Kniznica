@@ -34,8 +34,9 @@ const RegisterForm: React.FC = () => {
 
   const onHandleSubmit = (data: IRegisterUser) => {
     try {
-      mutation.mutate(data);
-      router.push("/student/login");
+      /* mutation.mutate(data);
+      router.push("/student/login"); */
+      console.log("Ping");
     } catch (err) {
       alert(err);
     }
@@ -149,12 +150,6 @@ const RegisterForm: React.FC = () => {
               placeholder="Heslo"
               {...register("password", {
                 required: "You must specify a password",
-                pattern: {
-                  value:
-                    "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[d]){1,})(?=(.*[W]){    1,})(?!.*s).{8,}$" as any,
-                  message:
-                    "Password should contain at least one number and one    special character",
-                },
                 minLength: {
                   value: 8,
                   message: "Password must be more than 8 characters",
@@ -188,7 +183,6 @@ const RegisterForm: React.FC = () => {
               autoFocus
               placeholder="Rola"
               value="STUDENT"
-              readOnly
             />
           </div>
 
@@ -196,13 +190,6 @@ const RegisterForm: React.FC = () => {
             <label className="block text-grey-darker text-sm font-bold mb-2">
               Pohlavie
             </label>
-            <select
-              {...register("gender")}
-              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-            >
-              <option value="MALE">MALE</option>
-              <option value="FEMALE">FEMALE</option>
-            </select>
 
             <p className="text-red-800">
               {errors.gender && errors.gender.message}

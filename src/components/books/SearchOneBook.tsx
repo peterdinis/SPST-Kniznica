@@ -6,6 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import SearchIcon from "@mui/icons-material/Search";
 
 const SearchOneBook: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -26,6 +27,8 @@ const SearchOneBook: React.FC = () => {
       setIsSearching(false);
     }
   }, [debouncedSearchTerm]);
+
+  console.log(results.data);
 
   return (
     <>
@@ -53,8 +56,14 @@ const SearchOneBook: React.FC = () => {
       </div>
 
       <AnimatePresence>
+        {results.data === undefined && (
+          <div className="text-center mt-4 font-bold text-xl">
+            Hľadám
+            <SearchIcon />
+          </div>
+        )}
         <div className="grid gap-8 space-x-1 lg:grid-cols-6">
-          {results.data.map &&
+          {/*  {results.data.map &&
             results.data.map((item: IBook) => {
               return (
                 <>
@@ -82,7 +91,7 @@ const SearchOneBook: React.FC = () => {
                   </div>
                 </>
               );
-            })}
+            })} */}
         </div>
       </AnimatePresence>
     </>

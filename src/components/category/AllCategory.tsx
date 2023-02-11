@@ -6,6 +6,8 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import { ICategory } from "@/api/interfaces/ICategory";
+import { AnimatePresence } from "framer-motion";
+
 
 const AllCategory: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
@@ -27,6 +29,7 @@ const AllCategory: React.FC = () => {
   return (
     <>
       <Header name="Všetky kategórie" />
+      <AnimatePresence>
       <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {data &&
           data.map((item: ICategory) => {
@@ -48,6 +51,7 @@ const AllCategory: React.FC = () => {
             );
           })}
       </div>
+      </AnimatePresence>
     </>
   );
 };

@@ -38,7 +38,7 @@ function Hero() {
             <span className="font-bold">Stephen King</span>
           </div>
 
-          <div className="ml-8">´´ äúpo
+          <div className="ml-8">
            
             <button className="test bg-blue-500 font-bold py-2 px-4 rounded">
               <Link href="https://www.spsbj.sk/">Školská Stránka</Link>

@@ -8,16 +8,8 @@ import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
 import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
-import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect } from "react";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 const AllBooks: React.FC = () => {
-  const initialSearchValue: never[] = [];
-  const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<any>(initialSearchValue); // TODO: Fix later typing
-  const [isSearching, setIsSearching] = useState(false);
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
     retry: 2,
     placeholderData: placeholderBook,
@@ -29,41 +21,9 @@ const AllBooks: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      setIsSearching(true);
-      api.searchForBooks(debouncedSearchTerm).then((results: any) => {
-        setIsSearching(false);
-        setResults(results);
-      });
-    } else {
-      setResults([]);
-      setIsSearching(false);
-    }
-  }, [debouncedSearchTerm]);
-
   return (
     <>
       <Header name="Všetky knihy" />
-      <div className="flex justify-center align-top">
-        <form>
-          <input
-            name="form"
-            className="text-gray-600 mt-4 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
-            placeholder="Hľadaj knihu"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-
-          {isSearching && <div className="text-center mt-4 font-bold">Hľadám ...</div>}
-
-          {results.data === undefined ||
-            (results.data.length === 0 && (
-              <div className="text-center font-bold mt-4">
-                Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
-              </div>
-            ))}
-        </form>
-      </div>
       <AnimatePresence>
         <div className="grid gap-8 space-x-1 lg:grid-cols-6">
           {data.length === 0 && <div>Nenašli sa žiadne knihy</div>}

@@ -6,14 +6,13 @@ import FallbackRender from "../shared/FallbackRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
-import { IBook} from "@/api/interfaces/IBook";
+import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect} from "react";
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import { useState, useEffect } from "react";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 const AllBooks: React.FC = () => {
-  /* TODO: Update this later */
   const initialSearchValue: never[] = [];
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState<any>(initialSearchValue); // TODO: Fix later typing
@@ -55,9 +54,14 @@ const AllBooks: React.FC = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
 
-          {isSearching && <div className="mt-4 font-bold">Hľadám ...</div>}
+          {isSearching && <div className="text-center mt-4 font-bold">Hľadám ...</div>}
 
-          {results.data === undefined || results.data.length === 0 && <div className="font-bold mt-4">Kniha nebola najdená <SentimentVeryDissatisfiedIcon /></div>}
+          {results.data === undefined ||
+            (results.data.length === 0 && (
+              <div className="text-center font-bold mt-4">
+                Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
+              </div>
+            ))}
         </form>
       </div>
       <AnimatePresence>

@@ -1,11 +1,6 @@
 import Header from "../shared/Header";
-import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/bookQueries";
-import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/FallbackRender";
 import Link from "next/link";
-import ScrollToTop from "@/hooks/useScroll";
-import { placeholderBook } from "@/data/placeholderBook";
 import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
@@ -34,8 +29,8 @@ const SearchOneBook: React.FC = () => {
 
   return (
     <>
-        <Header name="Hľadanie konkretnej knihy" />
-        <div className="flex justify-center align-top">
+      <Header name="Hľadanie konkretnej knihy" />
+      <div className="flex justify-center align-top">
         <form>
           <input
             name="form"
@@ -44,7 +39,9 @@ const SearchOneBook: React.FC = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
 
-          {isSearching && <div className="text-center mt-4 font-bold">Hľadám ...</div>}
+          {isSearching && (
+            <div className="text-center mt-4 font-bold">Hľadám ...</div>
+          )}
 
           {results.data === undefined ||
             (results.data.length === 0 && (
@@ -57,11 +54,8 @@ const SearchOneBook: React.FC = () => {
 
       <AnimatePresence>
         <div className="grid gap-8 space-x-1 lg:grid-cols-6">
-            update
-          {/* {data.length === 0 && <div>Nenašli sa žiadne knihy</div>}
-
-          {data &&
-            data.map((item: IBook) => {
+          {results.data.map &&
+            results.data.map((item: IBook) => {
               return (
                 <>
                   <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
@@ -88,11 +82,11 @@ const SearchOneBook: React.FC = () => {
                   </div>
                 </>
               );
-            })} */}
+            })}
         </div>
       </AnimatePresence>
     </>
-  )
+  );
 };
 
 export default SearchOneBook;

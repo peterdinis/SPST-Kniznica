@@ -30,7 +30,7 @@ const BookInfo: React.FC = () => {
   }
 
   const navigateToBooks = () => {
-    router.push("/books");
+    router.push("/books/all");
   };
   return (
     <>

@@ -29,7 +29,7 @@ const CategoryInfo: React.FC = () => {
   }
 
   const navigateToCategories = () => {
-    router.push("/category");
+    router.push("/category/all");
   };
   return (
     <>

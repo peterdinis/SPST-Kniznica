@@ -1,13 +1,17 @@
 export interface IBook {
-    id?: number;
-    name: string;
-    description: string;
-    author: string;
-    year: number;
-    available: boolean;
-    pages: number;
-    publisher: string;
-    image: string;
-    status: string;
-    categoryId: number;
-} 
+  id?: number;
+  name: string;
+  description: string;
+  author: string;
+  year: number;
+  available: boolean;
+  pages: number;
+  publisher: string;
+  image: string;
+  status: string;
+  categoryId: number;
+}
+
+export interface IBookResult {
+  data: Record<string, IBook>;
+}

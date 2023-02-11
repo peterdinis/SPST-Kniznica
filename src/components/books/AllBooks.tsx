@@ -6,14 +6,14 @@ import FallbackRender from "../shared/FallbackRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
-import { IBook } from "@/api/interfaces/IBook";
+import { IBook, IBookResult } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect} from "react";
 
 const AllBooks: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<IBookResult |any>(); // TODO: Fix later typing
   const [isSearching, setIsSearching] = useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
@@ -40,7 +40,7 @@ const AllBooks: React.FC = () => {
     }
   }, [debouncedSearchTerm]);
 
-  console.log(results);
+  console.log(results!.data)
 
   return (
     <>

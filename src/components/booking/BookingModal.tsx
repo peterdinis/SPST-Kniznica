@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useSpring, animated } from 'react-spring';
@@ -66,14 +65,10 @@ export const BookingModal: React.FC<IModalProps> = ({children, btnName}: IModalP
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
       >
         <Fade in={open}>
           <Box sx={style}>
-            <h2 className="text-center mt-2 text-3xl font-bold">Vyplnte udaje</h2>
+            <h2 className="text-center mt-2 text-3xl font-bold">Vyplnte údaje</h2>
             <div className="mt-4">
                 {children}
             </div>

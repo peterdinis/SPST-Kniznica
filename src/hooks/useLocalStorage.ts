@@ -5,7 +5,6 @@ import {
   useEffect,
   useState,
 } from "react";
-
 import { useEventCallback, useEventListener } from "usehooks-ts";
 
 declare global {

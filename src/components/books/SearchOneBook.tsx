@@ -7,6 +7,7 @@ import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import SearchIcon from "@mui/icons-material/Search";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const SearchOneBook: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -70,7 +71,7 @@ const SearchOneBook: React.FC = () => {
                     <>
                       <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                         <div className="mb-8">
-                          <img
+                          <LazyLoadImage
                             alt="Placeholder"
                             className="h-auto w-full"
                             src={item.image}

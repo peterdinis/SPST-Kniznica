@@ -29,6 +29,7 @@ const RegisterForm: React.FC = () => {
 
     onError: (data) => {
       errorRegister();
+      router.push("/student/register");
     },
   });
 

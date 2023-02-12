@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderCategory } from "@/data/placeholderCategory";
+import { AnimatePresence } from "framer-motion";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
@@ -32,7 +33,7 @@ const CategoryInfo: React.FC = () => {
     router.push("/category/all");
   };
   return (
-    <>
+    <AnimatePresence>
       <Header name="Detail Kategórie" />
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
         <div className="border-t mt-4 border-gray-200">
@@ -70,7 +71,7 @@ const CategoryInfo: React.FC = () => {
           </button>
         </div>
       </div>
-    </>
+    </AnimatePresence>
   );
 };
 

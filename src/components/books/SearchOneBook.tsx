@@ -44,7 +44,11 @@ const SearchOneBook: React.FC = () => {
           />
 
           {isSearching && (
-            <div className="text-center mt-4 font-bold">Hľadám ...</div>
+            <div className="text-center mt-4 font-bold text-xl">
+              Hľadám
+              <SearchIcon />
+              ...
+            </div>
           )}
 
           {results.data === undefined ||
@@ -60,7 +64,8 @@ const SearchOneBook: React.FC = () => {
         {results.data === undefined ? (
           <div className="text-center mt-4 font-bold text-xl">
             Hľadám
-            <SearchIcon />...
+            <SearchIcon />
+            ...
           </div>
         ) : (
           <>

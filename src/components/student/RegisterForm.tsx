@@ -22,7 +22,7 @@ const RegisterForm: React.FC = () => {
       localStorage.setItem("studentRefreshToken", data.data.refreshToken);
       localStorage.setItem("studentAccessToken", data.data.accessToken);
       localStorage.setItem("studentEmail", data.data.newStudent.email);
-      localStorage.setItem("studentId",data.data.newStudent.id);
+      localStorage.setItem("studentId", data.data.newStudent.id);
       localStorage.setItem("studentRole", data.data.newStudent.role);
       notify();
     },
@@ -153,7 +153,7 @@ const RegisterForm: React.FC = () => {
               type="password"
               autoFocus
               autoComplete="current-password"
-              placeholder="Heslo"
+              placeholder="********************************************"
               {...register("password", {
                 required: "You must specify a password",
                 minLength: {

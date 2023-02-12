@@ -1,7 +1,7 @@
 import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { IRegisterUser } from "@/api/interfaces/IUser";
+import { IRegisterStudent } from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
@@ -14,8 +14,8 @@ const RegisterForm: React.FC = () => {
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
 
   const mutation = useMutation(api.registerStudent, {
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: (data: any) => {
+      console.log(data.data);
       notify();
     },
 
@@ -30,13 +30,13 @@ const RegisterForm: React.FC = () => {
     formState: { errors },
     trigger,
     register,
-  } = useForm<IRegisterUser>();
+  } = useForm<IRegisterStudent>();
 
-  const onHandleSubmit = (data: IRegisterUser) => {
+  const onHandleSubmit = (data: IRegisterStudent) => {
     try {
+      /* mutation.mutate(data);
+      router.push("/student/login"); */
       mutation.mutate(data);
-      router.push("/student/login");
-      console.log("Ping");
     } catch (err) {
       alert(err);
     }
@@ -152,11 +152,11 @@ const RegisterForm: React.FC = () => {
                 required: "You must specify a password",
                 minLength: {
                   value: 8,
-                  message: "Password must be more than 8 characters",
+                  message: "Heslo musí mať viac znakov ako je 8",
                 },
                 maxLength: {
                   value: 20,
-                  message: "Password must be less than 20 characters",
+                  message: "Heslo môže mať najviac 20 znakov",
                 },
               })}
               onKeyUp={() => {
@@ -179,7 +179,7 @@ const RegisterForm: React.FC = () => {
             <input
               className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
               id="Role"
-              type="password"
+              type="string"
               autoFocus
               placeholder="STUDENT"
               {...register("role", {

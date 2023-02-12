@@ -1,4 +1,16 @@
-export interface IRegisterUser {
+export interface IStudent {
+    createdAt: string
+    email: string
+    id: string
+    lastName: string
+    name: string
+    password: string
+    profilePic?: string | null,
+    role: string,
+    updatedAt: string
+}
+
+export interface IRegisterStudent {
     id?: number;
     name: string;
     lastName: string;
@@ -7,7 +19,15 @@ export interface IRegisterUser {
     role: string;
 }
 
-export interface ILoginUser {
+export interface ILoginStudent {
     email: string;
     password: string;
+}
+
+export interface INewRegisteredStudent {
+    data: {
+        accessToken: string;
+        refreshToken: string;
+        newStudent: IStudent
+    }
 }

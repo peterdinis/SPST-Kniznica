@@ -1,7 +1,10 @@
 import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { IRegisterStudent } from "@/api/interfaces/IUser";
+import {
+  INewRegisteredStudent,
+  IRegisterStudent,
+} from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
@@ -14,13 +17,17 @@ const RegisterForm: React.FC = () => {
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
 
   const mutation = useMutation(api.registerStudent, {
-    onSuccess: (data: any) => {
-      console.log(data.data);
+    onSuccess: (data: INewRegisteredStudent) => {
+      localStorage.clear();
+      localStorage.setItem("studentRefreshToken", data.data.refreshToken);
+      localStorage.setItem("studentAccessToken", data.data.accessToken);
+      localStorage.setItem("studentEmail", data.data.newStudent.email);
+      localStorage.setItem("studentId",data.data.newStudent.id);
+      localStorage.setItem("studentRole", data.data.newStudent.role);
       notify();
     },
 
     onError: (data) => {
-      console.log(data);
       errorRegister();
     },
   });
@@ -34,9 +41,8 @@ const RegisterForm: React.FC = () => {
 
   const onHandleSubmit = (data: IRegisterStudent) => {
     try {
-      /* mutation.mutate(data);
-      router.push("/student/login"); */
       mutation.mutate(data);
+      router.push("/student/login");
     } catch (err) {
       alert(err);
     }
@@ -190,9 +196,7 @@ const RegisterForm: React.FC = () => {
               }}
             />
 
-            <p className="text-red-800">
-              {errors.role && errors.role.message}
-            </p>
+            <p className="text-red-800">{errors.role && errors.role.message}</p>
           </div>
           <div>
             <button

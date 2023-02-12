@@ -14,6 +14,7 @@ export const queryClient = new QueryClient({
       refetchOnReconnect: false,
       retry: false,
       staleTime: twentyFourHoursInMs,
+
     },
     mutations: {
       networkMode: "offlineFirst",

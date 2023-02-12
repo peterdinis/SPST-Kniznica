@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Header from "../shared/Header";
-import GoogleButton from "../shared/auth/GoogleButton";
 
 const LoginForm: React.FC = () => {
   return (
@@ -65,9 +64,6 @@ const LoginForm: React.FC = () => {
             >
               Prihlásenie
             </button>
-            <div className="mt-4">
-              <GoogleButton />
-            </div>
             <div>
               <Link
                 className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"

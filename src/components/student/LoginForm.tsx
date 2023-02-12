@@ -1,5 +1,4 @@
 import Header from "../shared/Header";
-import GoogleButton from "../shared/auth/GoogleButton";
 import Link from "next/link";
 
 const LoginForm: React.FC = () => {
@@ -63,7 +62,6 @@ const LoginForm: React.FC = () => {
               Prihlásenie
             </button> <br />
             <div className="mt-4">
-            <GoogleButton />
             </div>
             <div>
               <Link

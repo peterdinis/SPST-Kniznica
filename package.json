@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "playwright test"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -44,7 +43,6 @@
     "usehooks-ts": "^2.9.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.30.0",
     "@types/mathjs": "^9.4.2",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "autoprefixer": "^10.4.13",

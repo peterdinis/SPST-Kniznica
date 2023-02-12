@@ -1,4 +1,27 @@
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import FallbackLoader from "../shared/FallbackLoader";
+import FallbackRender from "../shared/FallbackRender";
+
+const studentProfileInfo = axios.get(process.env.NEXT_PUBLIC_BACKEND_URL as string, {
+  headers: {
+      "Authorization": "bearer" + localStorage.getItem("studentAccessToken")
+  }
+})
+
 const MyProfile: React.FC = () => {
+
+  const {data, isLoading, isError} = useQuery(["studentProfile"], () => studentProfileInfo);
+
+  if (isLoading) {
+    return <FallbackLoader />;
+  }
+  if (isError) {
+    return <FallbackRender error="Nastala chyba" />;
+  }
+
+  console.log(data);
+
   return (
     <>
       <div className="p-16">

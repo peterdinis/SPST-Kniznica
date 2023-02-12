@@ -34,8 +34,8 @@ const RegisterForm: React.FC = () => {
 
   const onHandleSubmit = (data: IRegisterUser) => {
     try {
-      /* mutation.mutate(data);
-      router.push("/student/login"); */
+      mutation.mutate(data);
+      router.push("/student/login");
       console.log("Ping");
     } catch (err) {
       alert(err);
@@ -130,7 +130,7 @@ const RegisterForm: React.FC = () => {
             />
 
             <p className="text-red-800">
-              {errors.lastName && errors.lastName.message}
+              {errors.email && errors.email.message}
             </p>
           </div>
 
@@ -165,7 +165,33 @@ const RegisterForm: React.FC = () => {
             />
 
             <p className="text-red-800">
-              {errors.lastName && errors.lastName.message}
+              {errors.password && errors.password.message}
+            </p>
+          </div>
+
+          <div className="mb-2">
+            <label
+              className="block text-grey-darker text-sm font-bold mb-2"
+              htmlFor="password"
+            >
+              Rola
+            </label>
+            <input
+              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+              id="Role"
+              type="password"
+              autoFocus
+              placeholder="STUDENT"
+              {...register("role", {
+                required: "You must specify a role",
+              })}
+              onKeyUp={() => {
+                trigger("role");
+              }}
+            />
+
+            <p className="text-red-800">
+              {errors.role && errors.role.message}
             </p>
           </div>
           <div>

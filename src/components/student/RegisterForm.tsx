@@ -9,12 +9,17 @@ import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
 
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
+
+  useEffect(() => {
+    localStorage.clear();
+  }, [])
 
   const mutation = useMutation(api.registerStudent, {
     onSuccess: (data: INewRegisteredStudent) => {

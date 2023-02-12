@@ -6,7 +6,8 @@ import FallbackRender from "../shared/FallbackRender";
 const studentProfileInfo = axios.get("http://localhost:8111/student/profile", {
   headers: {
       "Authorization": "bearer" + localStorage.getItem("studentAccessToken")
-  }
+  },
+  withCredentials: true
 })
 
 const MyProfile: React.FC = () => {

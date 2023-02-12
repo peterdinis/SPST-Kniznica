@@ -8,12 +8,17 @@ import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
 import Link from "next/link";
+import {useEffect} from "react";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
+
+  useEffect(() => {
+    localStorage.clear();
+  }, [])
 
   const mutation = useMutation(api.loginStudent, {
     onSuccess: (data: INewLoggedStudent) => {

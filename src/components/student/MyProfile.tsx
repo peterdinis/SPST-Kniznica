@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 
-const studentProfileInfo = axios.get(process.env.NEXT_PUBLIC_BACKEND_URL as string, {
+const studentProfileInfo = axios.get("http://localhost:8111/student/profile", {
   headers: {
       "Authorization": "bearer" + localStorage.getItem("studentAccessToken")
   }

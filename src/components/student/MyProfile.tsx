@@ -3,10 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import { useMutation } from "@tanstack/react-query";
-import * as api from "../../api/mutations/studentMutation";
+import * as mut from "../../api/mutations/studentMutation";
 import {toast} from "react-toastify"
+import { useRouter } from "next/dist/client/router";
 
 const MyProfile: React.FC = () => {
+  const router = useRouter();
   /* if(typeof window !== "undefined") {
   localStorage.setItem('myCat', 'Tom');
 } */
@@ -29,8 +31,12 @@ const MyProfile: React.FC = () => {
 
   console.log(data); */
 
+  const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
+
   const logoutStudent = () => {
-    return;
+    localStorage.clear();
+    logoutToast();
+    router.push("/student/login");
   }
 
   return (

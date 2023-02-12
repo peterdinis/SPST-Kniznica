@@ -31,3 +31,4 @@ export interface INewRegisteredStudent {
         newStudent: IStudent
     }
 }
+

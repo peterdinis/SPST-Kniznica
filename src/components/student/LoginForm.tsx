@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
 
   const mutation = useMutation(api.loginStudent, {
     onSuccess: (data: INewRegisteredStudent) => {
-      localStorage.clear();
+      /* localStorage.clear(); */
       localStorage.setItem("studentRefreshToken", data.data.refreshToken);
       localStorage.setItem("studentAccessToken", data.data.accessToken);
       localStorage.setItem("studentEmail", data.data.newStudent.email);

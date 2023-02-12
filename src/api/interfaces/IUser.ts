@@ -32,3 +32,10 @@ export interface INewRegisteredStudent {
     }
 }
 
+export interface INewLoggedStudent {
+    data: {
+        accessToken: string;
+        refreshToken: string;
+        existingUser: IStudent
+    }
+}

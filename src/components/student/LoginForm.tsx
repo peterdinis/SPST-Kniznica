@@ -2,8 +2,7 @@ import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import {
-  ILoginStudent,
-  INewRegisteredStudent,
+  ILoginStudent, INewLoggedStudent,
 } from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
@@ -22,12 +21,12 @@ const LoginForm: React.FC = () => {
   })
 
   const mutation = useMutation(api.loginStudent, {
-    onSuccess: (data: INewRegisteredStudent) => {
+    onSuccess: (data: INewLoggedStudent) => {
       localStorage.setItem("studentRefreshToken", data.data.refreshToken);
       localStorage.setItem("studentAccessToken", data.data.accessToken);
-      localStorage.setItem("studentEmail", data.data.newStudent.email);
-      localStorage.setItem("studentId", data.data.newStudent.id);
-      localStorage.setItem("studentRole", data.data.newStudent.role);
+      localStorage.setItem("studentEmail", data.data.existingUser.email);
+      localStorage.setItem("studentId", data.data.existingUser.id);
+      localStorage.setItem("studentRole", data.data.existingUser.role);
       notify();
     },
 

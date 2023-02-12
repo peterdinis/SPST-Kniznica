@@ -66,7 +66,7 @@ const LoginForm: React.FC = () => {
               <input
                 className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
                 id="Email"
-                type="text"
+                type="email"
                 autoFocus
                 placeholder="Email"
                 {...register("email", {

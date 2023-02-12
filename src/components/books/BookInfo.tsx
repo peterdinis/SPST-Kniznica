@@ -6,6 +6,7 @@ import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { BookingModal } from "../booking/BookingModal";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -42,13 +43,13 @@ const BookInfo: React.FC = () => {
             data.image === undefined ||
             !data.image ||
             data.image === "string" ? (
-              <img
+              <LazyLoadImage
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
                 src="https://bitsofco.de/content/images/2018/12/broken-1.png"
               />
             ) : (
-              <img
+              <LazyLoadImage
                 alt="ecommerce"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
                 src={data.image}

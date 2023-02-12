@@ -8,6 +8,7 @@ import ScrollToTop from "@/hooks/useScroll";
 import { placeholderBook } from "@/data/placeholderBook";
 import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const AllBooks: React.FC = () => {
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
@@ -37,7 +38,7 @@ const AllBooks: React.FC = () => {
                 <>
                   <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                     <div className="mb-8">
-                      <img
+                      <LazyLoadImage
                         alt="Placeholder"
                         className="h-auto w-full"
                         src={item.image}

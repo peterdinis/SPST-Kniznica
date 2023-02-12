@@ -168,33 +168,6 @@ const RegisterForm: React.FC = () => {
               {errors.lastName && errors.lastName.message}
             </p>
           </div>
-
-          <div className="mb-2">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Rola
-            </label>
-            <input
-              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-              id="Rola"
-              type="text"
-              autoFocus
-              placeholder="Rola"
-              value="STUDENT"
-            />
-          </div>
-
-          <div className="mb-2">
-            <label className="block text-grey-darker text-sm font-bold mb-2">
-              Pohlavie
-            </label>
-
-            <p className="text-red-800">
-              {errors.gender && errors.gender.message}
-            </p>
-          </div>
           <div>
             <button
               className="mt-4 bg-red-700 rounded-lg p-2 text-white"

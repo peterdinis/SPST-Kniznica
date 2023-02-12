@@ -4,7 +4,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["http://localhost:8111", "https://picsum.photos/"]
+    domains: []
   }
 }
 

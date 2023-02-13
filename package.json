@@ -27,6 +27,7 @@
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "framer-motion": "^9.0.2",
+    "js-cookie": "^3.0.1",
     "mathjs": "^11.5.1",
     "next": "13.1.6",
     "next-auth": "^4.19.2",
@@ -46,6 +47,7 @@
     "zustand": "^4.3.3"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
     "@types/mathjs": "^9.4.2",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "autoprefixer": "^10.4.13",

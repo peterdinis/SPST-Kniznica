@@ -2,25 +2,29 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
-import { useMutation } from "@tanstack/react-query";
-import * as mut from "../../api/mutations/studentMutation";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 import { useRouter } from "next/dist/client/router";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
-  /* if(typeof window !== "undefined") {
-  localStorage.setItem('myCat', 'Tom');
-} */
+  if (typeof window !== "undefined") {
+    localStorage.setItem("myCat", "Tom");
+  }
 
-  /* const studentProfileInfo = axios.get("http://localhost:8111/student/profile", {
-  headers: {
-      "Authorization": "bearer" + localStorage.getItem("studentAccessToken")
-  },
-  withCredentials: true
-}) */
+  const studentProfileInfo = axios.get(
+    "http://localhost:8111/student/profile",
+    {
+      headers: {
+        Authorization: "bearer" + localStorage.getItem("studentAccessToken"),
+      },
+      withCredentials: true,
+    }
+  );
 
-  /* const {data, isLoading, isError} = useQuery(["studentProfile"], () => studentProfileInfo);
+  const { data, isLoading, isError } = useQuery(
+    ["studentProfile"],
+    () => studentProfileInfo
+  );
 
   if (isLoading) {
     return <FallbackLoader />;
@@ -29,7 +33,7 @@ const MyProfile: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  console.log(data); */
+  console.log(data);
 
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
@@ -37,7 +41,7 @@ const MyProfile: React.FC = () => {
     localStorage.clear();
     logoutToast();
     router.push("/student/login");
-  }
+  };
 
   return (
     <>
@@ -65,7 +69,10 @@ const MyProfile: React.FC = () => {
               <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                 Moje požičané knihy
               </button>
-              <button onClick={logoutStudent} className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              <button
+                onClick={logoutStudent}
+                className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              >
                 Odlhásenie
               </button>
             </div>

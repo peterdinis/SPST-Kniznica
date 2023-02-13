@@ -2,7 +2,9 @@ import create from "zustand";
 import { persist } from "zustand/middleware";
 import axios from "../api/lib/axios"
 
-const profileRequest = async() =>axios.get("/student/profile");
+const profileRequest = async() =>axios.get("/student/profile").then((data) => {
+  console.log(data);
+});
 
 type Profile = {
     id?: number;
@@ -16,7 +18,7 @@ type Profile = {
 
 type State = {
     token: string |null
-    profile: Profile |null
+    profile: Profile | null;
 }
 
 type Actions = {
@@ -37,9 +39,9 @@ export const useStudentStore = create(
           })),
         getProfile: async () => {
           const resProfile = await profileRequest();
-          set(() => ({
-            profile: resProfile.data,
-          }));
+          /* set(() => ({
+            profile: resProfile,
+          })); */
         },
       }),
       {

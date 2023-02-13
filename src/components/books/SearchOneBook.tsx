@@ -29,8 +29,6 @@ const SearchOneBook: React.FC = () => {
     }
   }, [debouncedSearchTerm]);
 
-  console.log(results.data);
-
   return (
     <>
       <Header name="Hľadanie konkretnej knihy" />

@@ -89,21 +89,31 @@ const BookInfo: React.FC = () => {
                     <BookingModal btnName="Chcem si požičať knihu">
                       <hr />
                       <form className="mt-4">
+                        <label className="block text-grey-darker text-sm font-bold mb-2">Od</label>
                         <input
+                          type="date"
                           className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                          placeholder="Email"
+                          placeholder="11.1.2001"
                         />
+                        <label className="mt-2 block text-grey-darker text-sm font-bold mb-2">Do</label>
                         <input
+                          type="date"
                           className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                          placeholder="Email"
+                          placeholder="11.1.2001"
                         />
+                        <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">Email</label>
                         <input
+                          type="email"
                           className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                          placeholder="Email"
+                          placeholder="janko@hrasko.com"
                         />
+
+                        <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">Číslo knihy</label>
                         <input
+                          type="number"
                           className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                          placeholder="Email"
+                          placeholder="1"
+                          value={id}
                         />
                         <button className="outline-none mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
                           Požičať Knihu

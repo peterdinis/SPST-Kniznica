@@ -10,6 +10,7 @@ type Profile = {
     lastName: string;
     email: string;
     password: string;
+    profilePic?: string |null
     role: string;
 }
 

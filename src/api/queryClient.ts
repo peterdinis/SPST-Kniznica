@@ -16,7 +16,6 @@ export const queryClient = new QueryClient({
     },
     mutations: {
       networkMode: "offlineFirst",
-      
     },
   }
 });

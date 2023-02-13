@@ -9,6 +9,7 @@ import { BookingModal } from "../booking/BookingModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { AnimatePresence } from "framer-motion";
 
+
 const BookInfo: React.FC = () => {
   const router = useRouter();
 

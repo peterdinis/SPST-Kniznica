@@ -23,7 +23,7 @@ type Actions = {
     setToken: (token: string) => void;
 }
 
-export const useAuthStore = create(
+export const useStudentStore = create(
     persist<State & Actions>(
       (set) => ({
         token: null,
@@ -43,7 +43,7 @@ export const useAuthStore = create(
         },
       }),
       {
-        name: "auth",
+        name: "student",
       }
     )
   );

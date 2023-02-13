@@ -1,39 +1,13 @@
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/FallbackRender";
 import { toast } from "react-toastify";
 import { useRouter } from "next/dist/client/router";
+import { useStudentStore } from "@/store/studentStore";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
-  if (typeof window !== "undefined") {
-    localStorage.setItem("myCat", "Tom");
-  }
+  
+  const profile = useStudentStore((state) => state.profile);
 
-  const studentProfileInfo = axios.get(
-    "http://localhost:8111/student/profile",
-    {
-      headers: {
-        Authorization: "bearer" + localStorage.getItem("studentAccessToken"),
-      },
-      withCredentials: true,
-    }
-  );
-
-  const { data, isLoading, isError } = useQuery(
-    ["studentProfile"],
-    () => studentProfileInfo
-  );
-
-  if (isLoading) {
-    return <FallbackLoader />;
-  }
-  if (isError) {
-    return <FallbackRender error="Nastala chyba" />;
-  }
-
-  console.log(data);
+  console.log(profile);
 
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 

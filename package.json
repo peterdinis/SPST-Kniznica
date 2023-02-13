@@ -33,6 +33,7 @@
     "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-animated-modal": "^1.1.1",
+    "react-cookie-consent": "^8.0.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.0",
     "react-infinite-scroll": "^0.1.5",

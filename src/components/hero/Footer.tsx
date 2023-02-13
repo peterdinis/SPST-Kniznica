@@ -1,3 +1,5 @@
+import CookieInfo from "../shared/CookieInfo";
+
 function Footer() {
 
     return (
@@ -16,6 +18,7 @@ function Footer() {
             </div>
           </div>
         </div>
+        <CookieInfo />
       </footer>
     );
   }

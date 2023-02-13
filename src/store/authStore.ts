@@ -32,10 +32,10 @@ export const useAuthStore = create(
             isAuth: !!token,
           })),
         getProfile: async () => {
-          const resProfile = await profileRequest();
+          /* const resProfile = await profileRequest();
           set(() => ({
             profile: resProfile.data,
-          }));
+          })); */
         },
       }),
       {

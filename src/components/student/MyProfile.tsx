@@ -1,17 +1,14 @@
 import { toast } from "react-toastify";
 import { useRouter } from "next/dist/client/router";
-import { useEffect } from "react";
 import AddIcon from '@mui/icons-material/Add';
+import {useQuery} from "@tanstack/react-query"
+import * as api from "../../api/queries/studentQueries"
 
 const MyProfile: React.FC = () => {
-
-  useEffect(() => {
-    if(typeof window !== "undefined") {
-      localStorage.setItem("Ping", "pong");
-    }
-  }, []);
-
   const router = useRouter();
+
+  const {data} = useQuery(["myProfile"], () => api.studentProfile);
+  console.log(data);
 
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
@@ -20,8 +17,6 @@ const MyProfile: React.FC = () => {
     logoutToast();
     router.push("/student/login");
   };
-
-  console.log(localStorage.getItem("studentRole"))
   return (
     <>
       <div className="p-16">

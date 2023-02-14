@@ -3,12 +3,21 @@ import { useRouter } from "next/dist/client/router";
 import AddIcon from '@mui/icons-material/Add';
 import {useQuery} from "@tanstack/react-query"
 import * as api from "../../api/queries/studentQueries"
+import FallbackLoader from "../shared/FallbackLoader";
+import FallbackRender from "../shared/FallbackRender";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
 
-  const {data} = useQuery(["myProfile"], () => api.studentProfile);
+  const {data, isLoading, isError} = useQuery(["myProfile"], () => api.studentProfile);
   console.log(data);
+
+  if (isLoading) {
+    return <FallbackLoader />;
+  }
+  if (isError) {
+    return <FallbackRender error="Nastala chyba" />;
+  }
 
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
@@ -45,15 +54,13 @@ const MyProfile: React.FC = () => {
 
           <div className="mt-20 text-center border-b pb-12">
             <h1 className="text-4xl font-medium text-gray-700">
-              Jessica Jones,{" "}
-              <span className="font-light text-gray-500">27</span>
+              {data.name},{" "}
             </h1>
-            <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p>
+            <p className="font-light text-gray-600 mt-3">{data.lastName}</p>
 
             <p className="mt-8 text-gray-500">
-              Solution Manager - Creative Tim Officer
+              {data.role}
             </p>
-            <p className="mt-2 text-gray-500">University of Computer Science</p>
           </div>
         </div>
       </div>

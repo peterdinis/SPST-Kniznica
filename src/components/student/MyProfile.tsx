@@ -1,14 +1,17 @@
 import { toast } from "react-toastify";
 import { useRouter } from "next/dist/client/router";
-import { useStudentStore } from "@/store/studentStore";
+import { useEffect } from "react";
 import AddIcon from '@mui/icons-material/Add';
 
 const MyProfile: React.FC = () => {
-  const router = useRouter();
-  
-  const profile = useStudentStore((state) => state.profile);
 
-  console.log(profile);
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+      localStorage.setItem("Ping", "pong");
+    }
+  }, []);
+
+  const router = useRouter();
 
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
@@ -18,6 +21,7 @@ const MyProfile: React.FC = () => {
     router.push("/student/login");
   };
 
+  console.log(localStorage.getItem("studentRole"))
   return (
     <>
       <div className="p-16">

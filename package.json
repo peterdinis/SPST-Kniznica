@@ -12,7 +12,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@formkit/auto-animate": "^1.0.0-beta.6",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.7",
     "@next/font": "13.1.6",
@@ -29,10 +28,8 @@
     "eslint-config-next": "13.1.6",
     "framer-motion": "^9.0.2",
     "js-cookie": "^3.0.1",
-    "mathjs": "^11.5.1",
     "next": "13.1.6",
     "next-auth": "^4.19.2",
-    "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-animated-modal": "^1.1.1",
     "react-cookie-consent": "^8.0.1",
@@ -45,8 +42,7 @@
     "react-toastify": "^9.1.1",
     "simple-zustand-devtools": "^1.1.0",
     "typescript": "4.9.5",
-    "usehooks-ts": "^2.9.1",
-    "zustand": "^4.3.3"
+    "usehooks-ts": "^2.9.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

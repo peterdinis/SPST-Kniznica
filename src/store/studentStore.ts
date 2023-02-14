@@ -1,10 +1,8 @@
-import create from "zustand";
+import {create} from "zustand";
 import { persist } from "zustand/middleware";
 import axios from "../api/lib/axios"
 
-const profileRequest = async() =>axios.get("/student/profile").then((data) => {
-  console.log(data);
-});
+export const profileRequest = async() =>axios.get("/student/profile");
 
 type Profile = {
     id?: number;
@@ -39,9 +37,9 @@ export const useStudentStore = create(
           })),
         getProfile: async () => {
           const resProfile = await profileRequest();
-          /* set(() => ({
-            profile: resProfile,
-          })); */
+          set(() => ({
+            profile: resProfile.data,
+          }));
         },
       }),
       {

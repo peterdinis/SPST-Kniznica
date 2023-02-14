@@ -9,9 +9,12 @@ import { useMutation } from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
 import Link from "next/link";
 import {useEffect} from "react";
+import {profileRequest, useStudentStore} from "../../store/studentStore";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
+  const setToken = useStudentStore((state) => state.setToken);
+  const setProfile = useStudentStore((state) => state.profile);
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
@@ -44,9 +47,12 @@ const LoginForm: React.FC = () => {
     register,
   } = useForm<ILoginStudent>();
 
-  const onHandleSubmit = (data: ILoginStudent) => {
+  const onHandleSubmit = async (data: ILoginStudent) => {
     try {
       mutation.mutate(data);
+      const resProfile = await profileRequest();
+      setToken(localStorage.getItem("studentAccessToken") as unknown as string);
+      setProfile(resProfile.data);
       router.push("/student/profile");
     } catch (err) {
       alert(err);

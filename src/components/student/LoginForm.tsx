@@ -14,7 +14,7 @@ import {profileRequest, useStudentStore} from "../../store/studentStore";
 const LoginForm: React.FC = () => {
   const router = useRouter();
   const setToken = useStudentStore((state) => state.setToken);
-  const setProfile = useStudentStore((state) => state.profile);
+  const setProfile = useStudentStore((state) => state.setProfile);
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");

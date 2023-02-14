@@ -17,6 +17,7 @@ type Profile = {
 type State = {
     token: string |null
     profile: Profile | null;
+    setProfile: any
 }
 
 type Actions = {
@@ -35,6 +36,12 @@ export const useStudentStore = create(
             token,
             isAuth: !!token,
           })),
+
+        setProfile: async(profile: Profile) => {
+          return set(state => ({
+            profile
+          }));
+        },
         getProfile: async () => {
           const resProfile = await profileRequest();
           set(() => ({

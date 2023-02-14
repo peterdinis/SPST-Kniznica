@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string,
-  withCredentials: true,
+  withCredentials: true
 });
 
 api.interceptors.request.use((config: any) => {

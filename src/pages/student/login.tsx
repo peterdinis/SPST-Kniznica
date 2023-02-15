@@ -1,9 +1,13 @@
-import LoginForm from "@/components/student/LoginForm";
 import { NextPage } from "next";
+import dynamic from "next/dynamic";
+
+const DynamicLogin = dynamic(() => import("@/components/student/LoginForm"), {
+    ssr: false
+})
 
 const LoginStudentPage: NextPage = () => {
     return (
-       <LoginForm />
+       <DynamicLogin />
     )
 }
 

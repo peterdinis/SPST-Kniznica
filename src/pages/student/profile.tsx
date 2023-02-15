@@ -1,4 +1,3 @@
-import MyProfile from "@/components/student/MyProfile";
 import { NextPage } from "next";
 import dynamic from "next/dynamic";
 

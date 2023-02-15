@@ -27,6 +27,7 @@ const RegisterForm: React.FC = () => {
       localStorage.setItem("studentAccessToken", data.data.accessToken);
       localStorage.setItem("studentEmail", data.data.newStudent.email);
       localStorage.setItem("studentId", data.data.newStudent.id);
+      localStorage.setItem("studentId", data.data.newStudent.id);
       localStorage.setItem("studentRole", data.data.newStudent.role);
       notify();
     },

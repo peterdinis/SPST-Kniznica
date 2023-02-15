@@ -33,6 +33,7 @@
     "next": "13.1.6",
     "next-auth": "^4.19.2",
     "next-themes": "^0.2.1",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-animated-modal": "^1.1.1",
     "react-cookie-consent": "^8.0.1",

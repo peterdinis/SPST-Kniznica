@@ -5,7 +5,6 @@ export interface IStudent {
     lastName: string
     name: string
     password: string
-    profilePic?: string | null,
     role: string,
     updatedAt: string
 }

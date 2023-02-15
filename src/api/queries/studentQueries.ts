@@ -14,3 +14,11 @@ api.interceptors.request.use((config: any) => {
 
 
 export const studentProfile = api.get("student/profile").then((res)=>res.data);
+
+export const getMyBorrowedBooks = (id: number | string) => {
+  if(!id) {
+    return;
+  }
+
+  return api.get("booking/me/:id").then((res) => res.data);
+}

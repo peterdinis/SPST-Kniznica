@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import AboutWrapper from '../components/about/AboutWrapper'
-import AboutPage from "../pages/about"
+import AboutWrapper from '../../components/about/AboutWrapper'
+import AboutPage from "../../pages/about"
 
 describe("Aboutpage Test", () => {
 

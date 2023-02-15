@@ -1,9 +1,5 @@
 import axios from "axios";
 
-if(typeof window !== "undefined") {
-    localStorage.setItem("Ping", "Pong");
-}
-
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string,
 });

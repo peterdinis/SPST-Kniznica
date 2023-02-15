@@ -1,16 +1,15 @@
 import { toast } from "react-toastify";
 import { useRouter } from "next/dist/client/router";
-import AddIcon from '@mui/icons-material/Add';
 import {useQuery} from "@tanstack/react-query"
 import * as api from "../../api/queries/studentQueries"
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
+import { PhotoUploadModal } from "./PhotoUploadModal";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
 
   const {data, isLoading, isError} = useQuery(["myProfile"], () => api.studentProfile);
-  console.log(data);
 
   if (isLoading) {
     return <FallbackLoader />;
@@ -34,7 +33,7 @@ const MyProfile: React.FC = () => {
             <div className="relative">
               <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">               
                 <span>
-                <AddIcon className="text-center" /> Nová fotka
+                <PhotoUploadModal btnName={"Nová fotka"} />
                 </span>
               </div>
             </div>
@@ -54,7 +53,7 @@ const MyProfile: React.FC = () => {
 
           <div className="mt-20 text-center border-b pb-12">
             <h1 className="text-4xl font-medium text-gray-700">
-              {data.name},{" "}
+              {data.name}{" "}
             </h1>
             <p className="font-light text-gray-600 mt-3">{data.lastName}</p>
 

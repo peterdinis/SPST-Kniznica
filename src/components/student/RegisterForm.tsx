@@ -84,16 +84,12 @@ const RegisterForm: React.FC = () => {
                 }}
               />
 
-              <p className="text-red-800">
-                {errors.name && errors.name.message}
-              </p>
-
               {errors.name && errors.name.type === "required" && (
-                <p className="errorMsg">Meno je povinné</p>
+                <p className="text-red-800">Meno je povinné</p>
               )}
 
               {errors.name && errors.name.type === "minLength" && (
-                <p className="errorMsg">Meno musí mať viac ako jeden znak</p>
+                <p className="text-red-800">Meno musí mať viac ako jeden znak</p>
               )}
             </div>
           </div>
@@ -120,16 +116,12 @@ const RegisterForm: React.FC = () => {
               }}
             />
 
-            <p className="text-red-800">
-              {errors.lastName && errors.lastName.message}
-            </p>
-
             {errors.lastName && errors.lastName.type === "required" && (
-              <p className="errorMsg">Meno je povinné</p>
+              <p className="text-red-800">Priezivsko je povinné</p>
             )}
 
             {errors.lastName && errors.lastName.type === "minLength" && (
-              <p className="errorMsg">Meno musí mať viac ako jeden znak</p>
+              <p className="text-red-800">Priezvisko musí mať viac ako jeden znak</p>
             )}
           </div>
 
@@ -158,12 +150,8 @@ const RegisterForm: React.FC = () => {
               }}
             />
 
-            <p className="text-red-800">
-              {errors.email && errors.email.message}
-            </p>
-
             {errors.email && errors.email.type === "required" && (
-              <p className="errorMsg">Meno je povinné</p>
+              <p className="text-red-800">Email je povinný</p>
             )}
           </div>
 
@@ -222,8 +210,6 @@ const RegisterForm: React.FC = () => {
                 trigger("role");
               }}
             />
-
-            <p className="text-red-800">{errors.role && errors.role.message}</p>
             {errors.role && errors.role.type === "required" && (
             <p className="text-red-800">Rola je povinná.</p>
           )}
@@ -248,10 +234,6 @@ const RegisterForm: React.FC = () => {
                 trigger("classRoom");
               }}
             />
-
-            <p className="text-red-800">
-              {errors.classRoom && errors.classRoom.message}
-            </p>
             {errors.classRoom && errors.classRoom.type === "required" && (
             <p className="text-red-800">Trieda je povinná.</p>
           )}

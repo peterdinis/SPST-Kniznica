@@ -36,7 +36,7 @@ const BookInfo: React.FC = () => {
     router.push("/books/all");
   };
 
-  const loggedUser = localStorage.getItem("studentEmail");
+  const loggedUser = localStorage.getItem("studentId");
 
   const actualUser = loggedUser === null || loggedUser === undefined ? "" : loggedUser;
 
@@ -107,9 +107,9 @@ const BookInfo: React.FC = () => {
                           className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                           placeholder="11.1.2001"
                         />
-                        <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">Email</label>
+                        <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">Id používateľa</label>
                         <input
-                          type="email"
+                          type="text"
                           className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                           placeholder="janko@hrasko.com"
                           value={actualUser}

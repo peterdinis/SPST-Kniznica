@@ -7,6 +7,7 @@ import FallbackRender from "../shared/FallbackRender";
 import { PhotoUploadModal } from "./PhotoUploadModal";
 import Link from "next/link";
 import { placeholderStudent } from "@/data/placeholderStudent";
+import ProtectedRoute from "@/routes/student/ProtectedRoute";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
@@ -36,7 +37,7 @@ const MyProfile: React.FC = () => {
   const existingStudentId = localStorage.getItem("studentId");
 
   return (
-    <>
+    <ProtectedRoute>
       <div className="p-16">
         <div className="p-8 bg-white shadow mt-24">
           <div className="grid grid-cols-1 md:grid-cols-3">
@@ -102,7 +103,7 @@ const MyProfile: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </ProtectedRoute>
   );
 };
 

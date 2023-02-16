@@ -1,10 +1,8 @@
-import { render, screen} from '@testing-library/react'
+import { render} from '@testing-library/react'
 import AboutWrapper from "../../components/about/AboutWrapper";
 import AboutPage from "../../pages/about"
 
 describe("Aboutpage Test", () => {
-
-    // fix bug with not find components with prefix @ in jest.config
     it("Render aboutpage", () => {
         const {container} = render(<AboutPage />);
         expect(container).toMatchSnapshot();
@@ -16,11 +14,11 @@ describe("Aboutpage Test", () => {
     })
 
 
-    it("Render text in paper component", async () => {
+    it.skip("Render text in paper component", async () => {
         return;
     })
 
-    it("Test failed because requested text does not exists in aboutWrapper", async () => {
+    it.skip("Test failed because requested text does not exists in aboutWrapper", async () => {
         return;
     })
 })

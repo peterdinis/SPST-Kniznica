@@ -82,7 +82,7 @@ const MyProfile: React.FC = () => {
 
             <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
               <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                <Link href={`/booking/me/${existingStudentId}`}>
+                <Link href={`/booking/student/${existingStudentId}`}>
                   Moje požičané knihy
                 </Link>
               </button>

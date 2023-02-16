@@ -2,7 +2,6 @@ import Link from "next/link";
 
 const NavbarLinks: React.FC = () => {
   const loggedUser = localStorage.getItem("studentEmail");
-  console.log(loggedUser);
   return (
     <>
       <li className="text-black text-xl">

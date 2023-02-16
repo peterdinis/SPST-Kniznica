@@ -9,7 +9,9 @@ import { BookingModal } from "../booking/BookingModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { AnimatePresence } from "framer-motion";
 import * as mut from "../../api/mutations/bookingMutation";
-
+import { toast } from "react-toastify";
+import { IBooking } from "@/api/interfaces/IBooking";
+import {useForm} from "react-hook-form"
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -41,6 +43,18 @@ const BookInfo: React.FC = () => {
   const loggedUserEmail = localStorage.getItem("studentEmail")
 
   const actualUser = loggedUser === null || loggedUser === undefined ? "" : loggedUser;
+
+  const successBorrow = () => toast.success("Objednávka knihy bola úspešná");
+
+  /* const mutation = useMutation(() => mut.borrowedBook(), {
+    onSuccess: () => {
+
+    },
+
+    onError: () => {
+
+    }
+  })  */
 
   return (
     <AnimatePresence>

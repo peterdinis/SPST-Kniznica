@@ -1,13 +1,14 @@
 import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { BookingModal } from "../booking/BookingModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { AnimatePresence } from "framer-motion";
+import * as mut from "../../api/mutations/bookingMutation";
 
 
 const BookInfo: React.FC = () => {
@@ -37,6 +38,7 @@ const BookInfo: React.FC = () => {
   };
 
   const loggedUser = localStorage.getItem("studentId");
+  const loggedUserEmail = localStorage.getItem("studentEmail")
 
   const actualUser = loggedUser === null || loggedUser === undefined ? "" : loggedUser;
 
@@ -86,13 +88,21 @@ const BookInfo: React.FC = () => {
               </p>
 
               <hr className="mt-6" />
-              {data.status === "Dostupná" && data.quantity !== 0 ? (
+              {data.status === "Dostupná" &&  (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                     <span className="font-bold"> Kniha je:</span>{" "}
                     <span className="text-green-800">{data.status}</span>
                     <br />
-                    <BookingModal btnName="Chcem si požičať knihu">
+                    {loggedUserEmail === null ||loggedUserEmail === undefined ? (
+                      <>
+                        <div className="text-xl font-bold mt-4 text-red-800">
+                          Ak si chcete požičať knihu musíte byť prihlásení
+                        </div>
+                      </>
+                    ): (
+                      <>
+                      <BookingModal btnName="Chcem si požičať knihu">
                       <hr />
                       <form className="mt-4">
                         <label className="block text-grey-darker text-sm font-bold mb-2">Od</label>
@@ -127,16 +137,9 @@ const BookInfo: React.FC = () => {
                         </button>
                       </form>
                     </BookingModal>
+                      </>
+                    )}
                   </p>
-                </>
-              ) : (
-                <>
-                  <div className="text-2xl mt-3 font-light leading-relaxed  mb-4">
-                    <span className="font-bold text-red-800">
-                      {" "}
-                      Kniha nie je dostupná
-                    </span>
-                  </div>
                 </>
               )}
               <button

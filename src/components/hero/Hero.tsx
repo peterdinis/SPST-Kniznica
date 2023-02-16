@@ -44,7 +44,7 @@ function Hero() {
               <Link href="https://www.spsbj.sk/">Školská Stránka</Link>
             </button>
             <button className="newTest ml-10 bg-red-500 font-bold py-2 px-4 rounded">
-              <Link href="/books">Všetky Knihy</Link>
+              <Link href="/books/all">Všetky Knihy</Link>
             </button>
           </div>
         </div>

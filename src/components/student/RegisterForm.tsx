@@ -19,7 +19,7 @@ const RegisterForm: React.FC = () => {
 
   useEffect(() => {
     localStorage.clear();
-  }, [])
+  }, []);
 
   const mutation = useMutation(api.registerStudent, {
     onSuccess: (data: INewRegisteredStudent) => {
@@ -76,8 +76,8 @@ const RegisterForm: React.FC = () => {
                 placeholder="Meno"
                 {...register("name", {
                   required: true,
-                  minLength: 5,
-                  min: 5,
+                  minLength: 1,
+                  min: 1,
                 })}
                 onKeyUp={() => {
                   trigger("name");
@@ -87,6 +87,14 @@ const RegisterForm: React.FC = () => {
               <p className="text-red-800">
                 {errors.name && errors.name.message}
               </p>
+
+              {errors.name && errors.name.type === "required" && (
+                <p className="errorMsg">Meno je povinné</p>
+              )}
+
+              {errors.name && errors.name.type === "minLength" && (
+                <p className="errorMsg">Meno musí mať viac ako jeden znak</p>
+              )}
             </div>
           </div>
           <div className="mb-2">
@@ -104,8 +112,8 @@ const RegisterForm: React.FC = () => {
               placeholder="Priezivsko"
               {...register("lastName", {
                 required: true,
-                minLength: 5,
-                min: 5,
+                minLength: 1,
+                min: 1,
               })}
               onKeyUp={() => {
                 trigger("lastName");
@@ -115,6 +123,14 @@ const RegisterForm: React.FC = () => {
             <p className="text-red-800">
               {errors.lastName && errors.lastName.message}
             </p>
+
+            {errors.lastName && errors.lastName.type === "required" && (
+              <p className="errorMsg">Meno je povinné</p>
+            )}
+
+            {errors.lastName && errors.lastName.type === "minLength" && (
+              <p className="errorMsg">Meno musí mať viac ako jeden znak</p>
+            )}
           </div>
 
           <div className="mb-2">
@@ -131,10 +147,10 @@ const RegisterForm: React.FC = () => {
               autoFocus
               placeholder="Email"
               {...register("email", {
-                required: "Email is Required!!!",
+                required: "Email je povinný",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Invalid email address",
+                  message: "Emailová adresa nie je valídna",
                 },
               })}
               onKeyUp={() => {
@@ -145,6 +161,10 @@ const RegisterForm: React.FC = () => {
             <p className="text-red-800">
               {errors.email && errors.email.message}
             </p>
+
+            {errors.email && errors.email.type === "required" && (
+              <p className="errorMsg">Meno je povinné</p>
+            )}
           </div>
 
           <div className="mb-2">
@@ -162,7 +182,7 @@ const RegisterForm: React.FC = () => {
               autoComplete="current-password"
               placeholder="********************************************"
               {...register("password", {
-                required: "You must specify a password",
+                required: "Zadajte heslo",
                 minLength: {
                   value: 8,
                   message: "Heslo musí mať viac znakov ako je 8",
@@ -196,7 +216,7 @@ const RegisterForm: React.FC = () => {
               autoFocus
               placeholder="STUDENT"
               {...register("role", {
-                required: "You must specify a role",
+                required: "Rola je povinná",
               })}
               onKeyUp={() => {
                 trigger("role");
@@ -204,6 +224,9 @@ const RegisterForm: React.FC = () => {
             />
 
             <p className="text-red-800">{errors.role && errors.role.message}</p>
+            {errors.role && errors.role.type === "required" && (
+            <p className="text-red-800">Rola je povinná.</p>
+          )}
           </div>
           <div className="mb-2">
             <label
@@ -226,7 +249,9 @@ const RegisterForm: React.FC = () => {
               }}
             />
 
-            <p className="text-red-800">{errors.classRoom && errors.classRoom.message}</p>
+            <p className="text-red-800">
+              {errors.classRoom && errors.classRoom.message}
+            </p>
           </div>
           <div>
             <button

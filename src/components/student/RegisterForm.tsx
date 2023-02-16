@@ -204,6 +204,29 @@ const RegisterForm: React.FC = () => {
 
             <p className="text-red-800">{errors.role && errors.role.message}</p>
           </div>
+          <div className="mb-2">
+            <label
+              className="block text-grey-darker text-sm font-bold mb-2"
+              htmlFor="password"
+            >
+              Trieda
+            </label>
+            <input
+              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+              id="Role"
+              type="string"
+              autoFocus
+              placeholder="1.A"
+              {...register("classRoom", {
+                required: "You must specify a classRoom",
+              })}
+              onKeyUp={() => {
+                trigger("classRoom");
+              }}
+            />
+
+            <p className="text-red-800">{errors.classRoom && errors.classRoom.message}</p>
+          </div>
           <div>
             <button
               className="mt-4 bg-red-700 rounded-lg p-2 text-white"

@@ -46,15 +46,32 @@ const BookInfo: React.FC = () => {
 
   const successBorrow = () => toast.success("Objednávka knihy bola úspešná");
 
-  /* const mutation = useMutation(() => mut.borrowedBook(), {
-    onSuccess: () => {
-
+  const mutation = useMutation(mut.borrowedBook, {
+    onSuccess: (data) => {
+      successBorrow();
+      console.log(data)
     },
 
-    onError: () => {
-
+    onError: (data) => {
+      console.log(data);
     }
-  })  */
+  });
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    trigger,
+    register,
+  } = useForm<IBooking>();
+
+  const onHandleSubmit = (data: IBooking) => {
+    try {
+      mutation.mutate(data);
+      router.push("/student/profile");
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   return (
     <AnimatePresence>

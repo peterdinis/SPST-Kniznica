@@ -11,13 +11,8 @@ const api = axios.create({
 });
 
 export const borrowedBook = (
-  userId: string,
-  bookId: number,
   data: IBooking
 ) => {
-  if (!userId && bookId) {
-    return;
-  }
 
-  return api.post(`booking/${bookId}/${userId}`, data);
+  return api.post(`booking/`, data);
 };

@@ -6,7 +6,8 @@ export interface IStudent {
     name: string
     password: string
     role: string,
-    updatedAt: string
+    updatedAt: string,
+    classRoom: string
 }
 
 export interface IRegisterStudent {
@@ -16,6 +17,7 @@ export interface IRegisterStudent {
     email: string;
     password: string;
     role: string;
+    classRoom: string;
 }
 
 export interface ILoginStudent {

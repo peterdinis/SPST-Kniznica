@@ -5,7 +5,7 @@ import * as api from "../../api/queries/studentQueries";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import { PhotoUploadModal } from "./PhotoUploadModal";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import Link from "next/link";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
@@ -29,6 +29,9 @@ const MyProfile: React.FC = () => {
     logoutToast();
     router.push("/student/login");
   };
+
+  const existingStudentId = localStorage.getItem("studentId");
+
   return (
     <>
       <div className="p-16">
@@ -75,7 +78,9 @@ const MyProfile: React.FC = () => {
 
             <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
               <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                Moje požičané knihy
+                <Link href={`/booking/me/${existingStudentId}`}>
+                  Moje požičané knihy
+                </Link>
               </button>
               <button
                 onClick={logoutStudent}

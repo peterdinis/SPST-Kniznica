@@ -28,9 +28,6 @@ const AllCategories: React.FC = () => {
   return (
     <>
       <Header name="Všetky kategórie" />
-      <div className="mt-4 font-bold text-center text-red-800 text-xl">
-        <Link href="/category/search">Hľadať konkretnú kategóriu</Link>
-      </div>
       <AnimatePresence>
         <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data.length === 0 && <div>Nenašli sa žiadne kategórie</div>}

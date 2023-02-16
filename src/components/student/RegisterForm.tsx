@@ -242,7 +242,7 @@ const RegisterForm: React.FC = () => {
               autoFocus
               placeholder="1.A"
               {...register("classRoom", {
-                required: "You must specify a classRoom",
+                required: "Trieda je povinná",
               })}
               onKeyUp={() => {
                 trigger("classRoom");
@@ -252,6 +252,9 @@ const RegisterForm: React.FC = () => {
             <p className="text-red-800">
               {errors.classRoom && errors.classRoom.message}
             </p>
+            {errors.classRoom && errors.classRoom.type === "required" && (
+            <p className="text-red-800">Trieda je povinná.</p>
+          )}
           </div>
           <div>
             <button

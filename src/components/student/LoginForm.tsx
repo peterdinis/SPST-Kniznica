@@ -73,7 +73,7 @@ const LoginForm: React.FC = () => {
                 autoFocus
                 placeholder="Email"
                 {...register("email", {
-                  required: "Email is Required!!!",
+                  required: "Email je povinný",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     message: "Neplatná emailová adresa",
@@ -104,7 +104,7 @@ const LoginForm: React.FC = () => {
               autoComplete="current-password"
               placeholder="********************************************"
               {...register("password", {
-                required: "You must specify a password",
+                required: "Musíte napísať heslo",
                 minLength: {
                   value: 8,
                   message: "Heslo musí mať viac znakov ako je 8",

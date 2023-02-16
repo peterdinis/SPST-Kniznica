@@ -40,7 +40,7 @@ const AllBooks: React.FC = () => {
                     <div className="mb-8">
                       <LazyLoadImage
                         alt="Placeholder"
-                        className="h-auto w-full"
+                        className="h-auto w-full rounded-lg"
                         src={item.image}
                       />
                     </div>

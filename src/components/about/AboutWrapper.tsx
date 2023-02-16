@@ -1,7 +1,6 @@
 import Header from "../shared/Header";
 import styles from "../../styles/Component.module.css";
 import Paper from "@mui/material/Paper";
-import Link from "next/link";
 
 const AboutWrapper: React.FC = () => {
   return (
@@ -15,10 +14,10 @@ const AboutWrapper: React.FC = () => {
           iusto temporibus eaque voluptate officiis facere veniam amet
           praesentium id.
         </p>
-
-        <div className="mt-4 text-center">
-           <Link className="text-xl font-bold" href="/rooms">Otázky pre adminov</Link>
-        </div>
+        {/*TODO Socket.io fix later */}
+        {/*         <div className="mt-4 text-center">
+           <a className="text-xl font-bold" href="/rooms">Otázky pre adminov</a>
+        </div> */}
       </Paper>
     </>
   );

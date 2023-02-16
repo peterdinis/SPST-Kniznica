@@ -1,14 +1,12 @@
 import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import {
-  ILoginStudent, INewLoggedStudent,
-} from "@/api/interfaces/IUser";
+import { ILoginStudent, INewLoggedStudent } from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
 import Link from "next/link";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -18,7 +16,7 @@ const LoginForm: React.FC = () => {
 
   useEffect(() => {
     localStorage.clear();
-  }, [])
+  }, []);
 
   const mutation = useMutation(api.loginStudent, {
     onSuccess: (data: INewLoggedStudent) => {
@@ -138,6 +136,12 @@ const LoginForm: React.FC = () => {
                 href="/student/register"
               >
                 Registrácia tu
+              </Link>{" "}
+              <Link
+                className="ml-4 mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
+                href="/student/password/new"
+              >
+                Zmeniť heslo
               </Link>
             </div>
           </div>

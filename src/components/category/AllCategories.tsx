@@ -8,7 +8,7 @@ import { placeholderCategory } from "@/data/placeholderCategory";
 import { ICategory } from "@/api/interfaces/ICategory";
 import { AnimatePresence } from "framer-motion";
 
-const AllCategory: React.FC = () => {
+const AllCategories: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
     ["categories"],
     api.getCategories,
@@ -33,6 +33,7 @@ const AllCategory: React.FC = () => {
       </div>
       <AnimatePresence>
         <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {data.length === 0 && <div>Nenašli sa žiadne kategórie</div>}
           {data &&
             data.map((item: ICategory) => {
               return (
@@ -58,4 +59,4 @@ const AllCategory: React.FC = () => {
   );
 };
 
-export default AllCategory;
+export default AllCategories;

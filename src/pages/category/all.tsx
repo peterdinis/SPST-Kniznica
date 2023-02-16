@@ -1,9 +1,9 @@
-import AllCategory from "@/components/category/AllCategory";
+import AllCategories from "@/components/category/AllCategories";
 import { NextPage } from "next";
 
 const AllCategoriesPage: NextPage = () => {
     return (
-        <AllCategory />
+        <AllCategories />
     )
 }
 

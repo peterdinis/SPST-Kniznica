@@ -6,13 +6,16 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import { PhotoUploadModal } from "./PhotoUploadModal";
 import Link from "next/link";
+import { placeholderStudent } from "@/data/placeholderStudent";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
 
   const { data, isLoading, isError } = useQuery(
     ["myProfile"],
-    () => api.studentProfile
+    () => api.studentProfile, {
+      placeholderData: placeholderStudent
+    }
   );
 
   if (isLoading) {

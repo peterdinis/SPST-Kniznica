@@ -13,7 +13,7 @@ const MyProfile: React.FC = () => {
   const router = useRouter();
 
   const { data, isLoading, isError } = useQuery(
-    ["myProfile"],
+    ["studentProfile"],
     () => api.studentProfile, {
       placeholderData: placeholderStudent
     }

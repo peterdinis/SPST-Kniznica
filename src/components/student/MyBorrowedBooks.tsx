@@ -4,14 +4,16 @@ import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { useRouter } from "next/router";
 import { placeholderBooking } from "@/data/placeholderBooking";
+import { useReactTable } from "@tanstack/react-table";
+import {useMemo} from "react";
 
 const MyStudentBorrowedBooks: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
 
   const { data, isError, isLoading } = useQuery(
-    ["myBorrowedBooks", Number(id)],
-    () => api.getMyBorrowedBooks(Number(id) as any),
+    ["myBorrowedBooks", id],
+    () => api.getMyBorrowedBooks(id as any),
     {
       retry: 1,
       placeholderData: placeholderBooking,
@@ -27,7 +29,22 @@ const MyStudentBorrowedBooks: React.FC = () => {
 
   console.log(data);
 
-  return <>eeeeeeeeeeeeeeeeeeeeeeeeeeeee</>;
+  const columns = useMemo(() => [
+    {
+      Header: "Moje požičané knihy",
+      columns: [
+        {
+          Header: "Meno knihy"
+        }
+      ]
+    }
+  ], []);
+
+  return (
+    <>
+    
+    </>
+  )
 };
 
 export default MyStudentBorrowedBooks;

@@ -4,8 +4,7 @@ import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { useRouter } from "next/router";
 import { placeholderBooking } from "@/data/placeholderBooking";
-import { useReactTable } from "@tanstack/react-table";
-import {useMemo} from "react";
+import Header from "../shared/Header";
 
 const MyStudentBorrowedBooks: React.FC = () => {
   const router = useRouter();
@@ -29,22 +28,27 @@ const MyStudentBorrowedBooks: React.FC = () => {
 
   console.log(data);
 
-  const columns = useMemo(() => [
-    {
-      Header: "Moje požičané knihy",
-      columns: [
-        {
-          Header: "Meno knihy"
-        }
-      ]
-    }
-  ], []);
-
   return (
     <>
-    
+      <Header name="Moje požičané knihy" />
+      <section className="container mx-auto p-8 mt-4">
+        <div className="w-full mb-8 overflow-hidden rounded-lg shadow-white">
+          <div className="w-full overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                  <th className="px-4 py-3">Názov knihy</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Dátum od</th>
+                  <th className="px-4 py-3">Dátum do</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </section>
     </>
-  )
+  );
 };
 
 export default MyStudentBorrowedBooks;

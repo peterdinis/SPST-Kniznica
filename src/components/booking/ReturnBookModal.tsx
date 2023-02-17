@@ -49,18 +49,17 @@ const style = {
 
 interface IModalProps {
     btnName: string;
-    text: string;
     children?: React.ReactNode;
 }
 
-export const ReturnBookModal: React.FC<IModalProps> = ({children, btnName, text}: IModalProps) => {
+export const ReturnBookModal: React.FC<IModalProps> = ({children, btnName}: IModalProps) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold" onClick={handleOpen}>{btnName}</button>
+      <button className="font-bold text-red-800" onClick={handleOpen}>{btnName}</button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -74,7 +73,7 @@ export const ReturnBookModal: React.FC<IModalProps> = ({children, btnName, text}
       >
         <Fade in={open}>
           <Box sx={style}>
-            <h2 className="text-center mt-2 text-3xl font-bold">Vrátenie knih</h2>
+            <h2 className="text-center mt-2 text-3xl font-bold">Vrátenie knihy</h2>
             <div className="mt-4">
                 {children}
             </div>

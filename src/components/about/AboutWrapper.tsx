@@ -15,8 +15,10 @@ const AboutWrapper: React.FC = () => {
           praesentium id.
         </p>
         {/*TODO Socket.io fix later */}
-        {/*         <div className="mt-4 text-center">
-           <a className="text-xl font-bold" href="/rooms">Otázky pre adminov</a>
+        {/* <div className="mt-4 text-center">
+          <a className="text-xl font-bold" href="/rooms">
+            Otázky pre adminov
+          </a>
         </div> */}
       </Paper>
     </>

@@ -1,7 +1,7 @@
 export interface IBooking {
     id?: string | number;
-    from: string;
-    to: string;
+    from: string | Date;
+    to: string | Date;
     userId: string;
     bookId: number;
 }

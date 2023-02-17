@@ -37,37 +37,51 @@ const MyStudentBorrowedBooks: React.FC = () => {
       <div className="w-full sm:px-6">
         <div className="px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
           <table className="w-full whitespace-nowrap">
-            <thead>
+           {/*  <thead>
               <tr className="h-16 w-full text-sm leading-none">
-                <th className="font-bold text-lg text-left pl-4">Číslo objednávky</th>
-                <th className="font-bold text-lg text-left pl-12">Názov knihy</th>
-                <th className="font-bold text-lg text-left pl-12">Požičaná od</th>
+                <th className="font-bold text-lg text-left pl-4">
+                  Číslo objednávky
+                </th>
+                <th className="font-bold text-lg text-left pl-12">
+                  Názov knihy
+                </th>
+                <th className="font-bold text-lg text-left pl-12">
+                  Požičaná od
+                </th>
                 <th className="font-bold text-lg text-left pl-20">Do</th>
-                <th className="font-bold text-lg text-left pl-20">Vrátiť knihu</th>
+                <th className="font-bold text-lg text-left pl-20">
+                  Vrátiť knihu
+                </th>
               </tr>
-            </thead>
+            </thead> */}
             <tbody className="w-full">
-              <tr className="h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
-                <td className="pl-4 cursor-pointer">
-                  <div className="flex items-center">
-                    rkrkrkr
-                  </div>
-                </td>
-                <td className="pl-12">
-                  <p className="text-sm font-medium leading-none text-gray-800">
-                    72%
-                  </p>
-                </td>
-                <td className="pl-12">
-                  <p className="font-medium">32/47</p>
-                </td>
-                <td className="pl-20">
-                  <p className="font-medium">$13,000</p>
-                </td>
-                <td className="pl-20">
-                  <ReturnBookModal btnName={"Chcem vrátiť knihu"} />
-                </td>
-              </tr>
+              {data.length === 0 && <div className="text-center mt-4 text-red-800">Uživateľ nemá žiadne požičané knihy</div>}
+             {/*  {data &&
+                data.map((item: any) => {
+                  return (
+                    <> */}
+                   {/*    <tr className="h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
+                        <td className="pl-4 cursor-pointer">
+                          <div className="flex items-center">rkrkrkr</div>
+                        </td>
+                        <td className="pl-12">
+                          <p className="text-sm font-medium leading-none text-gray-800">
+                            72%
+                          </p>
+                        </td>
+                        <td className="pl-12">
+                          <p className="font-medium">32/47</p>
+                        </td>
+                        <td className="pl-20">
+                          <p className="font-medium">$13,000</p>
+                        </td>
+                        <td className="pl-20">
+                          <ReturnBookModal btnName={"Chcem vrátiť knihu"} />
+                        </td>
+                      </tr> */}
+                 {/*    </>
+                  );
+                })} */}
             </tbody>
           </table>
         </div>

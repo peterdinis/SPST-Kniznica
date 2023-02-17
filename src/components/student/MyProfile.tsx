@@ -91,6 +91,11 @@ const MyProfile: React.FC = () => {
               >
                 Odlhásenie
               </button>
+              <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                <Link href={`/student/profile/update`}>
+                  Upraviť profil
+                </Link>
+              </button>
             </div>
           </div>
 
@@ -98,7 +103,7 @@ const MyProfile: React.FC = () => {
             <h1 className="text-4xl font-medium text-gray-700">{data.name} </h1>
             <p className="font-light text-gray-600 mt-3">{data.lastName}</p>
 
-            <p className="mt-8 text-gray-500">{data.role}</p>
+            <p className="mt-8 font-bold text-gray-800">{data.role}</p>
           </div>
         </div>
       </div>

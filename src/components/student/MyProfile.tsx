@@ -7,6 +7,7 @@ import FallbackRender from "../shared/FallbackRender";
 import { PhotoUploadModal } from "./PhotoUploadModal";
 import Link from "next/link";
 import { placeholderStudent } from "@/data/placeholderStudent";
+import { logoutStudent } from "@/api/mutations/studentMutation";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
@@ -27,8 +28,8 @@ const MyProfile: React.FC = () => {
 
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
-  const logoutStudent = () => {
-    localStorage.clear();
+  const logoutFromApp = () => {
+    logoutStudent();
     logoutToast();
     router.push("/student/login");
   };
@@ -86,7 +87,7 @@ const MyProfile: React.FC = () => {
                 </Link>
               </button>
               <button
-                onClick={logoutStudent}
+                onClick={logoutFromApp}
                 className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
               >
                 Odlhásenie

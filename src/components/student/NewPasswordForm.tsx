@@ -42,41 +42,6 @@ const NewPasswordForm: React.FC = () => {
                 className="block text-grey-darker text-sm font-bold mb-2"
                 htmlFor="password"
               >
-                Staré heslo
-              </label>
-              <input
-                className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-                id="Heslo"
-                type="password"
-                autoFocus
-                autoComplete="current-password"
-                placeholder="********************************************"
-                /* {...register("password", {
-                required: "Zadajte heslo",
-                minLength: {
-                  value: 8,
-                  message: "Heslo musí mať viac znakov ako je 8",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "Heslo môže mať najviac 20 znakov",
-                },
-              })}
-              onKeyUp={() => {
-                trigger("password");
-              }} */
-              />
-
-              {/* <p className="text-red-800">
-              {errors.password && errors.password.message}
-            </p> */}
-            </div>
-
-            <div className="mb-2">
-              <label
-                className="block text-grey-darker text-sm font-bold mb-2"
-                htmlFor="password"
-              >
                 Nové heslo
               </label>
               <input

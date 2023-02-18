@@ -4,10 +4,12 @@ import Link from "next/link";
 import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import SearchIcon from "@mui/icons-material/Search";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
 
 const SearchOneBook: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -15,6 +17,7 @@ const SearchOneBook: React.FC = () => {
   const [results, setResults] = useState<any>(initialSearchValue); // TODO: Fix later typing
   const [isSearching, setIsSearching] = useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -28,6 +31,18 @@ const SearchOneBook: React.FC = () => {
       setIsSearching(false);
     }
   }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10
+      );
+    }, 800);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   return (
     <>
@@ -43,9 +58,10 @@ const SearchOneBook: React.FC = () => {
 
           {isSearching && (
             <div className="text-center mt-4 font-bold text-xl">
-              Vyhľadávam...
-              <SearchIcon />
-              ...
+              <Box sx={{ display: "flex" }}>
+                <CircularProgress variant="determinate" value={progress} />
+              </Box>
+              <Typography>Vyhľadám...</Typography>
             </div>
           )}
 
@@ -60,11 +76,8 @@ const SearchOneBook: React.FC = () => {
 
       <AnimatePresence>
         {results.data === undefined ? (
-          <div className="text-center mt-4 font-bold text-xl">
-            Hľadám
-            <SearchIcon />
-            ...
-          </div>
+          <Fragment>
+          </Fragment>
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">

@@ -1,9 +1,11 @@
-const NewPasswordForm: React.FC = () => {
-    return (
-        <>
-        fffffffff
-        </>
-    )
-}
+import Header from "../shared/Header";
 
-export default NewPasswordForm
+const NewPasswordForm: React.FC = () => {
+  return (
+    <>
+      <Header name="Zmeniť heslo" />
+    </>
+  );
+};
+
+export default NewPasswordForm;

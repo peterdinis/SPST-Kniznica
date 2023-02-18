@@ -1,7 +1,4 @@
-import CookieInfo from "../shared/CookieInfo";
-
 function Footer() {
-
     return (
       <footer className="relative  pt-8 pb-6 mt-1">
         <div className="container mx-auto px-4">
@@ -18,7 +15,6 @@ function Footer() {
             </div>
           </div>
         </div>
-        <CookieInfo />
       </footer>
     );
   }

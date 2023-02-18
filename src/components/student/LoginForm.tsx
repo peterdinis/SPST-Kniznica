@@ -28,8 +28,9 @@ const LoginForm: React.FC = () => {
       notify();
     },
 
-    onError: (data) => {
+    onError: (data: INewLoggedStudent) => {
       alert(data);
+      console.log(data);
       errorRegister();
       router.push("/student/login");
     },
@@ -44,6 +45,7 @@ const LoginForm: React.FC = () => {
 
   const onHandleSubmit = (data: ILoginStudent) => {
     try {
+      /* TODO:: Add later condition for checking if email exist in API */
       mutation.mutate(data);
       router.push("/student/profile");
     } catch (err) {

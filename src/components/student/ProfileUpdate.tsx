@@ -15,11 +15,11 @@ const ProfileUpdate: React.FC = () => {
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+              <h3 className="text-lg pl-3 font-medium leading-6 text-gray-900">
                 Vaše údaje
               </h3>
               <p className="mt-4 pl-2 font-bold">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quam, ad commodi corporis voluptatum nesciunt fugiat ipsam accusantium iure eum.
+              „Ľudia premrhajú príležitosť, pretože je neraz oblečená v obyčajných šatách. A volá sa práca.“ Thomas Alva Edison
               </p>
             </div>
           </div>
@@ -165,7 +165,7 @@ const ProfileUpdate: React.FC = () => {
                     type="submit"
                     className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
-                    Save
+                    Upraviť profil
                   </button>
                 </div>
               </div>

@@ -33,17 +33,17 @@ const SearchOneBook: React.FC = () => {
     <>
       <Header name="Hľadanie konkretnej knihy" />
       <div className="flex justify-center align-top">
-        <form>
+        <form className="mt-4">
           <input
             name="form"
-            className="text-gray-600 mt-4 dark:text-gray-400 focus:outline-none focus:border focus:border-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow"
-            placeholder="Hľadaj knihu"
+            className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
+            placeholder="Hľadaj knihu.."
             onChange={(e) => setSearchTerm(e.target.value)}
           />
 
           {isSearching && (
             <div className="text-center mt-4 font-bold text-xl">
-              Hľadám
+              Vyhľadávam...
               <SearchIcon />
               ...
             </div>

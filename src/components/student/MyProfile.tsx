@@ -36,6 +36,7 @@ const MyProfile: React.FC = () => {
 
   const existingStudentId = localStorage.getItem("studentId");
 
+
   return (
     <>
       <div className="p-16">

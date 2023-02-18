@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { ILoginStudent, INewLoggedStudent } from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
-import * as api from "../../api/mutations/studentMutation";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import * as mut from "../../api/mutations/studentMutation";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
     localStorage.clear();
   }, []);
 
-  const mutation = useMutation(api.loginStudent, {
+  const mutation = useMutation(mut.loginStudent, {
     onSuccess: (data: INewLoggedStudent) => {
       localStorage.setItem("studentRefreshToken", data.data.refreshToken);
       localStorage.setItem("studentAccessToken", data.data.accessToken);

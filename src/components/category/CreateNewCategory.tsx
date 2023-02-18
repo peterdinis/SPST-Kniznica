@@ -1,7 +1,9 @@
+import Header from "../shared/Header";
+
 const CreateNewCategory: React.FC = () => {
     return (
         <>
-        rkfkfkf
+        <Header name="Vytvorenie novej kategórie" />
         </>
     )
 }

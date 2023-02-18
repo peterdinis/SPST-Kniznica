@@ -1,7 +1,10 @@
+import Header from "../shared/Header";
+
 const CreateBookForm: React.FC = () => {
     return (
         <>
-        rrrrr
+          <Header name="Vytvorenie novej knihy" />
+          prrprp
         </>
     )
 }

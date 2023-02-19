@@ -14,8 +14,9 @@ const MyProfile: React.FC = () => {
 
   const { data, isLoading, isError } = useQuery(
     ["studentProfile"],
-    () => api.studentProfile, {
-      placeholderData: placeholderStudent
+    () => api.studentProfile,
+    {
+      placeholderData: placeholderStudent,
     }
   );
 
@@ -35,7 +36,6 @@ const MyProfile: React.FC = () => {
   };
 
   const existingStudentId = localStorage.getItem("studentId");
-
 
   return (
     <>
@@ -94,9 +94,10 @@ const MyProfile: React.FC = () => {
                 Odlhásenie
               </button>
               <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                <Link href={`/student/profile/update`}>
-                  Upraviť profil
-                </Link>
+                <Link href={`/student/profile/update`}>Upraviť profil</Link>
+              </button>
+              <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                <Link href="/student/password/new">Zmeniť heslo</Link>
               </button>
             </div>
           </div>

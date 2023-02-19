@@ -138,12 +138,6 @@ const LoginForm: React.FC = () => {
                 href="/student/register"
               >
                 Registrácia tu
-              </Link>{" "}
-              <Link
-                className="ml-4 mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
-                href="/student/password/new"
-              >
-                Zmeniť heslo
               </Link>
             </div>
           </div>

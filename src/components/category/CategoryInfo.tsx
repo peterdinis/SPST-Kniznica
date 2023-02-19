@@ -22,6 +22,8 @@ const CategoryInfo: React.FC = () => {
     }
   );
 
+  console.log(data);
+
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }
@@ -83,8 +85,12 @@ const CategoryInfo: React.FC = () => {
                 ) : (
                   <dd>
                     {data.Books &&
-                      data.Books.map((item: any) => {
-                        return <>{item.name}</>;
+                      data.Books.map((item: { name: string }) => {
+                        return (
+                          <>
+                            {item.name} {""}
+                          </>
+                        );
                       })}
                   </dd>
                 )}

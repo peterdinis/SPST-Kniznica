@@ -85,7 +85,7 @@ const CategoryInfo: React.FC = () => {
                       data.Books.map((item: { name: string }) => {
                         return (
                           <>
-                            {item.name} {""}
+                            <span className="mr-6 p-2 text-sm font-bold inline">{item.name} {""}</span>
                           </>
                         );
                       })}

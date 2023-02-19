@@ -6,6 +6,7 @@ import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import { AnimatePresence } from "framer-motion";
+import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
@@ -32,6 +33,11 @@ const CategoryInfo: React.FC = () => {
   const navigateToCategories = () => {
     router.push("/category/all");
   };
+
+  const checkBookStatus = "";
+
+  console.log(data.Books && data.Books.map((item: any) => item.name));
+
   return (
     <AnimatePresence>
       <Header name="Detail Kategórie" />
@@ -40,10 +46,18 @@ const CategoryInfo: React.FC = () => {
           <dl>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">
+                Číslo kategórie
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                {id}
+              </dd>
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
                 Meno kategórie
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                {data[0].name}
+                {data.name}
               </dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -51,7 +65,7 @@ const CategoryInfo: React.FC = () => {
                 Popis kategórie
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                {data[0].description}
+                {data.description}
               </dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -59,7 +73,21 @@ const CategoryInfo: React.FC = () => {
                 Počet kníh ktoré majú túto kategóriu
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                EEEEEEEEEEEEEEEe
+                {data.Books === undefined || data.Books === null ? (
+                  <>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      Táto kategórie nemá pridelené žiadne knihy{" "}
+                      <SentimentDissatisfiedIcon />
+                    </dd>
+                  </>
+                ) : (
+                  <dd>
+                    {data.Books &&
+                      data.Books.map((item: any) => {
+                        return <>{item.name}</>;
+                      })}
+                  </dd>
+                )}
               </dd>
             </div>
           </dl>

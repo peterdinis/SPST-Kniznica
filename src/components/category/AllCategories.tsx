@@ -7,6 +7,8 @@ import FallbackRender from "../shared/FallbackRender";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import { ICategory } from "@/api/interfaces/ICategory";
 import { AnimatePresence } from "framer-motion";
+import {Suspense} from "react"
+import SkeletonLoader from "../shared/SkeletonLoader";
 
 const AllCategories: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
@@ -26,7 +28,7 @@ const AllCategories: React.FC = () => {
   }
 
   return (
-    <>
+    <Suspense fallback={<SkeletonLoader />}>
       <Header name="Všetky kategórie" />
       <AnimatePresence>
         <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -52,7 +54,7 @@ const AllCategories: React.FC = () => {
             })}
         </div>
       </AnimatePresence>
-    </>
+    </Suspense>
   );
 };
 

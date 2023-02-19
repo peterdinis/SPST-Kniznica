@@ -8,10 +8,9 @@ import ScrollToTop from "@/hooks/useScroll";
 import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
 /* TODO: Fix broken pagination */
-
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import SkeletonLoader from "../shared/SkeletonLoader";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -22,7 +21,6 @@ const AllBooks: React.FC = () => {
     isFetching,
     isLoading,
     isError,
-    isPreviousData,
   } = useQuery(["allPaginatedBooks"], () => api.paginateBooks(page, limit), {
     keepPreviousData: true,
     retry: 1,
@@ -36,7 +34,7 @@ const AllBooks: React.FC = () => {
   }
 
   return (
-    <>
+    <Suspense fallback={<SkeletonLoader />}>
       <Header name="Všetky knihy" />
       <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/books/search">Hľadať konkretnú knihu</Link>
@@ -118,7 +116,7 @@ const AllBooks: React.FC = () => {
                   stroke-linejoin="round"
                 />
               </svg>
-              <p className="text-sm ml-3 font-medium leading-none ">Previous</p>
+              <p className="text-sm ml-3 font-medium leading-none ">Predchadzajúca stránka</p>
             </div>
             <div className="sm:flex hidden">
               <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
@@ -147,7 +145,7 @@ const AllBooks: React.FC = () => {
               </p>
             </div>
             <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
-              <p className="text-sm font-medium leading-none mr-3">Next</p>
+              <p className="text-sm font-medium leading-none mr-3">Ďalšia stránka</p>
               <svg
                 width="14"
                 height="8"
@@ -200,7 +198,7 @@ const AllBooks: React.FC = () => {
         </button>
         {isFetching ? <span> Loading...</span> : null}{" "} */}
       </AnimatePresence>
-    </>
+    </Suspense>
   );
 };
 

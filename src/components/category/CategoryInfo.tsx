@@ -36,10 +36,6 @@ const CategoryInfo: React.FC = () => {
     router.push("/category/all");
   };
 
-  const checkBookStatus = "";
-
-  console.log(data.Books && data.Books.map((item: any) => item.name));
-
   return (
     <AnimatePresence>
       <Header name="Detail Kategórie" />

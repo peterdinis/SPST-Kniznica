@@ -7,7 +7,8 @@ import { queryClient } from "@/api/queryClient";
 import { Inter } from "@next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from "@mui/material/CssBaseline";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,14 +18,16 @@ export default function App({
 }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={inter.className}>
-        <Layout>
-          <Component {...pageProps} />
-          <ToastContainer />
-          <ReactQueryDevtools />
-          <CssBaseline />
-        </Layout>
-      </div>
+      <SessionProvider session={session}>
+        <div className={inter.className}>
+          <Layout>
+            <Component {...pageProps} />
+            <ToastContainer />
+            <ReactQueryDevtools />
+            <CssBaseline />
+          </Layout>
+        </div>
+      </SessionProvider>
     </QueryClientProvider>
   );
 }

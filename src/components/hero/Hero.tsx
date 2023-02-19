@@ -37,16 +37,6 @@ function Hero() {
             Knihy sú jedinečne prenosné kúzlo -{' '}
             <span className="font-bold">Stephen King</span>
           </div>
-
-          <div className="ml-8">
-           
-            <button className="bg-blue-500 font-bold py-2 px-4 rounded-lg">
-              <Link href="https://www.spsbj.sk/">Školská Stránka</Link>
-            </button>
-            <button className="ml-10 bg-red-500 font-bold py-2 px-4 rounded-lg">
-              <Link href="/books/all">Všetky Knihy</Link>
-            </button>
-          </div>
         </div>
       </div>
     </>

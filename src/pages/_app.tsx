@@ -14,11 +14,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function App({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps/* : { session, ...pageProps }, */
 }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <SessionProvider session={session}>
+      {/* Later finish google login */}
+     {/*  <SessionProvider session={session}> */}
         <div className={inter.className}>
           <Layout>
             <Component {...pageProps} />
@@ -27,7 +28,7 @@ export default function App({
             <CssBaseline />
           </Layout>
         </div>
-      </SessionProvider>
+      {/* </SessionProvider> */}
     </QueryClientProvider>
   );
 }

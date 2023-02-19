@@ -6,7 +6,7 @@ function Footer() {
             <div className="w-full md:w-6/12 px-4 mx-auto text-center">
               <div className="text-sm text-blueGray-500 font-semibold py-1">
                 <a
-                  href="https://www.creative-tim.com/product/notus-js"
+                  href="https://www.spsbj.sk/"
                   className="text-blueGray-500 text-2xl hover:text-gray-800"
                 >
                   &copy; SPŠT Knižnica 2023

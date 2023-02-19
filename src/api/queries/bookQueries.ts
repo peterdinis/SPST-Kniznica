@@ -16,5 +16,5 @@ export const getOneBook = (id: string) => {
 
 
 export const searchForBooks = (value: string) => {
-    return api.get(`books/search?q=${value}`)
+  return api.get(`books/search?q=${value}`)
 }

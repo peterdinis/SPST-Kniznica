@@ -18,3 +18,8 @@ export const getOneBook = (id: string) => {
 export const searchForBooks = (value: string) => {
   return api.get(`books/search?q=${value}`)
 }
+
+export const paginateBooks = (page: number, limit: number) => {
+  return api.get(`books/paginate?page=${page}&limit=${limit}`)
+}
+

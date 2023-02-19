@@ -9,12 +9,24 @@ import { placeholderBook } from "@/data/placeholderBook";
 import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useState } from "react";
 
 const AllBooks: React.FC = () => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
     retry: 2,
     placeholderData: placeholderBook,
   });
+
+  const {data: paginatedData, isFetching, isPreviousData} = useQuery(["allPaginatedBooks"], () => api.paginateBooks(page, limit), {
+    keepPreviousData: true,
+    retry: 1
+  });
+
+  console.log(paginatedData);
+
   if (isLoading) {
     return <FallbackLoader />;
   }

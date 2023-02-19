@@ -118,6 +118,10 @@ const BookInfo: React.FC = () => {
                 <span className="font-bold">Počet Kusov</span>: {data.quantity}
               </p>
 
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold">Číslo kategórie</span>: {data.categoryId}
+              </p>
+
               <hr className="mt-6" />
               {data.status === "Dostupná" &&  (
                 <>

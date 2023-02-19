@@ -7,6 +7,8 @@ import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import { AnimatePresence } from "framer-motion";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import {Suspense} from "react";
+import SkeletonLoader from "../shared/SkeletonLoader";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
@@ -22,8 +24,6 @@ const CategoryInfo: React.FC = () => {
     }
   );
 
-  console.log(data);
-
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }
@@ -37,6 +37,7 @@ const CategoryInfo: React.FC = () => {
   };
 
   return (
+    <Suspense fallback={<SkeletonLoader />}>
     <AnimatePresence>
       <Header name="Detail Kategórie" />
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
@@ -102,6 +103,7 @@ const CategoryInfo: React.FC = () => {
         </div>
       </div>
     </AnimatePresence>
+    </Suspense>
   );
 };
 

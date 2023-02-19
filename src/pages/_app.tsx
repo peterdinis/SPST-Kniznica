@@ -7,6 +7,7 @@ import { queryClient } from "@/api/queryClient";
 import { Inter } from "@next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CssBaseline from '@mui/material/CssBaseline';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function App({
           <Component {...pageProps} />
           <ToastContainer />
           <ReactQueryDevtools />
+          <CssBaseline />
         </Layout>
       </div>
     </QueryClientProvider>

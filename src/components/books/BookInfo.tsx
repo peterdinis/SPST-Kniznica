@@ -12,6 +12,8 @@ import * as mut from "../../api/mutations/bookingMutation";
 import { toast } from "react-toastify";
 import { IBooking } from "@/api/interfaces/IBooking";
 import {useForm} from "react-hook-form"
+import {Suspense} from "react";
+import SkeletonLoader from "../shared/SkeletonLoader";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -74,6 +76,7 @@ const BookInfo: React.FC = () => {
   };
 
   return (
+   <Suspense fallback={<SkeletonLoader />}>
     <AnimatePresence>
       <Header name="Detail Knihy" />
       <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
@@ -188,6 +191,7 @@ const BookInfo: React.FC = () => {
         </div>
       </section>
     </AnimatePresence>
+   </Suspense>
   );
 };
 

@@ -1,10 +1,12 @@
 import Header from "../shared/Header";
 import styles from "../../styles/Component.module.css";
 import Paper from "@mui/material/Paper";
+import { Suspense } from "react";
+import SkeletonLoader from "../shared/SkeletonLoader";
 
 const AboutWrapper: React.FC = () => {
   return (
-    <>
+    <Suspense fallback={<SkeletonLoader />}>
       <Header name="O Stránke" />
       <Paper elevation={3}>
         <h1 className={styles.ownerName}>Správca je ...</h1>
@@ -14,14 +16,8 @@ const AboutWrapper: React.FC = () => {
           iusto temporibus eaque voluptate officiis facere veniam amet
           praesentium id.
         </p>
-        {/*TODO Socket.io fix later */}
-        {/* <div className="mt-4 text-center">
-          <a className="text-xl font-bold" href="/rooms">
-            Otázky pre adminov
-          </a>
-        </div> */}
       </Paper>
-    </>
+    </Suspense>
   );
 };
 

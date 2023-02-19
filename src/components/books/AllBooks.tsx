@@ -11,19 +11,15 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 /* TODO: Fix broken pagination */
 import { useState, Suspense } from "react";
 import SkeletonLoader from "../shared/SkeletonLoader";
+import { placeholderBook } from "@/data/placeholderBook";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  const {
-    data: paginatedData,
-    isFetching,
-    isLoading,
-    isError,
-  } = useQuery(["allPaginatedBooks"], () => api.paginateBooks(page, limit), {
-    keepPreviousData: true,
-    retry: 1,
+  const { data, isError, isLoading } = useQuery(["allBooks"], api.getBooks, {
+    retry: 2,
+    placeholderData: placeholderBook,
   });
 
   if (isLoading) {
@@ -47,12 +43,12 @@ const AllBooks: React.FC = () => {
         ) : (
           <div>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">
-              {paginatedData!.data.length === 0 && (
+              {data.length === 0 && (
                 <div>Nenašli sa žiadne knihy</div>
               )}
 
-              {paginatedData?.data.result &&
-                paginatedData?.data.result.map((item: IBook) => {
+              {data &&
+                data.map((item: IBook) => {
                   return (
                     <>
                       <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">

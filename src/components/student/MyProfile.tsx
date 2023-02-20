@@ -11,6 +11,7 @@ import { logoutStudent } from "@/api/mutations/studentMutation";
 import * as upl from "../../api/queries/uploadQueries";
 import ProtectedRoute from "@/routes/student/ProtectedRoute";
 import ProfileHeader from "./profile/ProfileHeader";
+import ProfileBody from "./profile/ProfileBody";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
@@ -23,11 +24,15 @@ const MyProfile: React.FC = () => {
     }
   );
 
-  const {data: uploadData, isLoading: uploadLoading, isError: uploadError} = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
-    retry: 2
-  })
+  const {
+    data: uploadData,
+    isLoading: uploadLoading,
+    isError: uploadError,
+  } = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
+    retry: 2,
+  });
 
-  console.log(uploadData)
+  console.log(uploadData);
 
   if (isLoading || uploadLoading) {
     return <FallbackLoader />;
@@ -48,8 +53,13 @@ const MyProfile: React.FC = () => {
 
   return (
     <ProtectedRoute>
-      <ProfileHeader />
-    {/*   <div className="p-16">
+      <div className="container mx-auto my-5 p-5">
+        <div className="md:flex no-wrap md:-mx-2">
+          <ProfileHeader />
+          <ProfileBody />
+        </div>
+      </div>
+      {/*   <div className="p-16">
         <div className="p-8 bg-white shadow mt-24">
           <div className="grid grid-cols-1 md:grid-cols-3">
             <div className="relative">

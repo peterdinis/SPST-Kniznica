@@ -130,7 +130,7 @@ const BookInfo: React.FC = () => {
 
                 {data.status !== "Dostupná" && (
                   <>
-                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
+                    <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                       <span className="font-bold"> Kniha je:</span>{" "}
                       <span className="text-red-800">Nedostupná</span>
                       <br />
@@ -158,37 +158,53 @@ const BookInfo: React.FC = () => {
                             <hr />
                             <form className="mt-4">
                               <label className="block text-grey-darker text-sm font-bold mb-2">
+                                Meno
+                              </label>
+                              <input
+                                type="text"
+                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="Meno"
+                              /><br />
+                              <label className="block text-grey-darker text-sm font-bold mb-2">
+                                Priezvisko
+                              </label>
+                              <input
+                                type="text"
+                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="Meno"
+                              /><br />
+                              <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Od
                               </label>
                               <input
                                 type="date"
-                                className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="11.1.2001"
-                              />
-                              <label className="mt-2 block text-grey-darker text-sm font-bold mb-2">
+                              /><br />
+                              <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Do
                               </label>
                               <input
                                 type="date"
-                                className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="11.1.2001"
-                              />
-                              <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                              /><br />
+                              <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Id používateľa
                               </label>
                               <input
                                 type="text"
-                                className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="janko@hrasko.com"
                                 value={actualUser}
-                              />
+                              /> <br />
 
-                              <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                              <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Číslo knihy
                               </label>
                               <input
                                 type="number"
-                                className="outline-none mt-6 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="1"
                                 value={id}
                               />

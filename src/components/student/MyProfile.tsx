@@ -8,6 +8,7 @@ import { PhotoUploadModal } from "./PhotoUploadModal";
 import Link from "next/link";
 import { placeholderStudent } from "@/data/placeholderStudent";
 import { logoutStudent } from "@/api/mutations/studentMutation";
+import * as upl from "../../api/queries/uploadQueries";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
@@ -20,10 +21,16 @@ const MyProfile: React.FC = () => {
     }
   );
 
-  if (isLoading) {
+  const {data: uploadData, isLoading: uploadLoading, isError: uploadError} = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
+    retry: 2
+  })
+
+  console.log(uploadData)
+
+  if (isLoading || uploadLoading) {
     return <FallbackLoader />;
   }
-  if (isError) {
+  if (isError || uploadError) {
     return <FallbackRender error="Nastala chyba" />;
   }
 

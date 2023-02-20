@@ -3,13 +3,16 @@ import { useEffect } from "react";
 
 const withAuth = (WrappedComponent: any) => {
   const WithAuth = (props: any) => {
+    const studentEmail = localStorage.getItem("studentEmail");
+    console.log(studentEmail);
     useEffect(() => {
-      const studentEmail = localStorage.getItem("studentEmail");
-
-      if (studentEmail === null || studentEmail === undefined) {
+      if (studentEmail) {
+        console.log(studentEmail);
+        Router.push("/student/profile");
+      } else {
         Router.push("/notallowed");
       }
-    }, []);
+    }, [studentEmail]);
 
     return <WrappedComponent {...props} />;
   };

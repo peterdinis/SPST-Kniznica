@@ -3,6 +3,10 @@ import ProfileHeader from "./profile/ProfileHeader";
 import ProfileBody from "./profile/ProfileBody";
 
 const MyProfile: React.FC = () => {
+  const email = localStorage.getItem("studentEmail");
+  if(!email) {
+    window.location.replace("/notallowed");
+  }
   return (
     <ProtectedRoute>
       <div className="container mx-auto my-5 p-5">

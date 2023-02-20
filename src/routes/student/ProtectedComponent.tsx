@@ -9,11 +9,7 @@ const withAuth = (WrappedComponent: any) => {
         console.log(studentEmail);
         Router.push("/student/profile");
       }
-
-      if(!studentEmail) {
-        Router.push("/notallowed");
-      }
-    }, [studentEmail]);
+    }, []);
 
     return <WrappedComponent {...props} />;
   };

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useStudentStore } from "../../store/studentStore";
 
 const baseEnv =
   process.env.NODE_ENV !== "production"
@@ -12,7 +11,7 @@ const authApi = axios.create({
 });
 
 authApi.interceptors.request.use((config: any) => {
-  const token = useStudentStore.getState().token;
+  const token = localStorage.getItem("studentAccessToken")
   config.headers = {
     Authorization: `Bearer ${token}`,
   };

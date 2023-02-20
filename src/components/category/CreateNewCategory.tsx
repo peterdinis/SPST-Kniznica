@@ -28,7 +28,15 @@ const CreateNewCategory: React.FC = () => {
   });
 
   /* TODO: Later update this logic */
-  const mutation = useMutation(mut.createNewCategory);
+  const mutation = useMutation(mut.createNewCategory, {
+    onSuccess: (data) => {
+        notify()
+    },
+
+    onError: (data) => {
+        errorRegister();
+    }
+  });
 
   return (
     <>

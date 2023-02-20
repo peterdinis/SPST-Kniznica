@@ -1,33 +1,56 @@
+import { useQuery } from "@tanstack/react-query";
+import FallbackLoader from "@/components/shared/FallbackLoader";
+import FallbackRender from "@/components/shared/FallbackRender";
+import { placeholderStudent } from "@/data/placeholderStudent";
+import * as api from "../../../api/queries/studentQueries";
+import * as upl from "../../../api/queries/uploadQueries";
+
 const ProfileHeader: React.FC = () => {
-    return (
-        <div className="w-full mt-20 md:w-3/12 md:mx-2">
-        <div className="bg-white p-3 border-t-4 border-green-400">
-            <div className="image overflow-hidden">
-                <img className="h-auto w-full mx-auto"
-                    src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
-                    alt="IMAGES" />
-            </div>
-            <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">Jane Doe</h1>
-            <h3 className="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
-            <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
-                consectetur adipisicing elit.
-                Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
-            <ul
-                className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                <li className="flex items-center py-3">
-                    <span>Status</span>
-                    <span className="ml-auto"><span
-                            className="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
-                </li>
-                <li className="flex items-center py-3">
-                    <span>Member since</span>
-                    <span className="ml-auto">Nov 07, 2016</span>
-                </li>
-            </ul>
+  const { data, isLoading, isError } = useQuery(
+    ["studentProfile"],
+    () => api.studentProfile,
+    {
+      placeholderData: placeholderStudent,
+    }
+  );
+
+  const {
+    data: uploadData,
+    isLoading: uploadLoading,
+    isError: uploadError,
+  } = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
+    retry: 2,
+  });
+
+  console.log(uploadData);
+
+  if (isLoading || uploadLoading) {
+    return <FallbackLoader />;
+  }
+  if (isError || uploadError) {
+    return <FallbackRender error="Nastala chyba" />;
+  }
+
+  return (
+    <div className="w-full mt-20 md:w-3/12 md:mx-2">
+      <div className="bg-white p-3 border-t-4 border-green-400">
+        <div className="image overflow-hidden">
+          <img
+            className="h-auto w-full mx-auto"
+            src="https://picsum.photos/200/300"
+            alt="IMAGES"
+          />
         </div>
-        <div className="my-4"></div>
+        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
+          {data.name} {data.lastName}
+        </h1>
+        <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
+          {data.role}
+        </p>
+      </div>
+      <div className="my-4"></div>
     </div>
-    )
-}
+  );
+};
 
 export default ProfileHeader;

@@ -23,5 +23,4 @@ export const logoutStudent = () => {
   Cookies.remove('email', { path: '' }) 
   Cookies.remove("Max-Age", {path: ''})
   Cookies.remove("loggedStudent", { path: '' })
-  window.location.replace("/student/login");
 }

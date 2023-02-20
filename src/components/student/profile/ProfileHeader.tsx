@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/FallbackRender";
 import { placeholderStudent } from "@/data/placeholderStudent";
@@ -31,7 +31,7 @@ const ProfileHeader: React.FC = () => {
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
-      <div className="bg-white p-3 border-t-4 border-green-400">
+      <div className="bg-white p-2">
         <div className="image overflow-hidden">
           <img
             className="h-auto w-full mx-auto"

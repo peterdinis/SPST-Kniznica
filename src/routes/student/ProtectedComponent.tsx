@@ -4,12 +4,13 @@ import { useEffect } from "react";
 const withAuth = (WrappedComponent: any) => {
   const WithAuth = (props: any) => {
     const studentEmail = localStorage.getItem("studentEmail");
-    console.log(studentEmail);
     useEffect(() => {
-      if (studentEmail) {
+      if (studentEmail || studentEmail === null) {
         console.log(studentEmail);
         Router.push("/student/profile");
-      } else {
+      }
+
+      if(!studentEmail) {
         Router.push("/notallowed");
       }
     }, [studentEmail]);

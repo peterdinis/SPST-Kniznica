@@ -164,15 +164,17 @@ const BookInfo: React.FC = () => {
                                 type="text"
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="Meno"
-                              /><br />
+                              />
+                              <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Priezvisko
                               </label>
                               <input
                                 type="text"
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                                placeholder="Meno"
-                              /><br />
+                                placeholder="Priezivsko"
+                              />
+                              <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Od
                               </label>
@@ -180,7 +182,8 @@ const BookInfo: React.FC = () => {
                                 type="date"
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="11.1.2001"
-                              /><br />
+                              />
+                              <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Do
                               </label>
@@ -188,7 +191,8 @@ const BookInfo: React.FC = () => {
                                 type="date"
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="11.1.2001"
-                              /><br />
+                              />
+                              <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Id používateľa
                               </label>
@@ -197,8 +201,8 @@ const BookInfo: React.FC = () => {
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="janko@hrasko.com"
                                 value={actualUser}
-                              /> <br />
-
+                              />{" "}
+                              <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Číslo knihy
                               </label>

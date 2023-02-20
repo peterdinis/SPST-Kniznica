@@ -7,7 +7,6 @@ const withAuth = (WrappedComponent: any) => {
     
         if (studentEmail === null || studentEmail === undefined || !studentEmail) {
             Router.push('/notallowed');
-            return null;
         }
     
         return <WrappedComponent {...props} />;

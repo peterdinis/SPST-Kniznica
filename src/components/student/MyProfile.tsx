@@ -10,6 +10,7 @@ import { placeholderStudent } from "@/data/placeholderStudent";
 import { logoutStudent } from "@/api/mutations/studentMutation";
 import * as upl from "../../api/queries/uploadQueries";
 import ProtectedRoute from "@/routes/student/ProtectedRoute";
+import ProfileHeader from "./profile/ProfileHeader";
 
 const MyProfile: React.FC = () => {
   const router = useRouter();
@@ -47,7 +48,8 @@ const MyProfile: React.FC = () => {
 
   return (
     <ProtectedRoute>
-      <div className="p-16">
+      <ProfileHeader />
+    {/*   <div className="p-16">
         <div className="p-8 bg-white shadow mt-24">
           <div className="grid grid-cols-1 md:grid-cols-3">
             <div className="relative">
@@ -117,7 +119,7 @@ const MyProfile: React.FC = () => {
             <p className="mt-8 font-bold text-gray-800">{data.role}</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </ProtectedRoute>
   );
 };

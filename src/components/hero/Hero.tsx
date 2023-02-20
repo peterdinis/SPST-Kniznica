@@ -1,21 +1,30 @@
-import DateTimePicker from "../shared/DateTimePicker"
-import {useQuery} from "@tanstack/react-query"
-import * as api from "../../api/queries/exampleQuery"
+import DateTimePicker from "../shared/DateTimePicker";
+import { useQuery } from "@tanstack/react-query";
+import * as api from "../../api/queries/exampleQuery";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
-import Link from "next/link";
+import * as upl from "../../api/queries/uploadQueries";
 
 function Hero() {
-  const {isLoading, isError} = useQuery(["example"], api.getExampleData, {
-    retry: 2
+  const { isLoading, isError } = useQuery(["example"], api.getExampleData, {
+    retry: 2,
   });
 
-  if(isLoading) {
-    return <FallbackLoader />
+  const { isLoading: uploadServerLoading, isError: uploadServerError } =
+    useQuery(["uploadServerStatus"], upl.checkUploadServer, {
+      retry: 2,
+    });
+
+  if (isLoading || uploadServerLoading) {
+    return <FallbackLoader />;
   }
 
-  if(isError) {
-    return <FallbackRender error={"Nastala chyba"} />
+  if (isError) {
+    return <FallbackRender error={"Nastala chyba"} />;
+  }
+
+  if (uploadServerError) {
+    return <FallbackRender error={"Server na upload obrázkov nefunguje"} />;
   }
 
   return (
@@ -34,7 +43,7 @@ function Hero() {
           </h1>
           <DateTimePicker />
           <div className="ml-8 text-gray-800 text-xl font-regular mb-8 mt-6">
-            Knihy sú jedinečne prenosné kúzlo -{' '}
+            Knihy sú jedinečne prenosné kúzlo -{" "}
             <span className="font-bold">Stephen King</span>
           </div>
         </div>

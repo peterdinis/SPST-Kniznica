@@ -4,6 +4,7 @@ import FallbackRender from "@/components/shared/FallbackRender";
 import { placeholderStudent } from "@/data/placeholderStudent";
 import * as api from "../../../api/queries/studentQueries";
 import * as upl from "../../../api/queries/uploadQueries";
+import { PhotoUploadModal } from "../PhotoUploadModal";
 
 const ProfileHeader: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
@@ -15,14 +16,11 @@ const ProfileHeader: React.FC = () => {
   );
 
   const {
-    data: uploadData,
     isLoading: uploadLoading,
     isError: uploadError,
   } = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
     retry: 2,
   });
-
-  console.log(uploadData);
 
   if (isLoading || uploadLoading) {
     return <FallbackLoader />;
@@ -44,8 +42,14 @@ const ProfileHeader: React.FC = () => {
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
           {data.name} {data.lastName}
         </h1>
+        
         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
           {data.role}
+          <span className="float-right">
+            <PhotoUploadModal btnName="Nová fotka">
+                I am children component
+            </PhotoUploadModal>
+          </span>
         </p>
       </div>
       <div className="my-4"></div>

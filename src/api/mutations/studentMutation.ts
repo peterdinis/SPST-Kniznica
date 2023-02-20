@@ -6,7 +6,9 @@ const baseEnv = process.env.NODE_ENV !== "production" ? process.env.NEXT_PUBLIC_
 
 const api = axios.create({
   baseURL: baseEnv,
-  withCredentials: true
+  withCredentials: true,
+  timeout: 30000,
+  timeoutErrorMessage: "Timeout error"
 });
 
 export const registerStudent = (data: IRegisterStudent) => {
@@ -18,9 +20,5 @@ export const loginStudent = (data: ILoginStudent) => {
 };
 
 export const logoutStudent = () => {
-  localStorage.clear();
-  Cookies.remove('newStudent', { path: '' }) 
-  Cookies.remove('email', { path: '' }) 
-  Cookies.remove("Max-Age", {path: ''})
-  Cookies.remove("loggedStudent", { path: '' })
+  Cookies.remove("currentUser")
 }

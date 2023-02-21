@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 
 const NavbarLinks: React.FC = () => {
   const [user, setUser] = useState<any>(); // TODO: Update later;
-
+  const currentUser = Cookies.get("currentUser");
   useEffect(() => {
-    const currentUser = Cookies.get("currentUser");
-    if(currentUser) {
+    if (currentUser) {
       setUser(JSON.parse(currentUser));
     }
-  }, []);
+  }, [currentUser]);
   return (
     <>
       <li className="text-black text-xl">

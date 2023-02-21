@@ -8,14 +8,13 @@ import { useState, useEffect } from "react";
 import { IStudent } from "@/api/interfaces/IUser";
 
 const ProfileHeader: React.FC = () => {
-  const [user, setUser] = useState<IStudent | null>(null);
-
+  const [user, setUser] = useState<IStudent>();
+  const currentUser = Cookies.get("currentUser");
   useEffect(() => {
-    const currentUser = Cookies.get("currentUser");
     if (currentUser) {
       setUser(JSON.parse(currentUser));
     }
-  }, []);
+  }, [currentUser]);
 
   const {
     data,
@@ -42,11 +41,10 @@ const ProfileHeader: React.FC = () => {
             alt="IMAGES"
           />
         </div>
-        {/* TODO: Maybe update this line */}
-        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user!.email}</h1>
+        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user?.email}</h1>
 
         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
-          {user!.role}
+          {user?.role}
           <span className="float-right">
             <PhotoUploadModal btnName="Nová fotka">
               I am children component

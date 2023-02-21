@@ -18,7 +18,7 @@ const ProfileBody: React.FC = () => {
     }
   }, []);
 
-  const existingStudentId = user!.id;
+  const existingStudentId = 1;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
@@ -39,23 +39,23 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Meno</div>
-                <div className="px-4 py-2">{user!.name}</div>
+                <div className="px-4 py-2">{user?.name}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Priezvisko</div>
-                <div className="px-4 py-2">{user!.lastName}</div>
+                <div className="px-4 py-2">{user?.lastName}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">{user!.email}</div>
+                <div className="px-4 py-2">{user?.email}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola.</div>
-                <div className="px-4 py-2">{user!.role}</div>
+                <div className="px-4 py-2">{user?.role}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Trieda</div>
-                <div className="px-4 py-2">{user!.classRoom}</div>
+                <div className="px-4 py-2">{user?.classRoom}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Moje knihy</div>

@@ -20,6 +20,7 @@ const RegisterForm: React.FC = () => {
   const mutation = useMutation(api.registerStudent, {
     onSuccess: (data: INewRegisteredStudent) => {
       Cookies.set("currentUser", JSON.stringify(data.data.newStudent));
+      Cookies.set("studentAccessToken", JSON.stringify(data.data.accessToken));
       notify();
     },
 

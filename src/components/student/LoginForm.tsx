@@ -22,6 +22,7 @@ const LoginForm: React.FC = () => {
   const mutation = useMutation(mut.loginStudent, {
     onSuccess: (data: INewLoggedStudent) => {
       Cookies.set("currentUser", JSON.stringify(data.data.existingUser));
+      Cookies.set("studentAccessToken", JSON.stringify(data.data.accessToken));
       notify();
     },
 

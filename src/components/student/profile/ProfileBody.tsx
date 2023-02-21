@@ -9,14 +9,18 @@ import { IStudent } from "@/api/interfaces/IUser";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<IStudent |null >(null);
+  const [user, setUser] = useState<IStudent |undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(true);
 
+
+  const currentUser = Cookies.get("currentUser");
   useEffect(() => {
-    const currentUser = Cookies.get("currentUser");
+    setLoading(true);
     if (currentUser) {
+      setLoading(false);
       setUser(JSON.parse(currentUser));
     }
-  }, []);
+  }, [currentUser]);
 
   const existingStudentId = 1;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
@@ -26,6 +30,8 @@ const ProfileBody: React.FC = () => {
     logoutToast();
     router.push("/student/login");
   };
+
+  console.log(currentUser);
 
   return (
     <>
@@ -39,7 +45,7 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Meno</div>
-                <div className="px-4 py-2">{user?.name}</div>
+                <div className="px-4 py-2">{user?.name!}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Priezvisko</div>

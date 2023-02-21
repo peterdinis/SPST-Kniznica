@@ -1,4 +1,4 @@
-import { useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/FallbackRender";
 import * as upl from "../../../api/queries/uploadQueries";
@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { IStudent } from "@/api/interfaces/IUser";
 
 const ProfileHeader: React.FC = () => {
-  const [user, setUser] = useState<IStudent |null >(null);
+  const [user, setUser] = useState<IStudent | null>(null);
 
   useEffect(() => {
     const currentUser = Cookies.get("currentUser");
@@ -35,7 +35,7 @@ const ProfileHeader: React.FC = () => {
   console.log(user && user.name);
 
   return (
-  <div className="w-full mt-20 md:w-3/12 md:mx-2">
+    <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
         <div className="image overflow-hidden">
           <img
@@ -44,21 +44,20 @@ const ProfileHeader: React.FC = () => {
             alt="IMAGES"
           />
         </div>
-        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-         rrrr
-        </h1>
-        
+        {/* TODO: Maybe update this line */}
+        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user && user.email}</h1>
+
         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
-          {data.role}
+          {user && user.role}
           <span className="float-right">
             <PhotoUploadModal btnName="Nová fotka">
-                I am children component
+              I am children component
             </PhotoUploadModal>
           </span>
         </p>
       </div>
       <div className="my-4"></div>
-    </div> 
+    </div>
   );
 };
 

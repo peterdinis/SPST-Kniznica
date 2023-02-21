@@ -7,8 +7,6 @@ const baseEnv = process.env.NODE_ENV !== "production" ? process.env.NEXT_PUBLIC_
 const api = axios.create({
   baseURL: baseEnv,
   withCredentials: true,
-  timeout: 30000,
-  timeoutErrorMessage: "Timeout error"
 });
 
 export const registerStudent = (data: IRegisterStudent) => {

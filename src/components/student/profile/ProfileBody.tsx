@@ -15,6 +15,10 @@ const ProfileBody: React.FC = () => {
     if (currentUser) {
       setUser(JSON.parse(currentUser));
     }
+
+    if(currentUser === undefined) {
+      setUser(JSON.parse(currentUser as unknown as string));
+    }
   }, []);
 
   console.log(user);

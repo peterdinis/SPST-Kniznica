@@ -1,15 +1,10 @@
+import MyBorrowedBooks from "@/components/student/MyBorrowedBooks";
 import { NextPage } from "next";
-import dynamic from "next/dynamic";
 
-const DynamicBorrowedBooks = dynamic(() => import("../../../components/student/MyBorrowedBooks"), {
-    ssr: false
-  })
-  
-
-const MyBorrowedBooks: NextPage = () => {
+const MyBorrowedBooksPage: NextPage = () => {
     return (
-       <DynamicBorrowedBooks />
+       <MyBorrowedBooks />
     )
 }
 
-export default MyBorrowedBooks
+export default MyBorrowedBooksPage

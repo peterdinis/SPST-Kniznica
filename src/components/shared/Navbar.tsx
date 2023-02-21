@@ -2,11 +2,7 @@ import React from "react";
 import Link from "next/link";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import dynamic from "next/dynamic";
-
-const DynamicNavbarLink = dynamic(() => import("./NavbarLinks"), {
-  ssr: false
-})
+import NavbarLinks from "./NavbarLinks";
 
 export default function Navbar() {
   const [navbar, setNavbar] = React.useState<Boolean>(false);
@@ -41,7 +37,7 @@ export default function Navbar() {
               }`}
             >
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                <DynamicNavbarLink />
+                <NavbarLinks />
               </ul>
             </div>
           </div>

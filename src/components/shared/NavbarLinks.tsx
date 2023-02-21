@@ -1,7 +1,16 @@
+import Cookies from "js-cookie";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const NavbarLinks: React.FC = () => {
-  const loggedUser = localStorage.getItem("studentEmail");
+  const [user, setUser] = useState<any>(); // TODO: Update later;
+
+  useEffect(() => {
+    const currentUser = Cookies.get("currentUser");
+    if(currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
   return (
     <>
       <li className="text-black text-xl">
@@ -16,7 +25,7 @@ const NavbarLinks: React.FC = () => {
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
       </li>
-      {loggedUser === null || loggedUser === undefined ? (
+      {user === null || user === undefined ? (
         <>
           <li className="text-black text-xl">
             <Link href="/student/login">Prihlásenie žiak</Link>

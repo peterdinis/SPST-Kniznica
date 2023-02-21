@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { IStudent } from "@/api/interfaces/IUser";
 
 const ProfileHeader: React.FC = () => {
-  const [user, setUser] = useState<IStudent |null >(null);
+  const [user, setUser] = useState<IStudent | null>(null);
   const currentUser = Cookies.get("currentUser");
   useEffect(() => {
     if (currentUser) {
@@ -31,8 +31,8 @@ const ProfileHeader: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  if(currentUser === undefined) {
-    window.location.reload();
+  if (currentUser === undefined) {
+    window.location.reload(); // TODO: Error
   }
 
   return (
@@ -45,7 +45,9 @@ const ProfileHeader: React.FC = () => {
             alt="IMAGES"
           />
         </div>
-        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user?.email!}</h1>
+        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
+          {user?.email!}
+        </h1>
 
         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
           {user?.role!}

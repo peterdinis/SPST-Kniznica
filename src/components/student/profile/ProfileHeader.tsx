@@ -1,33 +1,37 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery} from "@tanstack/react-query";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/FallbackRender";
-import { placeholderStudent } from "@/data/placeholderStudent";
-import * as api from "../../../api/queries/studentQueries";
 import * as upl from "../../../api/queries/uploadQueries";
 import { PhotoUploadModal } from "../PhotoUploadModal";
+import Cookies from "js-cookie";
+import { useState, useEffect } from "react";
 
 const ProfileHeader: React.FC = () => {
-  const { data, isLoading, isError } = useQuery(
-    ["studentProfile"],
-    () => api.studentProfile,
-    {
-      placeholderData: placeholderStudent,
+  const [user, setUser] = useState<any>(); // TODO: Update later;
+
+  useEffect(() => {
+    const currentUser = Cookies.get("currentUser");
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
     }
-  );
+  }, []);
 
   const {
+    data,
     isLoading: uploadLoading,
     isError: uploadError,
   } = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
     retry: 2,
   });
 
-  if (isLoading || uploadLoading) {
+  if (uploadLoading) {
     return <FallbackLoader />;
   }
-  if (isError || uploadError) {
+  if (uploadError) {
     return <FallbackRender error="Nastala chyba" />;
   }
+
+  console.log(user);
 
   return (
   <div className="w-full mt-20 md:w-3/12 md:mx-2">
@@ -40,7 +44,7 @@ const ProfileHeader: React.FC = () => {
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-          {/* {data.name} {data.lastName} */} e
+         rrrr
         </h1>
         
         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">

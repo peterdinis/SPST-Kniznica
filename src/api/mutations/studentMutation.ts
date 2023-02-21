@@ -22,5 +22,4 @@ export const loginStudent = (data: ILoginStudent) => {
 export const logoutStudent = () => {
   Cookies.remove("currentUser");
   Cookies.remove("studentAccessToken");
-  
 }

@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import {useRouter} from 'next/router'
 import Link from "next/link";
 import { logoutStudent } from "@/api/mutations/studentMutation";
 import { toast } from "react-toastify";
@@ -27,8 +27,13 @@ const ProfileBody: React.FC = () => {
     router.push("/student/login");
   };
 
+  /* TODO: This could be issue in production */
+  /* TODO1:  uncaughtException: Error: No router instance found. you should only use "next/router" inside the client side of your app. https://nextjs.org/docs/messages/no-router-instance*/
   if(currentUser === undefined) {
-    router.reload();
+    setTimeout(() => {
+      router.push("/");
+    }, 1000);
+    return null;
   }
 
   return (

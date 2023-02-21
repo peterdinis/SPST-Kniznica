@@ -33,10 +33,15 @@ const ProfileHeader: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  if(currentUser === undefined) {
-    router.reload();
+  /* TODO: This could be issue in production */
+  /* TODO1:  uncaughtException: Error: No router instance found. you should only use "next/router" inside the client side of your app. https://nextjs.org/docs/messages/no-router-instance*/
+  if (currentUser === undefined) {
+    setTimeout(() => {
+      router.push("/");
+    }, 1000);
+    return null;
   }
-
+  
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">

@@ -17,7 +17,7 @@ const ProfileHeader: React.FC = () => {
   }, [currentUser]);
 
   const {
-    data,
+    data: uploadData,
     isLoading: uploadLoading,
     isError: uploadError,
   } = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
@@ -29,6 +29,10 @@ const ProfileHeader: React.FC = () => {
   }
   if (uploadError) {
     return <FallbackRender error="Nastala chyba" />;
+  }
+
+  if(currentUser === undefined) {
+    window.location.reload();
   }
 
   return (

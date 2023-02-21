@@ -9,20 +9,16 @@ import { IStudent } from "@/api/interfaces/IUser";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<IStudent |undefined>(undefined);
-  const [loading, setLoading] = useState<boolean>(true);
-
+  const [user, setUser] = useState<IStudent | null>(null);
 
   const currentUser = Cookies.get("currentUser");
   useEffect(() => {
-    setLoading(true);
     if (currentUser) {
-      setLoading(false);
       setUser(JSON.parse(currentUser));
     }
   }, [currentUser]);
 
-  const existingStudentId = 1;
+  const existingStudentId = user?.id;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
@@ -31,7 +27,9 @@ const ProfileBody: React.FC = () => {
     router.push("/student/login");
   };
 
-  console.log(currentUser);
+  if(currentUser === undefined) {
+    window.location.reload();
+  }
 
   return (
     <>

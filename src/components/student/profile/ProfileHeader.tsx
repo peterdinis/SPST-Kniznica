@@ -5,9 +5,10 @@ import * as upl from "../../../api/queries/uploadQueries";
 import { PhotoUploadModal } from "../PhotoUploadModal";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
+import { IStudent } from "@/api/interfaces/IUser";
 
 const ProfileHeader: React.FC = () => {
-  const [user, setUser] = useState<any>(); // TODO: Update later;
+  const [user, setUser] = useState<IStudent |null >(null);
 
   useEffect(() => {
     const currentUser = Cookies.get("currentUser");
@@ -31,7 +32,7 @@ const ProfileHeader: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  console.log(user);
+  console.log(user && user.name);
 
   return (
   <div className="w-full mt-20 md:w-3/12 md:mx-2">

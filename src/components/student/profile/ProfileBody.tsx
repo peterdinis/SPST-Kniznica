@@ -5,23 +5,18 @@ import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import { IStudent } from "@/api/interfaces/IUser";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<any>(); // TODO: Update later;
+  const [user, setUser] = useState<IStudent |null >(null);
 
   useEffect(() => {
     const currentUser = Cookies.get("currentUser");
     if (currentUser) {
       setUser(JSON.parse(currentUser));
     }
-
-    if(currentUser === undefined) {
-      setUser(JSON.parse(currentUser as unknown as string));
-    }
   }, []);
-
-  console.log(user);
 
   const existingStudentId = localStorage.getItem("studentId");
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");

@@ -6,8 +6,10 @@ import { PhotoUploadModal } from "../PhotoUploadModal";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { IStudent } from "@/api/interfaces/IUser";
+import { useRouter } from "next/router";
 
 const ProfileHeader: React.FC = () => {
+  const router = useRouter();
   const [user, setUser] = useState<IStudent | null>(null);
   const currentUser = Cookies.get("currentUser");
   useEffect(() => {
@@ -31,8 +33,8 @@ const ProfileHeader: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  if (currentUser === undefined) {
-    window.location.reload(); // TODO: Error
+  if(currentUser === undefined) {
+    router.reload();
   }
 
   return (

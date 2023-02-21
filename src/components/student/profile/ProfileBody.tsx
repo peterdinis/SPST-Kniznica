@@ -28,7 +28,7 @@ const ProfileBody: React.FC = () => {
   };
 
   if(currentUser === undefined) {
-    window.location.reload();
+    router.reload();
   }
 
   return (

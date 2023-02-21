@@ -30,7 +30,7 @@ const ProfileHeader: React.FC = () => {
   }
 
   return (
-    <div className="w-full mt-20 md:w-3/12 md:mx-2">
+  <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
         <div className="image overflow-hidden">
           <img
@@ -40,7 +40,7 @@ const ProfileHeader: React.FC = () => {
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-          {data.name} {data.lastName}
+          {/* {data.name} {data.lastName} */} e
         </h1>
         
         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
@@ -53,7 +53,7 @@ const ProfileHeader: React.FC = () => {
         </p>
       </div>
       <div className="my-4"></div>
-    </div>
+    </div> 
   );
 };
 

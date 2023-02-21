@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import * as api from "../../api/mutations/studentMutation";
 import Link from "next/link";
-import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -17,18 +17,10 @@ const RegisterForm: React.FC = () => {
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
 
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
-
   const mutation = useMutation(api.registerStudent, {
     onSuccess: (data: INewRegisteredStudent) => {
-      localStorage.setItem("studentRefreshToken", data.data.refreshToken);
-      localStorage.setItem("studentAccessToken", data.data.accessToken);
-      localStorage.setItem("studentEmail", data.data.newStudent.email);
-      localStorage.setItem("studentId", data.data.newStudent.id);
-      localStorage.setItem("studentId", data.data.newStudent.id);
-      localStorage.setItem("studentRole", data.data.newStudent.role);
+      Cookies.set("currentUser", JSON.stringify(data.data.newStudent));
+      Cookies.set("studentAccessToken", JSON.stringify(data.data.accessToken));
       notify();
     },
 

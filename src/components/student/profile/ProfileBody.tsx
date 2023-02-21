@@ -8,8 +8,21 @@ import Link from "next/link";
 import { logoutStudent } from "@/api/mutations/studentMutation";
 import { toast } from "react-toastify";
 import PersonIcon from '@mui/icons-material/Person';
+import {useState, useEffect} from "react";
+import Cookies from "js-cookie";
 
 const ProfileBody: React.FC = () => {
+  const [user, setUser] = useState<any>(); // TODO: Update later;
+
+  useEffect(() => {
+    const currentUser = Cookies.get("currentUser");
+    if(currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
+
+  console.log(user);
+
   const router = useRouter();
   const { data, isLoading, isError } = useQuery(
     ["studentProfile"],
@@ -37,7 +50,8 @@ const ProfileBody: React.FC = () => {
 
   return (
     <>
-      <div className="w-full md:w-9/12 mx-2 h-64">
+    <button onClick={logoutFromApp}>Logot</button>
+    {/*   <div className="w-full md:w-9/12 mx-2 h-64">
         <div className="bg-white p-3 shadow-sm rounded-sm">
           <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
             <PersonIcon />
@@ -102,7 +116,7 @@ const ProfileBody: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

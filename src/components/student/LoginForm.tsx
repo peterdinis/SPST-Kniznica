@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { ILoginStudent, INewLoggedStudent } from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation} from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation";
 import Link from "next/link";
 import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -20,11 +21,8 @@ const LoginForm: React.FC = () => {
 
   const mutation = useMutation(mut.loginStudent, {
     onSuccess: (data: INewLoggedStudent) => {
-      localStorage.setItem("studentRefreshToken", data.data.refreshToken);
-      localStorage.setItem("studentAccessToken", data.data.accessToken);
-      localStorage.setItem("studentEmail", data.data.existingUser.email);
-      localStorage.setItem("studentId", data.data.existingUser.id);
-      localStorage.setItem("studentRole", data.data.existingUser.role);
+      Cookies.set("currentUser", JSON.stringify(data.data.existingUser));
+      Cookies.set("studentAccessToken", JSON.stringify(data.data.accessToken));
       notify();
     },
 

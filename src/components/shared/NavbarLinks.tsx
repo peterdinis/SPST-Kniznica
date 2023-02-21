@@ -1,16 +1,16 @@
+import { IStudent } from "@/api/interfaces/IUser";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const NavbarLinks: React.FC = () => {
-  const [user, setUser] = useState<any>(); // TODO: Update later;
-
+  const [user, setUser] = useState<IStudent | null>(null);
+  const currentUser = Cookies.get("currentUser");
   useEffect(() => {
-    const currentUser = Cookies.get("currentUser");
-    if(currentUser) {
+    if (currentUser) {
       setUser(JSON.parse(currentUser));
     }
-  }, []);
+  }, [currentUser]);
   return (
     <>
       <li className="text-black text-xl">

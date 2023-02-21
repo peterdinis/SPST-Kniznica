@@ -1,36 +1,42 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/FallbackRender";
-import { placeholderStudent } from "@/data/placeholderStudent";
-import * as api from "../../../api/queries/studentQueries";
 import * as upl from "../../../api/queries/uploadQueries";
 import { PhotoUploadModal } from "../PhotoUploadModal";
+import Cookies from "js-cookie";
+import { useState, useEffect } from "react";
+import { IStudent } from "@/api/interfaces/IUser";
 
 const ProfileHeader: React.FC = () => {
-  const { data, isLoading, isError } = useQuery(
-    ["studentProfile"],
-    () => api.studentProfile,
-    {
-      placeholderData: placeholderStudent,
+  const [user, setUser] = useState<IStudent |null >(null);
+  const currentUser = Cookies.get("currentUser");
+  useEffect(() => {
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
     }
-  );
+  }, [currentUser]);
 
   const {
+    data: uploadData,
     isLoading: uploadLoading,
     isError: uploadError,
   } = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
     retry: 2,
   });
 
-  if (isLoading || uploadLoading) {
+  if (uploadLoading) {
     return <FallbackLoader />;
   }
-  if (isError || uploadError) {
+  if (uploadError) {
     return <FallbackRender error="Nastala chyba" />;
   }
 
+  if(currentUser === undefined) {
+    window.location.reload();
+  }
+
   return (
-  <div className="w-full mt-20 md:w-3/12 md:mx-2">
+    <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
         <div className="image overflow-hidden">
           <img
@@ -39,21 +45,19 @@ const ProfileHeader: React.FC = () => {
             alt="IMAGES"
           />
         </div>
-        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-          {/* {data.name} {data.lastName} */} e
-        </h1>
-        
+        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user?.email!}</h1>
+
         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
-          {data.role}
+          {user?.role!}
           <span className="float-right">
             <PhotoUploadModal btnName="Nová fotka">
-                I am children component
+              I am children component
             </PhotoUploadModal>
           </span>
         </p>
       </div>
       <div className="my-4"></div>
-    </div> 
+    </div>
   );
 };
 

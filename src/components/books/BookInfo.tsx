@@ -80,7 +80,7 @@ const BookInfo: React.FC = () => {
   const onHandleSubmit = (data: IBooking) => {
     try {
       mutation.mutate(data);
-      router.push("/student/profile");
+      router.push("/books/success");
     } catch (err) {
       alert(err);
     }

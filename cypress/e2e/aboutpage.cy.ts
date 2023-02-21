@@ -1,5 +1,5 @@
 describe("Testing about page", () => {
-    it("", () => {
-        return;
+    it("Visit aboutpage", () => {
+        cy.visit("http://localhost:3000/about")
     })
 })

@@ -32,8 +32,6 @@ const ProfileHeader: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
-  console.log(user && user.name);
-
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
@@ -45,10 +43,10 @@ const ProfileHeader: React.FC = () => {
           />
         </div>
         {/* TODO: Maybe update this line */}
-        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user && user.email}</h1>
+        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user!.email}</h1>
 
         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
-          {user && user.role}
+          {user!.role}
           <span className="float-right">
             <PhotoUploadModal btnName="Nová fotka">
               I am children component

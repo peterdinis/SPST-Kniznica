@@ -134,7 +134,7 @@ const RegisterForm: React.FC = () => {
                 required: "Email je povinný",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Emailová adresa nie je valídna",
+                  message: "Emailová adresa nie je správna",
                 },
               })}
               onKeyUp={() => {

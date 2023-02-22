@@ -7,12 +7,15 @@ import Cookies from "js-cookie";
 import { useState, useEffect, MouseEvent } from "react";
 import { IStudent } from "@/api/interfaces/IUser";
 import { useRouter } from "next/router";
-import * as mut from "../../../api/mutations/uploadMutation"
+import * as mut from "../../../api/mutations/uploadMutation";
+import { IFile } from "@/api/interfaces/IFile";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const ProfileHeader: React.FC = () => {
   const router = useRouter();
   const [user, setUser] = useState<IStudent | null>(null);
-  const [fileSelected, setFileSelected] = useState<string |Blob>();
+  /* TODO: Later update this type */
+  const [fileSelected, setFileSelected] = useState<IFile | any>();
 
   const currentUser = Cookies.get("currentUser");
   useEffect(() => {
@@ -21,12 +24,13 @@ const ProfileHeader: React.FC = () => {
     }
   }, [currentUser]);
 
-  const {
-    isLoading: uploadLoading,
-    isError: uploadError,
-  } = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
-    retry: 2,
-  });
+  const { isLoading: uploadLoading, isError: uploadError } = useQuery(
+    ["uploadServerStatus"],
+    upl.checkUploadServer,
+    {
+      retry: 2,
+    }
+  );
 
   if (uploadLoading) {
     return <FallbackLoader />;
@@ -48,17 +52,17 @@ const ProfileHeader: React.FC = () => {
     const fileList = e.target.files;
 
     if (!fileList) return;
-    
+
     setFileSelected(fileList[0]);
   };
 
   const uploadFile = function (e: MouseEvent<HTMLSpanElement, MouseEvent>) {
     if (fileSelected) {
-        const formData = new FormData();
-        formData.append("image", fileSelected, fileSelected.name);
+      const formData = new FormData();
+      formData.append("file", fileSelected, fileSelected.name);
     }
-};
-  
+  };
+
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
@@ -77,7 +81,17 @@ const ProfileHeader: React.FC = () => {
           {user?.role!}
           <span className="float-right">
             <PhotoUploadModal btnName="Nová fotka">
-              I am children component
+              <div className="flex items-center justify-center bg-grey-lighter">
+                <label className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+                  <CloudUploadIcon className="text-5xl" />
+                  <span className="mt-2 text-base leading-normal">
+                    Vybrať súbor
+                  </span>
+                  <form>
+                  <input multiple={false} accept="image/*" type="file" className="hidden" />
+                  </form>
+                </label>
+              </div>
             </PhotoUploadModal>
           </span>
         </p>

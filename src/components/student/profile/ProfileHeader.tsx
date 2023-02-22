@@ -1,16 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/FallbackRender";
 import * as upl from "../../../api/queries/uploadQueries";
 import { PhotoUploadModal } from "../PhotoUploadModal";
 import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import { IStudent } from "@/api/interfaces/IUser";
 import { useRouter } from "next/router";
+import * as mut from "../../../api/mutations/uploadMutation"
 
 const ProfileHeader: React.FC = () => {
   const router = useRouter();
   const [user, setUser] = useState<IStudent | null>(null);
+  const [fileSelected, setFileSelected] = useState<string |Blob>();
+
   const currentUser = Cookies.get("currentUser");
   useEffect(() => {
     if (currentUser) {
@@ -19,7 +22,6 @@ const ProfileHeader: React.FC = () => {
   }, [currentUser]);
 
   const {
-    data: uploadData,
     isLoading: uploadLoading,
     isError: uploadError,
   } = useQuery(["uploadServerStatus"], upl.checkUploadServer, {
@@ -41,6 +43,21 @@ const ProfileHeader: React.FC = () => {
     }, 1000);
     return null;
   }
+
+  const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const fileList = e.target.files;
+
+    if (!fileList) return;
+    
+    setFileSelected(fileList[0]);
+  };
+
+  const uploadFile = function (e: MouseEvent<HTMLSpanElement, MouseEvent>) {
+    if (fileSelected) {
+        const formData = new FormData();
+        formData.append("image", fileSelected, fileSelected.name);
+    }
+};
   
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
@@ -56,7 +73,7 @@ const ProfileHeader: React.FC = () => {
           {user?.email!}
         </h1>
 
-        <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
+        <p className="text-sm text-gray-500 font-bold hover:text-gray-600 leading-6">
           {user?.role!}
           <span className="float-right">
             <PhotoUploadModal btnName="Nová fotka">

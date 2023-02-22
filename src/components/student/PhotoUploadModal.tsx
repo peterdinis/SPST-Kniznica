@@ -59,8 +59,7 @@ export const PhotoUploadModal: React.FC<IModalProps> = ({children, btnName}: IMo
         <Fade in={open}>
           <Box sx={style}>
             <h2 className="text-center mt-2 text-3xl font-bold">Nahranie novej fotky</h2>
-            <hr />
-            <div className="mt-4">
+            <div className="mt-6">
                 {children}
             </div>
           </Box>

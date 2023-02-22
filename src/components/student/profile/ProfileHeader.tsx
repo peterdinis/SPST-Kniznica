@@ -6,7 +6,7 @@ import { PhotoUploadModal } from "../PhotoUploadModal";
 import { ChangeEvent } from "react";
 import { useRouter } from "next/router";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useStudent } from "@/hooks/useStudent";
 
 const ProfileHeader: React.FC = () => {
@@ -14,6 +14,30 @@ const ProfileHeader: React.FC = () => {
   const { student, currentUser } = useStudent();
   /* TODO: Later update this type */
   const [file, setFile] = useState<any>();
+  const [preview, setPreview] = useState(undefined);
+
+  useEffect(() => {
+    if (!file) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl: any = URL.createObjectURL(file);
+    setPreview(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [file]);
+
+  const onSelectFile = (e: { target: { files: string | [] } }) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setFile(undefined);
+      return;
+    }
+
+    // I've kept this example simple by using the first image instead of multiple
+    setFile(e.target.files[0]);
+  };
 
   const { isLoading: uploadLoading, isError: uploadError } = useQuery(
     ["uploadServerStatus"],
@@ -89,13 +113,13 @@ const ProfileHeader: React.FC = () => {
                   <span className="mt-2 text-base leading-normal">
                     Vybrať súbor
                   </span>
+                  <form>
                   <input
                     hidden
                     name="file"
                     type="file"
                     onChange={handleFileChange}
                   />
-                  <div>{file && `${file.name} - ${file.type}`}</div>
 
                   <button
                     className="mt-4 text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
@@ -103,8 +127,10 @@ const ProfileHeader: React.FC = () => {
                   >
                     Nahrať obrázok
                   </button>
+                  </form>
                 </label>
               </div>
+              <div className="mt-10">{file && <img src={preview} />}</div>
             </PhotoUploadModal>
           </span>
         </p>

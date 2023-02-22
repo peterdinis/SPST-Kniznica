@@ -47,6 +47,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@total-typescript/ts-reset": "^0.3.7",
     "@types/js-cookie": "^3.0.2",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/react-window": "^1.8.5",

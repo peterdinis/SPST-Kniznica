@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useSpring, animated } from 'react-spring';
 import AddIcon from '@mui/icons-material/Add';
+import { style } from './style';
 
 interface FadeProps {
   children?: React.ReactElement;
@@ -36,18 +36,6 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
   );
 });
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
 interface IModalProps {
     btnName: string;
     children?: React.ReactNode;
@@ -67,14 +55,11 @@ export const PhotoUploadModal: React.FC<IModalProps> = ({children, btnName}: IMo
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
       >
         <Fade in={open}>
           <Box sx={style}>
             <h2 className="text-center mt-2 text-3xl font-bold">Nahranie novej fotky</h2>
+            <hr />
             <div className="mt-4">
                 {children}
             </div>

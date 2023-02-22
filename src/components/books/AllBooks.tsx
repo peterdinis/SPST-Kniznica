@@ -116,7 +116,7 @@ const AllBooks: React.FC = () => {
                 Predchazajúca stránka
               </button>
             </div>
-            <span>Aktuálna stránka: {page + 1}</span>
+            <span className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">Aktuálna stránka: {page + 1}</span>
             <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
               <button
                 onClick={() => {
@@ -124,7 +124,6 @@ const AllBooks: React.FC = () => {
                     setPage((old) => old + 1);
                   }
                 }}
-                // Disable the Next Page button until we know a next page is available
                 disabled={isPreviousData || !paginatedData.data.hasNextPage}
                 className="text-sm font-medium leading-none mr-3"
               >

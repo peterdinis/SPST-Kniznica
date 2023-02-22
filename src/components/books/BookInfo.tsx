@@ -12,10 +12,8 @@ import * as mut from "../../api/mutations/bookingMutation";
 import { toast } from "react-toastify";
 import { IBooking } from "@/api/interfaces/IBooking";
 import { useForm } from "react-hook-form";
-import { Suspense, useState, useEffect } from "react";
+import { Suspense } from "react";
 import SkeletonLoader from "../shared/SkeletonLoader";
-import { IStudent } from "@/api/interfaces/IUser";
-import Cookies from "js-cookie";
 import { useStudent } from "@/hooks/useStudent";
 
 const BookInfo: React.FC = () => {

@@ -76,8 +76,7 @@ const SearchOneBook: React.FC = () => {
 
       <AnimatePresence>
         {results.data === undefined ? (
-          <Fragment>
-          </Fragment>
+          <Fragment />
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">

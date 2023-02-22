@@ -3,24 +3,17 @@ import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/FallbackRender";
 import * as upl from "../../../api/queries/uploadQueries";
 import { PhotoUploadModal } from "../PhotoUploadModal";
-import Cookies from "js-cookie";
-import { useState, useEffect, ChangeEvent } from "react";
-import { IStudent } from "@/api/interfaces/IUser";
+import { ChangeEvent } from "react";
 import { useRouter } from "next/router";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { useState } from "react";
+import { useStudent } from "@/hooks/useStudent";
 
 const ProfileHeader: React.FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<IStudent | null>(null);
+  const { student, currentUser } = useStudent();
   /* TODO: Later update this type */
   const [file, setFile] = useState<any>();
-
-  const currentUser = Cookies.get("currentUser");
-  useEffect(() => {
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, [currentUser]);
 
   const { isLoading: uploadLoading, isError: uploadError } = useQuery(
     ["uploadServerStatus"],
@@ -53,23 +46,23 @@ const ProfileHeader: React.FC = () => {
   };
 
   const handleUploadClick = () => {
-      if (!file) {
-        return;
-      }
-  
-      // 👇 Uploading the file using the fetch API to the server
-      fetch('https://httpbin.org/post', {
-        method: 'POST',
-        body: file,
-        // 👇 Set headers manually for single file upload
-        headers: {
-          'content-type': file.type,
-          'content-length': `${file.size}`, // 👈 Headers need to be a string
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.error(err));
+    if (!file) {
+      return;
+    }
+
+    // 👇 Uploading the file using the fetch API to the server
+    fetch("https://httpbin.org/post", {
+      method: "POST",
+      body: file,
+      // 👇 Set headers manually for single file upload
+      headers: {
+        "content-type": file.type,
+        "content-length": `${file.size}`, // 👈 Headers need to be a string
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -83,11 +76,11 @@ const ProfileHeader: React.FC = () => {
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-          {user?.email!}
+          {student?.email!}
         </h1>
 
         <p className="text-sm text-gray-500 font-bold hover:text-gray-600 leading-6">
-          {user?.role!}
+          {student?.role!}
           <span className="float-right">
             <PhotoUploadModal btnName="Nová fotka">
               <div className="flex items-center justify-center">
@@ -96,10 +89,20 @@ const ProfileHeader: React.FC = () => {
                   <span className="mt-2 text-base leading-normal">
                     Vybrať súbor
                   </span>
-                  <input hidden name="file" type="file" onChange={handleFileChange} />
+                  <input
+                    hidden
+                    name="file"
+                    type="file"
+                    onChange={handleFileChange}
+                  />
                   <div>{file && `${file.name} - ${file.type}`}</div>
 
-                  <button className="mt-4 text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5" onClick={handleUploadClick}>Nahrať obrázok</button>
+                  <button
+                    className="mt-4 text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                    onClick={handleUploadClick}
+                  >
+                    Nahrať obrázok
+                  </button>
                 </label>
               </div>
             </PhotoUploadModal>

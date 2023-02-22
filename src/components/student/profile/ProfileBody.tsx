@@ -1,24 +1,15 @@
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { logoutStudent } from "@/api/mutations/studentMutation";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import { IStudent } from "@/api/interfaces/IUser";
+import { useStudent } from "@/hooks/useStudent";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<IStudent | null>(null);
+  const { student, currentUser } = useStudent();
 
-  const currentUser = Cookies.get("currentUser");
-  useEffect(() => {
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, [currentUser]);
-
-  const existingStudentId = user?.id;
+  const existingStudentId = student?.id;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
@@ -29,7 +20,7 @@ const ProfileBody: React.FC = () => {
 
   /* TODO: This could be issue in production */
   /* TODO1:  uncaughtException: Error: No router instance found. you should only use "next/router" inside the client side of your app. https://nextjs.org/docs/messages/no-router-instance*/
-  if(currentUser === undefined) {
+  if (currentUser === undefined) {
     setTimeout(() => {
       router.push("/");
     }, 1000);
@@ -48,23 +39,23 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Meno</div>
-                <div className="px-4 py-2">{user?.name!}</div>
+                <div className="px-4 py-2">{student?.name!}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Priezvisko</div>
-                <div className="px-4 py-2">{user?.lastName}</div>
+                <div className="px-4 py-2">{student?.lastName}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">{user?.email}</div>
+                <div className="px-4 py-2">{student?.email}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola.</div>
-                <div className="px-4 py-2">{user?.role}</div>
+                <div className="px-4 py-2">{student?.role}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Trieda</div>
-                <div className="px-4 py-2">{user?.classRoom}</div>
+                <div className="px-4 py-2">{student?.classRoom}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Moje knihy</div>

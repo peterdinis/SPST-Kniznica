@@ -1,7 +1,46 @@
 import Link from "next/link";
 import Header from "../shared/Header";
+import { useRouter } from "next/router";
+import {toast} from "react-toastify";
+import {useMutation} from "@tanstack/react-query";
+import * as mut from "../../api/mutations/teacherMutations";
+import Cookies from "js-cookie";
+import { ILoginTeacher, INewLoggedTeacher } from "@/api/interfaces/ITeacher";
+import { useForm } from "react-hook-form";
 
 const LoginForm: React.FC = () => {
+  const router = useRouter();
+
+  const notify = () => toast.success("Prihlásenie bolo úspešné");
+  const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
+
+
+  const mutation = useMutation(mut.loginTeacher, {
+    onSuccess: (data: INewLoggedTeacher) => {
+      Cookies.set("currentTeacher", JSON.stringify(data.data.existingTeacher));
+      Cookies.set("teacherAccessToken", JSON.stringify(data.data.accessToken));
+      notify();
+    },
+
+    onError: (data: INewLoggedTeacher) => {
+      alert(data);
+      console.log(data);
+      errorRegister();
+      router.push("/student/login");
+    },
+  });
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    trigger,
+    register,
+  } = useForm<ILoginTeacher>();
+
+  const onHandleSubmit = (data: ILoginTeacher) => {
+    return;
+  }
+  
   return (
     <>
       <Header name="Prihlásenie učiteľ" />

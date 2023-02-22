@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { useMutation} from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation";
 import Link from "next/link";
-import { useEffect } from "react";
 import Cookies from "js-cookie";
 
 const LoginForm: React.FC = () => {
@@ -14,10 +13,6 @@ const LoginForm: React.FC = () => {
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
-
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
 
   const mutation = useMutation(mut.loginStudent, {
     onSuccess: (data: INewLoggedStudent) => {

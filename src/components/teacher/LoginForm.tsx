@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Header from "../shared/Header";
 import { useRouter } from "next/router";
-import {toast} from "react-toastify";
-import {useMutation} from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/teacherMutations";
 import Cookies from "js-cookie";
 import { ILoginTeacher, INewLoggedTeacher } from "@/api/interfaces/ITeacher";
@@ -13,7 +13,6 @@ const LoginForm: React.FC = () => {
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
-
 
   const mutation = useMutation(mut.loginTeacher, {
     onSuccess: (data: INewLoggedTeacher) => {
@@ -38,38 +37,49 @@ const LoginForm: React.FC = () => {
   } = useForm<ILoginTeacher>();
 
   const onHandleSubmit = (data: ILoginTeacher) => {
-    return;
-  }
-  
+    try {
+      /* TODO:: Add later condition for checking if email exist in API */
+      mutation.mutate(data);
+      router.push("/teacher/profile");
+    } catch (err) {
+      alert(err);
+    }
+  };
+
   return (
     <>
       <Header name="Prihlásenie učiteľ" />
-      <form>
+      <form onSubmit={handleSubmit(onHandleSubmit)}>
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
           <div className="mb-4">
-            <div className="mb-2">
+          <div className="mb-2">
               <label
                 className="block text-grey-darker text-sm font-bold mb-2"
                 htmlFor="password"
               >
-                Meno
+                Email
               </label>
               <input
                 className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-                id="Meno"
-                type="text"
+                id="Email"
+                type="email"
                 autoFocus
-                placeholder="Meno"
-                /*   {...register('username', {
-                  required: true,
-                  minLength: 5,
-                  min: 5,
-                })} */
+                placeholder="Email"
+                {...register("email", {
+                  required: "Email je povinný",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Neplatná emailová adresa",
+                  },
+                })}
+                onKeyUp={() => {
+                  trigger("email");
+                }}
               />
 
-              {/*  <p className="text-red-800">
-                {errors.username && errors.username.message}
-              </p> */}
+              <p className="text-red-800">
+                {errors.email && errors.email.message}
+              </p>
             </div>
           </div>
           <div className="mb-2">
@@ -80,21 +90,31 @@ const LoginForm: React.FC = () => {
               Heslo
             </label>
             <input
-              className="emailInput shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
-              id="password"
-              type="pasword"
-              /*  type={passwordShown ? 'text' : 'password'} */
-              placeholder="******************"
+              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+              id="Heslo"
+              type="password"
               autoFocus
-              /*  {...register('password', {
-                required: true,
-                minLength: 5,
-                min: 5,
-              })} */
+              autoComplete="current-password"
+              placeholder="********************************************"
+              {...register("password", {
+                required: "Musíte napísať heslo",
+                minLength: {
+                  value: 8,
+                  message: "Heslo musí mať viac znakov ako je 8",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Heslo môže mať najviac 20 znakov",
+                },
+              })}
+              onKeyUp={() => {
+                trigger("password");
+              }}
             />
-            {/*  <p className="text-red-800">
+
+            <p className="text-red-800">
               {errors.password && errors.password.message}
-            </p> */}
+            </p>
           </div>
           <div>
             <button

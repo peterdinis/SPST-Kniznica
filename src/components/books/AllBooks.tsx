@@ -9,9 +9,11 @@ import { IBook } from "@/api/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState, Suspense } from "react";
+import { useRouter } from "next/router";
 import SkeletonLoader from "../shared/SkeletonLoader";
 
 const AllBooks: React.FC = () => {
+  const router = useRouter();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -31,8 +33,6 @@ const AllBooks: React.FC = () => {
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }
-
-  console.log(paginatedData);
 
   return (
     <Suspense fallback={<SkeletonLoader />}>

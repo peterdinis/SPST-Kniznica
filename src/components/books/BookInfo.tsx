@@ -16,6 +16,7 @@ import { Suspense, useState, useEffect } from "react";
 import SkeletonLoader from "../shared/SkeletonLoader";
 import { IStudent } from "@/api/interfaces/IUser";
 import Cookies from "js-cookie";
+import { useStudent } from "@/hooks/useStudent";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -31,14 +32,7 @@ const BookInfo: React.FC = () => {
     }
   );
 
-  const [user, setUser] = useState<IStudent | null>(null);
-
-  const currentUser = Cookies.get("currentUser");
-  useEffect(() => {
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, [currentUser]);
+  const {student} = useStudent();
 
   if (isError) {
     return <FallbackRender error="Something went wrong" />;
@@ -52,7 +46,7 @@ const BookInfo: React.FC = () => {
     router.push("/books/all");
   };
 
-  const loggedUser = user?.id
+  const loggedUser = student?.id
 
   const actualUser =
     loggedUser === null || loggedUser === undefined ? "" : loggedUser;
@@ -85,8 +79,6 @@ const BookInfo: React.FC = () => {
       alert(err);
     }
   };
-
-  console.log(user);
 
   return (
     <Suspense fallback={<SkeletonLoader />}>
@@ -157,8 +149,8 @@ const BookInfo: React.FC = () => {
                       <span className="font-bold"> Kniha je:</span>{" "}
                       <span className="text-green-800">{data.status}</span>
                       <br />
-                      {user?.email === null ||
-                      user?.email === undefined ? (
+                      {student?.email === null ||
+                      student?.email === undefined ? (
                         <>
                           <div className="text-xl font-bold mt-4 text-red-800">
                             Ak si chcete požičať knihu musíte byť prihlásení

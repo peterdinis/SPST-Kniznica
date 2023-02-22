@@ -6,7 +6,6 @@ import FallbackRender from "../shared/FallbackRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { IBook } from "@/api/interfaces/IBook";
-import { AnimatePresence } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState, Suspense } from "react";
 import { useRouter } from "next/router";
@@ -40,7 +39,7 @@ const AllBooks: React.FC = () => {
       <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/books/search">Hľadať konkretnú knihu</Link>
       </div>
-      <AnimatePresence>
+      <>
         <div className="grid gap-8 space-x-1 lg:grid-cols-6">
           {paginatedData.data.result.length === 0 && (
             <div>Nenašli sa žiadne knihy</div>
@@ -89,23 +88,23 @@ const AllBooks: React.FC = () => {
                 <path
                   d="M1.1665 4H12.8332"
                   stroke="currentColor"
-                  stroke-width="1.25"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M1.1665 4L4.49984 7.33333"
                   stroke="currentColor"
-                  stroke-width="1.25"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M1.1665 4.00002L4.49984 0.666687"
                   stroke="currentColor"
-                  stroke-width="1.25"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
               <button
@@ -139,30 +138,30 @@ const AllBooks: React.FC = () => {
                 <path
                   d="M1.1665 4H12.8332"
                   stroke="currentColor"
-                  stroke-width="1.25"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M9.5 7.33333L12.8333 4"
                   stroke="currentColor"
-                  stroke-width="1.25"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M9.5 0.666687L12.8333 4.00002"
                   stroke="currentColor"
-                  stroke-width="1.25"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
             {isFetching ? <span> Načítavam...</span> : null}
           </div>
         </div>
-      </AnimatePresence>
+      </>
     </Suspense>
   );
 };

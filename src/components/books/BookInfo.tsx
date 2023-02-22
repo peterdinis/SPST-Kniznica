@@ -30,7 +30,7 @@ const BookInfo: React.FC = () => {
     }
   );
 
-  const {student} = useStudent();
+  const { student } = useStudent();
 
   if (isError) {
     return <FallbackRender error="Something went wrong" />;
@@ -44,12 +44,13 @@ const BookInfo: React.FC = () => {
     router.push("/books/all");
   };
 
-  const loggedUser = student?.id
+  const loggedUser = student?.id;
 
   const actualUser =
     loggedUser === null || loggedUser === undefined ? "" : loggedUser;
 
   const successBorrow = () => toast.success("Objednávka knihy bola úspešná");
+  const errorBorrow = () => toast.error("Objednávka kniha nebola úspešná");
 
   const mutation = useMutation(mut.borrowedBook, {
     onSuccess: (data) => {
@@ -58,6 +59,7 @@ const BookInfo: React.FC = () => {
     },
 
     onError: (data) => {
+      errorBorrow();
       console.log(data);
     },
   });
@@ -158,7 +160,10 @@ const BookInfo: React.FC = () => {
                         <>
                           <BookingModal btnName="Chcem si požičať knihu">
                             <hr />
-                            <form className="mt-4">
+                            <form
+                              onSubmit={handleSubmit(onHandleSubmit)}
+                              className="mt-4"
+                            >
                               <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Meno
                               </label>
@@ -166,7 +171,27 @@ const BookInfo: React.FC = () => {
                                 type="text"
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="Meno"
+                                {...register("name", {
+                                  required: true,
+                                  minLength: 1,
+                                  min: 1,
+                                })}
+                                onKeyUp={() => {
+                                  trigger("name");
+                                }}
                               />
+                              {errors.name &&
+                                errors.name.type === "required" && (
+                                  <p className="text-red-800">
+                                    Meno je povinné
+                                  </p>
+                                )}
+                              {errors.name &&
+                                errors.name.type === "minLength" && (
+                                  <p className="text-red-800">
+                                    Meno musí mať viac ako jeden znak
+                                  </p>
+                                )}
                               <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Priezvisko
@@ -175,7 +200,27 @@ const BookInfo: React.FC = () => {
                                 type="text"
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="Priezivsko"
+                                {...register("lastName", {
+                                  required: true,
+                                  minLength: 1,
+                                  min: 1,
+                                })}
+                                onKeyUp={() => {
+                                  trigger("lastName");
+                                }}
                               />
+                              {errors.lastName &&
+                                errors.lastName.type === "required" && (
+                                  <p className="text-red-800">
+                                    Priezivsko je povinné
+                                  </p>
+                                )}
+                              {errors.lastName &&
+                                errors.lastName.type === "minLength" && (
+                                  <p className="text-red-800">
+                                    Priezvisko musí mať viac ako jeden znak
+                                  </p>
+                                )}
                               <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Od
@@ -184,6 +229,12 @@ const BookInfo: React.FC = () => {
                                 type="date"
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="11.1.2001"
+                                {...register("from", {
+                                  required: "Dátum od je povinný",
+                                })}
+                                onKeyUp={() => {
+                                  trigger("from");
+                                }}
                               />
                               <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
@@ -193,6 +244,12 @@ const BookInfo: React.FC = () => {
                                 type="date"
                                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="11.1.2001"
+                                {...register("to", {
+                                  required: "Dátum od je povinný",
+                                })}
+                                onKeyUp={() => {
+                                  trigger("to");
+                                }}
                               />
                               <br />
                               <label className="block text-grey-darker text-sm font-bold mb-2">
@@ -210,7 +267,7 @@ const BookInfo: React.FC = () => {
                               </label>
                               <input
                                 type="number"
-                              className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                                 placeholder="1"
                                 value={id}
                               />

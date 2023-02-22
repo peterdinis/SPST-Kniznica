@@ -6,7 +6,7 @@ const AboutPage: NextPage = () => {
   return (
     <>
       <AboutWrapper />
-      <TimeLine />
+     {/*  <TimeLine /> */}
     </>
   );
 };

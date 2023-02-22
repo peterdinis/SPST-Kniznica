@@ -1,10 +1,10 @@
-import React from "react";
+import {useState, useEffect} from "react";
 
 export const useDate = () => {
   const locale = 'sk';
-  const [today, setDate] = React.useState(new Date());
+  const [today, setDate] = useState(new Date());
 
-  React.useEffect(() => {
+  useEffect(() => {
       const timer = setInterval(() => { 
       setDate(new Date());
     }, 60 * 1000);

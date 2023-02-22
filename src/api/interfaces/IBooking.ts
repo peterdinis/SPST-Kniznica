@@ -6,4 +6,5 @@ export interface IBooking {
     to: string | Date;
     userId: string;
     bookId: number;
+    status: string;
 }

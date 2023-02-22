@@ -67,7 +67,7 @@ const LoginForm: React.FC = () => {
             <div>
               <Link
                 className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
-                href="/student/register"
+                href="/teacher/register"
               >
                 Registrácia tu
               </Link>

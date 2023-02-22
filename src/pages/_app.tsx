@@ -8,27 +8,20 @@ import { Inter } from "@next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function App({
-  Component,
-  pageProps/* : { session, ...pageProps }, */
-}: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Later finish google login */}
-     {/*  <SessionProvider session={session}> */}
-        <div className={inter.className}>
-          <Layout>
-            <Component {...pageProps} />
-            <ToastContainer />
-            <ReactQueryDevtools />
-            <CssBaseline />
-          </Layout>
-        </div>
-      {/* </SessionProvider> */}
+      <div className={inter.className}>
+        <Layout>
+          <Component {...pageProps} />
+          <ToastContainer />
+          <ReactQueryDevtools />
+          <CssBaseline />
+        </Layout>
+      </div>
     </QueryClientProvider>
   );
 }

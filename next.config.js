@@ -2,10 +2,7 @@
 
 /* After deploying backend add backend domain here */
 const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: []
-  }
+  reactStrictMode: true
 }
 
 module.exports = nextConfig

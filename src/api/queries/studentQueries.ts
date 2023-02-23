@@ -4,13 +4,13 @@ const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string,
 });
 
-export const getMyBorrowedBooks = (id: number | string) => {
-  if (!id || id === undefined || id === null) {
-    alert("Id Študenta nebolo nájdené");
+export const getMyBorrowedBooks = (username: string) => {
+  if (!username || username === undefined || username === null) {
+    alert("Používateľské meno nebolo nájdené");
     return;                
   }
 
-  return api.get(`booking/me/${id}`).then((res) => res.data);
+  return api.get(`booking/me/${username}`).then((res) => res.data);
 };
 
 export const checkEmailInDatabase = (email: string) => {

@@ -7,8 +7,7 @@ import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { IBook } from "@/api/interfaces/IBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useState, Suspense } from "react";
-import SkeletonLoader from "../shared/SkeletonLoader";
+import { useState} from "react";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(1);

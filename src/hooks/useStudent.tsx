@@ -5,15 +5,15 @@ import { useState, useEffect } from "react";
 export const useStudent = () => {
   const [student, setStudent] = useState<IStudent | null>(null);
 
-  const currentUser = Cookies.get("currentUser");
+  const currentStudent = Cookies.get("currentStudent");
   useEffect(() => {
-    if (currentUser) {
-      setStudent(JSON.parse(currentUser));
+    if (currentStudent) {
+      setStudent(JSON.parse(currentStudent));
     }
-  }, [currentUser]);
+  }, [currentStudent]);
 
   return {
-    currentUser,
+    currentStudent,
     student
   }
 };

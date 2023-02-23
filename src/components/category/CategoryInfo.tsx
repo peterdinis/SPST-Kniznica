@@ -5,10 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderCategory } from "@/data/placeholderCategory";
-import { AnimatePresence } from "framer-motion";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
-import {Suspense} from "react";
-import SkeletonLoader from "../shared/SkeletonLoader";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();

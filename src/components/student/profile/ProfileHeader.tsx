@@ -11,7 +11,7 @@ import { useStudent } from "@/hooks/useStudent";
 
 const ProfileHeader: React.FC = () => {
   const router = useRouter();
-  const { student, currentUser } = useStudent();
+  const { student, currentStudent } = useStudent();
   /* TODO: Later update this type */
   const [file, setFile] = useState<any>();
   const [preview, setPreview] = useState(undefined);
@@ -56,7 +56,7 @@ const ProfileHeader: React.FC = () => {
 
   /* TODO: This could be issue in production */
   /* TODO1:  uncaughtException: Error: No router instance found. you should only use "next/router" inside the client side of your app. https://nextjs.org/docs/messages/no-router-instance*/
-  if (currentUser === undefined) {
+  if (currentStudent === undefined) {
     setTimeout(() => {
       router.push("/");
     }, 1000);

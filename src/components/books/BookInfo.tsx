@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { IBooking } from "@/api/interfaces/IBooking";
 import { useForm } from "react-hook-form";
 import { useStudent } from "@/hooks/useStudent";
+import { Fragment } from "react";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -73,7 +74,7 @@ const BookInfo: React.FC = () => {
   };
 
   return (
-    <>
+    <Fragment>
       <AnimatePresence>
         <Header name="Detail Knihy" />
         <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
@@ -125,40 +126,32 @@ const BookInfo: React.FC = () => {
                 </p>
 
                 {data.status !== "Dostupná" && (
-                  <>
+                  <div>
                     <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                       <span className="font-bold"> Kniha je:</span>{" "}
                       <span className="text-red-800">Nedostupná</span>
                       <br />
                     </p>
-                  </>
+                  </div>
                 )}
 
                 <hr className="mt-6" />
                 {data.status === "Dostupná" && (
-                  <>
+                  <div>
                     <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                       <span className="font-bold"> Kniha je:</span>{" "}
                       <span className="text-green-800">{data.status}</span>
                       <br />
                       {student?.email === null ||
                       student?.email === undefined ? (
-                        <>
+                        <span>
                           <div className="text-xl font-bold mt-4 text-red-800">
                             Ak si chcete požičať knihu musíte byť prihlásení
                           </div>
-                        </>
+                        </span>
                       ) : (
                         <BookingModal btnName="Chcem si požičať knihu">
                          <hr />
-                         {/* 
-                          id       Int    @id @default(autoincrement())
-  from     String
-  to       String
-  username String @default("USERNAME")
-  bookName String @default("BookInfo")
-  User     User   @relation(fields: [username], references: [id], onDelete: Cascade)
-                         */}
                          <form
                               onSubmit={handleSubmit(onHandleSubmit)}
                               className="mt-4"
@@ -194,7 +187,7 @@ const BookInfo: React.FC = () => {
                         </BookingModal>
                       )}
                     </p>
-                  </>
+                  </div>
                 )}
                 <button
                   onClick={navigateToBooks}
@@ -207,7 +200,7 @@ const BookInfo: React.FC = () => {
           </div>
         </section>
       </AnimatePresence>
-    </>
+    </Fragment>
   );
 };
 

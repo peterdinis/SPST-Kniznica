@@ -6,9 +6,6 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import { ICategory } from "@/api/interfaces/ICategory";
-import { AnimatePresence } from "framer-motion";
-import { Suspense } from "react";
-import SkeletonLoader from "../shared/SkeletonLoader";
 
 const AllCategories: React.FC = () => {
   const { data, isLoading, isError } = useQuery(

@@ -55,23 +55,23 @@ const ProfileBody: React.FC = () => {
                 <div className="px-4 py-2 font-semibold">Rola.</div>
                 <div className="px-4 py-2">{teacher?.role}</div>
               </div>
-              {/* <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Moje knihy</div>
                 <div className="px-4 py-2">
                   <Link
                     className="font-bod text-red-800"
-                    href={`/booking/student/${existingTeacherId}`}
+                    href={`/booking/teacher/${existingTeacher}`}
                   >
                     Moje požičané knihy
                   </Link>
                 </div>
-              </div> */}
+              </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Upraviť profil</div>
                 <div className="px-4 py-2">
                   <Link
                     className="font-bod text-red-800"
-                    href={`/student/profile/update`}
+                    href={`/teacher/profile/update`}
                   >
                     Upraviť profil tu
                   </Link>
@@ -83,7 +83,7 @@ const ProfileBody: React.FC = () => {
                   {" "}
                   <Link
                     className="font-bod text-red-800"
-                    href="/student/password/new"
+                    href="/teacher/password/new"
                   >
                     Zmeniť heslo
                   </Link>

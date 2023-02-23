@@ -12,7 +12,7 @@ import SkeletonLoader from "../shared/SkeletonLoader";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
 
   const {
     data: paginatedData,
@@ -20,7 +20,7 @@ const AllBooks: React.FC = () => {
     isFetching,
     isLoading,
     isPreviousData,
-  } = useQuery(["paginateBooks"], () => api.paginateBooks(page, limit), {
+  } = useQuery(["paginateBooks", page], () => api.paginateBooks(page, limit), {
     keepPreviousData: true,
   });
 

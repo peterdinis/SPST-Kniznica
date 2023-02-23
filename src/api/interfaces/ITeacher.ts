@@ -3,6 +3,7 @@ export interface ITeacher {
     email: string;
     id: string;
     lastName: string;
+    username: string;
     name: string;
     password: string;
     updatedAt: string;
@@ -13,6 +14,7 @@ export interface IRegisterTeacher {
     id?: number;
     name: string;
     lastName: string;
+    username: string;
     email: string;
     password: string;
     role: string;

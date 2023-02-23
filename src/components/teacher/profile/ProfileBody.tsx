@@ -6,19 +6,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ITeacher } from "@/api/interfaces/ITeacher";
+import { useTeacher } from "@/hooks/useTeacher";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<ITeacher | null>(null);
+  const {teacher, currentTeacher} = useTeacher();
 
-  const currentTeacher = Cookies.get("currentTeacher");
-  useEffect(() => {
-    if (currentTeacher) {
-      setUser(JSON.parse(currentTeacher));
-    }
-  }, [currentTeacher]);
-
-  const existingTeacherId = user?.id;
+  const existingTeacher = teacher?.username;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
@@ -47,19 +41,19 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Meno</div>
-                <div className="px-4 py-2">{user?.name!}</div>
+                <div className="px-4 py-2">{teacher?.name!}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Priezvisko</div>
-                <div className="px-4 py-2">{user?.lastName}</div>
+                <div className="px-4 py-2">{teacher?.lastName}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">{user?.email}</div>
+                <div className="px-4 py-2">{teacher?.email}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola.</div>
-                <div className="px-4 py-2">{user?.role}</div>
+                <div className="px-4 py-2">{teacher?.role}</div>
               </div>
               {/* <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Moje knihy</div>

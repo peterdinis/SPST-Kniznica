@@ -9,7 +9,7 @@ const ProfileBody: React.FC = () => {
   const router = useRouter();
   const { student, currentUser } = useStudent();
 
-  const existingStudentId = student?.id;
+  const existingStudent = student?.username;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
@@ -57,17 +57,17 @@ const ProfileBody: React.FC = () => {
                 <div className="px-4 py-2 font-semibold">Trieda</div>
                 <div className="px-4 py-2">{student?.classRoom}</div>
               </div>
-              {/* <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Moje knihy</div>
                 <div className="px-4 py-2">
                   <Link
                     className="font-bod text-red-800"
-                    href={`/booking/student/${existingStudentId}`}
+                    href={`/booking/student/${existingStudent}`}
                   >
                     Moje požičané knihy
                   </Link>
                 </div>
-              </div> */}
+              </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Upraviť profil</div>
                 <div className="px-4 py-2">

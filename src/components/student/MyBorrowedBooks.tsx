@@ -11,11 +11,11 @@ import { ReturnBookModal } from "../booking/ReturnBookModal";
 const MyStudentBorrowedBooks: React.FC = () => {
   const [show, setShow] = useState(null);
   const router = useRouter();
-  const { id } = router.query;
+  const { username } = router.query;
 
   const { data, isError, isLoading } = useQuery(
-    ["myBorrowedBooks", id],
-    () => api.getMyBorrowedBooks(id as any),
+    ["myBorrowedBooks", username],
+    () => api.getMyBorrowedBooks(username as unknown as string),
     {
       retry: 1,
       placeholderData: placeholderBooking,

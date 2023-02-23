@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const getMyBorrowedBooks = (username: string) => {
-  if (!username || username === undefined || username === null) {
+  if (username === undefined || username === null) {
     alert("Používateľské meno nebolo nájdené");
     return;                
   }

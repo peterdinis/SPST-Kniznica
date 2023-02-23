@@ -7,11 +7,19 @@ import { ChangeEvent } from "react";
 import { useRouter } from "next/router";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState, useEffect } from "react";
-import { useStudent } from "@/hooks/useStudent";
+import { IStudent } from "@/api/interfaces/IUser";
+import Cookies from "js-cookie";
 
 const ProfileHeader: React.FC = () => {
   const router = useRouter();
-  const { student, currentStudent } = useStudent();
+  const [student, setStudent] = useState<IStudent | null>(null);
+
+  const currentStudent = Cookies.get("currentStudent");
+  useEffect(() => {
+    if (currentStudent) {
+      setStudent(JSON.parse(currentStudent));
+    }
+  }, [currentStudent]);
   /* TODO: Later update this type */
   const [file, setFile] = useState<any>();
   const [preview, setPreview] = useState(undefined);
@@ -53,6 +61,8 @@ const ProfileHeader: React.FC = () => {
   if (uploadError) {
     return <FallbackRender error="Nastala chyba" />;
   }
+
+  console.log(currentStudent, student);
 
   /* TODO: This could be issue in production */
   /* TODO1:  uncaughtException: Error: No router instance found. you should only use "next/router" inside the client side of your app. https://nextjs.org/docs/messages/no-router-instance*/

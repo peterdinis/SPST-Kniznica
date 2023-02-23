@@ -3,11 +3,21 @@ import Link from "next/link";
 import { logoutStudent } from "@/api/mutations/studentMutation";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
-import { useStudent } from "@/hooks/useStudent";
+import { IStudent } from "@/api/interfaces/IUser";
+import Cookies from "js-cookie";
+import { useState, useEffect } from "react";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const { student, currentUser } = useStudent();
+  const [student, setStudent] = useState<IStudent | null>(null);
+
+  const currentStudent = Cookies.get("currentStudent");
+  useEffect(() => {
+    if (currentStudent) {
+      setStudent(JSON.parse(currentStudent));
+    }
+  }, [currentStudent]);
+
 
   const existingStudent = student?.username;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
@@ -20,7 +30,9 @@ const ProfileBody: React.FC = () => {
 
   /* TODO: This could be issue in production */
   /* TODO1:  uncaughtException: Error: No router instance found. you should only use "next/router" inside the client side of your app. https://nextjs.org/docs/messages/no-router-instance*/
-  if (currentUser === undefined) {
+  
+  console.log(currentStudent, student);
+  if (currentStudent === undefined) {
     setTimeout(() => {
       router.push("/");
     }, 1000);

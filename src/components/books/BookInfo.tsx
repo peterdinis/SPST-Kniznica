@@ -44,11 +44,6 @@ const BookInfo: React.FC = () => {
     router.push("/books/all");
   };
 
-  const loggedUser = student?.id;
-
-  const actualUser =
-    loggedUser === null || loggedUser === undefined ? "" : loggedUser;
-
   const successBorrow = () => toast.success("Objednávka knihy bola úspešná");
   const errorBorrow = () => toast.error("Objednávka kniha nebola úspešná");
 

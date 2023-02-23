@@ -64,6 +64,7 @@ const LoginForm: React.FC = () => {
                 id="Email"
                 type="email"
                 autoFocus
+                autoComplete="Your email"
                 placeholder="Email"
                 {...register("email", {
                   required: "Email je povinný",

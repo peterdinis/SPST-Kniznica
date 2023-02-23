@@ -122,6 +122,38 @@ const RegisterForm: React.FC = () => {
               className="block text-grey-darker text-sm font-bold mb-2"
               htmlFor="password"
             >
+              Používateľské meno
+            </label>
+            <input
+              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+              id="Priezivsko"
+              type="text"
+              autoFocus
+              placeholder="Používateľské meno"
+              {...register("username", {
+                required: true,
+                minLength: 1,
+                min: 1,
+              })}
+              onKeyUp={() => {
+                trigger("username");
+              }}
+            />
+
+            {errors.username && errors.username.type === "required" && (
+              <p className="text-red-800">Priezivsko je povinné</p>
+            )}
+
+            {errors.username && errors.username.type === "minLength" && (
+              <p className="text-red-800">Priezvisko musí mať viac ako jeden znak</p>
+            )}
+          </div>
+
+          <div className="mb-2">
+            <label
+              className="block text-grey-darker text-sm font-bold mb-2"
+              htmlFor="password"
+            >
               Email
             </label>
             <input

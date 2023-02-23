@@ -1,19 +1,21 @@
 export interface IStudent {
-    createdAt: string
-    email: string
-    id: string
-    lastName: string
-    name: string
-    password: string
-    role: string,
-    updatedAt: string,
-    classRoom: string
+    createdAt: string;
+    email: string;
+    id: string;
+    lastName: string;
+    name: string;
+    password: string;
+    role: string;
+    username: string;
+    updatedAt: string;
+    classRoom: string;
 }
 
 export interface IRegisterStudent {
     id?: number;
     name: string;
     lastName: string;
+    username: string;
     email: string;
     password: string;
     role: string;

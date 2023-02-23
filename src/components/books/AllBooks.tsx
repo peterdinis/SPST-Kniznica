@@ -8,11 +8,9 @@ import ScrollToTop from "@/hooks/useScroll";
 import { IBook } from "@/api/interfaces/IBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState, Suspense } from "react";
-import { useRouter } from "next/router";
 import SkeletonLoader from "../shared/SkeletonLoader";
 
 const AllBooks: React.FC = () => {
-  const router = useRouter();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 

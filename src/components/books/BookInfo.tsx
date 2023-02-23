@@ -12,13 +12,10 @@ import * as mut from "../../api/mutations/bookingMutation";
 import { toast } from "react-toastify";
 import { IBooking } from "@/api/interfaces/IBooking";
 import { useForm } from "react-hook-form";
-import { Suspense } from "react";
-import SkeletonLoader from "../shared/SkeletonLoader";
 import { useStudent } from "@/hooks/useStudent";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
-
   const { id } = router.query;
 
   const { data, isError, isLoading } = useQuery(
@@ -76,7 +73,7 @@ const BookInfo: React.FC = () => {
   };
 
   return (
-    <Suspense fallback={<SkeletonLoader />}>
+    <>
       <AnimatePresence>
         <Header name="Detail Knihy" />
         <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
@@ -152,9 +149,49 @@ const BookInfo: React.FC = () => {
                           </div>
                         </>
                       ) : (
-                        <>
-                         rr
-                        </>
+                        <BookingModal btnName="Chcem si požičať knihu">
+                         <hr />
+                         {/* 
+                          id       Int    @id @default(autoincrement())
+  from     String
+  to       String
+  username String @default("USERNAME")
+  bookName String @default("BookInfo")
+  User     User   @relation(fields: [username], references: [id], onDelete: Cascade)
+                         */}
+                         <form
+                              onSubmit={handleSubmit(onHandleSubmit)}
+                              className="mt-4"
+                            >
+                              <label className="block text-grey-darker text-sm font-bold mb-2">
+                                Použivateľské meno
+                              </label>
+                              <input
+                                type="text"
+                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="Meno"
+                                {...register("username"), {
+                                  required: true
+                                }}
+                              />
+                              {/* {errors.name &&
+                                errors.name.type === "required" && (
+                                  <p className="text-red-800">
+                                    Meno je povinné
+                                  </p>
+                                )}
+                              {errors.name &&
+                                errors.name.type === "minLength" && (
+                                  <p className="text-red-800">
+                                    Meno musí mať viac ako jeden znak
+                                  </p>
+                                )} */}
+                              <br />
+                              <button className="outline-none mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+                                Požičať Knihu
+                              </button>
+                            </form>
+                        </BookingModal>
                       )}
                     </p>
                   </>
@@ -170,7 +207,7 @@ const BookInfo: React.FC = () => {
           </div>
         </section>
       </AnimatePresence>
-    </Suspense>
+    </>
   );
 };
 

@@ -37,8 +37,7 @@ const CategoryInfo: React.FC = () => {
   };
 
   return (
-    <Suspense fallback={<SkeletonLoader />}>
-    <AnimatePresence>
+      <>
       <Header name="Detail Kategórie" />
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
         <div className="border-t mt-4 border-gray-200">
@@ -102,8 +101,7 @@ const CategoryInfo: React.FC = () => {
           </button>
         </div>
       </div>
-    </AnimatePresence>
-    </Suspense>
+      </>
   );
 };
 

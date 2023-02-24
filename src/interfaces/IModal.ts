@@ -6,3 +6,9 @@ export interface FadeProps {
   onExited?: (node: HTMLElement, isAppearing: boolean) => void;
   ownerState?: any;
 }
+
+export interface IModalProps {
+  children?: React.ReactElement;
+  btnName: string;
+  modalHeader: string;
+}

@@ -3,9 +3,9 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { useSpring, animated } from "@react-spring/web";
-import { FadeProps } from "@/interfaces/IModal";
+import { FadeProps, IModalProps } from "@/interfaces/IModal";
+import { style } from "./style";
 
 const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   props,
@@ -42,8 +42,31 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   );
 });
 
-const HelperModal: React.FC = () => {
-  return <>rrr</>;
+const HelperModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <Button onClick={handleOpen}>{btnName}</Button>
+      <Modal
+        aria-labelledby="spring-modal-title"
+        aria-describedby="spring-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <h2 className="text-center font-bold text-2xl">{modalHeader}</h2>
+            {children}
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
+  );
 };
 
 export default HelperModal;

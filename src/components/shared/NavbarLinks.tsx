@@ -1,18 +1,8 @@
-import { IStudent } from "@/api/interfaces/IUser";
-import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
+import { useAuth } from "@/context/AuthProvider";
 import Link from "next/link";
 
 const NavbarLinks: React.FC = () => {
-  const [student, setStudent] = useState<IStudent | null>(null);
-
-  const currentStudent = Cookies.get("currentStudent");
-  useEffect(() => {
-    if (currentStudent) {
-      setStudent(JSON.parse(currentStudent));
-    }
-  }, [currentStudent]);
-  
+  const {user} = useAuth();
   return (
     <>
       <li className="text-black text-xl">
@@ -27,7 +17,7 @@ const NavbarLinks: React.FC = () => {
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
       </li>
-      {currentStudent === null || currentStudent === undefined ? (
+      {user === null || user === undefined ? (
         <>
           <li className="text-black text-xl">
             <Link href="/student/login">Prihlásenie žiak</Link>

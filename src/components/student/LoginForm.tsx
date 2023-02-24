@@ -106,14 +106,14 @@ const LoginForm: React.FC = () => {
                 className="mt-4 bg-red-700 rounded-lg p-2 text-white"
                 type="submit"
               >
-                Registrácia
+                Prihlásenie
               </button>
               <div>
                 <Link
                   className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
-                  href="/student/login"
+                  href="/student/register"
                 >
-                  Prihlásenie
+                  Registrácia
                 </Link>
               </div>
             </div>

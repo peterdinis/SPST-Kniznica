@@ -2,7 +2,6 @@ import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 
 const RegisterForm: React.FC = () => {
@@ -10,20 +9,6 @@ const RegisterForm: React.FC = () => {
 
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
-
-  const mutation = useMutation(api.registerStudent, {
-    onSuccess: (data: INewRegisteredStudent) => {
-      Cookies.set("currentUser", JSON.stringify(data.data.newStudent));
-      Cookies.set("studentAccessToken", JSON.stringify(data.data.accessToken));
-      notify();
-    },
-
-    onError: (data) => {
-      alert(data);
-      errorRegister();
-      router.push("/student/register");
-    },
-  });
 
   const {
     handleSubmit,

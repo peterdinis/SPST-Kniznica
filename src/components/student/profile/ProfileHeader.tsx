@@ -1,7 +1,11 @@
+import { useAuth } from "@/context/AuthProvider";
 import { useRouter } from "next/router";
 
 const ProfileHeader: React.FC = () => {
   const router = useRouter();
+  const {user} = useAuth();
+
+  console.log(user);
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">

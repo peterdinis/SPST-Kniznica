@@ -8,7 +8,7 @@ import { useAuth } from "@/context/AuthProvider";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
-  const {signIn} = useAuth();
+  const { signIn } = useAuth();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");

@@ -39,6 +39,7 @@ export interface AuthContextModel {
   user: User | null;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   signUp: (email: string, password: string) => Promise<UserCredential>;
+  logout: () => Promise<void>,
   signInWithGoogle: () => Promise<void>;
   forgotPassword: () => Promise<void>;
   resetPassword: () => Promise<void>;

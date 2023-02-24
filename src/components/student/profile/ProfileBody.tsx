@@ -2,10 +2,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
+import { useAuth } from "@/context/AuthProvider";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-
+  const {logout} = useAuth();
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {

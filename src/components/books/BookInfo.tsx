@@ -1,21 +1,16 @@
 import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import { useRouter } from "next/router";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
-import { BookingModal } from "../booking/BookingModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { AnimatePresence } from "framer-motion";
-import * as mut from "../../api/mutations/bookingMutation";
-import { toast } from "react-toastify";
-import { IBooking } from "@/api/interfaces/IBooking";
-import { useForm } from "react-hook-form";
-import { Fragment } from "react";
+import { useAuth } from "@/context/AuthProvider";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
+  const {user} = useAuth();
   const { id } = router.query;
 
   const { data, isError, isLoading } = useQuery(
@@ -26,8 +21,6 @@ const BookInfo: React.FC = () => {
       placeholderData: placeholderBook,
     }
   );
-
-  const { student } = useStudent();
 
   if (isError) {
     return <FallbackRender error="Something went wrong" />;
@@ -41,40 +34,8 @@ const BookInfo: React.FC = () => {
     router.push("/books/all");
   };
 
-  const successBorrow = () => toast.success("Objednávka knihy bola úspešná");
-  const errorBorrow = () => toast.error("Objednávka kniha nebola úspešná");
-
-  const mutation = useMutation(mut.borrowedBook, {
-    onSuccess: (data) => {
-      successBorrow();
-      console.log(data);
-    },
-
-    onError: (data) => {
-      errorBorrow();
-      console.log(data);
-    },
-  });
-
-  const {
-    handleSubmit,
-    formState: { errors },
-    trigger,
-    register,
-  } = useForm<IBooking>();
-
-  const onHandleSubmit = (data: IBooking) => {
-    try {
-      mutation.mutate(data);
-      router.push("/books/success");
-    } catch (err) {
-      alert(err);
-    }
-  };
-
   return (
-    <Fragment>
-      <AnimatePresence>
+    <>
         <Header name="Detail Knihy" />
         <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
           <div className="container px-5 py-12 mx-auto">
@@ -141,49 +102,17 @@ const BookInfo: React.FC = () => {
                       <span className="font-bold"> Kniha je:</span>{" "}
                       <span className="text-green-800">{data.status}</span>
                       <br />
-                      {student?.email === null ||
-                      student?.email === undefined ? (
+                      {user?.email === null ||
+                      user?.email === undefined ? (
                         <span>
                           <div className="text-xl font-bold mt-4 text-red-800">
                             Ak si chcete požičať knihu musíte byť prihlásení
                           </div>
                         </span>
                       ) : (
-                        <BookingModal btnName="Chcem si požičať knihu">
-                         <hr />
-                         <form
-                              onSubmit={handleSubmit(onHandleSubmit)}
-                              className="mt-4"
-                            >
-                              <label className="block text-grey-darker text-sm font-bold mb-2">
-                                Použivateľské meno
-                              </label>
-                              <input
-                                type="text"
-                                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                                placeholder="Meno"
-                                {...register("username"), {
-                                  required: true
-                                }}
-                              />
-                              {/* {errors.name &&
-                                errors.name.type === "required" && (
-                                  <p className="text-red-800">
-                                    Meno je povinné
-                                  </p>
-                                )}
-                              {errors.name &&
-                                errors.name.type === "minLength" && (
-                                  <p className="text-red-800">
-                                    Meno musí mať viac ako jeden znak
-                                  </p>
-                                )} */}
-                              <br />
-                              <button className="outline-none mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
-                                Požičať Knihu
-                              </button>
-                            </form>
-                        </BookingModal>
+                        <>
+                        BOOK MODAL LATER
+                        </>
                       )}
                     </p>
                   </div>
@@ -198,8 +127,7 @@ const BookInfo: React.FC = () => {
             </div>
           </div>
         </section>
-      </AnimatePresence>
-    </Fragment>
+    </>
   );
 };
 

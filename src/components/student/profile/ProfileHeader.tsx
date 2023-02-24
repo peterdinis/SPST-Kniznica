@@ -1,26 +1,8 @@
 import { useAuth } from "@/context/AuthProvider";
-import { useEffect } from "react";
-import {useRouter} from "next/router"
 
 const ProfileHeader: React.FC = () => {
   const {user} = useAuth();
-  const router = useRouter();
   const userPhoto = user?.photoURL || "https://picsum.photos/200/300";
-
-  useEffect(() => {
-    if (user) {
-      console.log("signed in!");
-    } else if (user == null) {
-      router.push("/notallowed");
-    }
-  }, [user]);
-
-  if (!user) {
-    // user is signed out or still being checked.
-    // don't render anything
-    return null;
-  }
-
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">

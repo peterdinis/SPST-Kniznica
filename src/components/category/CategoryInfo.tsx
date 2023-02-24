@@ -76,16 +76,16 @@ const CategoryInfo: React.FC = () => {
                     </dd>
                   </>
                 ) : (
-                  <dd>
+                  <div>
                     {data.Books &&
                       data.Books.map((item: { name: string }) => {
                         return (
                           <>
-                            <span className="mr-6 p-2 text-sm font-bold inline">{item.name} {""}</span>
+                            <div className="mr-6 p-2 text-sm mt-2 flex">{item.name} {""}</div>
                           </>
                         );
                       })}
-                  </dd>
+                  </div>
                 )}
               </dd>
             </div>

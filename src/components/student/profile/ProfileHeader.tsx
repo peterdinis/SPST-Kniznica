@@ -9,7 +9,7 @@ const ProfileHeader: React.FC = () => {
       <div className="bg-white p-2">
         <div className="image overflow-hidden">
           <img
-            className="h-auto w-full mx-auto"
+            className="h-auto w-full rounded-2xl mx-auto"
             src={userPhoto}
             alt="IMAGES"
           />

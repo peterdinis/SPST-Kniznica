@@ -48,8 +48,8 @@ const HelperModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) 
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>{btnName}</Button>
+    <>
+      <button className="text-xl mt-6 bg-blue-200 rounded-lg p-2 font-extrabold" onClick={handleOpen}>{btnName}</button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -61,11 +61,12 @@ const HelperModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) 
         <Fade in={open}>
           <Box sx={style}>
             <h2 className="text-center font-bold text-2xl">{modalHeader}</h2>
+            <hr />
             {children}
           </Box>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 };
 

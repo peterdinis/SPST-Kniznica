@@ -1,30 +1,26 @@
-import { useRouter } from "next/router";
+import { useAuth } from "@/context/AuthProvider";
 
 const ProfileHeader: React.FC = () => {
-  const router = useRouter();
+  const {user} = useAuth();
+
+  const userPhoto = user?.photoURL || "https://picsum.photos/200/300"
 
   return (
-    <>
-      <div className="w-full mt-20 md:w-3/12 md:mx-2">
-        <div className="bg-white p-2">
-          <div className="image overflow-hidden">
-            <img
-              className="h-auto w-full mx-auto"
-              src="https://picsum.photos/200/300"
-              alt="IMAGES"
-            />
-          </div>
-          <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-            EEEEEEEEEEEE
-          </h1>
-
-          <p className="text-sm text-gray-500 font-bold hover:text-gray-600 leading-6">
-            rrrrrrrrrrrrrrrrrrr
-          </p>
+    <div className="w-full mt-20 md:w-3/12 md:mx-2">
+      <div className="bg-white p-2">
+        <div className="image overflow-hidden">
+          <img
+            className="h-auto w-full mx-auto"
+            src={userPhoto}
+            alt="IMAGES"
+          />
         </div>
-        <div className="my-4"></div>
+        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
+          {user?.email}
+        </h1>
       </div>
-    </>
+      <div className="my-4"></div>
+    </div>
   );
 };
 

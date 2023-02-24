@@ -10,7 +10,7 @@ const ProfileHeader: React.FC = () => {
     if (user) {
       console.log("signed in!");
     } else if (user == null) {
-      router.push("/student/login");
+      router.push("/notallowed");
     }
   }, [user]);
 

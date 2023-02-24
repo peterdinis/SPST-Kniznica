@@ -1,12 +1,9 @@
 import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { ILoginStudent, INewLoggedStudent } from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
-import { useMutation} from "@tanstack/react-query";
-import * as mut from "../../api/mutations/studentMutation";
 import Link from "next/link";
-import Cookies from "js-cookie";
+import { ILogin } from "@/api/interfaces/IUser";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -14,32 +11,15 @@ const LoginForm: React.FC = () => {
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
 
-  const mutation = useMutation(mut.loginStudent, {
-    onSuccess: (data: INewLoggedStudent) => {
-      Cookies.set("currentUser", JSON.stringify(data.data.existingUser));
-      Cookies.set("studentAccessToken", JSON.stringify(data.data.accessToken));
-      notify();
-    },
-
-    onError: (data: INewLoggedStudent) => {
-      alert(data);
-      console.log(data);
-      errorRegister();
-      router.push("/student/login");
-    },
-  });
-
   const {
     handleSubmit,
     formState: { errors },
     trigger,
     register,
-  } = useForm<ILoginStudent>();
+  } = useForm<ILogin>();
 
-  const onHandleSubmit = (data: ILoginStudent) => {
+  const onHandleSubmit = (data: ILogin) => {
     try {
-      /* TODO:: Add later condition for checking if email exist in API */
-      mutation.mutate(data);
       router.push("/student/profile");
     } catch (err) {
       alert(err);

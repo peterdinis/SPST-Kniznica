@@ -3,28 +3,17 @@ import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/exampleQuery";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
-import * as upl from "../../api/queries/uploadQueries";
 
 function Hero() {
   const { isLoading, isError } = useQuery(["example"], api.getExampleData, {
     retry: 2,
   });
-
-  const { isLoading: uploadServerLoading, isError: uploadServerError } =
-    useQuery(["uploadServerStatus"], upl.checkUploadServer, {
-      retry: 2,
-    });
-
-  if (isLoading || uploadServerLoading) {
+  if (isLoading) {
     return <FallbackLoader />;
   }
 
   if (isError) {
     return <FallbackRender error={"Nastala chyba"} />;
-  }
-
-  if (uploadServerError) {
-    return <FallbackRender error={"Server na upload obrázkov nefunguje"} />;
   }
 
   return (

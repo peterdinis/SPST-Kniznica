@@ -39,7 +39,6 @@ export interface AuthContextModel {
   user: User | null;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   signUp: (email: string, password: string) => Promise<UserCredential>;
-  sendPasswordResetEmail?: (email: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   forgotPassword: () => Promise<void>;
   resetPassword: () => Promise<void>;
@@ -67,10 +66,19 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     return sendPasswordResetEmail(auth, email);
   }
 
+  function logout() {
+    return signOut(auth)
+  }
+
   function forgotPassword(email: string) {
     return sendPasswordResetEmail(auth, email, {
       url: `http://localhost:3000/login`,
     });
+  }
+
+  function signInWithGoogle() {
+    const provider = new GoogleAuthProvider()
+    return signInWithPopup(auth, provider)
   }
 
   useEffect(() => {
@@ -87,7 +95,10 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     signIn,
     resetPassword,
     auth,
-  } as any; // TODO update me
+    logout,
+    signInWithGoogle,
+    forgotPassword
+  } as any;
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 

@@ -1,43 +1,17 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { logoutStudent } from "@/api/mutations/studentMutation";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
-import { IStudent } from "@/api/interfaces/IUser";
-import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const [student, setStudent] = useState<IStudent | null>(null);
 
-  const currentStudent = Cookies.get("currentStudent");
-  useEffect(() => {
-    if (currentStudent) {
-      setStudent(JSON.parse(currentStudent));
-    }
-  }, [currentStudent]);
-
-
-  const existingStudent = student?.username;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
-    logoutStudent();
     logoutToast();
     router.push("/student/login");
   };
-
-  /* TODO: This could be issue in production */
-  /* TODO1:  uncaughtException: Error: No router instance found. you should only use "next/router" inside the client side of your app. https://nextjs.org/docs/messages/no-router-instance*/
-  
-  console.log(currentStudent, student);
-  if (currentStudent === undefined) {
-    setTimeout(() => {
-      router.push("/");
-    }, 1000);
-    return null;
-  }
 
   return (
     <>
@@ -51,38 +25,27 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Meno</div>
-                <div className="px-4 py-2">{student?.name!}</div>
+                <div className="px-4 py-2">rrrrr</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Priezvisko</div>
-                <div className="px-4 py-2">{student?.lastName}</div>
+                <div className="px-4 py-2">rrrrr</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Používateľské meno</div>
-                <div className="px-4 py-2">{student?.username}</div>
+                <div className="px-4 py-2">rrrrr</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">{student?.email}</div>
+                <div className="px-4 py-2">rrrrr</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola.</div>
-                <div className="px-4 py-2">{student?.role}</div>
+                <div className="px-4 py-2">rrrrr</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Trieda</div>
-                <div className="px-4 py-2">{student?.classRoom}</div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Moje knihy</div>
-                <div className="px-4 py-2">
-                  <Link
-                    className="font-bod text-red-800"
-                    href={`/booking/student/${existingStudent}`}
-                  >
-                    Moje požičané knihy
-                  </Link>
-                </div>
+                <div className="px-4 py-2">rrrrr</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Upraviť profil</div>

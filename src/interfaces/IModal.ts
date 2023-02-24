@@ -8,7 +8,7 @@ export interface FadeProps {
 }
 
 export interface IModalProps {
-  children?: React.ReactElement;
+  children?: React.ReactNode;
   btnName: string;
   modalHeader: string;
 }

@@ -7,6 +7,7 @@ import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useAuth } from "@/context/AuthProvider";
+import HelperModal from "../shared/HelperModal";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -110,9 +111,9 @@ const BookInfo: React.FC = () => {
                           </div>
                         </span>
                       ) : (
-                        <>
-                        BOOK MODAL LATER
-                        </>
+                        <HelperModal btnName={"Požičať si knihu"} modalHeader={"Požičanie knihy"}>
+                          I am children
+                        </HelperModal>
                       )}
                     </p>
                   </div>

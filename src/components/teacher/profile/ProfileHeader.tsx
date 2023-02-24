@@ -1,25 +1,7 @@
-import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { ITeacher } from "@/api/interfaces/ITeacher";
 
 const ProfileHeader: React.FC = () => {
   const router = useRouter();
-  const [user, setUser] = useState<ITeacher | null>(null);
-
-  const currentTeacher = Cookies.get("currentTeacher");
-  useEffect(() => {
-    if (currentTeacher) {
-      setUser(JSON.parse(currentTeacher));
-    }
-  }, [currentTeacher]);
-
-  if (currentTeacher === undefined) {
-    setTimeout(() => {
-      router.push("/");
-    }, 1000);
-    return null;
-  }
 
   return (
     <>
@@ -33,11 +15,11 @@ const ProfileHeader: React.FC = () => {
             />
           </div>
           <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-            {user?.email!}
+            EEEEEEEEEEEE
           </h1>
 
           <p className="text-sm text-gray-500 font-bold hover:text-gray-600 leading-6">
-            {user?.role!}
+            rrrrrrrrrrrrrrrrrrr
           </p>
         </div>
         <div className="my-4"></div>

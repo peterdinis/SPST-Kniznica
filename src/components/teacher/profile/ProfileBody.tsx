@@ -1,34 +1,17 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { logoutTeacher } from "@/api/mutations/teacherMutations";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import { ITeacher } from "@/api/interfaces/ITeacher";
-import { useTeacher } from "@/hooks/useTeacher";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const {teacher, currentTeacher} = useTeacher();
-
-  const existingTeacher = teacher?.username;
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
-    logoutTeacher();
     logoutToast();
     router.push("/teacher/login");
   };
 
-  /* TODO: This could be issue in production */
-  /* TODO1:  uncaughtException: Error: No router instance found. you should only use "next/router" inside the client side of your app. https://nextjs.org/docs/messages/no-router-instance*/
-  if (currentTeacher === undefined) {
-    setTimeout(() => {
-      router.push("/");
-    }, 1000);
-    return null;
-  }
   return (
     <>
       <div className="w-full md:w-9/12 mx-2 h-64">
@@ -41,21 +24,21 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Meno</div>
-                <div className="px-4 py-2">{teacher?.name!}</div>
+                <div className="px-4 py-2">čččččččč</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Priezvisko</div>
-                <div className="px-4 py-2">{teacher?.lastName}</div>
+                <div className="px-4 py-2">čččččččč</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">{teacher?.email}</div>
+                <div className="px-4 py-2">čččččččč</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola.</div>
-                <div className="px-4 py-2">{teacher?.role}</div>
+                <div className="px-4 py-2">čččččččč</div>
               </div>
-              <div className="grid grid-cols-2">
+            {/*   <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Moje knihy</div>
                 <div className="px-4 py-2">
                   <Link
@@ -65,7 +48,7 @@ const ProfileBody: React.FC = () => {
                     Moje požičané knihy
                   </Link>
                 </div>
-              </div>
+              </div> */}
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Upraviť profil</div>
                 <div className="px-4 py-2">

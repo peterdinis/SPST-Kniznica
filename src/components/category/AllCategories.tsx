@@ -6,6 +6,7 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import { ICategory } from "@/interfaces/ICategory";
+import ScrollToTop from "@/hooks/useScroll";
 
 const AllCategories: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
@@ -49,6 +50,7 @@ const AllCategories: React.FC = () => {
             );
           })}
       </div>
+      <ScrollToTop />
     </>
   );
 };

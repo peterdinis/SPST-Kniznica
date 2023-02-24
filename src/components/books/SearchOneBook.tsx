@@ -10,6 +10,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
+import ScrollToTop from "@/hooks/useScroll";
 
 const SearchOneBook: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -110,6 +111,7 @@ const SearchOneBook: React.FC = () => {
                   );
                 })}
             </div>
+            <ScrollToTop />
           </>
         )}
       </AnimatePresence>

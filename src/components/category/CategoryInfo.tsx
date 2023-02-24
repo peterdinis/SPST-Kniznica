@@ -34,7 +34,7 @@ const CategoryInfo: React.FC = () => {
   };
 
   return (
-      <>
+    <>
       <Header name="Detail Kategórie" />
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
         <div className="border-t mt-4 border-gray-200">
@@ -81,7 +81,9 @@ const CategoryInfo: React.FC = () => {
                       data.Books.map((item: { name: string }) => {
                         return (
                           <>
-                            <div className="mr-6 p-2 text-sm mt-2 flex">{item.name} {""}</div>
+                            <div className="mr-6 p-2 text-sm mt-2 flex">
+                              {item.name} {""}
+                            </div>
                           </>
                         );
                       })}
@@ -98,7 +100,7 @@ const CategoryInfo: React.FC = () => {
           </button>
         </div>
       </div>
-      </>
+    </>
   );
 };
 

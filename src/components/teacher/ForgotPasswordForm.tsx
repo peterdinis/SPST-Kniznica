@@ -1,7 +1,9 @@
+import Header from "../shared/Header";
+
 const ForgotPasswordForm: React.FC = () => {
     return (
         <>
-        roror
+         <Header name="Zabudnuté heslo" />
         </>
     )
 }

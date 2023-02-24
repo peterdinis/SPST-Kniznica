@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { IRegister } from "@/api/interfaces/IUser";
+import { IRegister } from "@/interfaces/IUser";
 import { useAuth } from "@/context/AuthProvider";
 
 const RegisterForm: React.FC = () => {

@@ -1,7 +1,7 @@
 import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import Link from "next/link";
-import { IBook } from "@/api/interfaces/IBook";
+import { IBook } from "@/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect, Fragment } from "react";

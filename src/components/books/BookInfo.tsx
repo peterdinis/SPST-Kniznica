@@ -12,7 +12,6 @@ import * as mut from "../../api/mutations/bookingMutation";
 import { toast } from "react-toastify";
 import { IBooking } from "@/api/interfaces/IBooking";
 import { useForm } from "react-hook-form";
-import { useStudent } from "@/hooks/useStudent";
 import { Fragment } from "react";
 
 const BookInfo: React.FC = () => {

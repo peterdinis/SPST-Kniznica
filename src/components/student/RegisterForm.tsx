@@ -1,48 +1,32 @@
 import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import {
-  INewRegisteredStudent,
-  IRegisterStudent,
-} from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
-import * as api from "../../api/mutations/studentMutation";
 import Link from "next/link";
-import Cookies from "js-cookie";
+import { IRegister } from "@/api/interfaces/IUser";
+import { useAuth } from "@/context/AuthProvider";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
+  const { signUp } = useAuth();
 
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
-
-  const mutation = useMutation(api.registerStudent, {
-    onSuccess: (data: INewRegisteredStudent) => {
-      Cookies.set("currentUser", JSON.stringify(data.data.newStudent));
-      Cookies.set("studentAccessToken", JSON.stringify(data.data.accessToken));
-      notify();
-    },
-
-    onError: (data) => {
-      alert(data);
-      errorRegister();
-      router.push("/student/register");
-    },
-  });
 
   const {
     handleSubmit,
     formState: { errors },
     trigger,
     register,
-  } = useForm<IRegisterStudent>();
+  } = useForm<IRegister>();
 
-  const onHandleSubmit = (data: IRegisterStudent) => {
+  const onHandleSubmit = (data: IRegister) => {
     try {
-      mutation.mutate(data);
+      signUp(data.email, data.password);
+      notify();
       router.push("/student/login");
     } catch (err) {
+      errorRegister();
       alert(err);
     }
   };
@@ -58,224 +42,80 @@ const RegisterForm: React.FC = () => {
                 className="block text-grey-darker text-sm font-bold mb-2"
                 htmlFor="password"
               >
-                Meno
+                Email
               </label>
               <input
                 className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-                id="Meno"
+                id="Email"
                 type="text"
                 autoFocus
-                placeholder="Meno"
-                {...register("name", {
-                  required: true,
-                  minLength: 1,
-                  min: 1,
+                placeholder="Email"
+                {...register("email", {
+                  required: "Email je povinný",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Emailová adresa nie je správna",
+                  },
                 })}
                 onKeyUp={() => {
-                  trigger("name");
+                  trigger("email");
                 }}
               />
 
-              {errors.name && errors.name.type === "required" && (
-                <p className="text-red-800">Meno je povinné</p>
-              )}
-
-              {errors.name && errors.name.type === "minLength" && (
-                <p className="text-red-800">Meno musí mať viac ako jeden znak</p>
+              {errors.email && errors.email.type === "required" && (
+                <p className="text-red-800">Email je povinný</p>
               )}
             </div>
-          </div>
-          <div className="mb-2">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Priezivsko
-            </label>
-            <input
-              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-              id="Priezivsko"
-              type="text"
-              autoFocus
-              placeholder="Priezivsko"
-              {...register("lastName", {
-                required: true,
-                minLength: 1,
-                min: 1,
-              })}
-              onKeyUp={() => {
-                trigger("lastName");
-              }}
-            />
 
-            {errors.lastName && errors.lastName.type === "required" && (
-              <p className="text-red-800">Priezivsko je povinné</p>
-            )}
-
-            {errors.lastName && errors.lastName.type === "minLength" && (
-              <p className="text-red-800">Priezvisko musí mať viac ako jeden znak</p>
-            )}
-          </div>
-
-          <div className="mb-2">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Používateľské meno
-            </label>
-            <input
-              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-              id="Priezivsko"
-              type="text"
-              autoFocus
-              placeholder="Používateľské meno"
-              {...register("username", {
-                required: true,
-                minLength: 1,
-                min: 1,
-              })}
-              onKeyUp={() => {
-                trigger("username");
-              }}
-            />
-
-            {errors.username && errors.username.type === "required" && (
-              <p className="text-red-800">Priezivsko je povinné</p>
-            )}
-
-            {errors.username && errors.username.type === "minLength" && (
-              <p className="text-red-800">Priezvisko musí mať viac ako jeden znak</p>
-            )}
-          </div>
-
-          <div className="mb-2">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Email
-            </label>
-            <input
-              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-              id="Email"
-              type="text"
-              autoFocus
-              placeholder="Email"
-              {...register("email", {
-                required: "Email je povinný",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Emailová adresa nie je správna",
-                },
-              })}
-              onKeyUp={() => {
-                trigger("email");
-              }}
-            />
-
-            {errors.email && errors.email.type === "required" && (
-              <p className="text-red-800">Email je povinný</p>
-            )}
-          </div>
-
-          <div className="mb-2">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Heslo
-            </label>
-            <input
-              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-              id="Heslo"
-              type="password"
-              autoFocus
-              autoComplete="current-password"
-              placeholder="********************************************"
-              {...register("password", {
-                required: "Zadajte heslo",
-                minLength: {
-                  value: 8,
-                  message: "Heslo musí mať viac znakov ako je 8",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "Heslo môže mať najviac 20 znakov",
-                },
-              })}
-              onKeyUp={() => {
-                trigger("password");
-              }}
-            />
-
-            <p className="text-red-800">
-              {errors.password && errors.password.message}
-            </p>
-          </div>
-
-          <div className="mb-2">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Rola
-            </label>
-            <input
-              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-              id="Role"
-              type="string"
-              autoFocus
-              placeholder="STUDENT"
-              {...register("role", {
-                required: "Rola je povinná",
-              })}
-              onKeyUp={() => {
-                trigger("role");
-              }}
-            />
-            {errors.role && errors.role.type === "required" && (
-            <p className="text-red-800">Rola je povinná.</p>
-          )}
-          </div>
-          <div className="mb-2">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Trieda
-            </label>
-            <input
-              className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-              id="Role"
-              type="string"
-              autoFocus
-              placeholder="1.A"
-              {...register("classRoom", {
-                required: "Trieda je povinná",
-              })}
-              onKeyUp={() => {
-                trigger("classRoom");
-              }}
-            />
-            {errors.classRoom && errors.classRoom.type === "required" && (
-            <p className="text-red-800">Trieda je povinná.</p>
-          )}
-          </div>
-          <div>
-            <button
-              className="mt-4 bg-red-700 rounded-lg p-2 text-white"
-              type="submit"
-            >
-              Registrácia
-            </button>
-            <div>
-              <Link
-                className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
-                href="/student/login"
+            <div className="mb-2">
+              <label
+                className="block text-grey-darker text-sm font-bold mb-2"
+                htmlFor="password"
               >
-                Prihlásenie
-              </Link>
+                Heslo
+              </label>
+              <input
+                className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                id="Heslo"
+                type="password"
+                autoFocus
+                autoComplete="current-password"
+                placeholder="********************************************"
+                {...register("password", {
+                  required: "Zadajte heslo",
+                  minLength: {
+                    value: 8,
+                    message: "Heslo musí mať viac znakov ako je 8",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "Heslo môže mať najviac 20 znakov",
+                  },
+                })}
+                onKeyUp={() => {
+                  trigger("password");
+                }}
+              />
+
+              <p className="text-red-800">
+                {errors.password && errors.password.message}
+              </p>
+            </div>
+            <div>
+              <button
+                className="mt-4 bg-red-700 rounded-lg p-2 text-white"
+                type="submit"
+              >
+                Registrácia
+              </button>
+              <div>
+                <Link
+                  className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
+                  href="/student/login"
+                >
+                  Prihlásenie
+                </Link>
+              </div>
             </div>
           </div>
         </div>

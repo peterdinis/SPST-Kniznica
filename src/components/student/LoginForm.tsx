@@ -4,9 +4,11 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { ILogin } from "@/api/interfaces/IUser";
+import { useAuth } from "@/context/AuthProvider";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
+  const {signIn} = useAuth();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
@@ -20,8 +22,11 @@ const LoginForm: React.FC = () => {
 
   const onHandleSubmit = (data: ILogin) => {
     try {
+      signIn(data.email, data.password);
+      notify();
       router.push("/student/profile");
     } catch (err) {
+      errorRegister();
       alert(err);
     }
   };

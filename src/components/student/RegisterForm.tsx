@@ -4,9 +4,11 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { IRegister } from "@/api/interfaces/IUser";
+import { useAuth } from "@/context/AuthProvider";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
+  const { signUp } = useAuth();
 
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
@@ -18,10 +20,21 @@ const RegisterForm: React.FC = () => {
     register,
   } = useForm<IRegister>();
 
+  const onHandleSubmit = (data: IRegister) => {
+    try {
+      signUp(data.email, data.password);
+      notify();
+      router.push("/student/login");
+    } catch (err) {
+      errorRegister();
+      alert(err);
+    }
+  };
+
   return (
     <>
       <Header name="Registrácia žiak" />
-      <form>
+      <form onSubmit={handleSubmit(onHandleSubmit)}>
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
           <div className="mb-4">
             <div className="mb-2">

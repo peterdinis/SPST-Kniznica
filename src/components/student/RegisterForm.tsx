@@ -1,15 +1,9 @@
 import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import {
-  INewRegisteredStudent,
-  IRegisterStudent,
-} from "@/api/interfaces/IUser";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
-import * as api from "../../api/mutations/studentMutation";
 import Link from "next/link";
-import Cookies from "js-cookie";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();

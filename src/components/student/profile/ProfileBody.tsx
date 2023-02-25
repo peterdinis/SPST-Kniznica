@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import * as api from "../../../api/queries/studentQueries";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/FallbackRender";
+import Cookies from "js-cookie";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
@@ -19,9 +20,9 @@ const ProfileBody: React.FC = () => {
     router.push("/student/login");
   };
 
-  const getStudentEmail = localStorage.getItem("studentEmail") as unknown as string;
+  const getStudentEmail = Cookies.get("studentEmail") as unknown as string;
 
-  /* const {data, isLoading, isError} = useQuery(["studentProfile"], () => api.studentInfo(getStudentEmail))
+  const {data, isLoading, isError} = useQuery(["studentProfile"], () => api.studentInfo(getStudentEmail))
 
   if(isLoading) {
     return <FallbackLoader />
@@ -31,7 +32,7 @@ const ProfileBody: React.FC = () => {
     return <FallbackRender error={"Nastala chyba"} />
   }
 
-  console.log(data); */
+  console.log(data);
 
   return (
     <>

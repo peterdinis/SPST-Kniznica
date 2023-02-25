@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthProvider";
 import { ILogin } from "@/interfaces/IUser";
+import Cookies from "js-cookie";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const LoginForm: React.FC = () => {
     try {
       signIn(data.email, data.password);
       notify();
-      localStorage.setItem("studentEmail", data.email);
+      Cookies.set("studentEmail", JSON.stringify(data.email));
       router.push("/student/profile");
     } catch (err) {
       errorRegister();

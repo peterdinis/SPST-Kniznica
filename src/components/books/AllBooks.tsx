@@ -14,7 +14,7 @@ import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDiss
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(12);
+  const [limit] = useState(12);
 
   const {
     data: paginatedData,

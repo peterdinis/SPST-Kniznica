@@ -10,7 +10,6 @@ const api = axios.create({
   baseURL: baseEnv,
 });
 
-
 export const saveStudent = (data: IRegister) => {
     return api.post("student", data);
 }

@@ -22,7 +22,7 @@ const ProfileBody: React.FC = () => {
 
   const getStudentEmail = Cookies.get("studentEmail") as unknown as string;
 
-  const {data, isLoading, isError} = useQuery(["studentProfile"], () => api.studentInfo(getStudentEmail))
+ /*  const {data, isLoading, isError} = useQuery(["studentProfile"], () => api.studentInfo(getStudentEmail))
 
   if(isLoading) {
     return <FallbackLoader />
@@ -32,7 +32,7 @@ const ProfileBody: React.FC = () => {
     return <FallbackRender error={"Nastala chyba"} />
   }
 
-  console.log(data);
+  console.log(data); */
 
   return (
     <>
@@ -47,6 +47,10 @@ const ProfileBody: React.FC = () => {
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
                 <div className="px-4 py-2">{user?.email}</div>
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Rola</div>
+                <div className="px-4 py-2">ŠTUDENT</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Zmena hesla</div>

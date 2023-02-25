@@ -30,6 +30,10 @@ const ProfileBody: React.FC = () => {
                 <div className="px-4 py-2">{user?.email}</div>
               </div>
               <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Rola</div>
+                <div className="px-4 py-2">Učiteľ</div>
+              </div>
+              <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Zmena hesla</div>
                 <div className="px-4 py-2">
                   {" "}

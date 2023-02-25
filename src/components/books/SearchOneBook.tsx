@@ -1,7 +1,7 @@
 import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import Link from "next/link";
-import { IBook } from "@/api/interfaces/IBook";
+import { IBook } from "@/interfaces/IBook";
 import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect, Fragment } from "react";
@@ -10,6 +10,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
+import ScrollToTop from "@/hooks/useScroll";
 
 const SearchOneBook: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -110,6 +111,7 @@ const SearchOneBook: React.FC = () => {
                   );
                 })}
             </div>
+            <ScrollToTop />
           </>
         )}
       </AnimatePresence>

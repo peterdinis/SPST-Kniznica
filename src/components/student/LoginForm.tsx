@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { ILogin } from "@/api/interfaces/IUser";
 import { useAuth } from "@/context/AuthProvider";
+import { ILogin } from "@/interfaces/IUser";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -24,6 +24,7 @@ const LoginForm: React.FC = () => {
     try {
       signIn(data.email, data.password);
       notify();
+      localStorage.setItem("studentEmail", data.email);
       router.push("/student/profile");
     } catch (err) {
       errorRegister();
@@ -114,6 +115,12 @@ const LoginForm: React.FC = () => {
                   href="/student/register"
                 >
                   Registrácia
+                </Link>
+                <Link
+                  className="mt-4 ml-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
+                  href="/student/password/forgot"
+                >
+                  Zabudnuté heslo
                 </Link>
               </div>
             </div>

@@ -5,7 +5,7 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
-import { IBook } from "@/api/interfaces/IBook";
+import { IBook } from "@/interfaces/IBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState} from "react";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';

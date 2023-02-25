@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { IRegister } from "@/api/interfaces/IUser";
+import { IRegister } from "@/interfaces/IUser";
 import { useAuth } from "@/context/AuthProvider";
+import {useMutation} from "@tanstack/react-query";
+import * as mut from "../../api/mutations/studentMutation";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -12,6 +14,8 @@ const RegisterForm: React.FC = () => {
 
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
+
+  const mutation = useMutation(mut.saveStudent);
 
   const {
     handleSubmit,
@@ -23,6 +27,8 @@ const RegisterForm: React.FC = () => {
   const onHandleSubmit = (data: IRegister) => {
     try {
       signUp(data.email, data.password);
+      mutation.mutate(data);
+      localStorage.setItem("studentEmail", data.email);
       notify();
       router.push("/student/login");
     } catch (err) {

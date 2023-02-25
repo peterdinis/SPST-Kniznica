@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ICategory } from "../interfaces/ICategory";
+import { ICategory } from "../../interfaces/ICategory";
 
 const baseEnv = process.env.NODE_ENV !== "production" ? process.env.NEXT_PUBLIC_BACKEND_URL as string : process.env.NEXT_PUBLIC_PRODUCTION_URL as string
 

@@ -12,7 +12,7 @@ const ProfileBody: React.FC = () => {
   const logoutFromApp = () => {
     logout();
     logoutToast();
-    router.push("/teacher/login");
+    router.push("/student/login");
   };
 
   return (
@@ -28,17 +28,6 @@ const ProfileBody: React.FC = () => {
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
                 <div className="px-4 py-2">{user?.email}</div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Upraviť profil</div>
-                <div className="px-4 py-2">
-                  <Link
-                    className="font-bod text-red-800"
-                    href={`/student/profile/update`}
-                  >
-                    Upraviť profil tu
-                  </Link>
-                </div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Zmena hesla</div>

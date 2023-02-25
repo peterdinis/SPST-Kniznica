@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { ILogin } from "@/interfaces/IUser";
 import { useAuth } from "@/context/AuthProvider";
+import { ILogin } from "@/interfaces/IUser";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -24,6 +24,7 @@ const LoginForm: React.FC = () => {
     try {
       signIn(data.email, data.password);
       notify();
+      localStorage.setItem("studentEmail", data.email);
       router.push("/student/profile");
     } catch (err) {
       errorRegister();

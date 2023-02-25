@@ -7,6 +7,7 @@ import FallbackRender from "../shared/FallbackRender";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import { ICategory } from "@/interfaces/ICategory";
 import ScrollToTop from "@/hooks/useScroll";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 const AllCategories: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
@@ -29,7 +30,11 @@ const AllCategories: React.FC = () => {
     <>
       <Header name="Všetky kategórie" />
       <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {data.length === 0 && <div>Nenašli sa žiadne kategórie</div>}
+        {data.length === 0 && (
+          <div className="text-center font-bold mt-4">
+            Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
+          </div>
+        )}
         {data &&
           data.map((item: ICategory) => {
             return (

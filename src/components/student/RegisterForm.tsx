@@ -7,6 +7,7 @@ import { IRegister } from "@/interfaces/IUser";
 import { useAuth } from "@/context/AuthProvider";
 import {useMutation} from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation";
+import Cookies from "js-cookie";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const RegisterForm: React.FC = () => {
     try {
       signUp(data.email, data.password);
       mutation.mutate(data);
-      localStorage.setItem("studentEmail", data.email);
+      Cookies.set("studentEmail", JSON.stringify(data.email));
       notify();
       router.push("/student/login");
     } catch (err) {

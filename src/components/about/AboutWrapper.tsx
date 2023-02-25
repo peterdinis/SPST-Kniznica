@@ -7,7 +7,7 @@ const AboutWrapper: React.FC = () => {
     <>
       <Header name="O Stránke" />
       <Paper elevation={3}>
-        <h1 className={styles.ownerName}>Správca je ...</h1>
+        <h1 className={styles.ownerName}>Správca je Mgr. Nataša Dzubaková</h1>
         <p className={styles.helperText}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sequi et
           nesciunt sed excepturi quaerat, incidunt a architecto molestiae! Saepe

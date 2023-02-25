@@ -6,7 +6,7 @@ import { useAuth } from "@/context/AuthProvider";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const {user, logout} = useAuth();
+  const { user, logout } = useAuth();
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
@@ -31,7 +31,7 @@ const ProfileBody: React.FC = () => {
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola</div>
-                <div className="px-4 py-2">Učiteľ</div>
+                <div className="px-4 py-2">ŠTUDENT</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Zmena hesla</div>
@@ -54,6 +54,20 @@ const ProfileBody: React.FC = () => {
                   >
                     Odlhásenie
                   </button>
+                </div>
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">
+                  Moje požičané knihy
+                </div>
+                <div className="px-4 py-2">
+                  {" "}
+                  <Link
+                    className="font-bod text-red-800"
+                    href="/student/password/new"
+                  >
+                    Moje knihy
+                  </Link>
                 </div>
               </div>
             </div>

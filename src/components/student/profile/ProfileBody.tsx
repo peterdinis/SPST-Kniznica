@@ -3,15 +3,10 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import { useAuth } from "@/context/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
-import * as api from "../../../api/queries/studentQueries";
-import FallbackLoader from "@/components/shared/FallbackLoader";
-import FallbackRender from "@/components/shared/FallbackRender";
-import Cookies from "js-cookie";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const {user, logout} = useAuth();
+  const { user, logout } = useAuth();
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
@@ -19,20 +14,6 @@ const ProfileBody: React.FC = () => {
     logoutToast();
     router.push("/student/login");
   };
-
-  const getStudentEmail = Cookies.get("studentEmail") as unknown as string;
-
- /*  const {data, isLoading, isError} = useQuery(["studentProfile"], () => api.studentInfo(getStudentEmail))
-
-  if(isLoading) {
-    return <FallbackLoader />
-  }
-
-  if(isError) {
-    return <FallbackRender error={"Nastala chyba"} />
-  }
-
-  console.log(data); */
 
   return (
     <>
@@ -73,6 +54,20 @@ const ProfileBody: React.FC = () => {
                   >
                     Odlhásenie
                   </button>
+                </div>
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">
+                  Moje požičané knihy
+                </div>
+                <div className="px-4 py-2">
+                  {" "}
+                  <Link
+                    className="font-bod text-red-800"
+                    href="/student/password/new"
+                  >
+                    Moje knihy
+                  </Link>
                 </div>
               </div>
             </div>

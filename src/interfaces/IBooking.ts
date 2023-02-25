@@ -3,5 +3,5 @@ export interface IBooking {
   from: string | Date;
   to: string | Date;
   email: string;
-  bookName: string;
+  bookId: number;
 }

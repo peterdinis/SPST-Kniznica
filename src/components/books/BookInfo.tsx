@@ -67,7 +67,7 @@ const BookInfo: React.FC = () => {
       console.log(data);
     } catch (err) {
       errorRegister();
-      alert(err);
+      router.push("/books/all");
     }
   };
 

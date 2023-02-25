@@ -5,6 +5,6 @@ const api = axios.create({
 });
 
 export const studentInfo = async (email: string) => {
-  const res = await api.get(`student/:${email}`);
+  const res = await api.get(`student/${email}`);
   return res.data;
 }

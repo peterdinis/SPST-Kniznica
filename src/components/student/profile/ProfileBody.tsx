@@ -3,6 +3,10 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import { useAuth } from "@/context/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import * as api from "../../../api/queries/studentQueries";
+import FallbackLoader from "@/components/shared/FallbackLoader";
+import FallbackRender from "@/components/shared/FallbackRender";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
@@ -14,6 +18,20 @@ const ProfileBody: React.FC = () => {
     logoutToast();
     router.push("/student/login");
   };
+
+  const getStudentEmail = localStorage.getItem("studentEmail") as unknown as string;
+
+  /* const {data, isLoading, isError} = useQuery(["studentProfile"], () => api.studentInfo(getStudentEmail))
+
+  if(isLoading) {
+    return <FallbackLoader />
+  }
+
+  if(isError) {
+    return <FallbackRender error={"Nastala chyba"} />
+  }
+
+  console.log(data); */
 
   return (
     <>

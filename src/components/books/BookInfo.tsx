@@ -1,13 +1,17 @@
 import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useAuth } from "@/context/AuthProvider";
 import HelperModal from "../shared/HelperModal";
+import * as mut from "../../api/mutations/bookingMutations";
+import { IBooking } from "@/interfaces/IBooking";
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -33,6 +37,38 @@ const BookInfo: React.FC = () => {
 
   const navigateToBooks = () => {
     router.push("/books/all");
+  };
+
+  const notify = () => toast.success("Objednávka bola vytvorená");
+  const errorRegister = () => toast.error("Objednávka nebola vytvorená");
+
+  const mutation = useMutation(mut.createNewBooking, {
+    onSuccess: (data) => {
+      notify();
+      console.log(data);
+    },
+
+    onError: () => {
+      errorRegister();
+      console.log(data);
+    },
+  });
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    trigger,
+    register,
+  } = useForm<IBooking>();
+
+  const onHandleSubmit = (data: IBooking) => {
+    try {
+      mutation.mutate(data);
+      console.log(data);
+    } catch (err) {
+      errorRegister();
+      alert(err);
+    }
   };
 
   return (
@@ -113,7 +149,10 @@ const BookInfo: React.FC = () => {
                         btnName={"Požičať si knihu"}
                         modalHeader={"Požičanie knihy"}
                       >
-                        <form className="mt-4">
+                        <form
+                          onSubmit={handleSubmit(onHandleSubmit)}
+                          className="mt-4"
+                        >
                           <label className="block text-grey-darker text-sm font-bold mb-2">
                             Email
                           </label>
@@ -121,7 +160,22 @@ const BookInfo: React.FC = () => {
                             type="email"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                             placeholder="Email"
+                            {...register("email", {
+                              required: "Email je povinný",
+                              pattern: {
+                                value:
+                                  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Emailová adresa nie je správna",
+                              },
+                            })}
+                            onKeyUp={() => {
+                              trigger("email");
+                            }}
                           />
+
+                          <p className="text-red-800">
+                            {errors.email && errors.email.message}
+                          </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                             Meno knihy
@@ -130,7 +184,17 @@ const BookInfo: React.FC = () => {
                             type="text"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                             placeholder="Meno knihy"
+                            {...register("bookName", {
+                              required: "Názov knihy je povinný",
+                            })}
+                            onKeyUp={() => {
+                              trigger("bookName");
+                            }}
                           />
+
+                          <p className="text-red-800">
+                            {errors.bookName && errors.bookName.message}
+                          </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                             Od
@@ -138,7 +202,17 @@ const BookInfo: React.FC = () => {
                           <input
                             type="date"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                            {...register("from", {
+                              required: "Dátum od je povinný",
+                            })}
+                            onKeyUp={() => {
+                              trigger("from");
+                            }}
                           />
+
+                          <p className="text-red-800">
+                            {errors.from && errors.from.message}
+                          </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                             Do
@@ -146,7 +220,17 @@ const BookInfo: React.FC = () => {
                           <input
                             type="date"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                            {...register("to", {
+                              required: "Dátum do je povinný",
+                            })}
+                            onKeyUp={() => {
+                              trigger("to");
+                            }}
                           />
+
+                          <p className="text-red-800">
+                            {errors.to && errors.to.message}
+                          </p>
 
                           <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
                             Požičať

@@ -2,7 +2,7 @@ import { useAuth } from "@/context/AuthProvider";
 import Link from "next/link";
 
 const NavbarLinks: React.FC = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   return (
     <>
       <li className="text-black text-xl">

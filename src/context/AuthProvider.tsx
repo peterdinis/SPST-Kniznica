@@ -37,7 +37,7 @@ export interface AuthContextModel {
   user: User | null;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   signUp: (email: string, password: string) => Promise<UserCredential>;
-  logout: () => Promise<void>,
+  logout: () => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   forgotPassword: () => Promise<void>;
   resetPassword: () => Promise<void>;
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   }
 
   function logout() {
-    return signOut(auth)
+    return signOut(auth);
   }
 
   function forgotPassword(email: string) {
@@ -76,8 +76,8 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   }
 
   function signInWithGoogle() {
-    const provider = new GoogleAuthProvider()
-    return signInWithPopup(auth, provider)
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
   }
 
   useEffect(() => {
@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     auth,
     logout,
     signInWithGoogle,
-    forgotPassword
+    forgotPassword,
   } as any;
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

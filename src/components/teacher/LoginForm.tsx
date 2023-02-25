@@ -114,6 +114,12 @@ const LoginForm: React.FC = () => {
                 >
                   Registrácia
                 </Link>
+                <Link
+                  className="mt-4 ml-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
+                  href="/teacher/password/forgot"
+                >
+                  Zabudnuté heslo
+                </Link>
               </div>
             </div>
           </div>

@@ -7,9 +7,9 @@ import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { IBook } from "@/interfaces/IBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useState} from "react";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useState } from "react";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 const AllBooks: React.FC = () => {
@@ -42,8 +42,8 @@ const AllBooks: React.FC = () => {
       <div className="grid gap-8 space-x-1 lg:grid-cols-6">
         {paginatedData.data.result.length === 0 && (
           <div className="text-center font-bold mt-4">
-          Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
-        </div>
+            Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
+          </div>
         )}
         {paginatedData.data.result &&
           paginatedData.data.result.map((item: IBook) => {

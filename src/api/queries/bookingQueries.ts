@@ -5,3 +5,5 @@ const baseEnv = process.env.NODE_ENV !== "production" ? process.env.NEXT_PUBLIC_
 const api = axios.create({
   baseURL: baseEnv
 });
+
+export const getAllBookings = () => api.get("bookings").then((res) => res.data);

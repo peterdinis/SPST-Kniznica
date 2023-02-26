@@ -4,14 +4,12 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { IRegister } from "@/interfaces/IUser";
-import { useAuth } from "@/context/AuthProvider";
 import {useMutation} from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation";
 import Cookies from "js-cookie";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
-  const { signUp } = useAuth();
 
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
@@ -27,7 +25,6 @@ const RegisterForm: React.FC = () => {
 
   const onHandleSubmit = (data: IRegister) => {
     try {
-      signUp(data.email, data.password);
       mutation.mutate(data);
       Cookies.set("studentEmail", JSON.stringify(data.email));
       notify();

@@ -9,7 +9,6 @@ import Cookies from "js-cookie";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
-  const { signIn } = useAuth();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
@@ -23,7 +22,6 @@ const LoginForm: React.FC = () => {
 
   const onHandleSubmit = (data: ILogin) => {
     try {
-      signIn(data.email, data.password);
       notify();
       Cookies.set("studentEmail", JSON.stringify(data.email));
       router.push("/student/profile");

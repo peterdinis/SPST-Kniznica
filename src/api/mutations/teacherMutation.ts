@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IRegister } from "../../interfaces/IUser";
+import { IRegister } from "../../interfaces/IStudent";
 
 const baseEnv =
   process.env.NODE_ENV !== "production"

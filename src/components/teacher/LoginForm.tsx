@@ -3,7 +3,7 @@ import Header from "../shared/Header";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { ILogin } from "@/interfaces/IUser";
+import { ILogin } from "@/interfaces/IStudent";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();

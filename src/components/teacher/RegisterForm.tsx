@@ -3,7 +3,7 @@ import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { IRegister } from "@/interfaces/IUser";
+import { IRegister } from "@/interfaces/IStudent";
 import { useAuth } from "@/context/AuthProvider";
 
 const RegisterForm: React.FC = () => {

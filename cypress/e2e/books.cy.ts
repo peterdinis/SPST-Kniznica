@@ -20,7 +20,15 @@ describe("Go to book detail page", () => {
 
 describe("Test Back to books button in book detail", () => {
     it("Try to go back from detail page to all books page", () => {
-        return;
+        cy.visit("http://localhost:3000/books/all")
+        cy.contains('Detail').click()
+        cy.contains("Návrat na knihy").click();
     })
 })
 
+
+describe("Try to find book", () => {
+    it("Test book searchbar for finding specific book", () => {
+        return;
+    })
+})

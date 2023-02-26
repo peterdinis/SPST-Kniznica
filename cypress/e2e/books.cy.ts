@@ -18,3 +18,9 @@ describe("Go to book detail page", () => {
     })
 })
 
+describe("Test Back to books button in book detail", () => {
+    it("Try to go back from detail page to all books page", () => {
+        return;
+    })
+})
+

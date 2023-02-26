@@ -1,7 +1,4 @@
 const ProfileHeader: React.FC = () => {
-  /* const {user} = useAuth();
-  const userPhoto = user?.photoURL || "https://picsum.photos/200/300"; */
-
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">

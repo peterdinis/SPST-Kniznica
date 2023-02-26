@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { useAuth } from "@/context/AuthProvider";
 import { ILogin } from "@/interfaces/IUser";
 import Cookies from "js-cookie";
 

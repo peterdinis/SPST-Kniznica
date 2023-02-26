@@ -8,7 +8,6 @@ const ProfileBody: React.FC = () => {
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
-    /* logout(); */
     logoutToast();
     router.push("/student/login");
   };

@@ -8,14 +8,13 @@ import { Inter } from "@next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import { AuthProvider } from "@/context/AuthProvider";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
         <div className={inter.className}>
           <Layout>
             <Component {...pageProps} />
@@ -24,7 +23,6 @@ export default function App({ Component, pageProps }: AppProps) {
             <CssBaseline />
           </Layout>
         </div>
-      </AuthProvider>
     </QueryClientProvider>
   );
 }

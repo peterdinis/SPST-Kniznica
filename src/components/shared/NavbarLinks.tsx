@@ -1,8 +1,6 @@
-import { useAuth } from "@/context/AuthProvider";
 import Link from "next/link";
 
 const NavbarLinks: React.FC = () => {
-  const { user } = useAuth();
   return (
     <>
       <li className="text-black text-xl">
@@ -17,7 +15,13 @@ const NavbarLinks: React.FC = () => {
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
       </li>
-      {user === null || user === undefined ? (
+      <li className="text-black text-xl">
+        <Link href="/student/login">Prihlásenie žiak</Link>
+      </li>
+      <li className="text-black text-xl">
+        <Link href="/teacher/login">Prihlásenie učiteľ</Link>
+      </li>
+      {/*  {user === null || user === undefined ? (
         <>
           <li className="text-black text-xl">
             <Link href="/student/login">Prihlásenie žiak</Link>
@@ -32,7 +36,7 @@ const NavbarLinks: React.FC = () => {
             <Link href="/student/profile">Profil</Link>
           </li>
         </>
-      )}
+      )} */}
     </>
   );
 };

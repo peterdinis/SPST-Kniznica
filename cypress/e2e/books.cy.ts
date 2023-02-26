@@ -10,8 +10,25 @@ describe("Go to books search page", () => {
     })
 })
 
-describe("Go to books detail page", () => {
-    it("Go to books detail page", () => {
+
+describe("Go to book detail page", () => {
+    it("Visit book detail page", () => {
+        cy.visit("http://localhost:3000/books/all")
+        cy.contains('Detail').click()
+    })
+})
+
+describe("Test Back to books button in book detail", () => {
+    it("Try to go back from detail page to all books page", () => {
+        cy.visit("http://localhost:3000/books/all")
+        cy.contains('Detail').click()
+        cy.contains("Návrat na knihy").click();
+    })
+})
+
+
+describe("Try to find book", () => {
+    it("Test book searchbar for finding specific book", () => {
         return;
     })
 })

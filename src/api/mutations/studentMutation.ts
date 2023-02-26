@@ -1,4 +1,4 @@
-import { IRegister } from "@/interfaces/IStudent";
+import { ILogin, IRegister } from "@/interfaces/IStudent";
 import axios from "axios";
 
 const baseEnv =
@@ -10,10 +10,10 @@ const api = axios.create({
   baseURL: baseEnv,
 });
 
-export const saveStudent = (data: IRegister) => {
-    return api.post("student", data);
+export const register = (data: IRegister) => {
+    return api.post("student/register", data);
 }
 
-export const loginStudent = () => {
-  return;
+export const loginStudent = (data: ILogin) => {
+  return api.post("student/login", data);
 }

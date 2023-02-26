@@ -25,10 +25,3 @@ describe("Test Back to books button in book detail", () => {
         cy.contains("Návrat na knihy").click();
     })
 })
-
-
-describe("Try to find book", () => {
-    it("Test book searchbar for finding specific book", () => {
-        return;
-    })
-})

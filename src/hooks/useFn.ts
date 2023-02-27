@@ -1,3 +1,3 @@
-import React from "react";
+import {useCallback} from "react";
 
-export const useFn = () => React.useCallback(() => {}, []);
+export const useFn = () => useCallback(() => {}, []);

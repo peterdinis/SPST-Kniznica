@@ -2,15 +2,12 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
-import { useAuth } from "@/context/AuthProvider";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
-  const { user, logout } = useAuth();
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
 
   const logoutFromApp = () => {
-    logout();
     logoutToast();
     router.push("/student/login");
   };
@@ -27,7 +24,7 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">{user?.email}</div>
+                <div className="px-4 py-2">rrrrr</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola</div>

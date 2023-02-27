@@ -3,13 +3,11 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { useAuth } from "@/context/AuthProvider";
-import { ILogin } from "@/interfaces/IUser";
+import { ILogin } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
-  const { signIn } = useAuth();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
@@ -23,10 +21,10 @@ const LoginForm: React.FC = () => {
 
   const onHandleSubmit = (data: ILogin) => {
     try {
-      signIn(data.email, data.password);
-      notify();
+      console.log(data);
+      /* notify();
       Cookies.set("studentEmail", JSON.stringify(data.email));
-      router.push("/student/profile");
+      router.push("/student/profile"); */
     } catch (err) {
       errorRegister();
       alert(err);
@@ -116,12 +114,6 @@ const LoginForm: React.FC = () => {
                   href="/student/register"
                 >
                   Registrácia
-                </Link>
-                <Link
-                  className="mt-4 ml-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
-                  href="/student/password/forgot"
-                >
-                  Zabudnuté heslo
                 </Link>
               </div>
             </div>

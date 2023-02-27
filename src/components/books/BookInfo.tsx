@@ -6,7 +6,6 @@ import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useAuth } from "@/context/AuthProvider";
 import HelperModal from "../shared/HelperModal";
 import * as mut from "../../api/mutations/bookingMutations";
 import { IBooking } from "@/interfaces/IBooking";
@@ -15,7 +14,6 @@ import { useForm } from "react-hook-form";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
-  const { user } = useAuth();
   const { id } = router.query;
 
   const { data, isError, isLoading } = useQuery(
@@ -138,7 +136,7 @@ const BookInfo: React.FC = () => {
                     <span className="font-bold"> Kniha je:</span>{" "}
                     <span className="text-green-800">{data.status}</span>
                     <br />
-                    {user?.email === null || user?.email === undefined ? (
+                    {true === null || false === undefined ? (
                       <span>
                         <div className="text-xl font-bold mt-4 text-red-800">
                           Ak si chcete požičať knihu musíte byť prihlásení

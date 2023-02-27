@@ -1,5 +1,3 @@
-import axios from "axios";
+import authApi from "../lib/axios";
 
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string,
-});
+export const getStudentProfile = () => authApi.get("student/profile").then((res) => res.data);

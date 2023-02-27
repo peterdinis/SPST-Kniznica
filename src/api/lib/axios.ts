@@ -2,9 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const baseURL =
-  process.env.NODE_ENV === "production"
-    ? process.env.DOMAIN
-    : "http://localhost:3000";
+process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
 const authApi = axios.create({
   baseURL,

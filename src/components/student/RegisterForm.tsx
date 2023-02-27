@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { IRegister } from "@/interfaces/IStudent";
-import {useMutation} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation";
 import Cookies from "js-cookie";
 
@@ -14,7 +14,7 @@ const RegisterForm: React.FC = () => {
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
 
-  const mutation = useMutation(mut.saveStudent);
+  const mutation = useMutation(mut.register);
 
   const {
     handleSubmit,
@@ -25,10 +25,11 @@ const RegisterForm: React.FC = () => {
 
   const onHandleSubmit = (data: IRegister) => {
     try {
-      mutation.mutate(data);
+      console.log(data);
+      /*  mutation.mutate(data);
       Cookies.set("studentEmail", JSON.stringify(data.email));
       notify();
-      router.push("/student/login");
+      router.push("/student/login"); */
     } catch (err) {
       errorRegister();
       alert(err);
@@ -41,25 +42,76 @@ const RegisterForm: React.FC = () => {
       <form onSubmit={handleSubmit(onHandleSubmit)}>
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
           <div className="mb-4">
+
+          <div className="mb-2">
+              <label
+                className="block text-grey-darker text-sm font-bold mb-2"
+                htmlFor="password"
+              >
+                Meno
+              </label>
+              <input
+                className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                id="Meno"
+                type="text"
+                autoFocus
+                autoComplete="Meno"
+                placeholder="Meno"
+                {...register("name", {
+                  required: true,
+                })}
+                onKeyUp={() => {
+                  trigger("name");
+                }}
+              />
+
+              <p className="text-red-800">
+                {errors.name && errors.name.message}
+              </p>
+            </div>
+
             <div className="mb-2">
               <label
                 className="block text-grey-darker text-sm font-bold mb-2"
                 htmlFor="password"
               >
-                Email
+                Priezivsko
               </label>
               <input
                 className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-                id="Email"
+                id="Priezivsko"
                 type="text"
                 autoFocus
-                placeholder="Email"
-                {...register("email", {
-                  required: "Email je povinný",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Emailová adresa nie je správna",
-                  },
+                autoComplete="priezivsko"
+                placeholder="Priezivsko"
+                {...register("lastName", {
+                  required: true,
+                })}
+                onKeyUp={() => {
+                  trigger("lastName");
+                }}
+              />
+
+              <p className="text-red-800">
+                {errors.lastName && errors.lastName.message}
+              </p>
+            </div>
+
+            <div className="mb-2">
+              <label
+                className="block text-grey-darker text-sm font-bold mb-2"
+                htmlFor="password"
+              >
+                Používateľské meno
+              </label>
+              <input
+                className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                id="username"
+                type="text"
+                autoFocus
+                placeholder="Používateľské meno"
+                {...register("username", {
+                  required: "Používateľské meno je povinné",
                 })}
                 onKeyUp={() => {
                   trigger("email");

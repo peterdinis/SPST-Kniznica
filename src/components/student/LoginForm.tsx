@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { ILogin } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
+import { useMutation } from "@tanstack/react-query";
+import * as mut from "../../api/mutations/studentMutation"
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -19,12 +21,22 @@ const LoginForm: React.FC = () => {
     register,
   } = useForm<ILogin>();
 
+  const mutation =  useMutation(mut.loginStudent, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+
+    onError: (data) => {
+      console.log(data);
+    }
+  })
+
   const onHandleSubmit = (data: ILogin) => {
     try {
       console.log(data);
-      /* notify();
-      Cookies.set("studentEmail", JSON.stringify(data.email));
-      router.push("/student/profile"); */
+      notify();
+      mutation.mutate(data);
+      router.push("/student/profile");
     } catch (err) {
       errorRegister();
       alert(err);

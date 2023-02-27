@@ -26,10 +26,9 @@ const RegisterForm: React.FC = () => {
   const onHandleSubmit = (data: IRegister) => {
     try {
       console.log(data);
-      /*  mutation.mutate(data);
-      Cookies.set("studentEmail", JSON.stringify(data.email));
+      mutation.mutate(data);
       notify();
-      router.push("/student/login"); */
+      router.push("/student/login");
     } catch (err) {
       errorRegister();
       alert(err);

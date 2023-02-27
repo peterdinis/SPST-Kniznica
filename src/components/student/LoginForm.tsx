@@ -21,9 +21,10 @@ const LoginForm: React.FC = () => {
 
   const onHandleSubmit = (data: ILogin) => {
     try {
-      notify();
+      console.log(data);
+      /* notify();
       Cookies.set("studentEmail", JSON.stringify(data.email));
-      router.push("/student/profile");
+      router.push("/student/profile"); */
     } catch (err) {
       errorRegister();
       alert(err);

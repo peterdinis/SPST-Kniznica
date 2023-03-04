@@ -11,6 +11,9 @@ import * as mut from "../../api/mutations/bookingMutations";
 import { IBooking } from "@/interfaces/IBooking";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import {useState, useEffect} from "react";
+import Cookies from "js-cookie";
+import { ILoginStudentInfo } from "@/interfaces/IStudent";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -18,7 +21,7 @@ const BookInfo: React.FC = () => {
 
   const { data, isError, isLoading } = useQuery(
     ["bookDetail", Number(id)],
-    () => api.getOneBook(Number(id) as any),
+    () => api.getOneBook(Number(id) as unknown as string),
     {
       retry: 2,
       placeholderData: placeholderBook,
@@ -26,7 +29,7 @@ const BookInfo: React.FC = () => {
   );
 
   if (isError) {
-    return <FallbackRender error="Something went wrong" />;
+    return <FallbackRender error="Nastala chyba" />;
   }
 
   if (isLoading) {
@@ -68,6 +71,15 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
+
+  const [user, setUser] = useState<ILoginStudentInfo |null>(null);
+
+  useEffect(() => {
+    const currentUser = Cookies.get("studentData");
+    if(currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
 
   return (
     <>
@@ -136,7 +148,7 @@ const BookInfo: React.FC = () => {
                     <span className="font-bold"> Kniha je:</span>{" "}
                     <span className="text-green-800">{data.status}</span>
                     <br />
-                    {true === null || false === undefined ? (
+                    {user === null || user === undefined ? (
                       <span>
                         <div className="text-xl font-bold mt-4 text-red-800">
                           Ak si chcete požičať knihu musíte byť prihlásení
@@ -152,27 +164,22 @@ const BookInfo: React.FC = () => {
                           className="mt-4"
                         >
                           <label className="block text-grey-darker text-sm font-bold mb-2">
-                            Email
+                            Používateľské meno
                           </label>
                           <input
-                            type="email"
+                            type="text"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                            placeholder="Email"
-                            {...register("email", {
-                              required: "Email je povinný",
-                              pattern: {
-                                value:
-                                  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: "Emailová adresa nie je správna",
-                              },
+                            placeholder="Používateľské meno"
+                            {...register("username", {
+                              required: "Meno je povinné",
                             })}
                             onKeyUp={() => {
-                              trigger("email");
+                              trigger("username");
                             }}
                           />
 
                           <p className="text-red-800">
-                            {errors.email && errors.email.message}
+                            {errors.username && errors.username.message}
                           </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
@@ -181,7 +188,6 @@ const BookInfo: React.FC = () => {
                           <input
                             type="number"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                            placeholder="1"
                             {...register("bookId", {
                               required: "Čislo knihy je povinne",
                             })}

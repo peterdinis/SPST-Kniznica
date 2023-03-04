@@ -26,7 +26,7 @@ const BookInfo: React.FC = () => {
   );
 
   if (isError) {
-    return <FallbackRender error="Something went wrong" />;
+    return <FallbackRender error="Nastala chyba" />;
   }
 
   if (isLoading) {
@@ -176,7 +176,6 @@ const BookInfo: React.FC = () => {
                           <input
                             type="number"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                            placeholder="1"
                             {...register("bookId", {
                               required: "Čislo knihy je povinne",
                             })}

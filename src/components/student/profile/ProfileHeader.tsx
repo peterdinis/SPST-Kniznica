@@ -1,4 +1,18 @@
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { ILoginStudentInfo } from "@/interfaces/IStudent";
+
 const ProfileHeader: React.FC = () => {
+  const [user, setUser] = useState<ILoginStudentInfo |null>(null);
+
+  useEffect(() => {
+    const currentUser = Cookies.get("studentData");
+    if(currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
+
+  console.log(user);
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">

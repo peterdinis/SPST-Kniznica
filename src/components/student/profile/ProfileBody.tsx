@@ -3,10 +3,22 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
+import { ILoginStudentInfo } from "@/interfaces/IStudent";
+import { useState, useEffect } from "react";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
+  const [user, setUser] = useState<ILoginStudentInfo |null>(null);
+
+  useEffect(() => {
+    const currentUser = Cookies.get("studentData");
+    if(currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
+
+  console.log(user);
 
   const logoutFromApp = () => {
     logoutToast();

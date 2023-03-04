@@ -152,7 +152,7 @@ const BookInfo: React.FC = () => {
                           className="mt-4"
                         >
                           <label className="block text-grey-darker text-sm font-bold mb-2">
-                            Email
+                            Používateľské meno
                           </label>
                           <input
                             type="text"

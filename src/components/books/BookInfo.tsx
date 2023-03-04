@@ -11,6 +11,9 @@ import * as mut from "../../api/mutations/bookingMutations";
 import { IBooking } from "@/interfaces/IBooking";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import {useState, useEffect} from "react";
+import Cookies from "js-cookie";
+import { ILoginStudentInfo } from "@/interfaces/IStudent";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -68,6 +71,15 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
+
+  const [user, setUser] = useState<ILoginStudentInfo |null>(null);
+
+  useEffect(() => {
+    const currentUser = Cookies.get("studentData");
+    if(currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
 
   return (
     <>
@@ -136,7 +148,7 @@ const BookInfo: React.FC = () => {
                     <span className="font-bold"> Kniha je:</span>{" "}
                     <span className="text-green-800">{data.status}</span>
                     <br />
-                    {true === null || false === undefined ? (
+                    {user === null || user === undefined ? (
                       <span>
                         <div className="text-xl font-bold mt-4 text-red-800">
                           Ak si chcete požičať knihu musíte byť prihlásení

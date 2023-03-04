@@ -19,6 +19,7 @@ export interface ILoginStudentInfo {
     token: string;
     user: {
       id: number;
+      name: string;
       createdAt: string;
       classRoom: string;
       email: string;

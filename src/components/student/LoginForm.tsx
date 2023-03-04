@@ -7,6 +7,9 @@ import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation"
+import { uuid } from 'uuidv4';
+import { useEffect } from "react";
+import TypedLocalStore from 'typed-local-store';
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -14,12 +17,17 @@ const LoginForm: React.FC = () => {
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
 
+  const typedStorage = new TypedLocalStore<IStorageSchema>();
   const {
     handleSubmit,
     formState: { errors },
     trigger,
     register,
   } = useForm<ILogin>();
+
+  useEffect(() => {
+    typedStorage.setItem("customId", uuid())
+  }, [])
 
   const mutation =  useMutation(mut.loginStudent, {
     onSuccess: (data: ILoginStudentInfo) => {

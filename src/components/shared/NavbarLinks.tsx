@@ -27,12 +27,6 @@ const NavbarLinks: React.FC = () => {
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
       </li>
-      <li className="text-black text-xl">
-        <Link href="/student/login">Prihlásenie žiak</Link>
-      </li>
-      <li className="text-black text-xl">
-        <Link href="/teacher/login">Prihlásenie učiteľ</Link>
-      </li>
        {user === null || user === undefined ? (
         <>
           <li className="text-black text-xl">

@@ -17,9 +17,7 @@ const ProfileBody: React.FC = () => {
       setUser(JSON.parse(currentUser));
     }
   }, []);
-
-  console.log(user);
-
+  
   const logoutFromApp = () => {
     logoutToast();
     Cookies.remove("accessToken");

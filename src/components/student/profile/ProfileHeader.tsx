@@ -11,8 +11,6 @@ const ProfileHeader: React.FC = () => {
       setUser(JSON.parse(currentUser));
     }
   }, []);
-
-  console.log(user);
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">

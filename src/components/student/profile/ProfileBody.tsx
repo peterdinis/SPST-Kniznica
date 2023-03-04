@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
+import Cookies from "js-cookie";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
@@ -9,6 +10,8 @@ const ProfileBody: React.FC = () => {
 
   const logoutFromApp = () => {
     logoutToast();
+    Cookies.remove("accessToken");
+    Cookies.remove("studentData");
     router.push("/student/login");
   };
 

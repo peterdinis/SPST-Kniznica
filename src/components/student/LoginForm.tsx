@@ -17,6 +17,7 @@ const LoginForm: React.FC = () => {
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
 
+  const typedStorage = new TypedLocalStore<IStorageSchema>();
   const {
     handleSubmit,
     formState: { errors },
@@ -25,7 +26,7 @@ const LoginForm: React.FC = () => {
   } = useForm<ILogin>();
 
   useEffect(() => {
-    
+    typedStorage.setItem("customId", uuid())
   }, [])
 
   const mutation =  useMutation(mut.loginStudent, {

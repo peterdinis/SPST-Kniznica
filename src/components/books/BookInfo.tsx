@@ -155,24 +155,19 @@ const BookInfo: React.FC = () => {
                             Email
                           </label>
                           <input
-                            type="email"
+                            type="text"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                            placeholder="Email"
-                            {...register("email", {
-                              required: "Email je povinný",
-                              pattern: {
-                                value:
-                                  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: "Emailová adresa nie je správna",
-                              },
+                            placeholder="Používateľské meno"
+                            {...register("username", {
+                              required: "Meno je povinné",
                             })}
                             onKeyUp={() => {
-                              trigger("email");
+                              trigger("username");
                             }}
                           />
 
                           <p className="text-red-800">
-                            {errors.email && errors.email.message}
+                            {errors.username && errors.username.message}
                           </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">

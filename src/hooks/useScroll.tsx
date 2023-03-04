@@ -1,8 +1,8 @@
-import React from "react";
+import {useState, useEffect} from "react";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 export default function ScrollToTop() {
-  const [isVisible, setIsVisible] = React.useState<Boolean>(false);
+  const [isVisible, setIsVisible] = useState<Boolean>(false);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -11,7 +11,7 @@ export default function ScrollToTop() {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 500) {
         setIsVisible(true);

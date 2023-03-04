@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { ILogin } from "@/interfaces/IStudent";
+import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation"
@@ -22,8 +22,9 @@ const LoginForm: React.FC = () => {
   } = useForm<ILogin>();
 
   const mutation =  useMutation(mut.loginStudent, {
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: (data: ILoginStudentInfo) => {
+      Cookies.set("studentData", JSON.stringify(data));
+      Cookies.set("accessToken", JSON.stringify(data.data.token));
     },
 
     onError: (data) => {
@@ -33,7 +34,6 @@ const LoginForm: React.FC = () => {
 
   const onHandleSubmit = (data: ILogin) => {
     try {
-      console.log(data);
       notify();
       mutation.mutate(data);
       router.push("/student/profile");

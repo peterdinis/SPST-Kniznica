@@ -25,7 +25,7 @@ const RegisterForm: React.FC = () => {
 
   const onHandleSubmit = (data: IRegister) => {
     try {
-      console.log(data);
+      Cookies.set("studentRegisterData", JSON.stringify(data));
       mutation.mutate(data);
       notify();
       router.push("/student/login");

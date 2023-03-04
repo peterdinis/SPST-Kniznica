@@ -1,6 +1,18 @@
+import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import Link from "next/link";
+import {useState, useEffect} from "react";
+import Cookies from "js-cookie";
 
 const NavbarLinks: React.FC = () => {
+  const [user, setUser] = useState<ILoginStudentInfo |null>(null);
+
+  useEffect(() => {
+    const currentUser = Cookies.get("studentData");
+    if(currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
+  
   return (
     <>
       <li className="text-black text-xl">
@@ -21,7 +33,7 @@ const NavbarLinks: React.FC = () => {
       <li className="text-black text-xl">
         <Link href="/teacher/login">Prihlásenie učiteľ</Link>
       </li>
-      {/*  {user === null || user === undefined ? (
+       {user === null || user === undefined ? (
         <>
           <li className="text-black text-xl">
             <Link href="/student/login">Prihlásenie žiak</Link>
@@ -36,7 +48,7 @@ const NavbarLinks: React.FC = () => {
             <Link href="/student/profile">Profil</Link>
           </li>
         </>
-      )} */}
+      )}
     </>
   );
 };

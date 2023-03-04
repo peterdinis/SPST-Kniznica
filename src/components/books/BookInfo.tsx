@@ -18,7 +18,7 @@ const BookInfo: React.FC = () => {
 
   const { data, isError, isLoading } = useQuery(
     ["bookDetail", Number(id)],
-    () => api.getOneBook(Number(id) as any),
+    () => api.getOneBook(Number(id) as unknown as string),
     {
       retry: 2,
       placeholderData: placeholderBook,

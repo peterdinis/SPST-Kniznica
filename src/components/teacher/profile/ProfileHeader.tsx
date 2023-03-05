@@ -22,7 +22,7 @@ const ProfileHeader: React.FC = () => {
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-        {user?.data.user.email}
+          {user?.data.user.email}
         </h1>
       </div>
       <div className="my-4"></div>

@@ -11,3 +11,7 @@ const api = axios.create({
 export const createNewBooking = (data: IBooking) => {
   return api.post("booking", data);
 }
+
+export const returnBooking = () => {
+  return;
+}

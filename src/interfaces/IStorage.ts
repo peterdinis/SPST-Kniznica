@@ -1,3 +1,0 @@
-interface IStorageSchema {
-    customId: string;
-}

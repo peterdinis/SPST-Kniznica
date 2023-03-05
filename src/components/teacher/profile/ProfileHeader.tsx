@@ -1,4 +1,16 @@
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
+
 const ProfileHeader: React.FC = () => {
+  const [user, setUser] = useState<ILoginTeacherInfo | null>(null);
+
+  useEffect(() => {
+    const currentUser = Cookies.get("teacherData");
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
@@ -10,7 +22,7 @@ const ProfileHeader: React.FC = () => {
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-         rrrrrrrrrrrrrrrrr
+        {user?.data.user.email}
         </h1>
       </div>
       <div className="my-4"></div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IRegister } from "../../interfaces/IStudent";
+import { ILogin, IRegister } from "@/interfaces/ITeacher";
 
 const baseEnv =
   process.env.NODE_ENV !== "production"
@@ -10,6 +10,10 @@ const api = axios.create({
   baseURL: baseEnv,
 });
 
-export const saveTeacher = (data: IRegister) => {
-  return api.post("teacher", data);
-};
+export const register = (data: IRegister) => {
+  return api.post("teacher/register", data);
+}
+
+export const login = (data: ILogin) => {
+return api.post("teacher/login", data);
+}

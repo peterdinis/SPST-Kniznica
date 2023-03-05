@@ -2,6 +2,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
+import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
+import {useState, useEffect} from "react";
+import Cookies from "js-cookie";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
@@ -9,8 +12,17 @@ const ProfileBody: React.FC = () => {
 
   const logoutFromApp = () => {
     logoutToast();
-    router.push("/student/login");
+    router.push("/teacher/login");
   };
+
+  const [user, setUser] = useState<ILoginTeacherInfo |null>(null);
+
+  useEffect(() => {
+    const currentUser = Cookies.get("teacherData");
+    if(currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
 
   return (
     <>

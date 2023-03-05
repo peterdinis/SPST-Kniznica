@@ -3,15 +3,15 @@ import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { IRegister } from "@/interfaces/IStudent";
-import { useAuth } from "@/context/AuthProvider";
+import { IRegister } from "@/interfaces/ITeacher";
+import { useMutation } from "@tanstack/react-query";
+import * as mut from "../../api/mutations/teacherMutation";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
 
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
-  const { signUp } = useAuth();
   const {
     handleSubmit,
     formState: { errors },
@@ -19,9 +19,10 @@ const RegisterForm: React.FC = () => {
     register,
   } = useForm<IRegister>();
 
+  const mutation = useMutation(mut.register);
   const onHandleSubmit = (data: IRegister) => {
     try {
-      signUp(data.email, data.password);
+      mutation.mutate(data);
       notify();
       router.push("/teacher/login");
     } catch (err) {

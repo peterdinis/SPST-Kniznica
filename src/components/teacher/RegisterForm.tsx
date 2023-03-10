@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import { IRegister } from "@/interfaces/ITeacher";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/teacherMutation";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useState } from "react";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -18,6 +21,19 @@ const RegisterForm: React.FC = () => {
     trigger,
     register,
   } = useForm<IRegister>();
+
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState<any>(null);
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(<VisibilityIcon />);
+      setType("text");
+    } else {
+      setIcon(<VisibilityOffIcon />);
+      setType("password");
+    }
+  };
 
   const mutation = useMutation(mut.register);
   const onHandleSubmit = (data: IRegister) => {
@@ -77,7 +93,7 @@ const RegisterForm: React.FC = () => {
               <input
                 className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
                 id="Heslo"
-                type="password"
+                type={type}
                 autoFocus
                 autoComplete="current-password"
                 placeholder="********************************************"
@@ -96,6 +112,8 @@ const RegisterForm: React.FC = () => {
                   trigger("password");
                 }}
               />
+
+              <button onClick={handleToggle}>{icon}</button>
 
               <p className="text-red-800">
                 {errors.password && errors.password.message}

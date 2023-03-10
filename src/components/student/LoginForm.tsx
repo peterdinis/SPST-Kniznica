@@ -7,9 +7,14 @@ import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useState } from "react";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState<any>(null);
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
@@ -41,6 +46,17 @@ const LoginForm: React.FC = () => {
       alert(err);
     }
   };
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(<VisibilityIcon />);
+      setType("text");
+    } else {
+      setIcon(<VisibilityOffIcon />);
+      setType("password");
+    }
+  };
+
 
   return (
     <>
@@ -86,9 +102,9 @@ const LoginForm: React.FC = () => {
                 Heslo
               </label>
               <input
-                className="passwordInput shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
                 id="Heslo"
-                type="password"
+                type={type}
                 autoFocus
                 autoComplete="current-password"
                 placeholder="********************************************"
@@ -107,6 +123,8 @@ const LoginForm: React.FC = () => {
                   trigger("password");
                 }}
               />
+
+              <button onClick={handleToggle}>{icon}</button>
 
               <p className="text-red-800">
                 {errors.password && errors.password.message}

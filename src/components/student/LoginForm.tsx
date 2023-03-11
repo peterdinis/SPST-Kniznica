@@ -35,7 +35,8 @@ const LoginForm: React.FC = () => {
     },
 
     onError: (data) => {
-      console.log(data);
+      errorRegister();
+      alert(data);
     }
   })
 

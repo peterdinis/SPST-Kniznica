@@ -1,5 +1,5 @@
 import Header from "../shared/Header";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -22,7 +22,7 @@ const LoginForm: React.FC = () => {
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     trigger,
     register,
   } = useForm<LoginFormSchemaType>({
@@ -39,7 +39,7 @@ const LoginForm: React.FC = () => {
     }
   })
 
-  const onHandleSubmit = (data: ILogin) => {
+  const onHandleSubmit: SubmitHandler<LoginFormSchemaType> = (data: ILogin) => {
     try {
       notify();
       mutation.mutate(data);
@@ -137,6 +137,7 @@ const LoginForm: React.FC = () => {
               <button
                 className="mt-4 bg-red-700 rounded-lg p-2 text-white"
                 type="submit"
+                disabled={isSubmitting}
               >
                 Prihlásenie
               </button>

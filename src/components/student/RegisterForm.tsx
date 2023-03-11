@@ -1,5 +1,5 @@
 import Header from "../shared/Header";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -26,14 +26,14 @@ const RegisterForm: React.FC = () => {
 
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     trigger,
     register,
   } = useForm<RegisterFormSchemaType>({
     resolver: zodResolver(registerStudentSchema)
   });
 
-  const onHandleSubmit = (data: IRegister) => {
+  const onHandleSubmit: SubmitHandler<RegisterFormSchemaType> = (data: IRegister) => {
     try {
       Cookies.set("studentRegisterData", JSON.stringify(data));
       mutation.mutate(data);
@@ -259,6 +259,7 @@ const RegisterForm: React.FC = () => {
               <button
                 className="mt-4 bg-red-700 rounded-lg p-2 text-white"
                 type="submit"
+                disabled={isSubmitting}
               >
                 Registrácia
               </button>

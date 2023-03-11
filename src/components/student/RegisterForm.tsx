@@ -10,6 +10,9 @@ import Cookies from "js-cookie";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
+import { RegisterFormSchemaType } from "@/utils/student/studentSchemaValidator";
+import { registerStudentSchema } from "@/utils/book/createBookSchemaValidator";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -26,7 +29,9 @@ const RegisterForm: React.FC = () => {
     formState: { errors },
     trigger,
     register,
-  } = useForm<IRegister>();
+  } = useForm<RegisterFormSchemaType>({
+    resolver: zodResolver(registerStudentSchema)
+  });
 
   const onHandleSubmit = (data: IRegister) => {
     try {

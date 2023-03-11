@@ -10,6 +10,8 @@ import * as mut from "../../api/mutations/studentMutation";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginFormSchemaType, loginStudentSchema } from "@/utils/student/studentSchemaValidator";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -23,8 +25,9 @@ const LoginForm: React.FC = () => {
     formState: { errors },
     trigger,
     register,
-  } = useForm<ILogin>();
-
+  } = useForm<LoginFormSchemaType>({
+    resolver: zodResolver(loginStudentSchema)
+  });
   const mutation =  useMutation(mut.loginStudent, {
     onSuccess: (data: ILoginStudentInfo) => {
       Cookies.set("studentData", JSON.stringify(data));

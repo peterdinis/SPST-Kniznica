@@ -14,10 +14,14 @@ export const registerStudentSchema = z
     classRoom: z.string().min(1, "Classroom is required").max(30)
 });
 
-export const loginStudentSchem = z.object({
+export const loginStudentSchema = z.object({
   email: z.string().email("Invalid email").min(1, "Email is required"),
   password: z
     .string()
     .min(1, "Password is required")
     .min(8, "Password must have more than 8 characters"),
 });
+
+
+export type RegisterFormSchemaType = z.infer<typeof registerStudentSchema>;
+export type LoginFormSchemaType = z.infer<typeof loginStudentSchema>;

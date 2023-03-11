@@ -7,4 +7,4 @@ const api = axios.create({
 });
 
 
-export const getExampleData = () => api.get("admin/example").then((res) => res.data);
+export const getAdminExampleData = () => api.get("admin/example").then((res) => res.data);

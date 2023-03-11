@@ -1,3 +1,3 @@
 import { z } from "zod";
 
-export const createBookValidator = z.object({});
+export const createBookSchema = z.object({});

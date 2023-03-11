@@ -1,3 +1,3 @@
 import {z} from "zod";
 
-export const createCategoryValidator = z.object({});
+export const createCategorySchema = z.object({});

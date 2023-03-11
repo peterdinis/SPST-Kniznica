@@ -1,3 +1,3 @@
 import { z } from "zod";
 
-export const createBookingValidator = z.object({});
+export const createBookingSchema = z.object({});

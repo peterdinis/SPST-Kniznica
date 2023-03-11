@@ -192,7 +192,7 @@ const RegisterForm: React.FC = () => {
                 }}
               />
 
-              <button onClick={handleToggle}>{icon}</button>
+              <button onClick={handleToggle}>Zobraz heslo</button>
 
               <p className="text-red-800">
                 {errors.password && errors.password.message}

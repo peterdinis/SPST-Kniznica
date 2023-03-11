@@ -1,5 +1,5 @@
 import Header from "../shared/Header";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -10,6 +10,8 @@ import * as mut from "../../api/mutations/studentMutation";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginFormSchemaType, loginStudentSchema } from "@/utils/student/studentSchemaValidator";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -20,11 +22,12 @@ const LoginForm: React.FC = () => {
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     trigger,
     register,
-  } = useForm<ILogin>();
-
+  } = useForm<LoginFormSchemaType>({
+    resolver: zodResolver(loginStudentSchema)
+  });
   const mutation =  useMutation(mut.loginStudent, {
     onSuccess: (data: ILoginStudentInfo) => {
       Cookies.set("studentData", JSON.stringify(data));
@@ -32,11 +35,12 @@ const LoginForm: React.FC = () => {
     },
 
     onError: (data) => {
-      console.log(data);
+      errorRegister();
+      alert(data);
     }
   })
 
-  const onHandleSubmit = (data: ILogin) => {
+  const onHandleSubmit: SubmitHandler<LoginFormSchemaType> = (data: ILogin) => {
     try {
       notify();
       mutation.mutate(data);
@@ -134,6 +138,7 @@ const LoginForm: React.FC = () => {
               <button
                 className="mt-4 bg-red-700 rounded-lg p-2 text-white"
                 type="submit"
+                disabled={isSubmitting}
               >
                 Prihlásenie
               </button>

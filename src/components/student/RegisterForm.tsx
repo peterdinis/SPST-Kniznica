@@ -1,5 +1,5 @@
 import Header from "../shared/Header";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -10,6 +10,9 @@ import Cookies from "js-cookie";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
+import { RegisterFormSchemaType } from "@/utils/student/studentSchemaValidator";
+import { registerStudentSchema } from "@/utils/book/createBookSchemaValidator";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -23,12 +26,14 @@ const RegisterForm: React.FC = () => {
 
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     trigger,
     register,
-  } = useForm<IRegister>();
+  } = useForm<RegisterFormSchemaType>({
+    resolver: zodResolver(registerStudentSchema)
+  });
 
-  const onHandleSubmit = (data: IRegister) => {
+  const onHandleSubmit: SubmitHandler<RegisterFormSchemaType> = (data: IRegister) => {
     try {
       Cookies.set("studentRegisterData", JSON.stringify(data));
       mutation.mutate(data);
@@ -192,7 +197,7 @@ const RegisterForm: React.FC = () => {
                 }}
               />
 
-              <button onClick={handleToggle}>{icon}</button>
+              <button onClick={handleToggle}>Zobraz heslo</button>
 
               <p className="text-red-800">
                 {errors.password && errors.password.message}
@@ -254,6 +259,7 @@ const RegisterForm: React.FC = () => {
               <button
                 className="mt-4 bg-red-700 rounded-lg p-2 text-white"
                 type="submit"
+                disabled={isSubmitting}
               >
                 Registrácia
               </button>

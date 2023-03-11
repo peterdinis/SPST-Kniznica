@@ -6,13 +6,13 @@ import FallbackRender from "../shared/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import HelperModal from "../shared/HelperModal";
+import HelperModal from "../shared/Modal";
 import * as mut from "../../api/mutations/bookingMutations";
 import { IBooking } from "@/interfaces/IBooking";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import {useState, useEffect} from "react";
-import Cookies from "js-cookie";
+import Cookies from "jSs-cookie";
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
 
 const BookInfo: React.FC = () => {

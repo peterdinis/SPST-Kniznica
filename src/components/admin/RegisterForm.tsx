@@ -5,7 +5,7 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/FallbackRender";
 
 const RegisterForm: React.FC = () => {
-    const {data, isLoading, isError} = useQuery(["adminExample"], api.getExampleData);
+    const {data, isLoading, isError} = useQuery(["adminExample"], api.getAdminExampleData);
     queryClient.setQueryData(["adminExample"], data);
 
     if(isLoading) {

@@ -9,11 +9,13 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import * as mut from "../../api/mutations/bookingMutations";
 import { IBooking } from "@/interfaces/IBooking";
 import { toast } from "react-toastify";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import {useState, useEffect} from "react";
 import Cookies from "js-cookie";
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import HelperModal from "../shared/HelperModal";
+import { createBookingSchema, createBookingType } from "@/utils/booking/createBookingSchemaValidator";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -60,9 +62,11 @@ const BookInfo: React.FC = () => {
     formState: { errors },
     trigger,
     register,
-  } = useForm<IBooking>();
+  } = useForm<createBookingType>({
+    resolver: zodResolver(createBookingSchema)
+  })
 
-  const onHandleSubmit = (data: IBooking) => {
+  const onHandleSubmit: SubmitHandler<createBookingType> = (data: IBooking) => {
     try {
       mutation.mutate(data);
       console.log(data);
@@ -70,7 +74,7 @@ const BookInfo: React.FC = () => {
       errorRegister();
       router.push("/books/all");
     }
-  };
+  }
 
   const [user, setUser] = useState<ILoginStudentInfo |null>(null);
 

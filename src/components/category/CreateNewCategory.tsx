@@ -1,52 +1,48 @@
 import Header from "../shared/Header";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/categoryMutation";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import BaseButton from "../shared/BaseButton";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
+import { createCategoryType, createCategorySchema } from "@/utils/category/createCategorySchemaValidator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ICategory } from "@/interfaces/ICategory";
 
-type FormData = {
-  name: string;
-  description: string;
-};
 
 const notify = () => toast.success("Kategória bola vytvorená");
 const errorRegister = () => toast.error("Kategória nebola vytvorená");
 
-const schema = yup
-  .object({
-    name: yup.string().required(),
-    description: yup.string().required(),
-  })
-  .required();
+
 
 const CreateNewCategory: React.FC = () => {
-  const { register, handleSubmit } = useForm<FormData>({
-    resolver: yupResolver(schema),
+  const { register, handleSubmit } = useForm<createCategoryType>({
+    resolver: zodResolver(createCategorySchema)
   });
 
   /* TODO: Later update this logic */
   const mutation = useMutation(mut.createNewCategory, {
     onSuccess: (data) => {
-        notify()
+      notify()
     },
 
     onError: (data) => {
-        errorRegister();
+      errorRegister();
     }
   });
+
+  const onHandleSubmit: SubmitHandler<createCategoryType> = (data: ICategory) => {
+    mutation.mutate(data);
+    notify();
+  }
 
   return (
     <>
       <Header name="Vytvorenie novej kategórie" />
       <div className="max-w-2xl mx-auto mt-10">
         <form
-          onSubmit={handleSubmit((data: FormData) => {
-            mutation.mutate(data);
-            notify();
-          })}
+          onSubmit={handleSubmit(onHandleSubmit)}
         >
           <div className="relative z-0 mb-6 group">
             <input

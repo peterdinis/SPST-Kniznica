@@ -1,17 +1,39 @@
-import { z } from "zod";
+import {z} from "zod";
 
-export const registerStudentSchema = z
-  .object({
-    username: z.string().min(1, "Username is required").max(100),
-    email: z.string().email("Invalid email").min(1, "Email is required"),
-    password: z
-      .string()
-      .min(1, "Password is required")
-      .min(8, "Password must have more than 8 characters"),
-    confirmPassword: z.string().min(1, "Password confirmation is required"),
-    terms: z.literal(true, {
-      errorMap: () => ({ message: "You must accept the terms and conditions" }),
+export const registerTeacherSchema = z.object({
+    name: z.string({
+        required_error: "Name is required"
     }),
+    lastName: z.string({
+        required_error: "LastName is required"
+    }),
+
+    username: z.string({
+        required_error: "Username is required"
+    }),
+
+    email: z.string({
+        required_error: "Email is required"
+    }),
+
+    password: z.string({
+        required_error: "Password is required"
+    }),
+
+    role: z.string({
+        required_error: "Role is required"
+    })
 });
 
-export const loginStudentSchem = z.object({});
+export const loginTeacherSchema = z.object({
+    email: z.string({
+        required_error: "Email is required"
+    }),
+
+    password: z.string({
+        required_error: "Password is required"
+    }),
+})
+
+export type createLoginTeacherType = z.infer<typeof loginTeacherSchema>;
+export type createRegisterTeacherType = z.infer<typeof registerTeacherSchema>;

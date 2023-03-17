@@ -1,17 +1,32 @@
-import { z } from "zod";
+import {z} from "zod";
 
-export const registerStudentSchema = z
-  .object({
-    username: z.string().min(1, "Username is required").max(100),
-    email: z.string().email("Invalid email").min(1, "Email is required"),
-    password: z
-      .string()
-      .min(1, "Password is required")
-      .min(8, "Password must have more than 8 characters"),
-    confirmPassword: z.string().min(1, "Password confirmation is required"),
-    terms: z.literal(true, {
-      errorMap: () => ({ message: "You must accept the terms and conditions" }),
+export const createBookingSchema = z.object({
+    from: z.string({
+        required_error: "From is required"
     }),
+
+    to: z.string({
+        required_error: "To is required"
+    }),
+
+    username: z.string({
+        required_error: "Username is required"
+    }),
+
+    bookId: z.number({
+        required_error: "Must be integer"
+    })
 });
 
-export const loginStudentSchem = z.object({});
+export const returnBookingSchema = z.object({
+    username: z.string({
+        required_error: "Username is required"
+    }),
+
+    bookId: z.number({
+        required_error: "Must be integer"
+    })
+});
+
+export type createBookingType = z.infer<typeof createBookingSchema>;
+export type returnBookingType = z.infer<typeof returnBookingSchema>;

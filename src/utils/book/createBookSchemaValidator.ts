@@ -1,17 +1,49 @@
 import { z } from "zod";
 
-export const registerStudentSchema = z
-  .object({
-    username: z.string().min(1, "Username is required").max(100),
-    email: z.string().email("Invalid email").min(1, "Email is required"),
-    password: z
-      .string()
-      .min(1, "Password is required")
-      .min(8, "Password must have more than 8 characters"),
-    confirmPassword: z.string().min(1, "Password confirmation is required"),
-    terms: z.literal(true, {
-      errorMap: () => ({ message: "You must accept the terms and conditions" }),
+export const createBookSchema = z.object({
+    name: z.string({
+        required_error: "Name is required"
     }),
-});
 
-export const loginStudentSchem = z.object({});
+    description: z.string({
+        required_error: "Description is required"
+    }),
+
+    image: z.string({
+        required_error: "Image is required"
+    }),
+
+    author: z.string({
+        required_error: "Author is required"
+    }),
+
+    publisher: z.string({
+        required_error: "Publisher is required"
+    }),
+
+    status: z.string({
+        required_error: "Status is required"
+    }),
+
+    quantity: z.number({
+        required_error: "Quantity is required"
+    }),
+
+    pages: z.number({
+        required_error: "Pages is required",
+        invalid_type_error: "Page must be positive number"
+    }),
+
+    year: z.number({
+        invalid_type_error: "Year must be positive number",
+        required_error: "Year is required"
+    }),
+
+    categoryId: z.number({
+        description: "Category ID must be defined"
+    })
+})
+
+export type createBookType = z.infer<typeof createBookSchema>;
+
+export type updateBookType = Partial<createBookType>;

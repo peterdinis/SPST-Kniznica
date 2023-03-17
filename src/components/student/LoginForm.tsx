@@ -11,7 +11,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginFormSchemaType, loginStudentSchema } from "@/utils/student/studentSchemaValidator";
+import { createStudentRegisterType, loginStudentSchema } from "@/utils/student/studentSchemaValidator";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
     formState: { errors, isSubmitting },
     trigger,
     register,
-  } = useForm<LoginFormSchemaType>({
+  } = useForm<createStudentRegisterType>({
     resolver: zodResolver(loginStudentSchema)
   });
   const mutation =  useMutation(mut.loginStudent, {
@@ -40,7 +40,7 @@ const LoginForm: React.FC = () => {
     }
   })
 
-  const onHandleSubmit: SubmitHandler<LoginFormSchemaType> = (data: ILogin) => {
+  const onHandleSubmit: SubmitHandler<createStudentRegisterType> = (data: ILogin) => {
     try {
       notify();
       mutation.mutate(data);

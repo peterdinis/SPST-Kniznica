@@ -23,5 +23,5 @@ export const loginStudentSchema = z.object({
 });
 
 
-export type RegisterFormSchemaType = z.infer<typeof registerStudentSchema>;
-export type LoginFormSchemaType = z.infer<typeof loginStudentSchema>;
+export type createStudentRegisterType = z.infer<typeof registerStudentSchema>;
+export type createStudentLoginType = z.infer<typeof loginStudentSchema>;

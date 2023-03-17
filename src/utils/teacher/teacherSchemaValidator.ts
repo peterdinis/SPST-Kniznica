@@ -34,3 +34,6 @@ export const loginTeacherSchema = z.object({
         required_error: "Password is required"
     }),
 })
+
+export type createLoginTeacherType = z.infer<typeof loginTeacherSchema>;
+export type createRegisterTeacherType = z.infer<typeof registerTeacherSchema>;

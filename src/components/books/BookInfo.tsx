@@ -155,7 +155,7 @@ const BookInfo: React.FC = () => {
                     {user === null || user === undefined ? (
                       <span>
                         <div className="text-xl font-bold mt-4 text-red-800">
-                          Ak si chcete požičať knihu musíte byť prihlásení
+                          Ak si chcete požičať knihu musíte byť prihlásení.
                         </div>
                       </span>
                     ) : (

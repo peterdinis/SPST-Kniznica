@@ -79,13 +79,12 @@ const AllBooks: React.FC = () => {
       <div className="flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4">
         <div className="lg:w-3/5 w-full flex items-center justify-between border-t border-gray-200">
           <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
-            <ArrowBackIcon />
             <button
               onClick={() => setPage((old) => Math.max(old - 1, 0))}
               disabled={page === 0}
               className="text-sm ml-3 font-medium leading-none "
             >
-              Predchazajúca stránka
+              <ArrowBackIcon />
             </button>
           </div>
           <span className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
@@ -101,9 +100,8 @@ const AllBooks: React.FC = () => {
               disabled={isPreviousData || !paginatedData.data.hasNextPage}
               className="text-sm font-medium leading-none mr-3"
             >
-              Nasledujúca stránka
+              <ArrowForwardIcon />
             </button>
-            <ArrowForwardIcon />
           </div>
           {isFetching ? <FallbackLoader /> : null}
         </div>

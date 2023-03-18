@@ -37,7 +37,7 @@ const CategoryInfo: React.FC = () => {
     <>
       <Header name="Detail Kategórie" />
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
-        <div className="border-t mt-4 border-gray-200">
+        <div className="mt-4 border-gray-200">
           <dl>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">

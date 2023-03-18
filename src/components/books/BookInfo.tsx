@@ -14,7 +14,7 @@ import {useState, useEffect} from "react";
 import Cookies from "js-cookie";
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import HelperModal from "../shared/HelperModal";
-import { createBookingSchema, createBookingType } from "@/utils/booking/createBookingSchemaValidator";
+import { createBookingSchema, createBookingType } from "@/utils/booking/createBookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const BookInfo: React.FC = () => {

@@ -2,7 +2,6 @@ import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import Link from "next/link";
 import { IBook } from "@/interfaces/IBook";
-import { AnimatePresence } from "framer-motion";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect, Fragment } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
@@ -75,7 +74,7 @@ const SearchOneBook: React.FC = () => {
         </form>
       </div>
 
-      <AnimatePresence>
+      <>
         {results.data === undefined ? (
           <Fragment />
         ) : (
@@ -114,7 +113,7 @@ const SearchOneBook: React.FC = () => {
             <ScrollToTop />
           </>
         )}
-      </AnimatePresence>
+      </>
     </>
   );
 };

@@ -11,7 +11,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createStudentRegisterType, registerStudentSchema } from "@/utils/student/studentSchemaValidator";
+import { createStudentRegisterType, registerStudentSchema } from "@/utils/student/studentSchema";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();

@@ -36,7 +36,6 @@
     "react-spring": "^9.6.1",
     "react-toastify": "^9.1.1",
     "react-window": "^1.8.8",
-    "typescript": "4.9.5",
     "usehooks-ts": "^2.9.1",
     "zod": "^3.21.4"
   },
@@ -52,6 +51,7 @@
     "jest": "^29.4.2",
     "jest-environment-jsdom": "^29.4.2",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "typescript": "^5.0.2"
   }
 }

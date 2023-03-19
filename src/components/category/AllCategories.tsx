@@ -35,7 +35,7 @@ const AllCategories: React.FC = () => {
       <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {data.length === 0 && (
           <div className="text-center font-bold mt-4">
-            Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
+            Nenašli sa žiadne kategórie <SentimentVeryDissatisfiedIcon />
           </div>
         )}
         {data &&

@@ -42,7 +42,7 @@ const AllBooks: React.FC = () => {
       <div className="grid gap-8 space-x-1 lg:grid-cols-6">
         {paginatedData.data.result.length === 0 && (
           <div className="text-center font-bold mt-4">
-            Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
+            Nenašli sa žiadne knihy <SentimentVeryDissatisfiedIcon />
           </div>
         )}
         {paginatedData.data.result &&

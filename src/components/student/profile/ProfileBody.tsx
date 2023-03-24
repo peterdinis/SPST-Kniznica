@@ -25,6 +25,7 @@ const ProfileBody: React.FC = () => {
     router.push("/student/login");
   };
 
+  const studentUsername = user?.data.user.username;
   return (
     <>
        <div className="w-full md:w-9/12 mx-2 h-64">
@@ -37,14 +38,11 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">r</div>
+                <div className="px-4 py-2">{user?.data.user.email}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola</div>
-                <div className="px-4 py-2">Učiteľ</div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Zmena hesla</div>
+                <div className="px-4 py-2">{user?.data.user.role}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>

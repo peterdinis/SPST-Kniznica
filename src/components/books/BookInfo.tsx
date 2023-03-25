@@ -10,12 +10,16 @@ import * as mut from "../../api/mutations/bookingMutations";
 import { IBooking } from "@/interfaces/IBooking";
 import { toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import HelperModal from "../shared/HelperModal";
-import { createBookingSchema, createBookingType } from "@/utils/booking/createBookingSchema";
+import {
+  createBookingSchema,
+  createBookingType,
+} from "@/utils/booking/createBookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -63,8 +67,8 @@ const BookInfo: React.FC = () => {
     trigger,
     register,
   } = useForm<createBookingType>({
-    resolver: zodResolver(createBookingSchema)
-  })
+    resolver: zodResolver(createBookingSchema),
+  });
 
   const onHandleSubmit: SubmitHandler<createBookingType> = (data: IBooking) => {
     try {
@@ -74,13 +78,13 @@ const BookInfo: React.FC = () => {
       errorRegister();
       router.push("/books/all");
     }
-  }
+  };
 
-  const [user, setUser] = useState<ILoginStudentInfo |null>(null);
+  const [user, setUser] = useState<ILoginStudentInfo | null>(null);
 
   useEffect(() => {
     const currentUser = Cookies.get("studentData");
-    if(currentUser) {
+    if (currentUser) {
       setUser(JSON.parse(currentUser));
     }
   }, []);
@@ -118,7 +122,10 @@ const BookInfo: React.FC = () => {
                 {data.description}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Author</span>: {data.author}
+                <span className="font-bold">Author</span>:
+                <Link className="text-red-600" href={`/authors/${data.authorId}`}>
+                  {data.authorId}
+                </Link>
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold"> Rok</span>: {data.year}
@@ -132,7 +139,9 @@ const BookInfo: React.FC = () => {
 
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Číslo kategórie</span>:{" "}
-                {data.categoryId}
+                <Link className="text-red-600" href={`/category/${data.categoryId}`}>
+                  {data.categoryId}
+                </Link>
               </p>
 
               {data.status !== "Dostupná" && (

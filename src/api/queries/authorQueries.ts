@@ -6,6 +6,18 @@ const api = axios.create({
 
 export const getAuthors = () => api.get("authors").then((res) => res.data);
 
+export const getOneAuthor = (id: string) => {
+  if (!id) {
+    return;
+  }
+
+  return api.get(`authors/${id}`).then((res) => res.data);
+};
+
 export const searchForAuthors = (value: string) => {
   return api.get(`authors/search?q=${value}`);
 };
+
+export const paginateAuthors = (page: number, limit: number) => {
+  return api.get(`authors/paginate?page=${page}&limit=${limit}`)
+}

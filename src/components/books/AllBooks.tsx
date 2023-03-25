@@ -58,7 +58,7 @@ const AllBooks: React.FC = () => {
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-2xl text-gray-800">
+                    <h3 className="break-all text-2xl text-gray-800">
                       {item.name} - {item.author}
                     </h3>
                     <div className="text-center mt-4">

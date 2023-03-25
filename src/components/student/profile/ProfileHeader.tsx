@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
+import AddIcon from '@mui/icons-material/Add';
 
 const ProfileHeader: React.FC = () => {
   const [user, setUser] = useState<ILoginStudentInfo |null>(null);
@@ -20,6 +21,9 @@ const ProfileHeader: React.FC = () => {
             src="https://picsum.photos/200/300"
             alt="IMAGES"
           />
+          <div className="mt-2">
+          <AddIcon /><span className="text-xl">Nová fotka</span>
+          </div>
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
           {user?.data.user.email}

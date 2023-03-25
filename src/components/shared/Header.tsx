@@ -1,11 +1,11 @@
-import styles from "../../styles/Component.module.css";
+import { HelperHeader } from "@/styles/Component.styled";
 
 interface Props {
   name: string;
 }
 
 function Header({ name }: Props) {
-  return <h1 className={styles.header}>{name}</h1>;
+  return <HelperHeader>{name}</HelperHeader>;
 }
 
 export default Header;

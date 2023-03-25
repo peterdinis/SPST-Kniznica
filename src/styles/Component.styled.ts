@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const Header = styled.h1`
+export const HelperHeader = styled.h1`
   text-align: center;
   font-size: 2.5rem;
   margin-top: 2rem;
   color: #333;
 `;
 
-export const BaseButton = styled.button`
+export const BaseButtonStyled = styled.button`
   background-color: #006699;
   color: #eee;
   cursor: pointer;

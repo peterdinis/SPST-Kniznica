@@ -1,5 +1,5 @@
 import { useFn } from "../../hooks/useFn";
-import styles from "../../styles/Component.module.css";
+import { BaseButtonStyled } from "@/styles/Component.styled";
 
 interface IProps {
   name: string;
@@ -8,9 +8,9 @@ interface IProps {
 function BaseButton({ name }: IProps) {
   const fn = useFn();
   return (
-    <button className={styles.baseBtn} onClick={fn}>
+    <BaseButtonStyled onClick={fn}>
       {name}
-    </button>
+    </BaseButtonStyled>
   );
 }
 

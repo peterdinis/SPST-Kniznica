@@ -73,7 +73,7 @@ const ProfileBody: React.FC = () => {
                   {" "}
                   <Link
                     className="font-bod text-red-800"
-                    href="/student/password/new"
+                    href={``}
                   >
                     Moje knihy
                   </Link>

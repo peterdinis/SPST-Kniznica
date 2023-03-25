@@ -4,11 +4,11 @@ import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import AddIcon from '@mui/icons-material/Add';
 
 const ProfileHeader: React.FC = () => {
-  const [user, setUser] = useState<ILoginStudentInfo |null>(null);
+  const [user, setUser] = useState<ILoginStudentInfo | null>(null);
 
   useEffect(() => {
     const currentUser = Cookies.get("studentData");
-    if(currentUser) {
+    if (currentUser) {
       setUser(JSON.parse(currentUser));
     }
   }, []);
@@ -22,7 +22,7 @@ const ProfileHeader: React.FC = () => {
             alt="IMAGES"
           />
           <div className="mt-2">
-          <AddIcon /><span className="text-xl">Nová fotka</span>
+            <AddIcon /><span className="text-xl">Nová fotka</span>
           </div>
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">

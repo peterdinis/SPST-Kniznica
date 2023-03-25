@@ -22,6 +22,7 @@ export interface ILoginStudentInfo {
       name: string;
       createdAt: string;
       classRoom: string;
+      picture?: string | null;
       email: string;
       lastName: string;
       password: string;

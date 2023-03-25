@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
@@ -7,7 +6,6 @@ import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import { useState, useEffect } from "react";
 
 const ProfileBody: React.FC = () => {
-  const router = useRouter();
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
   const [user, setUser] = useState<ILoginStudentInfo |null>(null);
 
@@ -22,7 +20,7 @@ const ProfileBody: React.FC = () => {
     logoutToast();
     Cookies.remove("accessToken");
     Cookies.remove("studentData");
-    router.push("/student/login");
+    window.location.replace("/student/login");
   };
 
   const studentUsername = user?.data.user.username;

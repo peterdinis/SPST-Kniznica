@@ -1,6 +1,5 @@
 import Header from "../shared/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
@@ -14,7 +13,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createStudentRegisterType, loginStudentSchema } from "@/utils/student/studentSchema";
 
 const LoginForm: React.FC = () => {
-  const router = useRouter();
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState<any>(null);
 
@@ -44,7 +42,7 @@ const LoginForm: React.FC = () => {
     try {
       notify();
       mutation.mutate(data);
-      router.push("/student/profile");
+      window.location.replace("/student/profile");
     } catch (err) {
       errorRegister();
       alert(err);

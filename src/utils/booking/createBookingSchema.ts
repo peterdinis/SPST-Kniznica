@@ -2,19 +2,19 @@ import {z} from "zod";
 
 export const createBookingSchema = z.object({
     from: z.string({
-        required_error: "From is required"
+        required_error: "Dátum od je povinný"
     }),
 
     to: z.string({
-        required_error: "To is required"
+        required_error: "Dátum od je povinný"
     }),
 
     username: z.string({
-        required_error: "Username is required"
+        required_error: "Používateľské meno je povinné"
     }),
 
     bookId: z.number({
-        required_error: "Must be integer"
+        required_error: "Číslo knihy musí byť číslo"
     })
 });
 

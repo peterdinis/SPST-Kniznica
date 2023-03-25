@@ -1,7 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+import { createGlobalStyle } from "styled-components";
 
+const GlobalStyle = createGlobalStyle`
 * {
   margin: 0;
   padding: 0;
@@ -23,3 +22,7 @@ html::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar-track {
   background: linear-gradient(90deg, #434343, #434343 1px, #111 0, #111);
 }
+`;
+
+
+export default GlobalStyle;

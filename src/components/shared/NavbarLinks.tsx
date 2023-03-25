@@ -33,10 +33,10 @@ const NavbarLinks: React.FC = () => {
        {user === null || user === undefined ? (
         <>
           <li className="text-black text-xl">
-            <Link href="/student/login">Prihlásenie žiak</Link>
+            <Link href="/student/login">Žiak</Link>
           </li>
           <li className="text-black text-xl">
-            <Link href="/teacher/login">Prihlásenie učiteľ</Link>
+            <Link href="/teacher/login">Učiteľ</Link>
           </li>
         </>
       ) : (

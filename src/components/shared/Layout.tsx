@@ -1,9 +1,9 @@
-import React from "react";
+import {ReactNode} from "react";
 import Seo from "./Seo";
 import Navbar from "./Navbar";
 
 interface ILayoutProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const Layout: React.FC<ILayoutProps> = ({ children }: ILayoutProps) => {

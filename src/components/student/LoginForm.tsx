@@ -9,12 +9,14 @@ import * as mut from "../../api/mutations/studentMutation";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createStudentRegisterType, loginStudentSchema } from "@/utils/student/studentSchema";
 
 const LoginForm: React.FC = () => {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState<any>(null);
+  const router = useRouter();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
@@ -26,29 +28,26 @@ const LoginForm: React.FC = () => {
   } = useForm<createStudentRegisterType>({
     resolver: zodResolver(loginStudentSchema)
   });
-  const mutation =  useMutation(mut.loginStudent, {
+
+  const mutation = useMutation(mut.loginStudent, {
     onSuccess: (data: ILoginStudentInfo) => {
       Cookies.set("studentData", JSON.stringify(data));
       Cookies.set("accessToken", JSON.stringify(data.data.token));
+      notify();
     },
 
-    onError: (data) => {
-      errorRegister();
-      alert("ggogog")
-      alert(data);
-    },
-
-    useErrorBoundary: true
+    onError: (data: any) => {
+        router.push("/notallowed");
+        errorRegister();
+    }
   })
 
   const onHandleSubmit: SubmitHandler<createStudentRegisterType> = (data: ILogin) => {
     try {
-      notify();
       mutation.mutate(data);
       window.location.replace("/student/profile");
     } catch (err) {
       errorRegister();
-      alert("OGOGOG")
       alert(err);
     }
   };

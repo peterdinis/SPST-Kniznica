@@ -1,3 +1,3 @@
-export interface IRegister {}
-
-export interface ILogin {}
+export interface IAdmin {
+    
+}

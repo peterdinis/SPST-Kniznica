@@ -2,7 +2,7 @@ import Header from "../shared/Header";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/authorQueries"
 import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/FallbackRender";
+import FallbackRender from "../shared/ErrorRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { IBook } from "@/interfaces/IBook";

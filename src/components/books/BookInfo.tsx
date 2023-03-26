@@ -2,7 +2,7 @@ import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import FallbackRender from "../shared/FallbackRender";
+import FallbackRender from "../shared/ErrorRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";

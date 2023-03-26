@@ -2,7 +2,7 @@ import DateTimePicker from "../shared/DateTimePicker";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/exampleQuery";
 import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/FallbackRender";
+import FallbackRender from "../shared/ErrorRender";
 
 function Hero() {
   const { isLoading, isError } = useQuery(["example"], api.getExampleData, {

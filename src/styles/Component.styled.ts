@@ -35,3 +35,6 @@ export const OwnerName = styled.h1`
   margin-top: 3rem;
   text-shadow: 2px 2px 2px #eee;
 `;
+
+
+export const FontDiv = styled.div``;

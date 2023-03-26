@@ -34,8 +34,11 @@ const LoginForm: React.FC = () => {
 
     onError: (data) => {
       errorRegister();
+      alert("ggogog")
       alert(data);
-    }
+    },
+
+    useErrorBoundary: true
   })
 
   const onHandleSubmit: SubmitHandler<createStudentRegisterType> = (data: ILogin) => {
@@ -45,6 +48,7 @@ const LoginForm: React.FC = () => {
       window.location.replace("/student/profile");
     } catch (err) {
       errorRegister();
+      alert("OGOGOG")
       alert(err);
     }
   };

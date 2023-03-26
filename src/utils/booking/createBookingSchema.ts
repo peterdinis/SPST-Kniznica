@@ -6,7 +6,7 @@ export const createBookingSchema = z.object({
     }),
 
     to: z.string({
-        required_error: "Dátum od je povinný"
+        required_error: "Dátum do je povinný"
     }),
 
     username: z.string({

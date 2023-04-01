@@ -11,7 +11,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createStudentRegisterType, loginStudentSchema } from "@/utils/student/studentSchema";
+import { createStudentRegisterType, loginStudentSchema } from "@/validators/student/studentSchema";
 
 const LoginForm: React.FC = () => {
   const [type, setType] = useState("password");

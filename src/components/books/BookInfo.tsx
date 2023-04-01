@@ -17,9 +17,10 @@ import HelperModal from "../shared/HelperModal";
 import {
   createBookingSchema,
   createBookingType,
-} from "@/utils/booking/createBookingSchema";
+} from "@/validators/booking/createBookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { IBook } from "@/interfaces/IBook";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -34,6 +35,8 @@ const BookInfo: React.FC = () => {
     }
   );
 
+  console.log(data);
+
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }
@@ -45,6 +48,7 @@ const BookInfo: React.FC = () => {
   const navigateToBooks = () => {
     router.push("/books/all");
   };
+
 
   const notify = () => toast.success("Objednávka bola vytvorená");
   const errorRegister = () => toast.error("Objednávka nebola vytvorená");
@@ -89,16 +93,18 @@ const BookInfo: React.FC = () => {
     }
   }, []);
 
+  console.log(data.book.name as IBook);
+
   return (
     <>
       <Header name="Detail Knihy" />
-      <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
+    {/*   <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            {data.image === null ||
-            data.image === undefined ||
-            !data.image ||
-            data.image === "string" ? (
+            {data.book.image === null ||
+            data.book.image === undefined ||
+            !data.book.image ||
+            data.book.image === "string" ? (
               <LazyLoadImage
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -108,7 +114,7 @@ const BookInfo: React.FC = () => {
               <LazyLoadImage
                 alt="ecommerce"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
-                src={data.image}
+                src={data.book.image}
               />
             )}
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -267,7 +273,7 @@ const BookInfo: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

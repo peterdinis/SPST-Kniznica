@@ -4,7 +4,7 @@ import * as mut from "../../api/mutations/categoryMutation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import BaseButton from "../shared/BaseButton";
 import { toast } from "react-toastify";
-import { createCategoryType, createCategorySchema } from "@/utils/category/createCategorySchema";
+import { createCategoryType, createCategorySchema } from "@/validators/category/createCategorySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ICategory } from "@/interfaces/ICategory";
 

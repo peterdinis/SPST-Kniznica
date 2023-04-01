@@ -1,3 +1,5 @@
+import { IBook } from "@/interfaces/IBook";
+
 export const placeholderBook = [
     {
         name: "Random Name",
@@ -9,4 +11,4 @@ export const placeholderBook = [
         publisher: "Random Publisher",
         image: "Random Image"
     }
-];
+] as IBook[];

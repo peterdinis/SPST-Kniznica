@@ -1,18 +1,16 @@
 import Header from "../shared/Header";
 import { useQuery } from "@tanstack/react-query";
-import * as api from "../../api/queries/authorQueries"
+import * as api from "../../api/queries/authorQueries";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/ErrorRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
-import { IBook } from "@/interfaces/IBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { IAuthor } from "@/interfaces/IAuthor";
-
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -23,11 +21,13 @@ const GetAllAuthors: React.FC = () => {
     isFetching,
     isLoading,
     isPreviousData,
-  } = useQuery(["paginateAuthors", page], () => api.paginateAuthors(page, limit), {
-    keepPreviousData: true,
-  });
-
-  console.log(paginatedData);
+  } = useQuery(
+    ["paginateAuthors", page],
+    () => api.paginateAuthors(page, limit),
+    {
+      keepPreviousData: true,
+    }
+  );
 
   if (isLoading) {
     return <FallbackLoader />;
@@ -35,8 +35,6 @@ const GetAllAuthors: React.FC = () => {
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }
-
-
 
   return (
     <>
@@ -47,7 +45,8 @@ const GetAllAuthors: React.FC = () => {
       <div className="grid gap-8 space-x-1 lg:grid-cols-6">
         {paginatedData.data.result.length === 0 && (
           <div className="text-center font-bold mt-4">
-            Žiadných spisovateľov som nenanšiel <SentimentVeryDissatisfiedIcon />
+            Žiadných spisovateľov som nenanšiel{" "}
+            <SentimentVeryDissatisfiedIcon />
           </div>
         )}
         {paginatedData.data.result &&
@@ -58,16 +57,16 @@ const GetAllAuthors: React.FC = () => {
                   <div className="mb-8">
                     {item.picture === null ? (
                       <LazyLoadImage
-                      alt="Placeholder"
-                      className="h-auto w-full rounded-lg"
-                      src="https://picsum.photos/200/300"
-                    />
-                    ): (
+                        alt="Placeholder"
+                        className="h-auto w-full rounded-lg"
+                        src="https://picsum.photos/200/300"
+                      />
+                    ) : (
                       <LazyLoadImage
-                      alt="Placeholder"
-                      className="h-auto w-full rounded-lg"
-                      src={item.picture}
-                    />
+                        alt="Placeholder"
+                        className="h-auto w-full rounded-lg"
+                        src={item.picture}
+                      />
                     )}
                   </div>
                   <div className="text-center">

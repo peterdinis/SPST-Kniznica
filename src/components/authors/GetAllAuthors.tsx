@@ -11,6 +11,7 @@ import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { IAuthor } from "@/interfaces/IAuthor";
 
 
 const GetAllAuthors: React.FC = () => {
@@ -35,6 +36,8 @@ const GetAllAuthors: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
+
+
   return (
     <>
       <Header name="Všetci spisovatelia" />
@@ -47,22 +50,29 @@ const GetAllAuthors: React.FC = () => {
             Žiadných spisovateľov som nenanšiel <SentimentVeryDissatisfiedIcon />
           </div>
         )}
-        dddd
-       {/*  {paginatedData.data.result &&
-          paginatedData.data.result.map((item: IBook) => {
+        {paginatedData.data.result &&
+          paginatedData.data.result.map((item: IAuthor) => {
             return (
               <>
                 <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                   <div className="mb-8">
-                    <LazyLoadImage
+                    {item.picture === null ? (
+                      <LazyLoadImage
                       alt="Placeholder"
                       className="h-auto w-full rounded-lg"
-                      src={item.image}
+                      src="https://picsum.photos/200/300"
                     />
+                    ): (
+                      <LazyLoadImage
+                      alt="Placeholder"
+                      className="h-auto w-full rounded-lg"
+                      src={item.picture}
+                    />
+                    )}
                   </div>
                   <div className="text-center">
                     <h3 className="break-all text-2xl text-gray-800">
-                      {item.name} - {item.author}
+                      {item.name} - {item.lastName}
                     </h3>
                     <div className="text-center mt-4">
                       <Link
@@ -77,7 +87,7 @@ const GetAllAuthors: React.FC = () => {
                 <ScrollToTop />
               </>
             );
-          })} */}
+          })}
       </div>
       <div className="flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4">
         <div className="lg:w-3/5 w-full flex items-center justify-between border-t border-gray-200">

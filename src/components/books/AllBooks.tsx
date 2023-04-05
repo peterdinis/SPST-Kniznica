@@ -11,12 +11,13 @@ import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import { placeholderBook } from "@/data/placeholderBook";
+import { IPaginatedBooks } from "@/data/placeholderPaginatedBooks";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(0);
   const [limit] = useState(12);
 
+  let initialBooks: IPaginatedBooks | null;
   const {
     data: paginatedData,
     isError,
@@ -25,6 +26,7 @@ const AllBooks: React.FC = () => {
     isPreviousData,
   } = useQuery(["paginateBooks", page], () => api.paginateBooks(page, limit), {
     keepPreviousData: true,
+    initialData: initialBooks,
   });
 
   if (isLoading) {
@@ -33,6 +35,8 @@ const AllBooks: React.FC = () => {
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }
+
+  console.log(paginatedData);
 
   return (
     <>

@@ -76,7 +76,7 @@ const GetAllAuthors: React.FC = () => {
                     <div className="text-center mt-4">
                       <Link
                         className="link mt-10 bg-blue-200 p-2 rounded"
-                        href={`/books/${item.id}`}
+                        href={`/authors/${item.id}`}
                       >
                         Detail
                       </Link>

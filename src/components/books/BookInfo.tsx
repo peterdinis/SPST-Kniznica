@@ -127,7 +127,7 @@ const BookInfo: React.FC = () => {
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Krátke info</span>:{" "}
-                {data.description}
+                {data.book.description}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Author</span>:{" "}
@@ -144,7 +144,7 @@ const BookInfo: React.FC = () => {
               </p>
 
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Číslo kategórie</span>:{" "}
+                <span className="font-bold">Kategória</span>:{" "}
                 {data.category && data.category.name}
               </p>
 
@@ -163,7 +163,7 @@ const BookInfo: React.FC = () => {
                 <div>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                     <span className="font-bold"> Kniha je:</span>{" "}
-                    <span className="text-green-800">{data.status}</span>
+                    <span className="text-green-800">{data.book.status}</span>
                     <br />
                     {user === null || user === undefined ? (
                       <span>

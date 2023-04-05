@@ -19,8 +19,6 @@ import {
   createBookingType,
 } from "@/validators/booking/createBookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { IBook } from "@/interfaces/IBook";
 
 const BookInfo: React.FC = () => {
   const router = useRouter();
@@ -48,7 +46,6 @@ const BookInfo: React.FC = () => {
   const navigateToBooks = () => {
     router.push("/books/all");
   };
-
 
   const notify = () => toast.success("Objednávka bola vytvorená");
   const errorRegister = () => toast.error("Objednávka nebola vytvorená");
@@ -93,20 +90,15 @@ const BookInfo: React.FC = () => {
     }
   }, []);
 
-  console.log(data.book &&data.book.name);
-  console.log(data.category && data.category.name);
-  console.log(data.author && data.author.name);
-
   return (
     <>
       <Header name="Detail Knihy" />
-    <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
+      <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            {data.book  && data.book.image === null ||
-            data.book  &&data.book.image === undefined ||
-            !data.book && data.book.image ||
-            data.book  && data.book.image === "string" ? (
+            {(data.book && data.book.image === null) ||
+            (data.book && data.book.image === undefined) ||
+            (data.book && data.book.image === "string") ? (
               <LazyLoadImage
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -122,7 +114,8 @@ const BookInfo: React.FC = () => {
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <div>
                 <h1 className="text-gray-900 text-4xl title-font font-medium mb-1">
-                  <span className="font-bold">Názov</span>: {data.book && data.book.name}
+                  <span className="font-bold">Názov</span>:{" "}
+                  {data.book && data.book.name}
                 </h1>
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
@@ -134,13 +127,16 @@ const BookInfo: React.FC = () => {
                 {data.author && data.author.name}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold"> Rok</span>: {data.book && data.book.year}
+                <span className="font-bold"> Rok</span>:{" "}
+                {data.book && data.book.year}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold"> Počet Strán</span>: {data.book && data.book.pages}
+                <span className="font-bold"> Počet Strán</span>:{" "}
+                {data.book && data.book.pages}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Počet Kusov</span>: {data.book && data.book.quantity}
+                <span className="font-bold">Počet Kusov</span>:{" "}
+                {data.book && data.book.quantity}
               </p>
 
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">

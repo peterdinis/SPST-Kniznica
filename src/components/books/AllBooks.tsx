@@ -11,6 +11,7 @@ import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { placeholderBook } from "@/data/placeholderBook";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -58,7 +59,7 @@ const AllBooks: React.FC = () => {
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="break-all text-2xl text-gray-800">
+                    <h3 className="text-2xl text-gray-800 break-all">
                       {item.name} - {item.author}
                     </h3>
                     <div className="text-center mt-4">

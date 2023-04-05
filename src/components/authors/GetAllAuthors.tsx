@@ -70,7 +70,7 @@ const GetAllAuthors: React.FC = () => {
                     )}
                   </div>
                   <div className="text-center">
-                    <h3 className="break-all text-2xl text-gray-800">
+                    <h3 className="text-2xl text-gray-800 break-all">
                       {item.name} - {item.lastName}
                     </h3>
                     <div className="text-center mt-4">

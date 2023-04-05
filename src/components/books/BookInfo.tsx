@@ -93,7 +93,7 @@ const BookInfo: React.FC = () => {
     }
   }, []);
 
-  console.log(data.book.name as IBook);
+  console.log(data.book &&data.book.name);
 
   return (
     <>

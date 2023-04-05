@@ -17,7 +17,7 @@ const AllBooks: React.FC = () => {
   const [page, setPage] = useState(0);
   const [limit] = useState(12);
 
-  let initialBooks: IPaginatedBooks | null;
+  let initialBooks: IPaginatedBooks | any;
   const {
     data: paginatedData,
     isError,
@@ -35,8 +35,6 @@ const AllBooks: React.FC = () => {
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }
-
-  console.log(paginatedData);
 
   return (
     <>
@@ -64,7 +62,7 @@ const AllBooks: React.FC = () => {
                   </div>
                   <div className="text-center">
                     <h3 className="text-2xl text-gray-800 break-all">
-                      {item.name} - {item.author}
+                      {item.name}
                     </h3>
                     <div className="text-center mt-4">
                       <Link

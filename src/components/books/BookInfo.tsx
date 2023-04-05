@@ -21,6 +21,14 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const BookInfo: React.FC = () => {
+  const [user, setUser] = useState<ILoginStudentInfo | null>(null);
+
+  useEffect(() => {
+    const currentUser = Cookies.get("studentData");
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
   const router = useRouter();
   const { id } = router.query;
 
@@ -78,17 +86,6 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
-
-  console.log(data.book);
-
-  const [user, setUser] = useState<ILoginStudentInfo | null>(null);
-
-  useEffect(() => {
-    const currentUser = Cookies.get("studentData");
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, []);
 
   return (
     <>
@@ -159,7 +156,9 @@ const BookInfo: React.FC = () => {
                 <div>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                     <span className="font-bold"> Kniha je:</span>{" "}
-                    <span className="text-green-800">{data.book && data.book.status}</span>
+                    <span className="text-green-800">
+                      {data.book && data.book.status}
+                    </span>
                     <br />
                     {user === null || user === undefined ? (
                       <span>

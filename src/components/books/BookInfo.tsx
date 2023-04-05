@@ -94,17 +94,19 @@ const BookInfo: React.FC = () => {
   }, []);
 
   console.log(data.book &&data.book.name);
+  console.log(data.category && data.category.name);
+  console.log(data.author && data.author.name);
 
   return (
     <>
       <Header name="Detail Knihy" />
-    {/*   <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
+    <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            {data.book.image === null ||
-            data.book.image === undefined ||
-            !data.book.image ||
-            data.book.image === "string" ? (
+            {data.book  && data.book.image === null ||
+            data.book  &&data.book.image === undefined ||
+            !data.book && data.book.image ||
+            data.book  && data.book.image === "string" ? (
               <LazyLoadImage
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -114,13 +116,13 @@ const BookInfo: React.FC = () => {
               <LazyLoadImage
                 alt="ecommerce"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
-                src={data.book.image}
+                src={data.book && data.book.image}
               />
             )}
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <div>
                 <h1 className="text-gray-900 text-4xl title-font font-medium mb-1">
-                  <span className="font-bold">Názov</span>: {data.name}
+                  <span className="font-bold">Názov</span>: {data.book && data.book.name}
                 </h1>
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
@@ -128,29 +130,25 @@ const BookInfo: React.FC = () => {
                 {data.description}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Author</span>:
-                <Link className="text-red-600" href={`/authors/${data.authorId}`}>
-                  {data.authorId}
-                </Link>
+                <span className="font-bold">Author</span>:{" "}
+                {data.author && data.author.name}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold"> Rok</span>: {data.year}
+                <span className="font-bold"> Rok</span>: {data.book && data.book.year}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold"> Počet Strán</span>: {data.pages}
+                <span className="font-bold"> Počet Strán</span>: {data.book && data.book.pages}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Počet Kusov</span>: {data.quantity}
+                <span className="font-bold">Počet Kusov</span>: {data.book && data.book.quantity}
               </p>
 
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Číslo kategórie</span>:{" "}
-                <Link className="text-red-600" href={`/category/${data.categoryId}`}>
-                  {data.categoryId}
-                </Link>
+                {data.category && data.category.name}
               </p>
 
-              {data.status !== "Dostupná" && (
+              {data.book.status !== "Dostupná" && (
                 <div>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                     <span className="font-bold"> Kniha je:</span>{" "}
@@ -161,7 +159,7 @@ const BookInfo: React.FC = () => {
               )}
 
               <hr className="mt-6" />
-              {data.status === "Dostupná" && (
+              {data.book.status === "Dostupná" && (
                 <div>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                     <span className="font-bold"> Kniha je:</span>{" "}
@@ -273,7 +271,7 @@ const BookInfo: React.FC = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </>
   );
 };

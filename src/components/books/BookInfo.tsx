@@ -144,7 +144,7 @@ const BookInfo: React.FC = () => {
                 {data.category && data.category.name}
               </p>
 
-              {data.book.status !== "Dostupná" && (
+              {data.book && data.book.status !== "Dostupná" && (
                 <div>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                     <span className="font-bold"> Kniha je:</span>{" "}
@@ -155,11 +155,11 @@ const BookInfo: React.FC = () => {
               )}
 
               <hr className="mt-6" />
-              {data.book.status === "Dostupná" && (
+              {data.book && data.book.status === "Dostupná" && (
                 <div>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                     <span className="font-bold"> Kniha je:</span>{" "}
-                    <span className="text-green-800">{data.book.status}</span>
+                    <span className="text-green-800">{data.book && data.book.status}</span>
                     <br />
                     {user === null || user === undefined ? (
                       <span>

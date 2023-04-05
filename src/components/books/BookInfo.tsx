@@ -33,8 +33,6 @@ const BookInfo: React.FC = () => {
     }
   );
 
-  console.log(data);
-
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }
@@ -81,6 +79,8 @@ const BookInfo: React.FC = () => {
     }
   };
 
+  console.log(data.book);
+
   const [user, setUser] = useState<ILoginStudentInfo | null>(null);
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const BookInfo: React.FC = () => {
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Krátke info</span>:{" "}
-                {data.book.description}
+                {data.book && data.book.description}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Author</span>:{" "}

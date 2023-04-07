@@ -45,7 +45,9 @@ const AllCategories: React.FC = () => {
                 <div className="bg-whiterounded py-5 pl-6 flex items-start shadow">
                   <div className="pl-3 pr-10 mt-1">
                     <h3 className="font-normal leading-4 text-red-800 text-2xl break-all">
-                      <Link id="categoryName" href={`/category/${item.id}`}>{item.name}</Link>
+                      <Link id="categoryName" href={`/category/${item.id}`}>
+                        {item.name}
+                      </Link>
                     </h3>
                     <h3 className="mt-4 leading-4 text-gray-800 text-lg break-all">
                       <Link href={`/category/detail/${item.id}`}>

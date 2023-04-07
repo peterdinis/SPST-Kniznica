@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
+import Image from "next/image";
+import AvatarImage from "../../../images/avatar.jpg";
 
 const ProfileHeader: React.FC = () => {
   const [user, setUser] = useState<ILoginTeacherInfo | null>(null);
@@ -15,10 +17,12 @@ const ProfileHeader: React.FC = () => {
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
         <div className="image overflow-hidden">
-          <img
-            className="h-auto rounded-2xl w-full mx-auto"
-            src="https://picsum.photos/200/300"
+        <Image 
+            className="h-auto w-full rounded-2xl mx-auto"
+            src={AvatarImage}
             alt="IMAGES"
+            width={700}
+            height={700}
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">

@@ -18,7 +18,7 @@ const MyBooks: React.FC = () => {
       setUser(JSON.parse(currentUser));
     }
   }, []);
-  const studentUsername = user!.data.user.username;
+  const studentUsername = user?.data.user.username;
 
   const { data, isError, isLoading } = useQuery(
     ["studentBorrowedBooks", studentUsername],

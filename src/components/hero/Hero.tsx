@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/exampleQuery";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/ErrorRender";
+import HeroImage from "../../images/heroImage.png";
+import Image from "next/image";
 
 function Hero() {
   const { isLoading, isError } = useQuery(["example"], api.getExampleData, {
@@ -20,10 +22,12 @@ function Hero() {
     <>
       <div className="pt-32 lg:flex items-center relative z-10 container mx-auto">
         <div className="w-full lg:w-1/2 h-full lg:pr-10 xl:pr-0">
-          <img
-            className="mx-auto"
-            src="https://w7.pngwing.com/pngs/1002/691/png-transparent-green-b-trimble-technical-high-school-technical-school-national-secondary-school-technology-sci-tech-information-banner-high-school-teacher.png"
-            alt="people smiling"
+          <Image
+           className="mx-auto" 
+           src={HeroImage}
+           alt="Hero Image"
+           width={700}
+           height={700}
           />
         </div>
         <div role="contentinfo" className="w-full lg:w-1/2 h-full">

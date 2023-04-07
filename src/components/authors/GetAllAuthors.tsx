@@ -27,9 +27,11 @@ const GetAllAuthors: React.FC = () => {
     () => api.paginateAuthors(page, limit),
     {
       keepPreviousData: true,
-      initialData: placeholderAuthor as any
+      // initialData: placeholderAuthor as any
     }
   );
+
+  console.log(paginatedData?.data.result);
 
   if (isLoading) {
     return <FallbackLoader />;
@@ -45,14 +47,14 @@ const GetAllAuthors: React.FC = () => {
         <Link href="/authors/search">Hľadať konkretného spisovateľa</Link>
       </div>
       <div className="grid gap-8 space-x-1 lg:grid-cols-6">
-        {paginatedData.data.result.length === 0 && (
+        {paginatedData?.data.result.length === 0 && (
           <div className="text-center font-bold mt-4">
             Žiadných spisovateľov som nenanšiel{" "}
             <SentimentVeryDissatisfiedIcon />
           </div>
         )}
-        {paginatedData.data.result &&
-          paginatedData.data.result.map((item: IAuthor) => {
+        {paginatedData?.data.result &&
+          paginatedData?.data.result.map((item: IAuthor) => {
             return (
               <>
                 <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
@@ -107,11 +109,11 @@ const GetAllAuthors: React.FC = () => {
           <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
             <button
               onClick={() => {
-                if (!isPreviousData && paginatedData.data.hasNextPage) {
+                if (!isPreviousData && paginatedData?.data.hasNextPage) {
                   setPage((old) => old + 1);
                 }
               }}
-              disabled={isPreviousData || !paginatedData.data.hasNextPage}
+              disabled={isPreviousData || !paginatedData?.data.hasNextPage}
               className="text-sm font-medium leading-none mr-3"
             >
               <ArrowForwardIcon />

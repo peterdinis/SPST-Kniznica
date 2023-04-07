@@ -2,7 +2,6 @@ import Header from "../shared/Header";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/categoryMutation";
 import { SubmitHandler, useForm } from "react-hook-form";
-import BaseButton from "../shared/BaseButton";
 import { toast } from "react-toastify";
 import { createCategoryType, createCategorySchema } from "@/validators/category/createCategorySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -72,7 +71,9 @@ const CreateNewCategory: React.FC = () => {
               Popis kategórie
             </label>
           </div>
-          <BaseButton name="Vytvor novú kategóriu" />
+          <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+            Vytvor novú kategóriu
+          </button>
         </form>
       </div>
     </>

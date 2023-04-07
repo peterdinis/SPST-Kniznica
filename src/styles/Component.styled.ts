@@ -7,18 +7,6 @@ export const HelperHeader = styled.h1`
   color: #333;
 `;
 
-export const BaseButtonStyled = styled.button`
-  background-color: #006699;
-  color: #eee;
-  cursor: pointer;
-  padding: 3px;
-  font-size: 1.4rem;
-  border-radius: 10px;
-  outline: none;
-  margin-top: 2rem;
-  text-shadow: 2px 2px 2px #333;
-`;
-
 export const HelperText = styled.p`
   white-space: pre-line;
   font-size: 1.6rem;

@@ -6,16 +6,11 @@ import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createStudentRegisterType, loginStudentSchema } from "@/validators/student/studentSchema";
 
 const LoginForm: React.FC = () => {
-  const [type, setType] = useState("password");
-  const [icon, setIcon] = useState<any>(null);
   const router = useRouter();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
@@ -49,16 +44,6 @@ const LoginForm: React.FC = () => {
     } catch (err) {
       errorRegister();
       alert(err);
-    }
-  };
-
-  const handleToggle = () => {
-    if (type === "password") {
-      setIcon(<VisibilityIcon />);
-      setType("text");
-    } else {
-      setIcon(<VisibilityOffIcon />);
-      setType("password");
     }
   };
 
@@ -109,7 +94,7 @@ const LoginForm: React.FC = () => {
               <input
                 className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
                 id="Heslo"
-                type={type}
+                type="password"
                 autoFocus
                 autoComplete="current-password"
                 placeholder="********************************************"
@@ -128,8 +113,6 @@ const LoginForm: React.FC = () => {
                   trigger("password");
                 }}
               />
-
-              <button onClick={handleToggle}>{icon}</button>
 
               <p className="text-red-800">
                 {errors.password && errors.password.message}

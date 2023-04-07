@@ -8,6 +8,10 @@ const Seo: React.FC = () => {
         rel="icon"
         href="https://www.spsbj.sk/wp-content/uploads/white-e1613722421883.png"
       />
+      <meta charSet="utf-8" />
+      <meta name="description" content="SPŠT Knižnica" />
+      <meta name="author" content="Peter Dinis" />
+      <meta name="keywords" content="SPŠT Knižnica, knižnica, kniznica, spst, spšt" />
     </Head>
   );
 };

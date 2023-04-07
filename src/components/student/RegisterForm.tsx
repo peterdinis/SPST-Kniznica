@@ -7,16 +7,11 @@ import { IRegister } from "@/interfaces/IStudent";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutation";
 import Cookies from "js-cookie";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createStudentRegisterType, registerStudentSchema } from "@/validators/student/studentSchema";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
-  const [type, setType] = useState("password");
-  const [icon, setIcon] = useState<any>(null);
 
   const notify = () => toast.success("Registrácia bola úspešná");
   const errorRegister = () => toast.error("Registrácia nebola úspešná");
@@ -41,16 +36,6 @@ const RegisterForm: React.FC = () => {
     } catch (err) {
       errorRegister();
       alert(err);
-    }
-  };
-
-  const handleToggle = () => {
-    if (type === "password") {
-      setIcon(<VisibilityIcon />);
-      setType("text");
-    } else {
-      setIcon(<VisibilityOffIcon />);
-      setType("password");
     }
   };
 
@@ -176,7 +161,7 @@ const RegisterForm: React.FC = () => {
               <input
                 className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
                 id="Heslo"
-                type={type}
+                type="password"
                 autoFocus
                 autoComplete="current-password"
                 placeholder="********************************************"
@@ -195,8 +180,6 @@ const RegisterForm: React.FC = () => {
                   trigger("password");
                 }}
               />
-
-              <button onClick={handleToggle}>Zobraz heslo</button>
 
               <p className="text-red-800">
                 {errors.password && errors.password.message}

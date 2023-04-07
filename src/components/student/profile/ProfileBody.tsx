@@ -65,20 +65,6 @@ const ProfileBody: React.FC = () => {
                   </button>
                 </div>
               </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
-                  Moje požičané knihy
-                </div>
-                <div className="px-4 py-2">
-                  {" "}
-                  <Link
-                    className="font-bod text-red-800"
-                    href={`/booking/student/${studentUsername}`}
-                  >
-                    Moje knihy
-                  </Link>
-                </div>
-              </div>
             </div>
           </div>
         </div>

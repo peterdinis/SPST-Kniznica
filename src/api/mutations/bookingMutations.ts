@@ -1,4 +1,4 @@
-import { IBooking } from "@/interfaces/IBooking";
+import { ICreateBooking } from "@/interfaces/IBooking";
 import axios from "axios";
 
 const baseEnv =
@@ -10,7 +10,7 @@ const api = axios.create({
   baseURL: baseEnv,
 });
 
-export const createNewBooking = (data: IBooking) => {
+export const createNewBooking = (data: ICreateBooking) => {
   return api.post("booking", data);
 };
 

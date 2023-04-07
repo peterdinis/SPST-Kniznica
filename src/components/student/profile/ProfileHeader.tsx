@@ -33,7 +33,6 @@ const ProfileHeader: React.FC = () => {
           {user?.data.user.email}
         </h1>
       </div>
-      <div className="my-4"></div>
     </div>
   );
 };

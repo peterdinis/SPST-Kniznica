@@ -194,19 +194,19 @@ const BookInfo: React.FC = () => {
                           </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                            Meno Knihy
+                            Číslo knihy
                           </label>
                           <input
-                            type="text"
+                            type="number"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                            {...register("bookName")}
+                            {...register("bookId", { valueAsNumber: true })}
                             onKeyUp={() => {
-                              trigger("bookName");
+                              trigger("bookId");
                             }}
                           />
 
                           <p className="text-red-800">
-                            {errors.bookName && errors.bookName.message}
+                            {errors.bookId && errors.bookId.message}
                           </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">

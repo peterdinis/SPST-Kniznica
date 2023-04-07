@@ -102,11 +102,11 @@ const LoginForm: React.FC = () => {
                   required: "Zadajte heslo",
                   minLength: {
                     value: 8,
-                    message: "Heslo musí mať viac znakov ako je 8",
+                    message: "Heslo nemá požadovaných 8 znakov",
                   },
                   maxLength: {
                     value: 20,
-                    message: "Heslo môže mať najviac 20 znakov",
+                    message: "Heslo má viac ako 20 znakov",
                   },
                 })}
                 onKeyUp={() => {

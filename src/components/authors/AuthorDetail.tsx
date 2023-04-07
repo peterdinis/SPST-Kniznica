@@ -9,7 +9,6 @@ const AuthorDetail: React.FC = () => {
     return (
         <>
             <Header name="Detail o spisovateľovi" />
-            {id}
         </>
     )
 }

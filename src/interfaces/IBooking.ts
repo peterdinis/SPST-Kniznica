@@ -1,7 +1,7 @@
 export interface ICreateBooking {
   id?: number;
-  from: string | Date;
-  to: string | Date;
+  from: any;
+  to: any;
   username: string;
   bookId: number;
 }
@@ -9,3 +9,5 @@ export interface ICreateBooking {
 export interface IReturnBooking{
   
 }
+
+export interface IBooking extends ICreateBooking {}

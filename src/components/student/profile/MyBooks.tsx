@@ -6,6 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import * as api from "../../../api/queries/studentQueries";
 import FallbackRender from "@/components/shared/ErrorRender";
 import FallbackLoader from "@/components/shared/FallbackLoader";
+import { IBooking } from "@/interfaces/IBooking";
+import ReturnModal from "@/components/shared/ReturnModal";
 
 const MyBooks: React.FC = () => {
   const [user, setUser] = useState<ILoginStudentInfo | null>(null);
@@ -39,45 +41,32 @@ const MyBooks: React.FC = () => {
             <PersonIcon />
             <span className="tracking-wide">Moje požičané knihy</span>
           </div>
-          <div className="py-3 text-sm">
-            <div className="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
-              <span className="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
-              <div className="flex-grow font-medium px-2">Tighten Co.</div>
-              <div className="text-sm font-normal text-gray-500 tracking-wide">
-                Team
-              </div>
-            </div>
-            <div className="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
-              <span className="bg-green-400 h-2 w-2 m-2 rounded-full"></span>
-              <div className="flex-grow font-medium px-2">Taylor Otwell</div>
-              <div className="text-sm font-normal text-gray-500 tracking-wide">
-                Member
-              </div>
-            </div>
-            <div className="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
-              <span className="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
-              <div className="flex-grow font-medium px-2">Adam Wathan</div>
-              <div className="text-sm font-normal text-gray-500 tracking-wide">
-                Member
-              </div>
-            </div>
-            <div className="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
-              <span className="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
-              <div className="flex-grow font-medium px-2">
-                Duke Street Studio Inc.
-              </div>
-              <div className="text-sm font-normal text-gray-500 tracking-wide">
-                Team
-              </div>
-            </div>
-            <div className="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
-              <span className="bg-green-400 h-2 w-2 m-2 rounded-full"></span>
-              <div className="flex-grow font-medium px-2">Jeffrey Wey</div>
-              <div className="text-sm font-normal text-gray-500 tracking-wide">
-                Member
-              </div>
-            </div>
-          </div>
+          {data &&
+            data.map((item: IBooking) => {
+              return (
+                <>
+                  <div className="py-3 text-sm">
+                    <div className="flex justify-start cursor-pointer text-gray-700 hover:text-blue-400 hover:bg-blue-100 rounded-md px-2 py-2 my-2">
+                      <span className="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
+                      <div className="flex-grow font-medium px-2">
+                       {item.bookId}
+                      </div>
+                      <div className="text-sm font-normal text-gray-500 tracking-wide">
+                        {item.from}
+                      </div>
+                      <div className="text-sm ml-10 font-normal text-gray-500 tracking-wide">
+                        {item.to}
+                      </div>
+                      <div className="text-sm ml-10 font-normal text-gray-500 tracking-wide">
+                        <ReturnModal btnName={"Vrátiť knihu"} modalHeader={"Vrátenie knihy"}>
+                          I am children
+                        </ReturnModal>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
         </div>
       </div>
     </>

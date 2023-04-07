@@ -4,6 +4,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import { useState, useEffect } from "react";
+import MyBooks from "./MyBooks";
 
 const ProfileBody: React.FC = () => {
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
@@ -68,6 +69,7 @@ const ProfileBody: React.FC = () => {
             </div>
           </div>
         </div>
+        <MyBooks />
       </div>
     </>
   );

@@ -7,7 +7,7 @@ import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import * as mut from "../../api/mutations/bookingMutations";
-import { IBooking } from "@/interfaces/IBooking";
+import { ICreateBooking } from "@/interfaces/IBooking";
 import { toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState, useEffect } from "react";
@@ -77,7 +77,7 @@ const BookInfo: React.FC = () => {
     resolver: zodResolver(createBookingSchema),
   });
 
-  const onHandleSubmit: SubmitHandler<createBookingType> = (data: IBooking) => {
+  const onHandleSubmit: SubmitHandler<createBookingType> = (data: ICreateBooking) => {
     try {
       mutation.mutate(data);
       console.log(data);

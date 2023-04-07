@@ -80,7 +80,6 @@ const BookInfo: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createBookingType> = (data: ICreateBooking) => {
     try {
       mutation.mutate(data);
-      console.log(data);
     } catch (err) {
       errorRegister();
       router.push("/books/all");
@@ -200,14 +199,14 @@ const BookInfo: React.FC = () => {
                           <input
                             type="number"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                            {...register("bookId", {valueAsNumber: true})}
+                            {...register("bookName")}
                             onKeyUp={() => {
-                              trigger("bookId");
+                              trigger("bookName");
                             }}
                           />
 
                           <p className="text-red-800">
-                            {errors.bookId && errors.bookId.message}
+                            {errors.bookName && errors.bookName.message}
                           </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">

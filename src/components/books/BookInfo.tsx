@@ -13,7 +13,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
-import HelperModal from "../shared/HelperModal";
+import HelperModal from "../shared/modals/HelperModal";
 import {
   createBookingSchema,
   createBookingType,

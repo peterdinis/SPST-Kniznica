@@ -1,4 +1,4 @@
-import AuthIssueComponent from "@/components/shared/AuthIssueComponent";
+import AuthIssueComponent from "@/components/shared/errors/AuthIssueComponent";
 import { NextPage } from "next"
 
 const AuthIssue: NextPage = () => {

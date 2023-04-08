@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useSpring, animated } from "@react-spring/web";
 import { FadeProps, IModalProps } from "@/interfaces/IModal";
-import { style } from "../../styles/sharedStyle";
+import { style } from "../../../styles/sharedStyle";
 
 const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   props,

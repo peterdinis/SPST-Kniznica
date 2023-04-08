@@ -1,4 +1,4 @@
-import NotFoundComponent from "@/components/shared/NotFoundComponent";
+import NotFoundComponent from "@/components/shared/errors/NotFoundComponent";
 import { NextPage } from "next";
 
 const ErrorPage: NextPage = () => {

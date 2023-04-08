@@ -60,7 +60,6 @@ const ReturnModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) 
         <Fade in={open}>
           <Box sx={style}>
             <h2 className="text-center font-bold text-2xl">{modalHeader}</h2>
-            <hr />
             {children}
           </Box>
         </Fade>

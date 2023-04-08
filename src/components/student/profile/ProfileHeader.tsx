@@ -4,6 +4,7 @@ import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import AddIcon from '@mui/icons-material/Add';
 import Image from "next/image";
 import AvatarImage from "../../../images/avatar.jpg";
+import ReturnModal from "@/components/shared/modals/ReturnModal";
 
 const ProfileHeader: React.FC = () => {
   const [user, setUser] = useState<ILoginStudentInfo | null>(null);
@@ -26,7 +27,11 @@ const ProfileHeader: React.FC = () => {
             height={700}
           />
           <div className="mt-2">
-            <AddIcon /><span className="text-xl">Nová fotka</span>
+            <AddIcon /><span className="text-xl">
+              <ReturnModal btnName={"Nová fotka"} modalHeader={"Nahranie novej fotky"}>
+                I am children
+              </ReturnModal>
+            </span>
           </div>
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">

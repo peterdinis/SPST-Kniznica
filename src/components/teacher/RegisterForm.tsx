@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { IRegister } from "@/interfaces/ITeacher";
 import { useMutation } from "@tanstack/react-query";
-import * as mut from "../../api/mutations/teacherMutation";
+import * as mut from "../../api/mutations/teacherMutations";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();

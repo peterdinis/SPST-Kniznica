@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { IRegister } from "@/interfaces/IStudent";
 import { useMutation } from "@tanstack/react-query";
-import * as mut from "../../api/mutations/studentMutation";
+import * as mut from "../../api/mutations/studentMutations";
 import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createStudentRegisterType, registerStudentSchema } from "@/validators/student/studentSchema";

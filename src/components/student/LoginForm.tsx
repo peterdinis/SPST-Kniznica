@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
-import * as mut from "../../api/mutations/studentMutation";
+import * as mut from "../../api/mutations/studentMutations";
 import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createStudentRegisterType, loginStudentSchema } from "@/validators/student/studentSchema";

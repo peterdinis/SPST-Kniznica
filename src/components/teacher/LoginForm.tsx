@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import {useMutation} from "@tanstack/react-query";
-import * as mut from "../../api/mutations/teacherMutation";
+import * as mut from "../../api/mutations/teacherMutations";
 import { ILogin, ILoginTeacherInfo } from "@/interfaces/ITeacher";
 
 const LoginForm: React.FC = () => {

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import {
   createCategoryType,
   createCategorySchema,
-} from "@/validators/category/createCategorySchema";
+} from "@/validators/category/categorySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ICategory } from "@/interfaces/ICategory";
 

@@ -17,7 +17,7 @@ import HelperModal from "../shared/modals/HelperModal";
 import {
   createBookingSchema,
   createBookingType,
-} from "@/validators/booking/createBookingSchema";
+} from "@/validators/booking/bookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const BookInfo: React.FC = () => {

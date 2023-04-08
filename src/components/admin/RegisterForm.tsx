@@ -3,6 +3,7 @@ import * as api from "../../api/queries/adminQueries"
 import { queryClient } from "@/api/queryClient";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/ErrorRender";
+import Header from "../shared/Header";
 
 const RegisterForm: React.FC = () => {
     const {data, isLoading, isError} = useQuery(["adminExample"], api.getAdminExampleData);
@@ -18,7 +19,7 @@ const RegisterForm: React.FC = () => {
 
     return (
         <>
-        ffff
+            <Header name="Registrácia Admin" />
         </>
     )
 }

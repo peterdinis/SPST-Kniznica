@@ -5,7 +5,6 @@ export interface IRegister {
   email: string;
   password: string;
   role: string;
-  classRoom: string;
 }
 
 export interface ILogin {
@@ -14,7 +13,7 @@ export interface ILogin {
 }
 
 
-export interface ILoginTeacherInfo {
+/* export interface ILoginTeacherInfo {
   data: {
     token: string;
     user: {
@@ -30,4 +29,4 @@ export interface ILoginTeacherInfo {
       username: string;
     }
   }
-}
+} */

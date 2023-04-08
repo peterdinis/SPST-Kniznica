@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import { IRegister } from "@/interfaces/ITeacher";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/teacherMutations";
+import Cookies from "js-cookie";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createRegisterTeacherType, registerTeacherSchema } from "@/validators/teacher/teacherSchema";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -17,10 +20,12 @@ const RegisterForm: React.FC = () => {
     formState: { errors },
     trigger,
     register,
-  } = useForm<IRegister>();
+  } = useForm<createRegisterTeacherType>({
+    resolver: zodResolver(registerTeacherSchema)
+  });
 
   const mutation = useMutation(mut.register);
-  const onHandleSubmit = (data: IRegister) => {
+  const onHandleSubmit = (data: any) => {
     try {
       mutation.mutate(data);
       notify();

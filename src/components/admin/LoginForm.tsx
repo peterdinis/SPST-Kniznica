@@ -1,7 +1,9 @@
+import Header from "../shared/Header";
+
 const LoginForm: React.FC = () => {
     return (
         <>
-        ffff
+         <Header name="Prihlásenie Admin" />
         </>
     )
 }

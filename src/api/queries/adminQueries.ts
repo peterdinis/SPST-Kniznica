@@ -6,5 +6,6 @@ const api = axios.create({
   baseURL: baseEnv
 });
 
-
 export const getAdminExampleData = () => api.get("admin/example").then((res) => res.data);
+
+export const getAdminMessages = () => api.get("admin/messages").then((res) => res.data);

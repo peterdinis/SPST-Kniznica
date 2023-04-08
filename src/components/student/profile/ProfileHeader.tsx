@@ -69,7 +69,8 @@ const ProfileHeader: React.FC = () => {
           <div className="mt-2">
             <AddIcon />
             <span className="text-xl">
-              <ReturnModal
+              Nová fotka
+            {/*   <ReturnModal
                 btnName={"Nová fotka"}
                 modalHeader={"Nahranie novej fotky"}
               >
@@ -92,7 +93,7 @@ const ProfileHeader: React.FC = () => {
                     </label>
                   </div>
                 </form>
-              </ReturnModal>
+              </ReturnModal> */}
             </span>
           </div>
         </div>

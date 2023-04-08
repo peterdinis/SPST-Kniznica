@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 import Seo from "./Seo";
-import Navbar from "./Navbar";
+import Navbar from "./navbar/Navbar";
 
 interface ILayoutProps {
   children?: ReactNode;

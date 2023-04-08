@@ -7,7 +7,8 @@ export interface ICreateBooking {
 }
 
 export interface IReturnBooking{
-  
+  bookId: number;
+  username: string;
 }
 
 export interface IBooking extends ICreateBooking {}

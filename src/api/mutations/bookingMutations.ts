@@ -1,4 +1,4 @@
-import { ICreateBooking } from "@/interfaces/IBooking";
+import { ICreateBooking, IReturnBooking } from "@/interfaces/IBooking";
 import axios from "axios";
 
 const baseEnv =
@@ -14,6 +14,7 @@ export const createNewBooking = (data: ICreateBooking) => {
   return api.post("booking", data);
 };
 
-export const returnBooking = () => {
-  return;
+// TODO: Type fix later
+export const returnBooking = (data: any) => {
+  return api.delete("me/booking/return", data);
 };

@@ -1,3 +1,5 @@
+import { IBook } from "./IBook";
+
 export interface IAuthor {
     id?: number | string;
     name: string;
@@ -8,4 +10,5 @@ export interface IAuthor {
     country: string;
     description: string;
     litPeriod: string;
+    books?: Array<IBook[]>;
 };

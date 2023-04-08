@@ -18,7 +18,7 @@ const ProfileBody: React.FC = () => {
 
   const logoutFromApp = () => {
     logoutToast();
-    Cookies.remove("accessToken");
+    Cookies.remove("studentAccessToken");
     Cookies.remove("studentData");
     window.location.replace("/student/login");
   };

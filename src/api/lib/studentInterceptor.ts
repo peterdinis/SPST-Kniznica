@@ -10,7 +10,7 @@ const authApi = axios.create({
 });
 
 authApi.interceptors.request.use((config: any) => {
-  const token = Cookies.get("accessToken") as unknown as string;
+  const token = Cookies.get("studentAccessToken") as unknown as string;
   config.headers = {
     Authorization: `Bearer ${token}`,
   };

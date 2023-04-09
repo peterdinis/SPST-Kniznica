@@ -1,11 +1,5 @@
-import axios from "axios";
+import adminApi from "../tokens/adminInterceptor";
 
-const baseEnv = process.env.NODE_ENV !== "production" ? process.env.NEXT_PUBLIC_BACKEND_URL as string : process.env.NEXT_PUBLIC_PRODUCTION_URL as string
+export const getAdminExampleData = () => adminApi.get("admin/example").then((res) => res.data);
 
-const api = axios.create({
-  baseURL: baseEnv
-});
-
-export const getAdminExampleData = () => api.get("admin/example").then((res) => res.data);
-
-export const getAdminMessages = () => api.get("admin/messages").then((res) => res.data);
+export const getAdminMessages = () => adminApi.get("admin/messages").then((res) => res.data);

@@ -1,6 +1,3 @@
-import Cookies from "js-cookie";
-import { ILoginStudentInfo } from "@/interfaces/IStudent";
-import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../../api/queries/studentQueries";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
@@ -9,17 +6,11 @@ import { IBooking } from "@/interfaces/IBooking";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import Link from "next/link";
 import ReturnBookModal from "./ReturnBookModal";
+import useStudent from "@/hooks/useStudent";
 
 const MyBooks: React.FC = () => {
-  const [user, setUser] = useState<ILoginStudentInfo | null>(null);
-
-  useEffect(() => {
-    const currentUser = Cookies.get("studentData");
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, []);
-  const studentUsername = user?.data.user.username;
+  const {student} = useStudent();
+  const studentUsername = student?.data.user.username;
 
   const { data, isError, isLoading } = useQuery(
     ["studentBorrowedBooks", studentUsername],

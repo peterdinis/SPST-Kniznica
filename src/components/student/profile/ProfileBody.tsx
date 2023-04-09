@@ -1,20 +1,12 @@
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
-import { ILoginStudentInfo } from "@/interfaces/IStudent";
-import { useState, useEffect } from "react";
 import MyBooks from "./MyBooks";
+import useStudent from "@/hooks/useStudent";
 
 const ProfileBody: React.FC = () => {
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
-  const [user, setUser] = useState<ILoginStudentInfo | null>(null);
-
-  useEffect(() => {
-    const currentUser = Cookies.get("studentData");
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, []);
+  const {student} = useStudent();
 
   const logoutFromApp = () => {
     logoutToast();
@@ -36,25 +28,25 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Meno</div>
-                <div className="px-4 py-2">{user?.data.user.name}</div>
+                <div className="px-4 py-2">{student?.data.user.name}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Priezvisko</div>
-                <div className="px-4 py-2">{user?.data.user.lastName}</div>
+                <div className="px-4 py-2">{student?.data.user.lastName}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">
                   Používateľské meno
                 </div>
-                <div className="px-4 py-2">{user?.data.user.username}</div>
+                <div className="px-4 py-2">{student?.data.user.username}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">{user?.data.user.email}</div>
+                <div className="px-4 py-2">{student?.data.user.email}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola</div>
-                <div className="px-4 py-2">{user?.data.user.role}</div>
+                <div className="px-4 py-2">{student?.data.user.role}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>

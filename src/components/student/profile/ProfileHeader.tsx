@@ -1,24 +1,15 @@
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import { ILoginStudentInfo } from "@/interfaces/IStudent";
+import { useState} from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Image from "next/image";
 import AvatarImage from "../../../images/avatar.jpg";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 import axios from "axios";
+import useStudent from "@/hooks/useStudent";
 
 const ProfileHeader: React.FC = () => {
-  const [user, setUser] = useState<ILoginStudentInfo | null>(null);
   const [file, setFile] = useState<File | null>(null);
-
-  const studentUsername = user?.data.user.username;
-
-  useEffect(() => {
-    const currentUser = Cookies.get("studentData");
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, []);
+  const {student} = useStudent();
+  const studentUsername = student?.data.user.username;
 
   // TODO: FIxing this later
 
@@ -111,7 +102,7 @@ const ProfileHeader: React.FC = () => {
           </div>
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-          {user?.data.user.email}
+          {student?.data.user.email}
         </h1>
       </div>
     </div>

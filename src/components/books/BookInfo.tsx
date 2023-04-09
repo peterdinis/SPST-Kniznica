@@ -17,9 +17,11 @@ import {
 } from "@/validators/booking/bookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useStudent from "@/hooks/useStudent";
+import useTeacher from "@/hooks/useTeacher";
 
 const BookInfo: React.FC = () => {
   const {student} = useStudent();
+  const {teacher} = useTeacher();
   const router = useRouter();
   const { id } = router.query;
 
@@ -150,7 +152,7 @@ const BookInfo: React.FC = () => {
                       {data.book && data.book.status}
                     </span>
                     <br />
-                    {student === null || student === undefined ? (
+                    {student === null || student === undefined || teacher === null || teacher === undefined? (
                       <span>
                         <div className="text-xl font-bold mt-4 text-red-800">
                           Ak si chcete požičať knihu musíte byť prihlásení.

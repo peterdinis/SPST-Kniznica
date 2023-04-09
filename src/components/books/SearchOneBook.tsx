@@ -14,7 +14,7 @@ import ScrollToTop from "@/hooks/useScroll";
 const SearchOneBook: React.FC = () => {
   const initialSearchValue: never[] = [];
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<any>(initialSearchValue); // TODO: Fix later typing
+  const [results, setResults] = useState<any>(initialSearchValue);
   const [isSearching, setIsSearching] = useState(false);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [progress, setProgress] = useState(0);

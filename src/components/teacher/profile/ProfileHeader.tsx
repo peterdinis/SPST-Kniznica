@@ -7,6 +7,8 @@ import AvatarImage from "../../../images/avatar.jpg";
 const ProfileHeader: React.FC = () => {
   const [user, setUser] = useState<ILoginTeacherInfo | null>(null);
 
+  const studentUsername = user?.data.user.username;
+
   useEffect(() => {
     const currentUser = Cookies.get("teacherData");
     if (currentUser) {

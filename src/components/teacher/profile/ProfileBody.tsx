@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import {useState, useEffect} from "react";
 import Cookies from "js-cookie";
+import MyBooks from "./MyBooks";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
@@ -12,6 +12,9 @@ const ProfileBody: React.FC = () => {
 
   const logoutFromApp = () => {
     logoutToast();
+    Cookies.remove("teacherAccessToken");
+    Cookies.remove("teacherData");
+    Cookies.remove("teacherRegisterData");
     router.push("/teacher/login");
   };
 
@@ -35,24 +38,26 @@ const ProfileBody: React.FC = () => {
           <div className="text-gray-700">
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Meno</div>
+                <div className="px-4 py-2">{user?.data.user.name}</div>
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Priezvisko</div>
+                <div className="px-4 py-2">{user?.data.user.lastName}</div>
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">
+                  Používateľské meno
+                </div>
+                <div className="px-4 py-2">{user?.data.user.username}</div>
+              </div>
+              <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">r</div>
+                <div className="px-4 py-2">{user?.data.user.email}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola</div>
-                <div className="px-4 py-2">ŠTUDENT</div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Zmena hesla</div>
-                <div className="px-4 py-2">
-                  {" "}
-                  <Link
-                    className="font-bod text-red-800"
-                    href="/student/password/new"
-                  >
-                    Zmeniť heslo
-                  </Link>
-                </div>
+                <div className="px-4 py-2">{user?.data.user.role}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>
@@ -68,6 +73,7 @@ const ProfileBody: React.FC = () => {
             </div>
           </div>
         </div>
+        <MyBooks />
       </div>
     </>
   );

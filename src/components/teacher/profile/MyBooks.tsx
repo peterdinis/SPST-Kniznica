@@ -10,30 +10,7 @@ const MyBooks: React.FC = () => {
             <PersonIcon />
             <span className="tracking-wide">Moje požičané knihy</span>
           </div>
-          <div className="text-gray-700">
-            <div className="grid md:grid-cols-2 text-sm">
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">r</div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Rola</div>
-                <div className="px-4 py-2">ŠTUDENT</div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Zmena hesla</div>
-                <div className="px-4 py-2">
-                  {" "}
-                  <Link
-                    className="font-bod text-red-800"
-                    href="/student/password/new"
-                  >
-                    Zmeniť heslo
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          TEXT
         </div>
       </div>
     </>

@@ -1,20 +1,11 @@
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import Image from "next/image";
 import AvatarImage from "../../../images/avatar.jpg";
+import useTeacher from "@/hooks/useTeacher";
 
 const ProfileHeader: React.FC = () => {
-  const [user, setUser] = useState<ILoginTeacherInfo | null>(null);
+  const {teacher} = useTeacher();
 
-  const studentUsername = user?.data.user.username;
-
-  useEffect(() => {
-    const currentUser = Cookies.get("teacherData");
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, []);
+  const teacherUsername = teacher?.data.user.username;
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
@@ -28,7 +19,7 @@ const ProfileHeader: React.FC = () => {
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-          {user?.data.user.email}
+          {teacher?.data.user.email}
         </h1>
       </div>
       <div className="my-4"></div>

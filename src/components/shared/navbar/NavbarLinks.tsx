@@ -1,8 +1,10 @@
 import Link from "next/link";
 import useStudent from "@/hooks/useStudent";
+import useTeacher from "@/hooks/useTeacher";
 
 const NavbarLinks: React.FC = () => {
-  const {student} = useStudent();
+  const { student } = useStudent();
+  const { teacher } = useTeacher();
 
   return (
     <>
@@ -21,7 +23,7 @@ const NavbarLinks: React.FC = () => {
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
       </li>
-      {student === null || student === undefined ? (
+      {student === null || student === undefined || teacher === null || teacher === undefined ? (
         <>
           <li className="text-black text-xl">
             <Link href="/student/login">Žiak</Link>
@@ -34,6 +36,14 @@ const NavbarLinks: React.FC = () => {
         <>
           <li className="text-black text-xl">
             <Link href="/student/profile">Profil</Link>
+          </li>
+        </>
+      )}
+
+      {teacher !== null && (
+        <>
+          <li className="text-black text-xl">
+            <Link href="/teacher/profile">Profil</Link>
           </li>
         </>
       )}

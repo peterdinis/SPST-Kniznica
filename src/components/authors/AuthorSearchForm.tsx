@@ -10,7 +10,6 @@ const AuthorSearchForm: React.FC = () => {
             name="form"
             className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
             placeholder="Hľadaj spisovateľa..."
-           //  onChange={(e) => setSearchTerm(e.target.value)}
           />
         </form>
       </div>

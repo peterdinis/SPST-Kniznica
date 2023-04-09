@@ -11,7 +11,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { IAuthor } from "@/interfaces/IAuthor";
-import { placeholderAuthor } from "@/data/placeholderAuthor";
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -27,7 +26,6 @@ const GetAllAuthors: React.FC = () => {
     () => api.paginateAuthors(page, limit),
     {
       keepPreviousData: true,
-      // initialData: placeholderAuthor as any
     }
   );
 

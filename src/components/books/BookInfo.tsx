@@ -10,25 +10,16 @@ import * as mut from "../../api/mutations/bookingMutations";
 import { ICreateBooking } from "@/interfaces/IBooking";
 import { toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import HelperModal from "../shared/modals/HelperModal";
 import {
   createBookingSchema,
   createBookingType,
 } from "@/validators/booking/bookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import useStudent from "@/hooks/useStudent";
 
 const BookInfo: React.FC = () => {
-  const [user, setUser] = useState<ILoginStudentInfo | null>(null);
-
-  useEffect(() => {
-    const currentUser = Cookies.get("studentData");
-    if (currentUser) {
-      setUser(JSON.parse(currentUser));
-    }
-  }, []);
+  const {student} = useStudent();
   const router = useRouter();
   const { id } = router.query;
 
@@ -159,7 +150,7 @@ const BookInfo: React.FC = () => {
                       {data.book && data.book.status}
                     </span>
                     <br />
-                    {user === null || user === undefined ? (
+                    {student === null || student === undefined ? (
                       <span>
                         <div className="text-xl font-bold mt-4 text-red-800">
                           Ak si chcete požičať knihu musíte byť prihlásení.

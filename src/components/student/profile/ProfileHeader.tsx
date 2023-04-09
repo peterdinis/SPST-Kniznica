@@ -22,7 +22,7 @@ const ProfileHeader: React.FC = () => {
 
   // TODO: FIxing this later
 
-/*   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (file) {
@@ -53,7 +53,7 @@ const ProfileHeader: React.FC = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     setFile(file);
-  }; */
+  };
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
@@ -69,8 +69,7 @@ const ProfileHeader: React.FC = () => {
           <div className="mt-2">
             <AddIcon />
             <span className="text-xl">
-              Nová fotka
-            {/*   <ReturnModal
+              <ReturnModal
                 btnName={"Nová fotka"}
                 modalHeader={"Nahranie novej fotky"}
               >
@@ -93,7 +92,7 @@ const ProfileHeader: React.FC = () => {
                     </label>
                   </div>
                 </form>
-              </ReturnModal> */}
+              </ReturnModal>
             </span>
           </div>
         </div>

@@ -22,6 +22,7 @@ const ProfileBody: React.FC = () => {
     Cookies.remove("studentData");
     window.location.replace("/student/login");
   };
+  
   return (
     <>
       <div className="w-full md:w-9/12 mx-2 h-64">

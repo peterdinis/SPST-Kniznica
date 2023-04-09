@@ -203,7 +203,7 @@ const RegisterForm: React.FC = () => {
                 id="Heslo"
                 type="text"
                 autoFocus
-                placeholder="STUDENT"
+                placeholder="TEACHER"
                 {...register("role", {
                   required: "Rola je povinný",
                 })}

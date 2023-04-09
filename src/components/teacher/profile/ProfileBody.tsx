@@ -5,6 +5,7 @@ import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import {useState, useEffect} from "react";
 import Cookies from "js-cookie";
 import MyBooks from "./MyBooks";
+import TeacherOptions from "./TeacherOptions";
 
 const ProfileBody: React.FC = () => {
   const router = useRouter();
@@ -74,6 +75,7 @@ const ProfileBody: React.FC = () => {
           </div>
         </div>
         <MyBooks />
+        <TeacherOptions />
       </div>
     </>
   );

@@ -27,6 +27,7 @@ const AllBooks: React.FC = () => {
   } = useQuery(["paginateBooks", page], () => api.paginateBooks(page, limit), {
     keepPreviousData: true,
     initialData: initialBooks,
+    retry: 2
   });
 
   if (isLoading) {

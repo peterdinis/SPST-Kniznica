@@ -26,6 +26,7 @@ const GetAllAuthors: React.FC = () => {
     () => api.paginateAuthors(page, limit),
     {
       keepPreviousData: true,
+      retry: 2
     }
   );
 

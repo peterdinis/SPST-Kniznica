@@ -2,7 +2,7 @@ import Header from "../shared/Header";
 import * as api from "../../api/queries/categoryQueries";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import FallbackRender from "../shared/ErrorRender";
+import FallbackRender from "../shared/errors/ErrorRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";

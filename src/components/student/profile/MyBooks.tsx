@@ -3,7 +3,7 @@ import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../../api/queries/studentQueries";
-import FallbackRender from "@/components/shared/ErrorRender";
+import FallbackRender from "@/components/shared/errors/ErrorRender";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import { IBooking } from "@/interfaces/IBooking";
 import MenuBookIcon from "@mui/icons-material/MenuBook";

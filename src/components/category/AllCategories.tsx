@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/categoryQueries";
 import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/ErrorRender";
+import FallbackRender from "../shared/errors/ErrorRender";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import { ICategory } from "@/interfaces/ICategory";
 import ScrollToTop from "@/hooks/useScroll";

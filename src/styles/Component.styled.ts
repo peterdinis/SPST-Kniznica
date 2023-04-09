@@ -12,7 +12,6 @@ export const HelperText = styled.p`
   font-size: 1.6rem;
   margin-top: 2rem;
   margin-left: 0.5rem;
-  text-shadow: 2px 2px 2px #eee;
   padding: 2px;
 `;
 
@@ -21,7 +20,6 @@ export const OwnerName = styled.h1`
   color: red;
   text-align: center;
   margin-top: 3rem;
-  text-shadow: 2px 2px 2px #eee;
 `;
 
 

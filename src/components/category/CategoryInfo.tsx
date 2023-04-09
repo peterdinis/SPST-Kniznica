@@ -14,7 +14,7 @@ const CategoryInfo: React.FC = () => {
 
   const { data, isError, isLoading } = useQuery(
     ["categoryDetail", Number(id)],
-    () => api.getOneCategory(Number(id) as any),
+    () => api.getOneCategory(Number(id) as unknown as string),
     {
       retry: 2,
       placeholderData: placeholderCategory,
@@ -39,14 +39,6 @@ const CategoryInfo: React.FC = () => {
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
         <div className="mt-4 border-gray-200">
           <dl>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
-                Číslo kategórie
-              </dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                {id}
-              </dd>
-            </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">
                 Meno kategórie
@@ -81,7 +73,7 @@ const CategoryInfo: React.FC = () => {
                       data.Books.map((item: { name: string }) => {
                         return (
                           <>
-                            <div className="mr-6 p-2 text-sm mt-2 flex">
+                            <div className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 flex">
                               {item.name} {""}
                             </div>
                           </>

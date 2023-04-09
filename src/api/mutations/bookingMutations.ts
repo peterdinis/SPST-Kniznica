@@ -16,5 +16,5 @@ export const createNewBooking = (data: ICreateBooking) => {
 
 // TODO: Type fix later
 export const returnBooking = (data: any) => {
-  return api.delete("me/booking/return", data);
+  return api.delete("student/booking/return", data);
 };

@@ -20,6 +20,7 @@ const ProfileBody: React.FC = () => {
     logoutToast();
     Cookies.remove("studentAccessToken");
     Cookies.remove("studentData");
+    Cookies.remove("studentRegisterData");
     window.location.replace("/student/login");
   };
   

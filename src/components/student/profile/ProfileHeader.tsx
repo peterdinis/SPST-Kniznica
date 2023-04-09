@@ -33,7 +33,7 @@ const ProfileHeader: React.FC = () => {
 
         // Send a POST request to the server to upload the file
         const response = await axios.post(
-          `http://localhost:8111/student/${studentUsername}/upload`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/student/${studentUsername}/upload`,
           formData,
           {
             headers: {
@@ -73,23 +73,37 @@ const ProfileHeader: React.FC = () => {
                 btnName={"Nová fotka"}
                 modalHeader={"Nahranie novej fotky"}
               >
-                <form>
-
-                  <div className="flex  items-center justify-center bg-grey-lighter">
-                    <label className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer">
-                      <svg
-                        className="w-8 h-8"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                      </svg>
-                      <span className="mt-2 text-base leading-normal">
-                        Vyberete súbor
-                      </span>
-                      <input type="file" className="hidden" id="file" />
-                    </label>
+                <form onSubmit={handleSubmit}>
+                  <div className="text-center">
+                    <div className="mt-4 grid grid-cols-1 space-y-2">
+                      <div className="flex items-center justify-center w-full">
+                        <label className="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+                          <div className="h-full w-full text-center flex flex-col items-center justify-center">
+                            <p className="pointer-none text-gray-500 ">
+                              <span className="text-sm">Drag and drop</span>{" "}
+                              files here <br /> or{" "}
+                              <a
+                                href=""
+                                id=""
+                                className="text-blue-600 hover:underline"
+                              >
+                                select a file
+                              </a>{" "}
+                              from your computer
+                            </p>
+                          </div>
+                          <input
+                            type="file"
+                            className="hidden"
+                            onChange={handleFileChange}
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <p className="text-sm mt-4 text-black">
+                      <span>Povolené typy obrázkov: doc,pdf,types of images</span>
+                    </p>
+                    <div></div>
                   </div>
                 </form>
               </ReturnModal>

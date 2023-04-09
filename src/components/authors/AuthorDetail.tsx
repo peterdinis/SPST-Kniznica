@@ -74,7 +74,7 @@ const AuthorDetail: React.FC = () => {
               ) : (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                    <span className="font-bold">Dátum Umrtia</span>:{" "}
+                    <span className="font-bold text-red-800">Dátum Umrtia</span>:{" "}
                     {data.deathYear}
                   </p>
                 </>

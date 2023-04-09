@@ -13,9 +13,10 @@ const AuthorDetail: React.FC = () => {
 
   const { data, isError, isLoading } = useQuery(
     ["authorDetail", Number(id)],
-    () => api.getOneAuthor(id as unknown as string),{
-        retry: 2,
-        placeholderData: placeholderAuthor
+    () => api.getOneAuthor(id as unknown as string),
+    {
+      retry: 2,
+      placeholderData: placeholderAuthor,
     }
   );
   if (isError) {
@@ -28,9 +29,7 @@ const AuthorDetail: React.FC = () => {
 
   const navigateToAuthors = () => {
     router.push("/authors");
-  }
-
-  console.log(data);
+  };
 
   return (
     <>
@@ -38,9 +37,9 @@ const AuthorDetail: React.FC = () => {
       <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            {(data.book && data.book.image === null) ||
-            (data.book && data.book.image === undefined) ||
-            (data.book && data.book.image === "string") ? (
+            {data.picture === null ||
+            data.picture === undefined ||
+            data.picture === "string" ? (
               <LazyLoadImage
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -50,58 +49,54 @@ const AuthorDetail: React.FC = () => {
               <LazyLoadImage
                 alt="ecommerce"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
-                src={data.book && data.book.image}
+                src={data.picture}
               />
             )}
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <div>
                 <h1 className="text-gray-900 text-4xl title-font font-medium mb-1">
-                  <span className="font-bold">Názov</span>:{" "}
-                  {data.book && data.book.name}
+                  <span className="font-bold">Meno</span>: {data.name}
                 </h1>
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Krátke info</span>:{" "}
-                {data.book && data.book.description}
+                <span className="font-bold">Priezvisko</span>: {data.lastName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Author</span>:{" "}
-                {data.author && data.author.name}
+                <span className="font-bold">Dátum Narodenia</span>:{" "}
+                {data.birthYear}
               </p>
-              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold"> Rok</span>:{" "}
-                {data.book && data.book.year}
-              </p>
-              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold"> Počet Strán</span>:{" "}
-                {data.book && data.book.pages}
-              </p>
-              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Počet Kusov</span>:{" "}
-                {data.book && data.book.quantity}
-              </p>
-
-              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Kategória</span>:{" "}
-                {data.category && data.category.name}
-              </p>
-
-              {data.book && data.book.status !== "Dostupná" && (
-                <div>
-                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
-                    <span className="font-bold"> Kniha je:</span>{" "}
-                    <span className="text-red-800">Nedostupná</span>
-                    <br />
+              {data.deathYear === null || data.deathYear === undefined ? (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                    <span className="font-bold text-green-800">Author/ka je medzi živymi</span>
                   </p>
-                </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                    <span className="font-bold">Dátum Umrtia</span>:{" "}
+                    {data.deathYear}
+                  </p>
+                </>
               )}
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold"> Krajina</span>: {data.country}
+              </p>
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold">Krátke info o autorovi/ke</span>:{" "}
+                {data.description}
+              </p>
 
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold">Literárne obdobie</span>:{" "}
+                {data.litPeriod}
+              </p>
               <hr className="mt-6" />
               <button
                 onClick={navigateToAuthors}
                 className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold"
               >
-                Návrat na knihy
+                Návrat na spisovateľov
               </button>
             </div>
           </div>

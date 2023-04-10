@@ -1,9 +1,9 @@
-import CreateNewAuthor from "@/components/authors/CreateNewAuthor";
+import CreateAuthorForm from "@/components/authors/CreateAuthorForm";
 import { NextPage } from "next";
 
 const CreateNewAuthorPage: NextPage = () => {
     return (
-        <CreateNewAuthor />
+        <CreateAuthorForm />
     )
 }
 

@@ -4,6 +4,7 @@ import useTeacher from "@/hooks/useTeacher";
 
 const ProfileHeader: React.FC = () => {
   const {teacher} = useTeacher();
+  console.log(teacher);
 
   const teacherUsername = teacher?.data.user.username;
   return (

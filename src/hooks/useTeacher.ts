@@ -6,7 +6,7 @@ const useTeacher = () => {
     const [teacher, setTeacher] = useState< ILoginTeacherInfo | null>(null);
 
     useEffect(() => {
-        const currentTeacher = Cookies.get("studentData");
+        const currentTeacher = Cookies.get("teacherData");
         if (currentTeacher) {
             setTeacher(JSON.parse(currentTeacher));
         }

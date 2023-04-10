@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
@@ -7,7 +6,6 @@ import TeacherOptions from "./TeacherOptions";
 import useTeacher from "@/hooks/useTeacher";
 
 const ProfileBody: React.FC = () => {
-  const router = useRouter();
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
   const {teacher} = useTeacher();
 
@@ -16,7 +14,7 @@ const ProfileBody: React.FC = () => {
     Cookies.remove("teacherAccessToken");
     Cookies.remove("teacherData");
     Cookies.remove("teacherRegisterData");
-    router.push("/teacher/login");
+    window.location.replace("/teacher/login");
   };
 
   return (

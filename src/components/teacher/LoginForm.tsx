@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Header from "../shared/Header";
-import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
@@ -9,7 +8,6 @@ import * as mut from "../../api/mutations/teacherMutations";
 import { ILogin, ILoginTeacherInfo } from "@/interfaces/ITeacher";
 
 const LoginForm: React.FC = () => {
-  const router = useRouter();
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
 
@@ -35,7 +33,7 @@ const LoginForm: React.FC = () => {
     try {
       mutation.mutate(data);
       notify();
-      router.push("/teacher/profile");
+      window.location.replace("/teacher/profile")
     } catch (err) {
       errorRegister();
       alert(err);

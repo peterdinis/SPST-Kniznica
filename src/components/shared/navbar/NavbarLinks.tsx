@@ -23,18 +23,15 @@ const NavbarLinks: React.FC = () => {
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
       </li>
-      {student === null ||
-      student === undefined ||teacher === null ? (
-        <>
-          <li className="text-black text-xl">
-            <Link href="/student/login">Žiak</Link>
-          </li>
-          <li className="text-black text-xl">
-            <Link href="/teacher/login">Učiteľ</Link>
-          </li>
-        </>
-      ) : (
-        <>
+      <li className="text-black text-xl">
+        <Link href="/student/login">Žiak</Link>
+      </li>
+      <li className="text-black text-xl">
+        <Link href="/teacher/login">Učiteľ</Link>
+      </li>
+
+      {student !== null && (
+          <>
           <li className="text-black text-xl">
             <Link href="/student/profile">Profil</Link>
           </li>

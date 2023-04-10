@@ -14,12 +14,12 @@ const TeacherOptions: React.FC = () => {
           <div className="mt-2 p-2">
             
            <li>
-              <a className="text-red-800 ml-4" href="/admin/books">
+              <a className="text-red-800 ml-4" href="/admin/books/all">
                 <ListIcon /> Zobraz všetky knihy
               </a>
             </li>
             <li>
-              <a className="text-red-800 ml-4" href="/admin/categories">
+              <a className="text-red-800 ml-4" href="/admin/categories/all">
                 <ListIcon /> Zobraz všetky kategórie
               </a>
             </li>

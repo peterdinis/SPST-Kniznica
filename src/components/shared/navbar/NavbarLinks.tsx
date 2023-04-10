@@ -23,6 +23,7 @@ const NavbarLinks: React.FC = () => {
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
       </li>
+
       <li className="text-black text-xl">
         <Link href="/student/login">Žiak</Link>
       </li>
@@ -31,7 +32,7 @@ const NavbarLinks: React.FC = () => {
       </li>
 
       {student !== null && (
-          <>
+        <>
           <li className="text-black text-xl">
             <Link href="/student/profile">Profil</Link>
           </li>

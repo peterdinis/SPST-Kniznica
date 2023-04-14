@@ -23,3 +23,13 @@ html::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar-track {
   background: linear-gradient(90deg, #434343, #434343 1px, #111 0, #111);
 }
+
+.top-100 {
+  top: 100%;
+}
+.bottom-100 {
+  bottom: 100%;
+}
+.max-h-select {
+  max-height: 300px;
+}

@@ -38,6 +38,7 @@
     "react-spring": "^9.6.1",
     "react-table": "^7.8.0",
     "react-toastify": "^9.1.1",
+    "react-virtualized-auto-sizer": "^1.0.14",
     "react-window": "^1.8.8",
     "styled-components": "^5.3.9",
     "zod": "^3.21.4"

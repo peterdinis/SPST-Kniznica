@@ -1,5 +1,7 @@
 ## Application Status: Development!!!
 
+- frontend app for spst-kniznica
+
 ## How to run
 - clone the repo
 - create .env file and use variables from .env.local

@@ -15,7 +15,7 @@ const FallbackRender: React.FC<IProps> = ({error, children}: IProps) => (
         fallbackRender={({ resetErrorBoundary }) => (
           <div>
             {error}
-            <Button onClick={() => resetErrorBoundary()}>Try again</Button>
+            <Button onClick={() => resetErrorBoundary()}>Skúsiť znova</Button>
           </div>
         )}
       >

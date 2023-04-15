@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AvatarImage from "../../../images/avatar.jpg";
+import AvatarImage from "../../../images/default.png";
 import useTeacher from "@/hooks/useTeacher";
 
 const ProfileHeader: React.FC = () => {

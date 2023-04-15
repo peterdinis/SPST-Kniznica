@@ -1,7 +1,7 @@
 import { useState} from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Image from "next/image";
-import AvatarImage from "../../../images/avatar.jpg";
+import AvatarImage from "../../../images/default.png";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 import axios from "axios";
 import useStudent from "@/hooks/useStudent";

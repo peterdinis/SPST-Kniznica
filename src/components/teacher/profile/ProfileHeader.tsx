@@ -14,7 +14,7 @@ const ProfileHeader: React.FC = () => {
         <Image 
             className="h-auto w-full rounded-2xl mx-auto"
             src={AvatarImage}
-            alt="IMAGES"
+            alt="Default Image"
             width={700}
             height={700}
           />

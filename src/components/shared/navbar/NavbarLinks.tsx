@@ -28,6 +28,7 @@ const NavbarLinks: React.FC = () => {
         <li className="text-black text-xl">
           <Link href="/student/login">Žiak</Link>
         </li>
+        
       )}
       {teacher === null && (
         <li className="text-black text-xl">

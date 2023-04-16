@@ -10,6 +10,7 @@ import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { placeholderBooking } from "@/data/placeholderBooking";
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const MyBooks: React.FC = () => {
   const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
@@ -20,11 +21,12 @@ const MyBooks: React.FC = () => {
       }
   }, []);
   
-  const studentUsername = student?.data.user.username as unknown as string;
+  const studentUsername = student?.data.user.username;
   const { data, isError, isLoading } = useQuery(
     ["studentBorrowedBooks", studentUsername],
     () => api.getMyBorrowedBooks(studentUsername as unknown as string), {
-      initialData: placeholderBooking
+      initialData: placeholderBooking,
+      retry: 2
     }
   );
 
@@ -44,6 +46,7 @@ const MyBooks: React.FC = () => {
             <MenuBookIcon />
             <span className="tracking-wide">Moje požičané knihy</span>
           </div>
+          {data === null || data === undefined || !data && <div className="font-bold text-lg">Študent nemá požičané žiadne knihy <SentimentVeryDissatisfiedIcon /></div>}
           {data &&
             data.map((item: IBooking) => {
               return (

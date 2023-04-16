@@ -6,14 +6,26 @@ import { IBooking } from "@/interfaces/IBooking";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import Link from "next/link";
 import ReturnBookModal from "./ReturnBookModal";
-import useStudent from "@/hooks/useStudent";
+import { ILoginStudentInfo } from "@/interfaces/IStudent";
+import Cookies from "js-cookie";
+import { useState, useEffect } from "react";
+import { placeholderBooking } from "@/data/placeholderBooking";
 
 const MyBooks: React.FC = () => {
-  const {student} = useStudent();
-  const studentUsername = student?.data.user.username;
+  const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
+  useEffect(() => {
+      const currentStudent = Cookies.get("studentData");
+      if (currentStudent) {
+          setStudent(JSON.parse(currentStudent));
+      }
+  }, []);
+  
+  const studentUsername = student?.data.user.username as unknown as string;
   const { data, isError, isLoading } = useQuery(
     ["studentBorrowedBooks", studentUsername],
-    () => api.getMyBorrowedBooks(studentUsername as unknown as string)
+    () => api.getMyBorrowedBooks(studentUsername as unknown as string), {
+      initialData: placeholderBooking
+    }
   );
 
   if (isError) {

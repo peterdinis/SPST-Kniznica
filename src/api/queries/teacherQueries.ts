@@ -5,5 +5,5 @@ export const getTeacherProfile = () => authApi.get("teacher/profile").then((res)
 export const getMyBorrowedBooks = (username: string) => {
   if (!username) return;
 
-  return authApi.get(`teacher/booking/${username}`).then((res) => res.data);
+  return authApi.get(`/booking/${username}`).then((res) => res.data);
 };

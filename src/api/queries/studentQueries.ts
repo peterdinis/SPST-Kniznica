@@ -6,7 +6,7 @@ export const getStudentProfile = () =>
 export const getMyBorrowedBooks = (username: string) => {
   if (!username) return;
 
-  return authApi.get(`student/booking/${username}`).then((res) => res.data);
+  return authApi.get(`/booking/${username}`).then((res) => res.data);
 };
 
 export const getMyNotifications = (username: string) => {

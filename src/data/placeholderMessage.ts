@@ -1,6 +1,6 @@
 export const placeholderMessage = [
     {
         name: "Example",
-        text: "Example Text"
+        description: "Example Text"
     }
 ]

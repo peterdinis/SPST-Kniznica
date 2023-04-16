@@ -3,8 +3,18 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Fragment } from "react";
 import classNames from "@/helpers/classNames";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import { useQuery } from "@tanstack/react-query";
+import useStudent from "@/hooks/useStudent";
+import * as api from "../../../api/queries/studentQueries";
 
-const StudentDropdown: React.FC = () => {
+const StudentDropdown= () => {
+  const {student} = useStudent();
+  
+  if(student === null) return;
+
+  const studentUsername = student.data.user.username;
+
+  
   return (
     <Menu as="div" className="relative inline-block text-left">
       <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">

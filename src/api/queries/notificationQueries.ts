@@ -6,6 +6,7 @@ const api = axios.create({
 
   
 export const getAllNotifications = () => api.get("notifications").then((res) => res.data);
+
 export const getNotificationInfo = (id: number) => {
     if(!id) {
         return;

@@ -11,7 +11,6 @@ import useStudent from "@/hooks/useStudent";
 const MyBooks: React.FC = () => {
   const {student} = useStudent();
   const studentUsername = student?.data.user.username;
-
   const { data, isError, isLoading } = useQuery(
     ["studentBorrowedBooks", studentUsername],
     () => api.getMyBorrowedBooks(studentUsername as unknown as string)

@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import {useState, useEffect} from "react";
 
 const useAdmin = () => {
-    // TODO: Remove any later
+    // TODO: Update type for admin later
     const [admin, setAdmin] = useState<ILoginAdminInfo | null>(null);
 
     useEffect(() => {

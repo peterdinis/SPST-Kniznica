@@ -9,6 +9,7 @@ import FallbackLoader from "../FallbackLoader";
 import FallbackRender from "../errors/ErrorRender"
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
+import { placeholderNotification } from "@/data/placeholderNotification";
 
 const StudentDropdown: React.FC = () => {
   const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
@@ -19,8 +20,11 @@ const StudentDropdown: React.FC = () => {
       }
   }, []);
   
-  const studentUsername = student!.data.user.username as unknown as string;
-  const {data, isLoading, isError} = useQuery(["studentNotification", studentUsername], () => api.getMyNotifications(studentUsername))
+  const studentUsername = student?.data.user.username as unknown as string;
+  const {data, isLoading, isError} = useQuery(["studentNotification", studentUsername], () => api.getMyNotifications(studentUsername), {
+    placeholderData: placeholderNotification,
+    retry: 2
+  })
 
 
   if (isError) {

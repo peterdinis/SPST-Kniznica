@@ -1,19 +1,37 @@
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import classNames from "@/helpers/classNames";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { useQuery } from "@tanstack/react-query";
-import useStudent from "@/hooks/useStudent";
 import * as api from "../../../api/queries/studentQueries";
+import FallbackLoader from "../FallbackLoader";
+import FallbackRender from "../errors/ErrorRender"
+import { ILoginStudentInfo } from "@/interfaces/IStudent";
+import Cookies from "js-cookie";
 
-const StudentDropdown= () => {
-  const {student} = useStudent();
+const StudentDropdown: React.FC = () => {
+  const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
+  useEffect(() => {
+      const currentStudent = Cookies.get("studentData");
+      if (currentStudent) {
+          setStudent(JSON.parse(currentStudent));
+      }
+  }, []);
   
-  if(student === null) return;
+  const studentUsername = student!.data.user.username as unknown as string;
+  const {data, isLoading, isError} = useQuery(["studentNotification", studentUsername], () => api.getMyNotifications(studentUsername))
 
-  const studentUsername = student.data.user.username;
 
+  if (isError) {
+    return <FallbackRender error="Nastala chyba" />;
+  }
+
+  if (isLoading) {
+    return <FallbackLoader />;
+  }
+
+  console.log(data);
   
   return (
     <Menu as="div" className="relative inline-block text-left">

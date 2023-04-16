@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import * as api from "../../../api/queries/studentQueries";
+import * as api from "../../../api/queries/bookingQueries";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import { IBooking } from "@/interfaces/IBooking";

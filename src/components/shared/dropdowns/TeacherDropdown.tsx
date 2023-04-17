@@ -8,12 +8,10 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { placeholderBooking } from "@/data/placeholderBooking";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
-import { IBooking } from "@/interfaces/IBooking";
-
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 const TeacherDropdown: React.FC = () => {
   const [teacher, setTeacher] = useState<ILoginTeacherInfo | null>(null);
 

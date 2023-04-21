@@ -5,6 +5,7 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/errors/ErrorRender";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
+import * as io from "socket.io-client";
 
 function Hero() {
   const { isLoading, isError } = useQuery(["example"], api.getExampleData, {
@@ -17,6 +18,16 @@ function Hero() {
   if (isError) {
     return <FallbackRender error={"Nastala chyba"} />;
   }
+
+  /* TODO: Fix me */
+ /*  const socket = io.connect('http://localhost:8111/socket.io/?EIO=4&transport=polling"', {
+    reconnection: true,
+    transports: ['websocket'],
+    agent: false,
+    upgrade: false,
+    rejectUnauthorized: false
+  });
+  console.log("Connection work", socket); */
 
   return (
     <>

@@ -28,7 +28,7 @@ const AuthorDetail: React.FC = () => {
   }
 
   const navigateToAuthors = () => {
-    router.push("/authors");
+    router.push("/authors/all");
   };
 
   return (

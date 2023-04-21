@@ -43,7 +43,7 @@ const AuthorDetail: React.FC = () => {
               <LazyLoadImage
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
-                src="https://bitsofco.de/content/images/2018/12/broken-1.png"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/ProhibitionSign2.svg/150px-ProhibitionSign2.svg.png"
               />
             ) : (
               <LazyLoadImage

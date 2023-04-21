@@ -3,24 +3,29 @@ import Header from "../shared/Header";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
-import {useMutation} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/teacherMutations";
 import { ILogin, ILoginTeacherInfo } from "@/interfaces/ITeacher";
+import { useRouter } from "next/router";
 
 const LoginForm: React.FC = () => {
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
-
+  const router = useRouter();
   const mutation = useMutation(mut.login, {
     onSuccess: (data: ILoginTeacherInfo) => {
       Cookies.set("teacherData", JSON.stringify(data));
       Cookies.set("teacherAccessDta", JSON.stringify(data.data.token));
+      notify();
+      window.location.replace("/teacher/profile");
     },
 
     onError: (data) => {
-      console.log(data);
-    }
-  })
+      router.push("/failed");
+      errorRegister();
+      return;
+    },
+  });
 
   const {
     handleSubmit,
@@ -30,14 +35,7 @@ const LoginForm: React.FC = () => {
   } = useForm<ILogin>();
 
   const onHandleSubmit = (data: ILogin) => {
-    try {
-      mutation.mutate(data);
-      notify();
-      window.location.replace("/teacher/profile")
-    } catch (err) {
-      errorRegister();
-      alert(err);
-    }
+    mutation.mutate(data);
   };
 
   return (

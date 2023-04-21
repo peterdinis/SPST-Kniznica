@@ -34,8 +34,9 @@ const RegisterForm: React.FC = () => {
       notify();
       router.push("/student/login");
     } catch (err) {
+      router.push("/failed");
       errorRegister();
-      alert(err);
+      return;
     }
   };
 

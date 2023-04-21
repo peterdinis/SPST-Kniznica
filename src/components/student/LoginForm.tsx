@@ -29,22 +29,18 @@ const LoginForm: React.FC = () => {
       Cookies.set("studentData", JSON.stringify(data));
       Cookies.set("studentAccessToken", JSON.stringify(data.data.token));
       notify();
+      window.location.replace("/student/profile");
     },
 
     onError: (data: any) => {
-        router.push("/notallowed");
+        router.push("/failed");
         errorRegister();
+        return;
     }
   })
 
   const onHandleSubmit: SubmitHandler<createStudentRegisterType> = (data: ILogin) => {
-    try {
       mutation.mutate(data);
-      window.location.replace("/student/profile");
-    } catch (err) {
-      errorRegister();
-      alert(err);
-    }
   };
 
 

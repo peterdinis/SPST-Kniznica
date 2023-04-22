@@ -12,8 +12,8 @@ const AuthorDetail: React.FC = () => {
   const { id } = router.query;
 
   const { data, isError, isLoading } = useQuery(
-    ["authorDetail", Number(id)],
-    () => api.getOneAuthor(id as unknown as string),
+    ["authorDetail", id as unknown as number],
+    () => api.getOneAuthor(Number(id) as any),
     {
       retry: 2,
       placeholderData: placeholderAuthor,

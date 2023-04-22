@@ -6,10 +6,10 @@ const api = axios.create({
 
 export const getCategories = () => api.get("categories").then((res) => res.data);
 
-export const getOneCategory = (id: string) => {
-  if (!id) {
+export const getOneCategory = (externalId: string) => {
+  if (!externalId) {
     return;
   }
 
-  return api.get(`category/${id}`).then((res) => res.data);
+  return api.get(`category/${externalId}`).then((res) => res.data);
 };

@@ -2,6 +2,7 @@ import { IBook } from "./IBook";
 
 export interface IAuthor {
     id?: number | string;
+    externalId: string;
     name: string;
     lastName: string;
     picture: string;

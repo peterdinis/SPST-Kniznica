@@ -6,12 +6,12 @@ const api = axios.create({
 
 export const getAuthors = () => api.get("authors").then((res) => res.data);
 
-export const getOneAuthor = (id: string) => {
-  if (!id) {
+export const getOneAuthor = (externalId: string) => {
+  if (!externalId) {
     return;
   }
 
-  return api.get(`authors/${id}`).then((res) => res.data);
+  return api.get(`authors/${externalId}`).then((res) => res.data);
 };
 
 export const searchForAuthors = (value: string) => {

@@ -13,7 +13,7 @@ export const createBookingSchema = z.object({
         required_error: "Používateľské meno je povinné"
     }),
 
-    bookId: z.number({
+   bookExternalId: z.number({
         required_error: "Id knihy je povinné"
     })
 });
@@ -23,7 +23,7 @@ export const returnBookingSchema = z.object({
         required_error: "Používateľské meno je povinné"
     }),
 
-    bookId: z.number({
+   bookExternalId: z.number({
         required_error: "Id knihy je povinné"
     })
 });

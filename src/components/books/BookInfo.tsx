@@ -96,8 +96,6 @@ const BookInfo: React.FC = () => {
     }
   };
 
-  console.log("student", student);
-
   return (
     <>
       <Header name="Detail Knihy" />
@@ -171,7 +169,8 @@ const BookInfo: React.FC = () => {
                       {data.book && data.book.status}
                     </span>
                     <br />
-                    {student === null ||
+                    {/* TODO: Broken code must be fixed */}
+                  {/*   {student === null ||
                     student === undefined ||
                     teacher === null ||
                     teacher === undefined ? (
@@ -180,7 +179,7 @@ const BookInfo: React.FC = () => {
                           Ak si chcete požičať knihu musíte byť prihlásení.
                         </div>
                       </span>
-                    ) : (
+                    ) : ( */}
                       <HelperModal
                         btnName={"Požičať si knihu"}
                         modalHeader={"Požičanie knihy"}
@@ -214,14 +213,14 @@ const BookInfo: React.FC = () => {
                           <input
                             type="number"
                             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                            {...register("bookId", { valueAsNumber: true })}
+                            {...register("bookExternalId", { valueAsNumber: true })}
                             onKeyUp={() => {
-                              trigger("bookId");
+                              trigger("bookExternalId");
                             }}
                           />
 
                           <p className="text-red-800">
-                            {errors.bookId && errors.bookId.message}
+                            {errors.bookExternalId && errors.bookExternalId.message}
                           </p>
 
                           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
@@ -265,7 +264,7 @@ const BookInfo: React.FC = () => {
                           </button>
                         </form>
                       </HelperModal>
-                    )}
+                {/*     )} */}
                   </p>
                 </div>
               )}

@@ -6,12 +6,12 @@ const api = axios.create({
 
 export const getBooks = () => api.get("books").then((res) => res.data);
 
-export const getOneBook = (id: string) => {
-  if (!id) {
+export const getOneBook = (externalId: string) => {
+  if (!externalId) {
     return;
   }
 
-  return api.get(`book/${id}`).then((res) => res.data);
+  return api.get(`book/${externalId}`).then((res) => res.data);
 };
 
 

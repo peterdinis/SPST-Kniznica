@@ -35,8 +35,6 @@ const StudentDropdown: React.FC = () => {
     return <FallbackLoader />;
   }
 
-  console.log("Notification", data);
-
   const notificationNum = data.length as unknown as number;
   
   return (

@@ -1,6 +1,8 @@
 import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackRender from "../shared/errors/ErrorRender";
 import FallbackLoader from "../shared/FallbackLoader";
@@ -16,12 +18,28 @@ import {
   createBookingType,
 } from "@/validators/booking/bookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useStudent from "@/hooks/useStudent";
-import useTeacher from "@/hooks/useTeacher";
+import { ILoginStudentInfo } from "@/interfaces/IStudent";
+import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 
 const BookInfo: React.FC = () => {
-  const {student} = useStudent();
-  const {teacher} = useTeacher();
+  const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
+
+  useEffect(() => {
+    const currentStudent = Cookies.get("studentData");
+    if (currentStudent) {
+      setStudent(JSON.parse(currentStudent));
+    }
+  }, []);
+
+  const [teacher, setTeacher] = useState<ILoginTeacherInfo | null>(null);
+
+  useEffect(() => {
+    const currentTeacher = Cookies.get("teacherData");
+    if (currentTeacher) {
+      setTeacher(JSON.parse(currentTeacher));
+    }
+  }, []);
+
   const router = useRouter();
   const { id } = router.query;
   const { data, isError, isLoading } = useQuery(
@@ -32,8 +50,6 @@ const BookInfo: React.FC = () => {
       placeholderData: placeholderBook,
     }
   );
-
-  console.log(data);
 
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
@@ -53,12 +69,10 @@ const BookInfo: React.FC = () => {
   const mutation = useMutation(mut.createNewBooking, {
     onSuccess: (data) => {
       notify();
-      console.log(data);
     },
 
     onError: () => {
       errorRegister();
-      console.log(data);
     },
   });
 
@@ -71,7 +85,9 @@ const BookInfo: React.FC = () => {
     resolver: zodResolver(createBookingSchema),
   });
 
-  const onHandleSubmit: SubmitHandler<createBookingType> = (data: ICreateBooking) => {
+  const onHandleSubmit: SubmitHandler<createBookingType> = (
+    data: ICreateBooking
+  ) => {
     try {
       mutation.mutate(data);
     } catch (err) {
@@ -79,6 +95,8 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
+
+  console.log("student", student);
 
   return (
     <>
@@ -153,7 +171,10 @@ const BookInfo: React.FC = () => {
                       {data.book && data.book.status}
                     </span>
                     <br />
-                    {student === null || student === undefined || teacher === null || teacher === undefined? (
+                    {student === null ||
+                    student === undefined ||
+                    teacher === null ||
+                    teacher === undefined ? (
                       <span>
                         <div className="text-xl font-bold mt-4 text-red-800">
                           Ak si chcete požičať knihu musíte byť prihlásení.

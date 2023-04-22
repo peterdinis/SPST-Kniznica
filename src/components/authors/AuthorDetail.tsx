@@ -19,6 +19,7 @@ const AuthorDetail: React.FC = () => {
       placeholderData: placeholderAuthor,
     }
   );
+  
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }

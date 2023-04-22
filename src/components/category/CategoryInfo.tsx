@@ -10,11 +10,11 @@ import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
 
-  const { id } = router.query;
+  const { externalId } = router.query;
 
   const { data, isError, isLoading } = useQuery(
-    ["categoryDetail", Number(id)],
-    () => api.getOneCategory(Number(id) as unknown as string),
+    ["categoryDetail", externalId],
+    () => api.getOneCategory(externalId as unknown as string),
     {
       retry: 2,
       placeholderData: placeholderCategory,

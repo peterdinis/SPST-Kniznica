@@ -23,11 +23,11 @@ const BookInfo: React.FC = () => {
   const {student} = useStudent();
   const {teacher} = useTeacher();
   const router = useRouter();
-  const { id } = router.query;
+  const { externalId } = router.query;
 
   const { data, isError, isLoading } = useQuery(
-    ["bookDetail", Number(id)],
-    () => api.getOneBook(id as unknown as string),
+    ["bookDetail", externalId],
+    () => api.getOneBook(externalId as unknown as string),
     {
       retry: 2,
       placeholderData: placeholderBook,

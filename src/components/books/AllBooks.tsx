@@ -30,6 +30,8 @@ const AllBooks: React.FC = () => {
     retry: 2
   });
 
+  console.log(paginatedData);
+
   if (isLoading) {
     return <FallbackLoader />;
   }

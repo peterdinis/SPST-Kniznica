@@ -23,16 +23,17 @@ const BookInfo: React.FC = () => {
   const {student} = useStudent();
   const {teacher} = useTeacher();
   const router = useRouter();
-  const { externalId } = router.query;
-
+  const { id } = router.query;
   const { data, isError, isLoading } = useQuery(
-    ["bookDetail", externalId],
-    () => api.getOneBook(externalId as unknown as string),
+    ["bookDetail", id as unknown as number],
+    () => api.getOneBook(Number(id) as any),
     {
       retry: 2,
       placeholderData: placeholderBook,
     }
   );
+
+  console.log(data);
 
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;

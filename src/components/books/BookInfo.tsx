@@ -23,11 +23,19 @@ import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 
 const BookInfo: React.FC = () => {
   const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
+  const [teacher, setTeacher] = useState<ILoginTeacherInfo | null>(null);
 
   useEffect(() => {
     const currentStudent = Cookies.get("studentData");
     if (currentStudent) {
       setStudent(JSON.parse(currentStudent));
+    }
+  }, []);
+
+  useEffect(() => {
+    const currentTeacher = Cookies.get("teacherData");
+    if (currentTeacher) {
+      setTeacher(JSON.parse(currentTeacher));
     }
   }, []);
 
@@ -86,8 +94,6 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
-
-  console.log(student, "Student");
 
   return (
     <>
@@ -162,7 +168,7 @@ const BookInfo: React.FC = () => {
                       {data.book && data.book.status}
                     </span>
                     <br />
-                    {student === null ? (
+                    {student === null || teacher === null ? (
                         <span>
                         <div className="text-xl font-bold mt-4 text-red-800">
                           Ak si chcete požičať knihu musíte byť prihlásení.

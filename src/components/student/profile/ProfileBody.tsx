@@ -59,7 +59,6 @@ const ProfileBody: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* TODO: Fix bug in this component */}
       <MyBooks />
     </div>
   );

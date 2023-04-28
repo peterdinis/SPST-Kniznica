@@ -18,4 +18,6 @@ export const getMyMessages = (username: string) => {
     if(!username) {
         return;
     }
+
+    return api.get(`messages/me/${username}`).then((res) => res.data);
 }

@@ -73,7 +73,7 @@ const CategoryInfo: React.FC = () => {
                       data.Books.map((item: { name: string }) => {
                         return (
                           <>
-                            <div className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 flex">
+                            <div className="mt-1 pt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0 flex">
                               {item.name} {""}
                             </div>
                           </>

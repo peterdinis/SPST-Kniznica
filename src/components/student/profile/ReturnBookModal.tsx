@@ -53,12 +53,12 @@ const ReturnBookModal: React.FC = () => {
           />
 
           <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-            Číslo knihy
+            Externné id pre knihy
           </label>
           <input
             type="number"
             className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-            {...register("bookId", {
+            {...register("bookExternalId", {
               valueAsNumber: true,
               required: true,
             })}

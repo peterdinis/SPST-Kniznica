@@ -5,6 +5,10 @@ import classNames from "@/helpers/classNames";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import Cookies from "js-cookie";
+import { useQuery } from "@tanstack/react-query";
+import * as api from "../../../api/queries/messageQueries";
+import FallbackRender from "../errors/ErrorRender";
+import FallbackLoader from "../FallbackLoader";
 
 const StudentDropdown: React.FC = () => {
   const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
@@ -15,8 +19,24 @@ const StudentDropdown: React.FC = () => {
     }
   }, []);
 
-  const studentUsername = student?.data.user.username as unknown as string;
+  const studentUsername = JSON.parse(
+    Cookies.get("studentUsername") as unknown as string
+  );
+  console.log(studentUsername);
+  const { data, isError, isLoading } = useQuery(
+    ["myMessages", studentUsername],
+    () => api.getMyMessages(studentUsername as any)
+  );
 
+  if (isError) {
+    return <FallbackRender error="Nastala chyba" />;
+  }
+
+  if (isLoading) {
+    return <FallbackLoader />;
+  }
+
+  console.log(data);
   return (
     <Menu as="div" className="relative inline-block text-left">
       <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">

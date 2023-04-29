@@ -2,9 +2,31 @@ import Image from "next/image";
 import AvatarImage from "../../../images/default.png";
 import useStudent from "@/hooks/useStudent";
 import PhotoModal from "./PhotoModal";
+import { FilePond, registerPlugin } from "react-filepond";
+import { useState } from "react";
+import "filepond/dist/filepond.min.css";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import 'filepond-plugin-get-file/dist/filepond-plugin-get-file.css';
+import FilePondPluginGetFile from 'filepond-plugin-get-file';
 
-const ProfileHeader: React.FC = () => {
-  const {student} = useStudent();
+registerPlugin(FilePondPluginImagePreview, FilePondPluginGetFile);
+
+interface ImageUploadProps {
+  label: string;
+  onUpload: (file: File) => void;
+}
+
+const ProfileHeader: React.FC<ImageUploadProps> = ({ label, onUpload }) => {
+  const { student } = useStudent();
+  const [files, setFiles] = useState([]);
+
+  const handleFileUpload = (files: any) => {
+    setFiles(files);
+    // onUpload(files[0]);
+  };
+
+  console.log(student);
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
@@ -22,13 +44,16 @@ const ProfileHeader: React.FC = () => {
           {student?.data.user.email}
         </h1>
         <PhotoModal btnName={"Nová fotka"} modalHeader={"Nová fotka"}>
-          <div className="bg-blue-50 px-4 flex-col">
-            <form className="flex shadow-md rounded flex-col py-12 px-4">
-              <button type="button" className="w-full text-lg font-bold border-dashed h-56 border-4">
-                Vybrať obrázok
-              </button>
-            </form>
-          </div>
+          <label>{label}</label>
+          <FilePond
+            files={files}
+            onupdatefiles={handleFileUpload}
+            allowMultiple={false}
+            acceptedFileTypes={["image/*"]}
+            labelIdle='Vybrať obrázok'
+            allowImagePreview={true}
+            imagePreviewMaxHeight={550}
+          />
         </PhotoModal>
       </div>
     </div>

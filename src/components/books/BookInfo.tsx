@@ -24,7 +24,7 @@ import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const BookInfo: React.FC = () => {
-  const { student } = useStudent();
+  const { student, studentPersonalInfo } = useStudent();
   const [teacher, setTeacher] = useState<ILoginTeacherInfo | null>(null);
   const [value, copy] = useCopyToClipboard();
   useEffect(() => {
@@ -90,6 +90,7 @@ const BookInfo: React.FC = () => {
     }
   };
 
+  console.log(studentPersonalInfo);
   return (
     <>
       <Header name="Detail Knihy" />

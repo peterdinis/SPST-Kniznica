@@ -12,4 +12,21 @@ export interface ILogin {
   password: string;
 }
 
-export interface ILoginAdminInfo {}
+export interface ILoginAdminInfo {
+  data: {
+    token: string;
+    user: {
+      id: number;
+      name: string;
+      createdAt: string;
+      classRoom: string;
+      picture?: string | null;
+      email: string;
+      lastName: string;
+      password: string;
+      role: string;
+      updatedAt: string;
+      username: string;
+    }
+  }
+}

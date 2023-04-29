@@ -14,10 +14,9 @@ registerPlugin(FilePondPluginImagePreview, FilePondPluginGetFile);
 
 interface ImageUploadProps {
   label: string;
-  onUpload: (file: File) => void;
 }
 
-const ProfileHeader: React.FC<ImageUploadProps> = ({ label, onUpload }) => {
+const ProfileHeader: React.FC<ImageUploadProps> = ({ label }) => {
   const { student } = useStudent();
   const [files, setFiles] = useState([]);
 

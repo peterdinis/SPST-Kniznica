@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie"
 import MyBooks from "./MyBooks";
 import useStudent from "@/hooks/useStudent";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -11,13 +11,11 @@ const ProfileBody: React.FC = () => {
   const { student } = useStudent();
   const [value, copy] = useCopyToClipboard();
 
-  const cookies = new Cookies();
-
   const logoutFromApp = () => {
     logoutToast();
-    cookies.remove("studentAccessToken");
-    cookies.remove("studentData");
-    cookies.remove("studentRegisterData");
+    Cookies.remove("studentAccessToken");
+    Cookies.remove("studentData");
+    Cookies.remove("studentRegisterData");
     window.location.replace("/student/login");
   };
 

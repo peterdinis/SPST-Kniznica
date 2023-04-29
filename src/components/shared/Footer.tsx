@@ -1,3 +1,5 @@
+import CopyrightIcon from '@mui/icons-material/Copyright';
+
 function Footer() {
     return (
       <footer className="relative  pt-8 pb-6 mt-1">
@@ -9,7 +11,7 @@ function Footer() {
                   href="https://www.spsbj.sk/"
                   className="text-blueGray-500 text-2xl hover:text-gray-800"
                 >
-                  &copy; SPŠT Knižnica 2023
+                  <CopyrightIcon /> SPŠT Knižnica 2023
                 </a>
               </div>
             </div>

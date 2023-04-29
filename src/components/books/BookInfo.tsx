@@ -20,10 +20,13 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import useStudent from "@/hooks/useStudent";
+import useCopyToClipboard from "@/hooks/useCopy";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const BookInfo: React.FC = () => {
   const {student} = useStudent();
   const [teacher, setTeacher] = useState<ILoginTeacherInfo | null>(null);
+  const [value, copy] = useCopyToClipboard();
   useEffect(() => {
     const currentTeacher = Cookies.get("teacherData");
     if (currentTeacher) {
@@ -87,12 +90,6 @@ const BookInfo: React.FC = () => {
     }
   };
 
-  let test = {};
-
-  if (student === test) {
-    console.log("JANDRE")
-  }
-
   return (
     <>
       <Header name="Detail Knihy" />
@@ -124,6 +121,10 @@ const BookInfo: React.FC = () => {
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Krátke info</span>:{" "}
                 {data.book && data.book.description}
+              </p>
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold">Id knihy pre požičanie</span>:{" "}
+                {data.book && data.book.externalId} <ContentCopyIcon onClick={() => copy(data.book.externalId)} />
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Author</span>:{" "}

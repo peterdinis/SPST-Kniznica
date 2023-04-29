@@ -11,6 +11,8 @@ const ProfileBody: React.FC = () => {
   const { student } = useStudent();
   const [value, copy] = useCopyToClipboard();
 
+  console.log(student);
+
   const logoutFromApp = () => {
     logoutToast();
     Cookies.remove("studentAccessToken");

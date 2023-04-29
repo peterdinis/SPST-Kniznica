@@ -3,10 +3,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
 import MyBooks from "./MyBooks";
 import useStudent from "@/hooks/useStudent";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import useCopyToClipboard from "@/hooks/useCopy";
 
 const ProfileBody: React.FC = () => {
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
   const { student } = useStudent();
+  const [value, copy] = useCopyToClipboard();
 
   const logoutFromApp = () => {
     logoutToast();
@@ -35,7 +38,7 @@ const ProfileBody: React.FC = () => {
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Používateľské meno</div>
-              <div className="px-4 py-2">{student?.data.user.username}</div>
+              <div className="px-4 py-2">{student?.data.user.username}<ContentCopyIcon onClick={() => copy(student?.data.user.username as any)} /></div>
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Email</div>

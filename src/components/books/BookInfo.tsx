@@ -18,20 +18,12 @@ import {
   createBookingType,
 } from "@/validators/booking/bookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
+import useStudent from "@/hooks/useStudent";
 
 const BookInfo: React.FC = () => {
-  const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
+  const {student} = useStudent();
   const [teacher, setTeacher] = useState<ILoginTeacherInfo | null>(null);
-
-  useEffect(() => {
-    const currentStudent = Cookies.get("studentData");
-    if (currentStudent) {
-      setStudent(JSON.parse(currentStudent));
-    }
-  }, []);
-
   useEffect(() => {
     const currentTeacher = Cookies.get("teacherData");
     if (currentTeacher) {
@@ -94,6 +86,12 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
+
+  let test = {};
+
+  if (student === test) {
+    console.log("JANDRE")
+  }
 
   return (
     <>

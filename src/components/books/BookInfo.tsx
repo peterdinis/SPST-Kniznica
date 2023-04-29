@@ -173,10 +173,6 @@ const BookInfo: React.FC = () => {
               )}
 
               {student === null || teacher === null ? (
-                <div className="text-xl font-bold mt-4 text-red-800">
-                  Ak si chcete požičať knihu musíte byť prihlásení.
-                </div>
-              ) : (
                 <HelperModal
                   btnName={"Požičať si knihu"}
                   modalHeader={"Požičanie knihy"}
@@ -261,6 +257,10 @@ const BookInfo: React.FC = () => {
                     </button>
                   </form>
                 </HelperModal>
+              ) : (
+                <div className="text-xl font-bold mt-4 text-red-800">
+                  Ak si chcete požičať knihu musíte byť prihlásení.
+                </div>
               )}
               <button
                 onClick={navigateToBooks}

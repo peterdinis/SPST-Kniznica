@@ -13,7 +13,6 @@ export interface ILogin {
   password: string;
 }
 
-
 export interface ILoginStudentInfo {
   data: {
     token: string;
@@ -29,6 +28,20 @@ export interface ILoginStudentInfo {
       role: string;
       updatedAt: string;
       username: string;
-    }
-  }
+    };
+  };
+}
+
+export interface ILoginStudentPersonalInfo {
+  id: number;
+  name: string;
+  createdAt: string;
+  classRoom: string;
+  picture?: string | null;
+  email: string;
+  lastName: string;
+  password: string;
+  role: string;
+  updatedAt: string;
+  username: string;
 }

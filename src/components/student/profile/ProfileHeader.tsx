@@ -4,7 +4,6 @@ import useStudent from "@/hooks/useStudent";
 
 const ProfileHeader: React.FC = () => {
   const {student} = useStudent();
-  const studentUsername = student?.data.user.username;
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
@@ -21,6 +20,7 @@ const ProfileHeader: React.FC = () => {
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
           {student?.data.user.email}
         </h1>
+        + Nová fotka
       </div>
     </div>
   );

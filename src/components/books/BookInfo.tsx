@@ -124,7 +124,7 @@ const BookInfo: React.FC = () => {
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Id knihy pre požičanie</span>:{" "}
-                {data.book && data.book.externalId} <ContentCopyIcon onClick={() => copy(data.book.externalId)} />
+                <ContentCopyIcon className="transform scale-10" onClick={() => copy(data.book.externalId)} /> {data.book && data.book.externalId} 
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Author</span>:{" "}

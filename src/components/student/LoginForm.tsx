@@ -3,15 +3,19 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
-import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutations";
 import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createStudentRegisterType, loginStudentSchema } from "@/validators/student/studentSchema";
+import {
+  createStudentRegisterType,
+  loginStudentSchema,
+} from "@/validators/student/studentSchema";
+import Cookies from "universal-cookie";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
+  const cookies = new Cookies();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
@@ -21,28 +25,29 @@ const LoginForm: React.FC = () => {
     trigger,
     register,
   } = useForm<createStudentRegisterType>({
-    resolver: zodResolver(loginStudentSchema)
+    resolver: zodResolver(loginStudentSchema),
   });
 
   const mutation = useMutation(mut.loginStudent, {
     onSuccess: (data: ILoginStudentInfo) => {
-      Cookies.set("studentData", JSON.stringify(data));
-      Cookies.set("studentAccessToken", JSON.stringify(data.data.token));
+      cookies.set("studentData", JSON.stringify(data));
+      cookies.set("studentAccessToken", JSON.stringify(data.data.token));
       notify();
       window.location.replace("/student/profile");
     },
 
     onError: (data: any) => {
-        router.push("/failed");
-        errorRegister();
-        return;
-    }
-  })
+      router.push("/failed");
+      errorRegister();
+      return;
+    },
+  });
 
-  const onHandleSubmit: SubmitHandler<createStudentRegisterType> = (data: ILogin) => {
-      mutation.mutate(data);
+  const onHandleSubmit: SubmitHandler<createStudentRegisterType> = (
+    data: ILogin
+  ) => {
+    mutation.mutate(data);
   };
-
 
   return (
     <>

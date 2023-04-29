@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import { useSpring, animated } from "@react-spring/web";
 import { FadeProps, IModalProps } from "@/interfaces/IModal";
 import { style } from "../../../styles/sharedStyle";
+import AddIcon from '@mui/icons-material/Add';
 
 const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   props,
@@ -48,7 +49,7 @@ const PhotoModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) =
 
   return (
     <>
-      <button className="text-xl mt-6 bg-blue-200 rounded-lg p-2 font-extrabold" onClick={handleOpen}>{btnName}</button>
+      <button className="mt-4" onClick={handleOpen}><AddIcon />{btnName}</button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"

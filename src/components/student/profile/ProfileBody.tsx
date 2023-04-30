@@ -16,6 +16,7 @@ const ProfileBody: React.FC = () => {
     Cookies.remove("studentAccessToken");
     Cookies.remove("studentData");
     Cookies.remove("studentRegisterData");
+    Cookies.remove("studentPersonalData");
     window.location.replace("/student/login");
   };
 

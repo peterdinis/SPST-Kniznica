@@ -24,7 +24,7 @@ import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const BookInfo: React.FC = () => {
-  const { student, studentPersonalInfo } = useStudent();
+  const { studentPersonalInfo } = useStudent();
   const [teacher, setTeacher] = useState<ILoginTeacherInfo | null>(null);
   const [value, copy] = useCopyToClipboard();
   useEffect(() => {
@@ -174,7 +174,7 @@ const BookInfo: React.FC = () => {
               )}
 
               {studentPersonalInfo === null ? (
-                <span className="text-red-800">
+                <span className="text-red-800 font-bold text-xl">
                   Ak si chcte požičať knihu musíte byť prihlasení
                 </span>
               ) : (
@@ -263,6 +263,7 @@ const BookInfo: React.FC = () => {
                   </form>
                 </HelperModal>
               )}
+              <br/>
               <button
                 onClick={navigateToBooks}
                 className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold"

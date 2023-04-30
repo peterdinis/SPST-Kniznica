@@ -28,11 +28,8 @@ class ErrorBoundary extends Component<Props, State> {
       return (
           <main className="h-screen w-full flex flex-col justify-center items-center">
             <h1 className="text-9xl font-extrabold text-black tracking-widest">
-              Chyba
+              Chyba <SentimentVeryDissatisfiedIcon />
             </h1>
-            <div className="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
-              Nastala chyba <SentimentVeryDissatisfiedIcon />
-            </div>
             <div className="mt-5">
               <button
                 onClick={() => this.setState({ hasError: false })}

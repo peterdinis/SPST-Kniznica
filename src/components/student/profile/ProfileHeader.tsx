@@ -21,7 +21,7 @@ registerPlugin(
 );
 
 const ProfileHeader: React.FC = () => {
-  const { student } = useStudent();
+  const { studentPersonalInfo} = useStudent();
   const [files, setFiles] = useState([]);
 
   const handleFileUpload = (files: any) => {
@@ -41,7 +41,7 @@ const ProfileHeader: React.FC = () => {
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-          {student?.data.user.email}
+          {studentPersonalInfo?.email}
         </h1>
         <PhotoModal btnName={"Nová fotka"} modalHeader={"Nahranie novej fotky"}>
           <FilePond

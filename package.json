@@ -47,7 +47,6 @@
     "react-toastify": "^9.1.1",
     "react-virtualized-auto-sizer": "^1.0.14",
     "react-window": "^1.8.8",
-    "socket.io-client": "^4.6.1",
     "styled-components": "^5.3.9",
     "universal-cookie": "^4.0.4",
     "zod": "^3.21.4"

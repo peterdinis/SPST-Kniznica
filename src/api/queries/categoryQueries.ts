@@ -13,3 +13,7 @@ export const getOneCategory = (externalId: string) => {
 
   return api.get(`category/${externalId}`).then((res) => res.data);
 };
+
+export const searchForCategories = (value: string) => {
+  return api.get(`category/search?q=${value}`)
+}

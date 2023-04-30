@@ -43,7 +43,7 @@ const ProfileHeader: React.FC = () => {
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
           {student?.data.user.email}
         </h1>
-        <PhotoModal btnName={"Nová fotka"} modalHeader={"Nová fotka"}>
+        <PhotoModal btnName={"Nová fotka"} modalHeader={"Nahranie novej fotky"}>
           <FilePond
             files={files}
             onupdatefiles={handleFileUpload}

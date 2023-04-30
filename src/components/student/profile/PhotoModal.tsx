@@ -61,7 +61,9 @@ const PhotoModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) =
         <Fade in={open}>
           <Box sx={style}>
             <h2 className="text-center font-bold text-2xl">{modalHeader}</h2>
-            {children}
+            <div className="mt-4">
+              {children}
+            </div>
           </Box>
         </Fade>
       </Modal>

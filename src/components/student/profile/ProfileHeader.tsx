@@ -4,14 +4,12 @@ import useStudent from "@/hooks/useStudent";
 import PhotoModal from "./PhotoModal";
 import { FilePond, registerPlugin } from "react-filepond";
 import { useState } from "react";
-import "filepond/dist/filepond.min.css";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import "filepond-plugin-get-file/dist/filepond-plugin-get-file.css";
 import FilePondPluginGetFile from "filepond-plugin-get-file";
 import { serverUrl } from "@/constants/appConstants";
 import FilePondPluginImageCrop from "filepond-plugin-image-crop";
 import FilePondPluginImageResize from 'filepond-plugin-image-resize';
+import { FilePondFile } from "@/interfaces/IFile";
 
 registerPlugin(
   FilePondPluginImagePreview,
@@ -22,9 +20,9 @@ registerPlugin(
 
 const ProfileHeader: React.FC = () => {
   const { studentPersonalInfo} = useStudent();
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<any>([]);
 
-  const handleFileUpload = (files: any) => {
+  const handleFileUpload = (files: FilePondFile[]) => {
     setFiles(files);
   };
 
@@ -51,6 +49,7 @@ const ProfileHeader: React.FC = () => {
             acceptedFileTypes={["image/*"]}
             labelIdle="Vybrať obrázok"
             server={serverUrl}
+            allowDrop={true}
             allowImagePreview={true}
             imagePreviewMaxHeight={550}
           />

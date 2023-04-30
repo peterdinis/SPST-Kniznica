@@ -52,6 +52,11 @@ const ProfileHeader: React.FC = () => {
             allowDrop={true}
             allowImagePreview={true}
             imagePreviewMaxHeight={550}
+            imagePreviewMarkupShow={true}
+            allowImageCrop={true}
+            labelTapToUndo="Skúsiť znova"
+            name="Nahranie profilovej fotky"
+            
           />
         </PhotoModal>
       </div>

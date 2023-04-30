@@ -12,20 +12,17 @@ import FilePondPluginGetFile from 'filepond-plugin-get-file';
 
 registerPlugin(FilePondPluginImagePreview, FilePondPluginGetFile);
 
-interface ImageUploadProps {
-  label: string;
-}
-
-const ProfileHeader: React.FC<ImageUploadProps> = ({ label }) => {
+const ProfileHeader: React.FC = () => {
   const { student } = useStudent();
   const [files, setFiles] = useState([]);
 
   const handleFileUpload = (files: any) => {
     setFiles(files);
-    // onUpload(files[0]);
   };
 
   console.log(student);
+
+  const serverUrl = `${process.env.NEXT_PUBLIC_PHOTO_URL}api/upload`; 
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
@@ -43,13 +40,13 @@ const ProfileHeader: React.FC<ImageUploadProps> = ({ label }) => {
           {student?.data.user.email}
         </h1>
         <PhotoModal btnName={"Nová fotka"} modalHeader={"Nová fotka"}>
-          <label>{label}</label>
           <FilePond
             files={files}
             onupdatefiles={handleFileUpload}
             allowMultiple={false}
             acceptedFileTypes={["image/*"]}
             labelIdle='Vybrať obrázok'
+            server={serverUrl}
             allowImagePreview={true}
             imagePreviewMaxHeight={550}
           />

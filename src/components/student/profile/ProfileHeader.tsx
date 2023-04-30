@@ -7,10 +7,18 @@ import { useState } from "react";
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import 'filepond-plugin-get-file/dist/filepond-plugin-get-file.css';
-import FilePondPluginGetFile from 'filepond-plugin-get-file';
+import "filepond-plugin-get-file/dist/filepond-plugin-get-file.css";
+import FilePondPluginGetFile from "filepond-plugin-get-file";
+import { serverUrl } from "@/constants/appConstants";
+import FilePondPluginImageCrop from "filepond-plugin-image-crop";
+import FilePondPluginImageResize from 'filepond-plugin-image-resize';
 
-registerPlugin(FilePondPluginImagePreview, FilePondPluginGetFile);
+registerPlugin(
+  FilePondPluginImagePreview,
+  FilePondPluginGetFile,
+  FilePondPluginImageCrop,
+  FilePondPluginImageResize
+);
 
 const ProfileHeader: React.FC = () => {
   const { student } = useStudent();
@@ -19,10 +27,6 @@ const ProfileHeader: React.FC = () => {
   const handleFileUpload = (files: any) => {
     setFiles(files);
   };
-
-  console.log(student);
-
-  const serverUrl = `${process.env.NEXT_PUBLIC_PHOTO_URL}api/upload`; 
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
@@ -45,7 +49,7 @@ const ProfileHeader: React.FC = () => {
             onupdatefiles={handleFileUpload}
             allowMultiple={false}
             acceptedFileTypes={["image/*"]}
-            labelIdle='Vybrať obrázok'
+            labelIdle="Vybrať obrázok"
             server={serverUrl}
             allowImagePreview={true}
             imagePreviewMaxHeight={550}

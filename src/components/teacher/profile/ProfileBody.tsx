@@ -13,6 +13,7 @@ const ProfileBody: React.FC = () => {
     logoutToast();
     Cookies.remove("teacherAccessToken");
     Cookies.remove("teacherData");
+    Cookies.remove("teacherPersonalInfo");
     Cookies.remove("teacherRegisterData");
     window.location.replace("/teacher/login");
   };

@@ -6,28 +6,21 @@ import { IBooking } from "@/interfaces/IBooking";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import Link from "next/link";
 import ReturnBookModal from "./ReturnBookModal";
-import { ILoginStudentInfo } from "@/interfaces/IStudent";
-import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
 import { placeholderBooking } from "@/data/placeholderBooking";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import useStudent from "@/hooks/useStudent";
 
 const MyBooks: React.FC = () => {
-  const [student, setStudent] = useState<ILoginStudentInfo | null>(null);
-  useEffect(() => {
-      const currentStudent = Cookies.get("studentData");
-      if (currentStudent) {
-          setStudent(JSON.parse(currentStudent));
-      }
-  }, []);
-  
-  const studentUsername = student?.data.user.username;
+  const { studentPersonalInfo } = useStudent();
+  const studentUsername = studentPersonalInfo?.username || "";
+  console.log(studentUsername);
+
   const { data, isError, isLoading } = useQuery(
     ["studentBorrowedBooks", studentUsername],
     () => api.getMyBorrowedBooks(studentUsername as unknown as string), {
-      initialData: placeholderBooking,
-      retry: 2
-    }
+    initialData: placeholderBooking,
+    retry: 2
+  }
   );
 
   if (isError) {
@@ -37,6 +30,8 @@ const MyBooks: React.FC = () => {
   if (isLoading) {
     return <FallbackLoader />;
   }
+
+  console.log(data);
 
   return (
     <>
@@ -55,8 +50,8 @@ const MyBooks: React.FC = () => {
                     <div className="flex justify-start cursor-pointer text-gray-700 rounded-md px-2 py-2 my-2">
                       <span className="bg-gray-400 h-2 w-2 m-2 rounded-full"></span>
                       <div className="flex-grow font-medium px-2">
-                        <Link href={`/books/detail/${item.bookExternalId}`}>
-                          Detail Knihy - {item.bookExternalId}
+                        <Link href={`/books/detail/${item.id}`}>
+                          Detail Knihy - {item.id}
                         </Link>
                       </div>
                       <div className="text-sm font-normal text-gray-500 tracking-wide">

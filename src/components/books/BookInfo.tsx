@@ -1,8 +1,6 @@
 import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackRender from "../shared/errors/ErrorRender";
 import FallbackLoader from "../shared/FallbackLoader";
@@ -18,21 +16,15 @@ import {
   createBookingType,
 } from "@/validators/booking/bookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import useStudent from "@/hooks/useStudent";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import useTeacher from "@/hooks/useTeacher";
 
 const BookInfo: React.FC = () => {
   const { studentPersonalInfo } = useStudent();
-  const [teacher, setTeacher] = useState<ILoginTeacherInfo | null>(null);
   const [value, copy] = useCopyToClipboard();
-  useEffect(() => {
-    const currentTeacher = Cookies.get("teacherData");
-    if (currentTeacher) {
-      setTeacher(JSON.parse(currentTeacher));
-    }
-  }, []);
+  const {teacherPersonalInfo} = useTeacher();
 
   const router = useRouter();
   const { id } = router.query;
@@ -89,8 +81,6 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
-
-  console.log(studentPersonalInfo);
   return (
     <>
       <Header name="Detail Knihy" />
@@ -127,9 +117,9 @@ const BookInfo: React.FC = () => {
                 <span className="font-bold">Id knihy pre požičanie</span>:{" "}
                 <ContentCopyIcon
                   className="transform scale-10"
-                  onClick={() => copy(data.book.externalId)}
+                  onClick={() => copy(data.book.id)}
                 />{" "}
-                {data.book && data.book.externalId}
+                {data.book && data.book.id}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Author</span>:{" "}
@@ -173,8 +163,8 @@ const BookInfo: React.FC = () => {
                 </p>
               )}
 
-              {studentPersonalInfo === null ? (
-                <span className="text-red-800 font-bold text-xl">
+              {studentPersonalInfo === null || teacherPersonalInfo === null ? (
+                <span className="text-red-800 font-bold text-xl pt-3">
                   Ak si chcte požičať knihu musíte byť prihlasení
                 </span>
               ) : (

@@ -1,10 +1,6 @@
 import axios from "axios";
-import authApi from "../tokens/studentInterceptor";
 
-const baseEnv =
-  process.env.NODE_ENV !== "production"
-    ? (process.env.NEXT_PUBLIC_BACKEND_URL as string)
-    : (process.env.NEXT_PUBLIC_PRODUCTION_URL as string);
+const baseEnv = process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string
 
 const api = axios.create({
   baseURL: baseEnv,
@@ -23,5 +19,5 @@ export const getBookingInfo = (id: string) => {
 export const getMyBorrowedBooks = (username: string) => {
   if (!username) return;
 
-  return authApi.get(`/booking/${username}`).then((res) => res.data);
+  return api.get(`booking/${username}`).then((res) => res.data);
 };

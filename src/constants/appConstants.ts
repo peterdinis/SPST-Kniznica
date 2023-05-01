@@ -1,1 +1,3 @@
-export const serverUrl = `${process.env.NEXT_PUBLIC_PHOTO_URL}api/upload`; 
+export const serverUrl = `${
+  process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string
+}api/upload`;

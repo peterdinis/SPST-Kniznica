@@ -1,5 +1,4 @@
 import React, { Component, ErrorInfo } from "react";
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 interface Props {
   children: any; // TODO: Not good not terrible :D
@@ -28,7 +27,7 @@ class ErrorBoundary extends Component<Props, State> {
       return (
           <main className="h-screen w-full flex flex-col justify-center items-center">
             <h1 className="text-9xl font-extrabold text-black tracking-widest">
-              Chyba <SentimentVeryDissatisfiedIcon />
+              Chyba
             </h1>
             <div className="mt-5">
               <button

@@ -20,7 +20,8 @@ registerPlugin(
 
 const ProfileHeader: React.FC = () => {
   const { studentPersonalInfo} = useStudent();
-  const [files, setFiles] = useState<any>([]);
+  /* TODO: Fix typing */
+  const [files, setFiles] = useState<FilePondFile |any>();
 
   const handleFileUpload = (files: FilePondFile[]) => {
     setFiles(files);
@@ -55,8 +56,8 @@ const ProfileHeader: React.FC = () => {
             imagePreviewMarkupShow={true}
             allowImageCrop={true}
             labelTapToUndo="Skúsiť znova"
-            name="Nahranie profilovej fotky"
-            
+            labelFileLoading="Nahrávam..."
+            labelFileAdded="Súbor bol úspešne nahraný"
           />
         </PhotoModal>
       </div>

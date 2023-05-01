@@ -3,11 +3,11 @@ export interface ICreateBooking {
   from: any;
   to: any;
   username: string;
-  bookExternalId: number;
+  bookId: number;
 }
 
 export interface IReturnBooking{
-  bookExternalId: number;
+  bookId: number;
   username: string;
 }
 

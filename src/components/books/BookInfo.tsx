@@ -211,14 +211,14 @@ const BookInfo: React.FC = () => {
                     <input
                       type="number"
                       className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                      {...register("bookExternalId", { valueAsNumber: true })}
+                      {...register("bookId", { valueAsNumber: true })}
                       onKeyUp={() => {
-                        trigger("bookExternalId");
+                        trigger("bookId");
                       }}
                     />
 
                     <p className="text-red-800">
-                      {errors.bookExternalId && errors.bookExternalId.message}
+                      {errors.bookId && errors.bookId.message}
                     </p>
 
                     <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">

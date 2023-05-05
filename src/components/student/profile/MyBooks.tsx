@@ -8,25 +8,24 @@ import { useRouter } from "next/router";
 const MyBooks: React.FC = () => {
   const { studentPersonalInfo } = useStudent();
   const router = useRouter();
-  const studentUserName = studentPersonalInfo?.username as unknown as string;
-  const queryUserName = router.query.username![0] as unknown as string;
+  const {query, isReady} = useRouter();
+  
+  if(!isReady) {
+    return <FallbackLoader />
+  }
 
-  const wrapperName = studentUserName === undefined || studentUserName === null ? queryUserName : studentUserName;
+  console.log(query.username![0] as unknown as string);
 
-  console.log(wrapperName);
+  const {data, isLoading, isError} = useQuery(["myBorrowedBooks", query.username![0] as unknown as string], () => api.getMyBorrowedBooks(query.username![0] as unknown as string))
 
-  /* console.log(studentPersonalInfo && studentUserName);
-  const {data, isLoading, isError} = useQuery(["myBorrowedBooks", studentUserName], () => api.getMyBorrowedBooks(studentPersonalInfo && studentUserName as any))
-
- if(isLoading) {
+  if(isLoading) {
     return <FallbackLoader />
   }
 
   if(isError) {
-    return <FallbackRender error="Nastala chyba" />
+    return <FallbackRender error={"Nastala Chyba"} />
   }
-
-  console.log(data); */
+  
   return (
     <section className="container mx-auto p-6 font-mono">
     <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">

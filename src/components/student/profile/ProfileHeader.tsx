@@ -6,9 +6,8 @@ import { FilePond, registerPlugin } from "react-filepond";
 import { useState } from "react";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import FilePondPluginGetFile from "filepond-plugin-get-file";
-import { serverUrl } from "@/constants/appConstants";
 import FilePondPluginImageCrop from "filepond-plugin-image-crop";
-import FilePondPluginImageResize from 'filepond-plugin-image-resize';
+import FilePondPluginImageResize from "filepond-plugin-image-resize";
 import { FilePondFile } from "@/interfaces/IFile";
 
 registerPlugin(
@@ -19,13 +18,17 @@ registerPlugin(
 );
 
 const ProfileHeader: React.FC = () => {
-  const { studentPersonalInfo} = useStudent();
+  const { studentPersonalInfo } = useStudent();
   /* TODO: Fix typing */
-  const [files, setFiles] = useState<FilePondFile |any>();
+  const [files, setFiles] = useState<FilePondFile | any>();
 
   const handleFileUpload = (files: FilePondFile[]) => {
     setFiles(files);
   };
+
+  const serverUrl = `${
+    process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string
+  }api/upload/${studentPersonalInfo?.username}`;
 
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">

@@ -25,7 +25,7 @@ const MyBooks: React.FC = () => {
   if(isError) {
     return <FallbackRender error={"Nastala Chyba"} />
   }
-  
+
   return (
     <section className="container mx-auto p-6 font-mono">
     <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">

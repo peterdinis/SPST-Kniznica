@@ -16,7 +16,7 @@ const MyBooks: React.FC = () => {
   console.log(studentUsername);
 
   const { data, isError, isLoading } = useQuery(
-    ["studentBorrowedBooks", studentUsername],
+    ["studentBorrowedBooks", studentUsername!],
     () => api.getMyBorrowedBooks(studentUsername as unknown as string), {
     initialData: placeholderBooking,
     retry: 2

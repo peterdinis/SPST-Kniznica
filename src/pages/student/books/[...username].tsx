@@ -1,10 +1,13 @@
+import Header from "@/components/shared/Header";
+import MyBooks from "@/components/student/profile/MyBooks";
 import { NextPage } from "next";
 
 const MyBorrowedBooks: NextPage = () => {
     return (
-        <>
-        ff
-        </>
+       <>
+        <Header name="Moje požičané knihy" />
+        <MyBooks />
+       </>
     )
 }
 

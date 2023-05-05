@@ -19,6 +19,7 @@ registerPlugin(
 
 const ProfileHeader: React.FC = () => {
   const { studentPersonalInfo } = useStudent();
+  console.log(studentPersonalInfo);
   /* TODO: Fix typing */
   const [files, setFiles] = useState<FilePondFile | any>();
 
@@ -30,6 +31,10 @@ const ProfileHeader: React.FC = () => {
     process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string
   }api/upload/${studentPersonalInfo?.username}`;
 
+  const pictureForStudent = studentPersonalInfo?.picture;
+  const removePathFromPicture = pictureForStudent?.substring(8);
+
+  console.log(removePathFromPicture);
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
       <div className="bg-white p-2">

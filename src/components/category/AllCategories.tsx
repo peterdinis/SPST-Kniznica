@@ -9,7 +9,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ICategory } from "@/interfaces/ICategory";
 import ScrollToTop from "@/hooks/useScroll";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import {useState} from "react";
+import { useState } from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
 
 const AllCategories: React.FC = () => {
@@ -23,11 +23,15 @@ const AllCategories: React.FC = () => {
     isFetching,
     isLoading,
     isPreviousData,
-  } = useQuery(["paginateCategories", page], () => api.paginateCategories(page, limit), {
-    keepPreviousData: true,
-    initialData: initialCategories,
-    retry: 2
-  });
+  } = useQuery(
+    ["paginateCategories", page],
+    () => api.paginateCategories(page, limit),
+    {
+      keepPreviousData: true,
+      initialData: initialCategories,
+      retry: 2,
+    }
+  );
 
   if (isLoading) {
     return <FallbackLoader />;

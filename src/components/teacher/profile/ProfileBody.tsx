@@ -1,7 +1,6 @@
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
-import MyBooks from "./MyBooks";
 import TeacherOptions from "./TeacherOptions";
 import useTeacher from "@/hooks/useTeacher";
 
@@ -72,7 +71,6 @@ const ProfileBody: React.FC = () => {
             </div>
           </div>
         </div>
-        <MyBooks />
         <TeacherOptions />
       </div>
     </>

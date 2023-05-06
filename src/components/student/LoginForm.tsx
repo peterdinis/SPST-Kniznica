@@ -11,11 +11,10 @@ import {
   createStudentRegisterType,
   loginStudentSchema,
 } from "@/validators/student/studentSchema";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
-  const cookies = new Cookies();
 
   const notify = () => toast.success("Prihlásenie bolo úspešné");
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
@@ -30,9 +29,9 @@ const LoginForm: React.FC = () => {
 
   const mutation = useMutation(mut.loginStudent, {
     onSuccess: (data: ILoginStudentInfo) => {
-      cookies.set("studentData", JSON.stringify(data));
-      cookies.set("studentPersonalData", JSON.stringify(data.data.user));
-      cookies.set("studentAccessToken", JSON.stringify(data.data.token));
+      Cookies.set("studentData", JSON.stringify(data));
+      Cookies.set("studentPersonalData", JSON.stringify(data.data.user));
+      Cookies.set("studentAccessToken", JSON.stringify(data.data.token));
       notify();
       window.location.replace("/student/profile");
     },

@@ -5,6 +5,7 @@ import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { useRouter } from "next/router";
 import { IBooking } from "@/interfaces/IBooking";
 import ReturnBookModal from "./ReturnBookModal";
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const MyBooks: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -24,8 +25,6 @@ const MyBooks: React.FC = () => {
     return <FallbackRender error={"Nastala Chyba"} />;
   }
 
-  console.log(data);
-
   return (
     <section className="container mx-auto p-6 font-mono">
       <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
@@ -40,6 +39,7 @@ const MyBooks: React.FC = () => {
               </tr>
             </thead>
             <tbody className="bg-white">
+              {data === null || data === undefined && <div className="flex justify-center aling-top text-black text-xl">Nemáte žiadne požičané knihy <SentimentVeryDissatisfiedIcon /></div>}
               {data &&
                 data.map((item: IBooking) => {
                   return (

@@ -25,6 +25,12 @@ const ProfileBody: React.FC = () => {
     window.location.replace("/teacher/login");
   };
 
+  const goToMyBooks = () => {
+    setTimeout(() => {
+      window.location.replace(`/teacher/books/${teacher?.data.user.username}`)
+    }, 1000);
+  }
+
   return (
     <>
       <div className="w-full md:w-9/12 mx-2 h-64">
@@ -57,6 +63,17 @@ const ProfileBody: React.FC = () => {
                 <div className="px-4 py-2 font-semibold">Rola</div>
                 <div className="px-4 py-2">{teacher?.data.user.role}</div>
               </div>
+              <div className="grid grid-cols-2">
+              <div className="px-4 py-2 font-semibold">Moje požičané knihy</div>
+              <div className="px-4 py-2">
+                <button
+                  onClick={goToMyBooks}
+                  className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                >
+                  Moje knihy
+                </button>
+              </div>
+            </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>
                 <div className="px-4 py-2">

@@ -8,7 +8,7 @@ const AdminStudents: React.FC = () => {
         <div className="min-w-screen min-h-screenflex items-center justify-center font-sans overflow-hidden">
           <div className="w-full lg:w-5/6">
             <div className="bg-white shadow-md rounded my-6">
-              <table className="min-w-max w-full table-auto">
+              <table className="min-w-max w-full table-auto ml-10">
                 <thead>
                   <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                     <th className="py-3 px-6 text-left">Project</th>

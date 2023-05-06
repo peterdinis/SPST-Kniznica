@@ -11,10 +11,18 @@ const ProfileBody: React.FC = () => {
 
   const logoutFromApp = () => {
     logoutToast();
-    Cookies.remove("teacherAccessToken");
-    Cookies.remove("teacherData");
-    Cookies.remove("teacherPersonalInfo");
-    Cookies.remove("teacherRegisterData");
+    Cookies.remove("teacherAccessToken", {
+      path: "/"
+    });
+    Cookies.remove("teacherData", {
+      path: "/"
+    });
+    Cookies.remove("teacherPersonalInfo", {
+      path: "/"
+    });
+    Cookies.remove("teacherRegisterData", {
+      path: "/"
+    });
     window.location.replace("/teacher/login");
   };
 

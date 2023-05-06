@@ -6,5 +6,9 @@ export const mutationCache = new MutationCache({
   },
   onSuccess: data => {
     console.log(data);
+  },
+
+  onMutate: data => {
+    console.log(data);
   }
 })

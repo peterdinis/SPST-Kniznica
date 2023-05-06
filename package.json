@@ -19,7 +19,6 @@
     "@mui/material": "^5.11.7",
     "@next/font": "13.1.6",
     "@tailwindcss/forms": "^0.5.3",
-    "@tanstack/match-sorter-utils": "^8.7.6",
     "@tanstack/react-query": "^4.24.4",
     "@tanstack/react-query-devtools": "^4.24.4",
     "@types/node": "18.11.18",
@@ -48,7 +47,6 @@
     "react-virtualized-auto-sizer": "^1.0.14",
     "react-window": "^1.8.8",
     "styled-components": "^5.3.9",
-    "universal-cookie": "^4.0.4",
     "zod": "^3.21.4"
   },
   "devDependencies": {

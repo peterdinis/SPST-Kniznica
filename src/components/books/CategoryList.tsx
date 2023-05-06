@@ -30,7 +30,7 @@ const CategoryList: React.FC = () => {
               const photo = data[index];
               return (
                 <div style={style}>
-                  <h1>{photo.name}</h1>
+                  <h1>{photo.id} - {photo.name}</h1>
                 </div>
               );
             }}

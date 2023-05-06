@@ -20,6 +20,8 @@ import useStudent from "@/hooks/useStudent";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import useTeacher from "@/hooks/useTeacher";
+import Image from "next/image";
+import defaultImage from "../../images/default.png"
 
 const BookInfo: React.FC = () => {
   const { studentPersonalInfo } = useStudent();
@@ -90,11 +92,13 @@ const BookInfo: React.FC = () => {
             {(data.book && data.book.image === null) ||
             (data.book && data.book.image === undefined) ||
             (data.book && data.book.image === "string") ? (
-              <LazyLoadImage
-                alt="No Image"
-                className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
-                src="https://bitsofco.de/content/images/2018/12/broken-1.png"
-              />
+              <Image
+              alt="No Image"
+              className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
+              src={defaultImage}
+              height={300}
+              width={300}
+            />
             ) : (
               <LazyLoadImage
                 alt="ecommerce"

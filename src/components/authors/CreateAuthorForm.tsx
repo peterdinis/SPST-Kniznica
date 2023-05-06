@@ -1,7 +1,9 @@
+import Header from "../shared/Header";
+
 const CreateAuthorForm: React.FC = () => {
     return (
         <>
-        rrr
+          <Header name="Pridanie nového autora" />
         </>
     )
 }

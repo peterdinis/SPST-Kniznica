@@ -14,7 +14,7 @@ const notify = () => toast.success("Kategória bola vytvorená");
 const errorRegister = () => toast.error("Kategória nebola vytvorená");
 
 const CreateNewCategory: React.FC = () => {
-  const { register, handleSubmit } = useForm<createCategoryType>({
+  const { register, handleSubmit, reset } = useForm<createCategoryType>({
     resolver: zodResolver(createCategorySchema),
   });
 
@@ -30,9 +30,10 @@ const CreateNewCategory: React.FC = () => {
   });
 
   const onHandleSubmit: SubmitHandler<createCategoryType> = (
-    data: ICategory
+    data: ICategory | any
   ) => {
     mutation.mutate(data);
+    reset();
   };
 
   return (

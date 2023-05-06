@@ -21,7 +21,7 @@ function Hero() {
   return (
     <>
       <div className="pt-32 lg:flex items-center relative z-10 container mx-auto">
-        <div className="w-full lg:w-1/2 h-full lg:pr-10 xl:pr-0">
+        <div className="w-full mb-8 lg:w-1/2 h-full lg:pr-10 xl:pr-0">
           <Image
            className="mx-auto" 
            src={HeroImage}

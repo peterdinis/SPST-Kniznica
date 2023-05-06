@@ -6,6 +6,8 @@ import FallbackLoader from "../shared/FallbackLoader";
 import * as api from "../../api/queries/authorQueries";
 import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Image from "next/image";
+import defaultImage from "../../images/default.png"
 
 const AuthorDetail: React.FC = () => {
   const router = useRouter();
@@ -41,10 +43,12 @@ const AuthorDetail: React.FC = () => {
             {data.picture === null ||
             data.picture === undefined ||
             data.picture === "string" ? (
-              <LazyLoadImage
+              <Image
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/ProhibitionSign2.svg/150px-ProhibitionSign2.svg.png"
+                src={defaultImage}
+                height={300}
+                width={300}
               />
             ) : (
               <LazyLoadImage

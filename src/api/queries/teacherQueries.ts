@@ -1,4 +1,11 @@
 import authApi from "../tokens/teacherInterceptor";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string
+});
+
+export const getAllTeachers = () => api.get("teachers").then((res) => res.data);
 
 export const getTeacherProfile = () => authApi.get("teacher/profile").then((res) => res.data);
 

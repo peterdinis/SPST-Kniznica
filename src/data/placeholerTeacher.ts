@@ -1,3 +1,17 @@
 import { ILoginTeacherInfo } from "@/interfaces/ITeacher";
 
-export const placeholderTeacher = [{}] as ILoginTeacherInfo[];
+/* 
+  name: string;
+      lastName: string;
+      username: string;
+      email: string;
+      password: string;
+      role: string;
+      updatedAt: string;
+      picture?: string | null;
+      createdAt: string;
+*/
+
+export const placeholderTeacher = [{
+
+}] as ILoginTeacherInfo[] | any;

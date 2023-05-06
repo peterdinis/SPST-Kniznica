@@ -50,7 +50,8 @@ const ProfileHeader: React.FC = () => {
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
           {studentPersonalInfo?.email}
         </h1>
-        <PhotoModal btnName={"Nová fotka"} modalHeader={"Nahranie novej fotky"}>
+        {/* Uncomment later */}
+       {/*  <PhotoModal btnName={"Nová fotka"} modalHeader={"Nahranie novej fotky"}>
           <FilePond
             files={files}
             onupdatefiles={handleFileUpload}
@@ -67,7 +68,7 @@ const ProfileHeader: React.FC = () => {
             labelFileLoading="Nahrávam..."
             labelFileAdded="Súbor bol úspešne nahraný"
           />
-        </PhotoModal>
+        </PhotoModal> */}
       </div>
     </div>
   );

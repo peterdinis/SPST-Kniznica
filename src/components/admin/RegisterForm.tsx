@@ -12,6 +12,7 @@ import * as mut from "../../api/mutations/adminMutations";
 import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createAdminRegisterType, createAdminSchema } from "@/validators/admin/adminSchema";
+import { IRegister } from "@/interfaces/IAdmin";
 
 const RegisterForm: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
@@ -44,6 +45,19 @@ const RegisterForm: React.FC = () => {
     resolver: zodResolver(createAdminSchema)
   });
 
+  // TODO: Fix typing
+  const onHandleSubmit: SubmitHandler<createAdminRegisterType> = (data: IRegister | any) => {
+    try {
+      Cookies.set("studentAdminData", JSON.stringify(data));
+      mutation.mutate(data);
+      notify();
+      router.push("/admin/login");
+    } catch (err) {
+      router.push("/failed");
+      errorRegister();
+      return;
+    }
+  };
   return (
     <>
       <Header name="Registrácia Admin" />

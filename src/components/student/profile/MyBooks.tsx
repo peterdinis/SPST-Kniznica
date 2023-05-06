@@ -1,4 +1,3 @@
-import useStudent from "@/hooks/useStudent";
 import * as api from "@/api/queries/bookingQueries";
 import {useQuery} from "@tanstack/react-query";
 import FallbackLoader from "@/components/shared/FallbackLoader";
@@ -6,18 +5,15 @@ import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { useRouter } from "next/router";
 
 const MyBooks: React.FC = () => {
-  const { studentPersonalInfo } = useStudent();
-  const router = useRouter();
   const {query, isReady} = useRouter();
-  
   if(!isReady) {
     return <FallbackLoader />
   }
+  const {data, isLoading, isError} = useQuery(["myBorrowedBooks", query.username as unknown as string], () => api.getMyBorrowedBooks(query.username![0] as unknown as string))
 
   console.log(query.username![0] as unknown as string);
 
-  const {data, isLoading, isError} = useQuery(["myBorrowedBooks", query.username![0] as unknown as string], () => api.getMyBorrowedBooks(query.username![0] as unknown as string))
-
+ 
   if(isLoading) {
     return <FallbackLoader />
   }

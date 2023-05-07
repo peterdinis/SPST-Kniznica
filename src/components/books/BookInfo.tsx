@@ -16,18 +16,17 @@ import {
   createBookingType,
 } from "@/validators/booking/bookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useStudent from "@/hooks/useStudent";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import useTeacher from "@/hooks/useTeacher";
 import Image from "next/image";
-import defaultImage from "../../images/default.png"
+import defaultImage from "../../images/default.png";
 import { ResizeDesc } from "@/styles/Component.styled";
+import Cookies from "js-cookie";
+import { testTeacher } from "@/data/testTeacher";
+import { testStudent } from "@/data/testStudent";
 
 const BookInfo: React.FC = () => {
-  const { studentPersonalInfo } = useStudent();
   const [value, copy] = useCopyToClipboard();
-  const {teacherPersonalInfo} = useTeacher();
 
   const router = useRouter();
   const { id } = router.query;
@@ -84,8 +83,6 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
-
-  console.log(studentPersonalInfo);
   return (
     <>
       <Header name="Detail Knihy" />
@@ -96,12 +93,12 @@ const BookInfo: React.FC = () => {
             (data.book && data.book.image === undefined) ||
             (data.book && data.book.image === "string") ? (
               <Image
-              alt="No Image"
-              className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
-              src={defaultImage}
-              height={300}
-              width={300}
-            />
+                alt="No Image"
+                className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
+                src={defaultImage}
+                height={300}
+                width={300}
+              />
             ) : (
               <LazyLoadImage
                 alt="ecommerce"
@@ -118,9 +115,7 @@ const BookInfo: React.FC = () => {
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Krátke info</span>:{" "}
-                <ResizeDesc>
-                {data.book && data.book.description}
-                </ResizeDesc>
+                <ResizeDesc>{data.book && data.book.description}</ResizeDesc>
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Id knihy pre požičanie</span>:{" "}
@@ -172,11 +167,12 @@ const BookInfo: React.FC = () => {
                 </p>
               )}
 
-              {studentPersonalInfo === null || teacherPersonalInfo === null ? (
+             {/*  {(checkIfTeacherDataExists) ||
+              (checkIfStudentDataExists) ? (
                 <span className="text-red-800 font-bold text-xl pt-3">
                   Ak si chcte požičať knihu musíte byť prihlasení
                 </span>
-              ) : (
+              ) : ( */}
                 <HelperModal
                   btnName={"Požičať si knihu"}
                   modalHeader={"Požičanie knihy"}
@@ -261,8 +257,8 @@ const BookInfo: React.FC = () => {
                     </button>
                   </form>
                 </HelperModal>
-              )}
-              <br/>
+             {/*  )} */}
+              <br />
               <button
                 onClick={navigateToBooks}
                 className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold"

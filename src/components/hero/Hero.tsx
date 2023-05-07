@@ -5,15 +5,12 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/errors/ErrorRender";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
-import Cookies from "js-cookie";
-import { testStudent } from "@/data/testStudent";
-import { testTeacher } from "@/data/testTeacher";
-import { queryClient } from "@/api/queryClient";
 
 function Hero() {
   const { data, isLoading, isError } = useQuery(["example"], api.getExampleData, {
     retry: 2,
   });
+
   if (isLoading) {
     return <FallbackLoader />;
   }
@@ -21,12 +18,6 @@ function Hero() {
   if (isError) {
     return <FallbackRender error={"Nastala chyba"} />;
   }
-
-  queryClient.setQueryData(["exampleData"], data);
-
-  Cookies.set("testStudentData", testStudent as unknown as string);
-  Cookies.set("testTeacherData", testTeacher as unknown as string);
-
   return (
     <>
       <div className="pt-32 lg:flex items-center relative z-10 container mx-auto">

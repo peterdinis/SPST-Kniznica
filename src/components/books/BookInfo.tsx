@@ -22,11 +22,15 @@ import Image from "next/image";
 import defaultImage from "../../images/default.png";
 import { ResizeDesc } from "@/styles/Component.styled";
 import Cookies from "js-cookie";
-import { testTeacher } from "@/data/testTeacher";
-import { testStudent } from "@/data/testStudent";
 
 const BookInfo: React.FC = () => {
   const [value, copy] = useCopyToClipboard();
+  const currentStudentPersonalInfo = Cookies.get("studentPersonalData");
+  const testStudentInfo = Cookies.get("testStudentData");
+  const currentTeacherPersonalInfo = Cookies.get("teacherPersonalInfo");
+/*   const testTeacherInfo = Cookies.get("testTeacherData"); */
+
+  console.log(testStudentInfo);
 
   const router = useRouter();
   const { id } = router.query;

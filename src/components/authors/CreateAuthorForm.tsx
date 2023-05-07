@@ -9,11 +9,15 @@ import {
 } from "@/validators/author/authorSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IAuthor } from "@/interfaces/IAuthor";
+import {Editor, EditorState} from 'draft-js'
+import {useState} from "react";
 
 const notify = () => toast.success("Nový spisovateľ bol vytvorený");
 const errorRegister = () => toast.error("Kategória nebola vytvorená");
 
 const CreateAuthorForm: React.FC = () => {
+  const [editorState, setEditorState] = useState(()=> EditorState.createEmpty())
+
   const { register, handleSubmit, reset } = useForm<createAuthorType>({
     resolver: zodResolver(createAuthorSchema),
   });
@@ -125,7 +129,7 @@ const CreateAuthorForm: React.FC = () => {
           </div>
           <br />
           <div className="relative z-0 mb-6 group">
-            <textarea
+           <textarea
             rows={3}
             cols={3}
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"

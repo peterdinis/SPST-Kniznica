@@ -24,8 +24,8 @@ const AdminBooks: React.FC = () => {
       <Header name="Všetky Knihy" />
       <div className="overflow-x-auto">
         <div className="min-w-screen min-h-screenflex items-center justify-center font-sans overflow-hidden">
-          <div className="w-full lg:w-5/6">
-            <div className="bg-white shadow-md rounded my-6">
+          <div className="w-full">
+            <div className="bg-white shadow-md rounded pt-4">
               <table className="min-w-max w-full table-auto ml-10">
                 <thead>
                   <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">

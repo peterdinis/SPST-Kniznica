@@ -28,7 +28,7 @@ const ProfileBody: React.FC = () => {
   const goToMyBooks = () => {
     setTimeout(() => {
       window.location.replace(`/teacher/books/${teacher?.data.user.username}`)
-    }, 1000);
+    }, 500);
   }
 
   return (

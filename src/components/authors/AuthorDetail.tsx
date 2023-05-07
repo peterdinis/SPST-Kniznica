@@ -8,6 +8,7 @@ import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Image from "next/image";
 import defaultImage from "../../images/default.png"
+import { ResizeDesc } from "@/styles/Component.styled";
 
 const AuthorDetail: React.FC = () => {
   const router = useRouter();
@@ -89,7 +90,9 @@ const AuthorDetail: React.FC = () => {
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Krátke info o autorovi/ke</span>:{" "}
+                <ResizeDesc>
                 {data.description}
+                </ResizeDesc>
               </p>
 
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">

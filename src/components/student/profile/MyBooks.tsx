@@ -56,7 +56,7 @@ const MyBooks: React.FC = () => {
                           {item.from}
                         </td>
                         <td className="px-4 py-3 text-xs border">
-                          <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm">
+                          <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
                             {" "}
                             {item.to}
                           </span>

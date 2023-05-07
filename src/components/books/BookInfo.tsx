@@ -83,6 +83,8 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
+
+  console.log(studentPersonalInfo);
   return (
     <>
       <Header name="Detail Knihy" />

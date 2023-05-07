@@ -11,7 +11,7 @@ const AdminCategories: React.FC = () => {
               <table className="min-w-max w-full table-auto ml-10">
                 <thead>
                   <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                    <th className="py-3 px-6 text-left">Project</th>
+                    <th className="py-3 px-6 text-left">Názov kategórie</th>
                     <th className="py-3 px-6 text-left">Client</th>
                     <th className="py-3 px-6 text-center">Users</th>
                     <th className="py-3 px-6 text-center">Status</th>

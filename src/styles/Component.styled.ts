@@ -25,7 +25,7 @@ export const OwnerName = styled.h1`
 export const FontDiv = styled.div``;
 
 export const ResizeDesc = styled.div`
-  white-space: nowrap; /* Prevents the text from wrapping */
-  overflow: hidden; /* Hides the overflowing text */
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 `;

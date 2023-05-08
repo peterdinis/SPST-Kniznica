@@ -4,14 +4,16 @@ import * as api from "@/api/queries/bookQueries";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { IBook } from "@/interfaces/IBook";
-import { placeholderBook } from "@/data/placeholderBook";
+import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { getAllBooksError } from "@/components/shared/errors/errorMessages";
 import { IPaginatedBooks } from "@/data/placeholderPaginatedBooks";
 import { useState } from "react";
+import ReturnModal from "@/components/shared/modals/ReturnModal";
+import ReturnBookModal from "../ReturnBookModal";
 
 const AdminBooks: React.FC = () => {
-  const [page, setPage] = useState(0);
+  const [page] = useState(0);
   const [limit] = useState(12);
 
   let initialBooks: IPaginatedBooks | any;
@@ -32,7 +34,6 @@ const AdminBooks: React.FC = () => {
     return <FallbackRender error={getAllBooksError} />;
   }
 
-  console.log(data.data.result);
   return (
     <>
       <Header name="Všetky Knihy" />
@@ -84,19 +85,21 @@ const AdminBooks: React.FC = () => {
                           <td className="px-4 py-3 text-sm border">
                             <span className="px-2 py-1 font-bold   rounded-sm">
                               {" "}
-                              {item.id}
+                              <Link href={`/book/${item.externalId}`}>Detail</Link>
                             </span>
                           </td>
                           <td className="px-4 py-3 text-sm border">
                             <span className="px-2 py-1 font-bold   rounded-sm">
                               {" "}
-                              {item.id}
+                              <ReturnModal btnName={"Upraviť knihu"} modalHeader={"Upraviť knihu"}>
+                                fkfkf
+                              </ReturnModal>
                             </span>
                           </td>
                           <td className="px-4 py-3 text-sm border">
                             <span className="px-2 py-1 font-bold   rounded-sm">
                               {" "}
-                              {item.id}
+                              <ReturnBookModal  />
                             </span>
                           </td>
                         </tr>

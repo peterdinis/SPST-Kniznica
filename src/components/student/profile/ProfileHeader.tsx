@@ -7,7 +7,7 @@ const ProfileHeader: React.FC = () => {
   const { studentPersonalInfo } = useStudent();
   
   return (
-    <div className="w-full mt-20 md:w-3/12 md:mx-2">
+    <div className="w-full md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
         <div className="image overflow-hidden">
           <Image

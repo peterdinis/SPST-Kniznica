@@ -4,11 +4,9 @@ import useTeacher from "@/hooks/useTeacher";
 
 const ProfileHeader: React.FC = () => {
   const {teacher} = useTeacher();
-  console.log(teacher);
-
-  const teacherUsername = teacher?.data.user.username;
+  
   return (
-    <div className="w-full mt-20 md:w-3/12 md:mx-2">
+    <div className="w-full  md:w-3/12 md:mx-2">
       <div className="bg-white p-2">
         <div className="image overflow-hidden">
         <Image 

@@ -6,22 +6,33 @@ import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { IBook } from "@/interfaces/IBook";
 import { placeholderBook } from "@/data/placeholderBook";
 import ScrollToTop from "@/hooks/useScroll";
+import { getAllBooksError } from "@/components/shared/errors/errorMessages";
+import { IPaginatedBooks } from "@/data/placeholderPaginatedBooks";
+import { useState } from "react";
 
 const AdminBooks: React.FC = () => {
-  const { data, isLoading, isError } = useQuery(["adminBooks"], api.getBooks, {
-    initialData: placeholderBook,
-  });
+  const [page, setPage] = useState(0);
+  const [limit] = useState(12);
+
+  let initialBooks: IPaginatedBooks | any;
+  const { data, isError, isLoading } = useQuery(
+    ["paginateBooks", page],
+    () => api.paginateBooks(page, limit),
+    {
+      keepPreviousData: true,
+      initialData: initialBooks,
+      retry: 2,
+    }
+  );
 
   if (isLoading) {
     return <FallbackLoader />;
   }
-
   if (isError) {
-    return <FallbackRender error="Nastala chyba" />;
+    return <FallbackRender error={getAllBooksError} />;
   }
 
-  console.log(data);
-
+  console.log(data.data.result);
   return (
     <>
       <Header name="Všetky Knihy" />
@@ -33,38 +44,65 @@ const AdminBooks: React.FC = () => {
                 <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                   <th className="px-4 py-3">Id knihy</th>
                   <th className="px-4 py-3">Názov knihy</th>
-                  <th className="px-4 py-3">Požičaná do</th>
-                  <th className="px-4 py-3">Vrátiť knihu</th>
+                  <th className="px-4 py-3">Vyddavateľstvo</th>
+                  <th className="px-4 py-3">Rok Vydania</th>
+                  <th className="px-4 py-3">Detail</th>
+                  <th className="px-4 py-3">Uprav knihu</th>
+                  <th className="px-4 py-3">Zmaž knihu</th>
                 </tr>
               </thead>
               <tbody className="bg-white">
-                {/* {data === null || data === undefined && <div className="flex justify-center aling-top text-black text-xl">Nemáte žiadne požičané knihy <SentimentVeryDissatisfiedIcon /></div>}
-              {data &&
-                data.map((item: IBooking) => {
-                  return ( */}
-                <>
-                  <tr className="text-gray-700">
-                    <td className="px-4 py-3 border">
-                      <div className="flex items-center text-sm">
-                        <div>
-                          <p className="font-semibold text-black">rrrr</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-ms font-semibold border">
-                      rrrrrr
-                    </td>
-                    <td className="px-4 py-3 text-xs border">
-                      <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
-                        {" "}
-                        rrrrr
-                      </span>
-                    </td>
-                    <td className="text-sm border">rrrr</td>
-                  </tr>
-                </>
-                {/*       );
-                })} */}
+                {data.data.result &&
+                  data.data.result.map((item: IBook) => {
+                    return (
+                      <>
+                        <tr className="text-gray-700">
+                          <td className="px-4 py-3 border">
+                            <div className="flex items-center text-sm">
+                              <div>
+                                <p className="font-semibold text-black">
+                                  {item.id}
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-ms font-semibold border">
+                            {item.name}
+                          </td>
+                          <td className="px-4 py-3 text-xs border">
+                            <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
+                              {" "}
+                              {item.publisher}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-sm border">
+                            <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
+                              {" "}
+                              {item.year}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-sm border">
+                            <span className="px-2 py-1 font-bold   rounded-sm">
+                              {" "}
+                              {item.id}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-sm border">
+                            <span className="px-2 py-1 font-bold   rounded-sm">
+                              {" "}
+                              {item.id}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-sm border">
+                            <span className="px-2 py-1 font-bold   rounded-sm">
+                              {" "}
+                              {item.id}
+                            </span>
+                          </td>
+                        </tr>
+                      </>
+                    );
+                  })}
               </tbody>
             </table>
           </div>

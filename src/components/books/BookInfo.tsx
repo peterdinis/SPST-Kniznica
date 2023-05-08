@@ -21,6 +21,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Image from "next/image";
 import defaultImage from "../../images/default.png";
 import { ResizeDesc } from "@/styles/Component.styled";
+import { getBookInfoError } from "../shared/errors/errorMessages";
 
 /* TODO: Fix here some bugs... */
 
@@ -44,7 +45,7 @@ const BookInfo: React.FC = () => {
   );
 
   if (isError) {
-    return <FallbackRender error="Nastala chyba" />;
+    return <FallbackRender error={getBookInfoError} />;
   }
 
   if (isLoading) {

@@ -4,6 +4,7 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/errors/ErrorRender";
 import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
+import { getAllCategoriesError } from "../shared/errors/errorMessages";
 
 const CategoryList: React.FC = () => {
   const { data, isLoading, isError } = useQuery(["authors"], api.getCategories);
@@ -13,7 +14,7 @@ const CategoryList: React.FC = () => {
   }
 
   if (isError) {
-    return <FallbackRender error={"Nastala chyba"} />;
+    return <FallbackRender error={getAllCategoriesError}/>;
   }
 
   return (

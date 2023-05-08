@@ -12,6 +12,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { IPaginatedBooks } from "@/data/placeholderPaginatedBooks";
+import { getAllBooksError } from "../shared/errors/errorMessages";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -34,7 +35,7 @@ const AllBooks: React.FC = () => {
     return <FallbackLoader />;
   }
   if (isError) {
-    return <FallbackRender error="Nastala chyba" />;
+    return <FallbackRender error={getAllBooksError} />;
   }
 
   return (

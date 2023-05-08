@@ -85,21 +85,25 @@ const AdminBooks: React.FC = () => {
                           <td className="px-4 py-3 text-sm border">
                             <span className="px-2 py-1 font-bold   rounded-sm">
                               {" "}
-                              <Link href={`/book/${item.externalId}`}>Detail</Link>
+                              <Link href={`/book/${item.externalId}`}>
+                                Detail
+                              </Link>
                             </span>
                           </td>
                           <td className="px-4 py-3 text-sm border">
                             <span className="px-2 py-1 font-bold   rounded-sm">
                               {" "}
-                              <ReturnModal btnName={"Upraviť knihu"} modalHeader={"Upraviť knihu"}>
+                              <ReturnModal
+                                btnName={"Upraviť knihu"}
+                                modalHeader={"Upraviť knihu"}
+                              >
                                 fkfkf
                               </ReturnModal>
                             </span>
                           </td>
                           <td className="px-4 py-3 text-sm border">
                             <span className="px-2 py-1 font-bold   rounded-sm">
-                              {" "}
-                              <ReturnBookModal  />
+                              <ReturnBookModal />
                             </span>
                           </td>
                         </tr>

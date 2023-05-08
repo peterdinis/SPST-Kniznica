@@ -22,14 +22,21 @@ import Image from "next/image";
 import defaultImage from "../../images/default.png";
 import { ResizeDesc } from "@/styles/Component.styled";
 
+/* TODO: Fix here some bugs... */
+
 const BookInfo: React.FC = () => {
   const [value, copy] = useCopyToClipboard();
 
   const router = useRouter();
-  const { id } = router.query;
+  const {query, isReady} = useRouter();
+
+  if(!isReady) {
+    return <FallbackLoader />
+  }
+
   const { data, isError, isLoading } = useQuery(
-    ["bookDetail", id as unknown as number],
-    () => api.getOneBook(Number(id) as any),
+    ["bookDetail", query.id as unknown as number],
+    () => api.getOneBook(Number(query.id as unknown as number) as unknown as string),
     {
       retry: 2,
       placeholderData: placeholderBook,

@@ -1,11 +1,10 @@
 export interface IBook {
   id?: number;
-  externalId: string;
+  externalId?: string;
   name: string;
   description: string;
   authorId: number;
   year: number;
-  available: boolean;
   pages: number;
   publisher: string;
   image: string;

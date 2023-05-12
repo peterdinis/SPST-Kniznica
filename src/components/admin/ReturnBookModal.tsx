@@ -31,7 +31,7 @@ const ReturnBookModal: React.FC = () => {
   });
 
   const onHandleSubmit: SubmitHandler<returnBookingType> = (
-    data: IReturnBooking | any
+    data: IReturnBooking
   ) => {
     mutation.mutate(data);
   };

@@ -22,11 +22,18 @@ import Image from "next/image";
 import defaultImage from "../../images/default.png";
 import { ResizeDesc } from "@/styles/Component.styled";
 import { getBookInfoError } from "../shared/errors/errorMessages";
+import useStudent from "@/hooks/useStudent";
+import useTeacher from "@/hooks/useTeacher";
 
 /* TODO: Fix here some bugs... */
 
 const BookInfo: React.FC = () => {
   const [value, copy] = useCopyToClipboard();
+  const {studentPersonalInfo} = useStudent();
+  const {teacherPersonalInfo} = useTeacher();
+
+  console.log(studentPersonalInfo);
+  console.log(teacherPersonalInfo);
 
   const router = useRouter();
   const {query, isReady} = useRouter();

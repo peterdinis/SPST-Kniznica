@@ -94,7 +94,7 @@ const SearchOneBook: React.FC = () => {
                         </div>
                         <div className="text-center">
                           <h3 className="text-2xl text-gray-800">
-                            {item.name} - {item.author}
+                            {item.name}
                           </h3>
                           <div className="text-center mt-4">
                             <Link

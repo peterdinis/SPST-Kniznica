@@ -7,7 +7,6 @@ import { IBook } from "@/interfaces/IBook";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { getAllBooksError } from "@/components/shared/errors/errorMessages";
-import { IPaginatedBooks } from "@/data/placeholderPaginatedBooks";
 import { useState } from "react";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 import ReturnBookModal from "../ReturnBookModal";
@@ -16,13 +15,11 @@ const AdminBooks: React.FC = () => {
   const [page] = useState(0);
   const [limit] = useState(12);
 
-  let initialBooks: IPaginatedBooks | any;
   const { data, isError, isLoading } = useQuery(
     ["paginateBooks", page],
     () => api.paginateBooks(page, limit),
     {
       keepPreviousData: true,
-      initialData: initialBooks,
       retry: 2,
     }
   );

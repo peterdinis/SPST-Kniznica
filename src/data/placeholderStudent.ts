@@ -12,4 +12,4 @@ export const placeholderStudent = [{
     updatedAt: Dayjs().format(new Date().toISOString()),
     username: "ITITITITITITIT"
 
-}] as ILoginStudentInfo[] | any;
+}] as unknown as ILoginStudentInfo[];

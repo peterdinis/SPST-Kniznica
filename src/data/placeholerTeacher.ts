@@ -11,4 +11,4 @@ export const placeholderTeacher = [{
     updatedAt: Dayjs().format(new Date().toISOString()),
     createdAt: Dayjs().format(new Date().toISOString())
     
-}] as ILoginTeacherInfo[] | any;
+}] as unknown as ILoginTeacherInfo[];

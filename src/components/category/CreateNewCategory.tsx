@@ -29,7 +29,7 @@ const CreateNewCategory: React.FC = () => {
   });
 
   const onHandleSubmit: SubmitHandler<createCategoryType> = (
-    data: ICategory | any
+    data: ICategory
   ) => {
     mutation.mutate(data);
     reset();

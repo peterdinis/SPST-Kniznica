@@ -1,4 +1,4 @@
- import Header from "@/components/shared/Header";
+import Header from "@/components/shared/Header";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "@/api/queries/bookingQueries";
@@ -7,18 +7,16 @@ import FallbackRender from "@/components/shared/errors/ErrorRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { IPaginatedBooking } from "@/data/placeholderPaginatedBooking";
+import { getBookingError } from "@/components/shared/errors/errorMessages";
+import { IBooking } from "@/interfaces/IBooking";
+import { placeholderBooking } from "@/data/placeholderBooking";
 
 const AdminBooking: React.FC = () => {
-  const [page] = useState(0);
-  const [limit] = useState(12);
-
-  let initialBooks: IPaginatedBooking | any;
   const { data, isError, isLoading } = useQuery(
-    ["paginateBooks", page],
-    () => api.(page, limit),
+    ["allBookings"],
+    () => api.getAllBookings,
     {
-      keepPreviousData: true,
-      initialData: initialBooks,
+      initialData: placeholderBooking as any,
       retry: 2,
     }
   );
@@ -27,13 +25,15 @@ const AdminBooking: React.FC = () => {
     return <FallbackLoader />;
   }
   if (isError) {
-    return <FallbackRender error={getAllBooksError} />;
+    return <FallbackRender error={getBookingError} />;
   }
 
-    return (
-        <>
-         <Header name="Všetky objenávky" />
-         <section className="container mx-auto p-6 font-mono">
+  console.log(data);
+
+  return (
+    <>
+      <Header name="Všetky objenávky" />
+      <section className="container mx-auto p-6 font-mono">
         <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
           <div className="w-full overflow-x-auto">
             <table className="w-full">
@@ -49,8 +49,8 @@ const AdminBooking: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="bg-white">
-                {data.data.result &&
-                  data.data.result.map((item: IBook) => {
+                {data &&
+                  data.map((item: IBooking) => {
                     return (
                       <>
                         <tr className="text-gray-700">
@@ -64,42 +64,18 @@ const AdminBooking: React.FC = () => {
                             </div>
                           </td>
                           <td className="px-4 py-3 text-ms font-semibold border">
-                            {item.name}
+                            {item.username}
                           </td>
                           <td className="px-4 py-3 text-xs border">
                             <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
                               {" "}
-                              {item.publisher}
+                              {item.bookId}
                             </span>
                           </td>
                           <td className="px-4 py-3 text-sm border">
                             <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
                               {" "}
-                              {item.year}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-sm border">
-                            <span className="px-2 py-1 font-bold   rounded-sm">
-                              {" "}
-                              <Link href={`/book/${item.externalId}`}>
-                                Detail
-                              </Link>
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-sm border">
-                            <span className="px-2 py-1 font-bold   rounded-sm">
-                              {" "}
-                              <ReturnModal
-                                btnName={"Upraviť knihu"}
-                                modalHeader={"Upraviť knihu"}
-                              >
-                                fkfkf
-                              </ReturnModal>
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-sm border">
-                            <span className="px-2 py-1 font-bold   rounded-sm">
-                              <ReturnBookModal />
+                              {item.from}
                             </span>
                           </td>
                         </tr>
@@ -112,8 +88,8 @@ const AdminBooking: React.FC = () => {
         </div>
         <ScrollToTop />
       </section>
-        </>
-    )
-}
+    </>
+  );
+};
 
 export default AdminBooking;

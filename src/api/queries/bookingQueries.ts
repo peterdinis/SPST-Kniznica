@@ -21,3 +21,8 @@ export const getMyBorrowedBooks = (username: string) => {
 
   return api.get(`booking/${username}`).then((res) => res.data);
 };
+
+export const paginateBooking = (page: number, limit: number) => {
+  return api.get(`booking/paginate?page=${page}&limit=${limit}`)
+}
+

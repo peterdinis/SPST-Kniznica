@@ -55,7 +55,7 @@ const TeacherOptions: React.FC = () => {
                   Zoznam všetkých žiakov
                 </div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/student/all">Zoznam žiakov</Link>
+                  <Link className="text-red-500" href="/admin/students/all">Zoznam žiakov</Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">

@@ -4,7 +4,7 @@ import {
   useQuery,
   QueryKey,
 } from "@tanstack/react-query";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string,
@@ -12,7 +12,7 @@ const api = axios.create({
 
 export const useFetch = <T>(
   url: string | null,
-  params?: any,
+  params?: object,
   config?: UseQueryOptions<T, Error, T, QueryKey>
 ) => {
   const context = useQuery<T, Error, T, QueryKey>(

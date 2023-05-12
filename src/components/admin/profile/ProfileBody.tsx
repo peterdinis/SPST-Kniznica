@@ -1,4 +1,5 @@
 import PersonIcon from "@mui/icons-material/Person";
+import Options from "../Options";
 
 const ProfileBody: React.FC = () => {
   return (
@@ -52,7 +53,7 @@ const ProfileBody: React.FC = () => {
             </div>
           </div>
         </div>
-        {/*  <TeacherOptions /> */}
+        <Options />
       </div>
     </>
   );

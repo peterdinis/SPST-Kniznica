@@ -63,7 +63,7 @@ const Options: React.FC = () => {
                   Zoznam všetkých učiteľov
                 </div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/teacher/all">Zoznam učiteľov</Link>
+                  <Link className="text-red-500" href="/admin/teachers/all">Zoznam učiteľov</Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">

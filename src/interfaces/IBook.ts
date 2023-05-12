@@ -3,7 +3,7 @@ export interface IBook {
   externalId: string;
   name: string;
   description: string;
-  author: string;
+  authorId: number;
   year: number;
   available: boolean;
   pages: number;

@@ -5,7 +5,7 @@ import { placeholderStudent } from "@/data/placeholderStudent";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { getStudentsError } from "@/components/shared/errors/errorMessages";
-import { ILoginStudentInfo } from "@/interfaces/IStudent";
+import { ILoginStudentInfo, StudentBasicInfo } from "@/interfaces/IStudent";
 
 const AdminStudents: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
@@ -23,7 +23,7 @@ const AdminStudents: React.FC = () => {
   if (isError) {
     return <FallbackRender error={getStudentsError} />;
   }
-  
+
   return (
     <>
       <Header name="Všetci žiaci" />
@@ -36,13 +36,13 @@ const AdminStudents: React.FC = () => {
                   <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                     <th className="py-3 px-6 text-left">Meno</th>
                     <th className="py-3 px-6 text-left">Používateľské meno</th>
-                    <th className="py-3 px-6 text-center">Vytvorený účet</th>
+                    <th className="py-3 px-6 text-center">Dátum vytvorenia účtu</th>
                     <th className="py-3 px-6 text-center">Trieda</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-600 text-sm font-light">
                   {data &&
-                    data.map((item: any) => {
+                    data.map((item: StudentBasicInfo) => {
                       return (
                         <>
                           <tr className="border-b border-gray-200 hover:bg-gray-100">

@@ -42,3 +42,5 @@ export interface ILoginTeacherPersonalInfo {
   picture?: string | null;
   createdAt: string;
 }
+
+export type TeacherBasicInfo = Pick<ILoginTeacherPersonalInfo, 'name' | 'username' | 'createdAt' >

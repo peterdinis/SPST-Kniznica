@@ -45,3 +45,6 @@ export interface ILoginStudentPersonalInfo {
   updatedAt: string;
   username: string;
 }
+
+
+export type StudentBasicInfo = Pick<ILoginStudentPersonalInfo, 'name' | 'username' | 'classRoom' | 'createdAt'>

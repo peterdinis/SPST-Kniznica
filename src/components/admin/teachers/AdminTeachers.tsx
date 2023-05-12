@@ -1,10 +1,30 @@
 import Header from "@/components/shared/Header";
+import * as api from "../../../api/queries/teacherQueries";
+import { useQuery } from "@tanstack/react-query";
+import { placeholderTeacher } from "@/data/placeholerTeacher";
+import FallbackLoader from "@/components/shared/FallbackLoader";
+import FallbackRender from "@/components/shared/errors/ErrorRender";
+import { getTeachersError } from "@/components/shared/errors/errorMessages";
 
 const AdminTeachers: React.FC = () => {
-    return (
-        <>
-        <Header name="Všetci učiteľia" />
-        <div className="overflow-x-auto">
+  const {data, isLoading, isError} = useQuery(["allTeachers"], api.getAllTeachers, {
+    initialData: placeholderTeacher
+  })
+
+  if(isLoading) {
+    return <FallbackLoader />
+  }
+
+  if(isError) {
+    return <FallbackRender error={getTeachersError} />
+  }
+
+  console.log(data);
+
+  return (
+    <>
+      <Header name="Všetci učiteľia" />
+      <div className="overflow-x-auto">
         <div className="min-w-screen min-h-screenflex items-center justify-center font-sans overflow-hidden">
           <div className="w-full lg:w-5/6">
             <div className="bg-white shadow-md rounded my-6">
@@ -142,15 +162,14 @@ const AdminTeachers: React.FC = () => {
                       </div>
                     </td>
                   </tr>
-            
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-        </>
-    )
-}
+    </>
+  );
+};
 
 export default AdminTeachers;

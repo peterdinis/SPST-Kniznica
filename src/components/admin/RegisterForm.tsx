@@ -46,7 +46,7 @@ const RegisterForm: React.FC = () => {
   });
 
   // TODO: Fix typing
-  const onHandleSubmit: SubmitHandler<createAdminRegisterType> = (data: IRegister | any) => {
+  const onHandleSubmit: SubmitHandler<createAdminRegisterType> = (data: IRegister) => {
     try {
       Cookies.set("studentAdminData", JSON.stringify(data));
       mutation.mutate(data);

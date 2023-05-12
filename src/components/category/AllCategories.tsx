@@ -16,7 +16,7 @@ const AllCategories: React.FC = () => {
   const [page, setPage] = useState(0);
   const [limit] = useState(12);
 
-  let initialCategories: IPaginatedCategories | any;
+  let initialCategories: IPaginatedCategories | any; 
   const {
     data: paginatedData,
     isError,

@@ -1,6 +1,6 @@
 export interface IAuthor {
     id?: number | string;
-    externalId: string
+    externalId?: string
     name: string;
     lastName: string;
     picture: string;

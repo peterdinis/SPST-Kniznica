@@ -34,7 +34,7 @@ const CreateAuthorForm: React.FC = () => {
   });
 
   const onHandleSubmit: SubmitHandler<createAuthorType> = (
-    data: IAuthor | any
+    data: IAuthor
   ) => {
     mutation.mutate(data);
     reset();

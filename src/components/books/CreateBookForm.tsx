@@ -27,7 +27,7 @@ const CreateBookForm: React.FC = () => {
 
   // TODO: Remove any
   // TODO1: Update this page later
-  const onHandleSubmit: SubmitHandler<createBookType> = (data: IBook | any) => {
+  const onHandleSubmit: SubmitHandler<createBookType> = (data: IBook) => {
     mutation.mutate(data);
   };
 

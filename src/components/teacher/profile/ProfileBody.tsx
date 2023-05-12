@@ -78,7 +78,7 @@ const ProfileBody: React.FC = () => {
                 <div className="px-4 py-2">
                   <button
                     onClick={logoutFromApp}
-                    className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                    className="text-red-500"
                   >
                     Odlhásenie
                   </button>

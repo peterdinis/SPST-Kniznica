@@ -1,4 +1,4 @@
-/* import Header from "@/components/shared/Header";
+ import Header from "@/components/shared/Header";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "@/api/queries/bookingQueries";
@@ -114,16 +114,6 @@ const AdminBooking: React.FC = () => {
       </section>
         </>
     )
-}
-
-export default AdminBooking; */
-
-const AdminBooking: React.FC = () => {
-  return (
-    <>
-    
-    </>
-  )
 }
 
 export default AdminBooking;

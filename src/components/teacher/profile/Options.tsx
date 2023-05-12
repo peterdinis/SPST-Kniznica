@@ -1,7 +1,7 @@
 import SettingsIcon from "@mui/icons-material/Settings";
 import Link from "next/link";
 
-const TeacherOptions: React.FC = () => {
+const Options: React.FC = () => {
   return (
     <>
       <div className="mt-10 w-full md:w-9/12 mx-2 h-64">
@@ -82,4 +82,4 @@ const TeacherOptions: React.FC = () => {
   );
 };
 
-export default TeacherOptions;
+export default Options;

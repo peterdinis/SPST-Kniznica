@@ -18,7 +18,6 @@ const CreateNewCategory: React.FC = () => {
     resolver: zodResolver(createCategorySchema),
   });
 
-  /* TODO: Later update this logic */
   const mutation = useMutation(mut.createNewCategory, {
     onSuccess: (data) => {
       notify();

@@ -21,19 +21,9 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Image from "next/image";
 import defaultImage from "../../images/default.png";
 import { getBookInfoError } from "../shared/errors/errorMessages";
-import useStudent from "@/hooks/useStudent";
-import useTeacher from "@/hooks/useTeacher";
-
-/* TODO: Fix here some bugs... */
 
 const BookInfo: React.FC = () => {
   const [value, copy] = useCopyToClipboard();
-  const {studentPersonalInfo} = useStudent();
-  const {teacherPersonalInfo} = useTeacher();
-
-  console.log(studentPersonalInfo);
-  console.log(teacherPersonalInfo);
-
   const router = useRouter();
   const {query, isReady} = useRouter();
 
@@ -170,20 +160,13 @@ const BookInfo: React.FC = () => {
 
               <hr className="mt-6" />
               {data.book && data.book.status === "Dostupná" && (
+               <>
                 <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
                   <span className="font-bold"> Kniha je:</span>{" "}
                   <span className="text-green-800">
                     {data.book && data.book.status}
                   </span>
                 </p>
-              )}
-
-             {/*  {(checkIfTeacherDataExists) ||
-              (checkIfStudentDataExists) ? (
-                <span className="text-red-800 font-bold text-xl pt-3">
-                  Ak si chcte požičať knihu musíte byť prihlasení
-                </span>
-              ) : ( */}
                 <HelperModal
                   btnName={"Požičať si knihu"}
                   modalHeader={"Požičanie knihy"}
@@ -268,11 +251,11 @@ const BookInfo: React.FC = () => {
                     </button>
                   </form>
                 </HelperModal>
-             {/*  )} */}
-              <br />
+               </>
+              )}
               <button
                 onClick={navigateToBooks}
-                className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold"
+                className="ml-8 mt-6 bg-blue-200 rounded-lg p-2 font-extrabold"
               >
                 Návrat na knihy
               </button>

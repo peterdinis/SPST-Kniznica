@@ -1,12 +1,9 @@
 import Header from "@/components/shared/Header";
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "@/api/queries/bookingQueries";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
-import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
-import { IPaginatedBooking } from "@/data/placeholderPaginatedBooking";
 import { getBookingError } from "@/components/shared/errors/errorMessages";
 import { IBooking } from "@/interfaces/IBooking";
 import { placeholderBooking } from "@/data/placeholderBooking";
@@ -27,8 +24,6 @@ const AdminBooking: React.FC = () => {
   if (isError) {
     return <FallbackRender error={getBookingError} />;
   }
-
-  console.log(data);
 
   return (
     <>

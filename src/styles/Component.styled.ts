@@ -23,9 +23,3 @@ export const OwnerName = styled.h1`
 `;
 
 export const FontDiv = styled.div``;
-
-export const ResizeDesc = styled.div`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;

@@ -20,7 +20,6 @@ import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Image from "next/image";
 import defaultImage from "../../images/default.png";
-import { ResizeDesc } from "@/styles/Component.styled";
 import { getBookInfoError } from "../shared/errors/errorMessages";
 import useStudent from "@/hooks/useStudent";
 import useTeacher from "@/hooks/useTeacher";
@@ -127,7 +126,7 @@ const BookInfo: React.FC = () => {
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Krátke info</span>:{" "}
-                <ResizeDesc>{data.book && data.book.description}</ResizeDesc>
+                <span className="break-words">{data.book && data.book.description}</span>
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Id knihy pre požičanie</span>:{" "}

@@ -13,3 +13,19 @@ const api = axios.create({
 export const createNewBook = (data: IBook) => {
   return api.post("books", data);
 };
+
+export const updateBook = (id: number, data: IBook) => {
+  if(!id) {
+    return;
+  }
+
+  return api.patch(`book/${id}`, data);
+}
+
+export const deleteBook = (id: number) => {
+  if(!id) {
+    return;
+  }
+
+  return api.delete(`book/${id}`);
+}

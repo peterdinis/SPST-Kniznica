@@ -10,3 +10,19 @@ const api = axios.create({
 export const createNewCategory = (data: ICategory) => {
     return api.post("category", data);
 }
+
+export const updateCategory = (id: number, data: ICategory) => {
+  if(!id) {
+    return;
+  }
+
+  return api.patch(`category/${id}`, data);
+}
+
+export const deleteCategory = (id: number) => {
+  if(!id) {
+    return;
+  }
+
+  return api.delete(`category/${id}`);
+}

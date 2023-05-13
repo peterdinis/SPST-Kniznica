@@ -34,13 +34,11 @@ const AdminBooking: React.FC = () => {
             <table className="w-full">
               <thead>
                 <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                  <th className="px-4 py-3">Id Používateľa</th>
+                  <th className="px-4 py-3">Meno používateľa</th>
                   <th className="px-4 py-3">Id knihy</th>
-                  <th className="px-4 py-3">Názov knihy</th>
-                  <th className="px-4 py-3">Vyddavateľstvo</th>
-                  <th className="px-4 py-3">Rok Vydania</th>
-                  <th className="px-4 py-3">Detail</th>
-                  <th className="px-4 py-3">Uprav knihu</th>
-                  <th className="px-4 py-3">Zmaž knihu</th>
+                  <th className="px-4 py-3">Požičaná od</th>
+                  <th className="px-4 py-3">Požičaná do</th>
                 </tr>
               </thead>
               <tbody className="bg-white">
@@ -71,6 +69,12 @@ const AdminBooking: React.FC = () => {
                             <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
                               {" "}
                               {item.from}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-sm border">
+                            <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
+                              {" "}
+                              {item.to}
                             </span>
                           </td>
                         </tr>

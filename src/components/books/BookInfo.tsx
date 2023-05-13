@@ -53,10 +53,11 @@ const BookInfo: React.FC = () => {
   };
 
   const notify = () => toast.success("Objednávka bola vytvorená");
-  const errorRegister = () => toast.error("Objednávka nebola vytvorená");
+  const errorRegister = () => toast.error("Objednávka nebola vytvorená. Skontroluje prosím údajte či sú správne");
 
   const mutation = useMutation(mut.createNewBooking, {
     onSuccess: (data) => {
+      
       notify();
     },
 

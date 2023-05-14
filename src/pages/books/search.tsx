@@ -1,4 +1,4 @@
-import SearchOneBook from "@/components/books/SearchOneBook";
+import SearchOneBook from "@/components/books/SearchBookForm";
 import { NextPage } from "next";
 
 const BooksSearchPage: NextPage = () => {

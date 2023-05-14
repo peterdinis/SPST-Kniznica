@@ -20,12 +20,10 @@ const ReturnBookModal: React.FC = () => {
 
   const mutation = useMutation(mut.returnBooking, {
     onSuccess: (data) => {
-      console.log(data)
       notify();
     },
 
     onError: (data) => {
-      console.log(data);
       errorRegister();
     },
   });

@@ -30,8 +30,6 @@ const GetAllAuthors: React.FC = () => {
     }
   );
 
-  console.log(paginatedData?.data.result);
-
   if (isLoading) {
     return <FallbackLoader />;
   }
@@ -42,6 +40,9 @@ const GetAllAuthors: React.FC = () => {
   return (
     <>
       <Header name="Všetci spisovatelia" />
+      <div className="mt-4 font-bold text-center text-red-800 text-xl">
+        <Link href="/authors/search">Hľadať konkretného authora </Link>
+      </div>
       <div className="grid gap-8 space-x-1 lg:grid-cols-6">
         {paginatedData?.data.result.length === 0 && (
           <div className="text-center font-bold mt-4">

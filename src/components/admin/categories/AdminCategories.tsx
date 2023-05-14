@@ -31,8 +31,6 @@ const AdminCategories: React.FC = () => {
     return <FallbackRender error={getAllCategoriesError} />;
   }
 
-  console.log(data);
-
   return (
     <>
       <Header name="Všetky kategórie" />

@@ -20,8 +20,6 @@ const AdminTeachers: React.FC = () => {
     return <FallbackRender error={getTeachersError} />
   }
 
-  console.log(data);
-
   return (
     <>
       <Header name="Všetci učiteľia" />

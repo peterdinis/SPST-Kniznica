@@ -19,6 +19,7 @@ const AllBooks: React.FC = () => {
   const [limit] = useState(12);
 
   let initialBooks: IPaginatedBooks | any;
+  
   const {
     data: paginatedData,
     isError,

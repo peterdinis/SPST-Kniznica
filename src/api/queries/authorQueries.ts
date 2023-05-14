@@ -14,6 +14,10 @@ export const getOneAuthor = (externalId: string) => {
   return api.get(`authors/${externalId}`).then((res) => res.data);
 };
 
+export const searchForAuthors = (value: string) => {
+  return api.get(`authors/search?q=${value}`);
+};
+
 export const paginateAuthors = (page: number, limit: number) => {
-  return api.get(`authors/paginate?page=${page}&limit=${limit}`)
-}
+  return api.get(`authors/paginate?page=${page}&limit=${limit}`);
+};

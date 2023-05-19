@@ -3,6 +3,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
 import Options from "./Options";
 import useTeacher from "@/hooks/useTeacher";
+import Link from "next/link";
 
 const ProfileBody: React.FC = () => {
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
@@ -84,6 +85,17 @@ const ProfileBody: React.FC = () => {
                   </button>
                 </div>
               </div>
+              <div className="grid grid-cols-2">
+              <div className="px-4 py-2 font-semibold">Nastaviť nové heslo</div>
+              <div className="px-4 py-2">
+                <button
+                >
+                  <Link href="/teacher/new-password">
+                    Nové heslo
+                  </Link>
+                </button>
+              </div>
+            </div>
             </div>
           </div>
         </div>

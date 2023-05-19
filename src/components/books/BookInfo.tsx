@@ -57,12 +57,13 @@ const BookInfo: React.FC = () => {
 
   const mutation = useMutation(mut.createNewBooking, {
     onSuccess: (data) => {
-      
       notify();
+      router.push("/books/all");
     },
 
     onError: () => {
       errorRegister();
+      router.push("/booking/failed");
     },
   });
 

@@ -41,7 +41,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   );
 });
 
-const HelperModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) => {
+const HelperModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }: IModalProps) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

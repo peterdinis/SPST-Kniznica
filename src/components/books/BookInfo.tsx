@@ -71,6 +71,7 @@ const BookInfo: React.FC = () => {
     handleSubmit,
     formState: { errors },
     trigger,
+    reset,
     register,
   } = useForm<createBookingType>({
     resolver: zodResolver(createBookingSchema),
@@ -81,6 +82,7 @@ const BookInfo: React.FC = () => {
   ) => {
     try {
       mutation.mutate(data);
+      reset();
     } catch (err) {
       errorRegister();
       router.push("/books/all");

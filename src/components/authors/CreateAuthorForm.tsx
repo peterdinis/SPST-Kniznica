@@ -9,15 +9,13 @@ import {
 } from "@/validators/author/authorSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IAuthor } from "@/interfaces/IAuthor";
-import {Editor, EditorState} from 'draft-js'
-import {useState} from "react";
+import { useRouter } from "next/router";
 
 const notify = () => toast.success("Nový spisovateľ bol vytvorený");
 const errorRegister = () => toast.error("Kategória nebola vytvorená");
 
 const CreateAuthorForm: React.FC = () => {
-  const [editorState, setEditorState] = useState(()=> EditorState.createEmpty())
-
+  const router = useRouter();
   const { register, handleSubmit, reset } = useForm<createAuthorType>({
     resolver: zodResolver(createAuthorSchema),
   });
@@ -30,6 +28,7 @@ const CreateAuthorForm: React.FC = () => {
 
     onError: (data) => {
       errorRegister();
+      router.push("/authors/failed");
     },
   });
 

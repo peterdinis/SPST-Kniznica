@@ -6,7 +6,6 @@ const FailedComponent: React.FC = () => {
     return (
         <Fragment>
             <Header name="Požičanie knihy zlyhalo" />
-            <span className="pt-4">Možnosti prečo sa nepodarilo objednať knihu</span>
             <Reasons />
         </Fragment>
     )

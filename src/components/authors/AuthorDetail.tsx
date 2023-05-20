@@ -11,11 +11,15 @@ import defaultImage from "../../images/default.png";
 
 const AuthorDetail: React.FC = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { query, isReady } = useRouter();
+
+  if (!isReady) {
+    return <FallbackLoader />;
+  }
 
   const { data, isError, isLoading } = useQuery(
-    ["authorDetail", id as unknown as number],
-    () => api.getOneAuthor(Number(id) as any),
+    ["authorDetail", query.id as unknown as number],
+    () => api.getOneAuthor(query.id as any),
     {
       retry: 2,
       placeholderData: placeholderAuthor,

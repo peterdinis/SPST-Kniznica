@@ -28,6 +28,7 @@ const BookInfo: React.FC = () => {
   if (!isReady) {
     return <FallbackLoader />;
   }
+  
   const { data, isError, isLoading } = useQuery(
     ["bookDetail", query.id as unknown as number],
     () =>

@@ -23,17 +23,17 @@ import defaultImage from "../../images/default.png";
 import { getBookInfoError } from "../shared/errors/errorMessages";
 
 const BookInfo: React.FC = () => {
-  const [value, copy] = useCopyToClipboard();
-  const router = useRouter();
-  const {query, isReady} = useRouter();
+  const { query, isReady } = useRouter();
 
-  if(!isReady) {
-    return <FallbackLoader />
+  if (!isReady) {
+    return <FallbackLoader />;
   }
-
   const { data, isError, isLoading } = useQuery(
     ["bookDetail", query.id as unknown as number],
-    () => api.getOneBook(Number(query.id as unknown as number) as unknown as string),
+    () =>
+      api.getOneBook(
+        Number(query.id as unknown as number) as unknown as string
+      ),
     {
       retry: 2,
       placeholderData: placeholderBook,
@@ -47,13 +47,18 @@ const BookInfo: React.FC = () => {
   if (isLoading) {
     return <FallbackLoader />;
   }
+  const [value, copy] = useCopyToClipboard();
+  const router = useRouter();
 
   const navigateToBooks = () => {
     router.push("/books/all");
   };
 
   const notify = () => toast.success("Objednávka bola vytvorená");
-  const errorRegister = () => toast.error("Objednávka nebola vytvorená. Skontroluje prosím údajte či sú správne");
+  const errorRegister = () =>
+    toast.error(
+      "Objednávka nebola vytvorená. Skontroluje prosím údajte či sú správne"
+    );
 
   const mutation = useMutation(mut.createNewBooking, {
     onSuccess: (data) => {
@@ -120,7 +125,9 @@ const BookInfo: React.FC = () => {
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Krátke info</span>:{" "}
-                <span className="break-words">{data.book && data.book.description}</span>
+                <span className="break-words">
+                  {data.book && data.book.description}
+                </span>
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Id knihy pre požičanie</span>:{" "}
@@ -164,98 +171,98 @@ const BookInfo: React.FC = () => {
 
               <hr className="mt-6" />
               {data.book && data.book.status === "Dostupná" && (
-               <>
-                <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
-                  <span className="font-bold"> Kniha je:</span>{" "}
-                  <span className="text-green-800">
-                    {data.book && data.book.status}
-                  </span>
-                </p>
-                <HelperModal
-                  btnName={"Požičať si knihu"}
-                  modalHeader={"Požičanie knihy"}
-                >
-                  <form
-                    onSubmit={handleSubmit(onHandleSubmit)}
-                    className="mt-4"
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4">
+                    <span className="font-bold"> Kniha je:</span>{" "}
+                    <span className="text-green-800">
+                      {data.book && data.book.status}
+                    </span>
+                  </p>
+                  <HelperModal
+                    btnName={"Požičať si knihu"}
+                    modalHeader={"Požičanie knihy"}
                   >
-                    <label className="block text-grey-darker text-sm font-bold mb-2">
-                      Používateľské meno
-                    </label>
-                    <input
-                      type="text"
-                      className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                      placeholder="Používateľské meno"
-                      {...register("username", {
-                        required: "Meno je povinné",
-                      })}
-                      onKeyUp={() => {
-                        trigger("username");
-                      }}
-                    />
+                    <form
+                      onSubmit={handleSubmit(onHandleSubmit)}
+                      className="mt-4"
+                    >
+                      <label className="block text-grey-darker text-sm font-bold mb-2">
+                        Používateľské meno
+                      </label>
+                      <input
+                        type="text"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        placeholder="Používateľské meno"
+                        {...register("username", {
+                          required: "Meno je povinné",
+                        })}
+                        onKeyUp={() => {
+                          trigger("username");
+                        }}
+                      />
 
-                    <p className="text-red-800">
-                      {errors.username && errors.username.message}
-                    </p>
+                      <p className="text-red-800">
+                        {errors.username && errors.username.message}
+                      </p>
 
-                    <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                      Číslo knihy
-                    </label>
-                    <input
-                      type="number"
-                      className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                      {...register("bookId", { valueAsNumber: true })}
-                      onKeyUp={() => {
-                        trigger("bookId");
-                      }}
-                    />
+                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                        Číslo knihy
+                      </label>
+                      <input
+                        type="number"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        {...register("bookId", { valueAsNumber: true })}
+                        onKeyUp={() => {
+                          trigger("bookId");
+                        }}
+                      />
 
-                    <p className="text-red-800">
-                      {errors.bookId && errors.bookId.message}
-                    </p>
+                      <p className="text-red-800">
+                        {errors.bookId && errors.bookId.message}
+                      </p>
 
-                    <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                      Od
-                    </label>
-                    <input
-                      type="date"
-                      className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                      {...register("from", {
-                        required: "Dátum od je povinný",
-                      })}
-                      onKeyUp={() => {
-                        trigger("from");
-                      }}
-                    />
+                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                        Od
+                      </label>
+                      <input
+                        type="date"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        {...register("from", {
+                          required: "Dátum od je povinný",
+                        })}
+                        onKeyUp={() => {
+                          trigger("from");
+                        }}
+                      />
 
-                    <p className="text-red-800">
-                      {errors.from && errors.from.message}
-                    </p>
+                      <p className="text-red-800">
+                        {errors.from && errors.from.message}
+                      </p>
 
-                    <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                      Do
-                    </label>
-                    <input
-                      type="date"
-                      className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                      {...register("to", {
-                        required: "Dátum do je povinný",
-                      })}
-                      onKeyUp={() => {
-                        trigger("to");
-                      }}
-                    />
+                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                        Do
+                      </label>
+                      <input
+                        type="date"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        {...register("to", {
+                          required: "Dátum do je povinný",
+                        })}
+                        onKeyUp={() => {
+                          trigger("to");
+                        }}
+                      />
 
-                    <p className="text-red-800">
-                      {errors.to && errors.to.message}
-                    </p>
+                      <p className="text-red-800">
+                        {errors.to && errors.to.message}
+                      </p>
 
-                    <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
-                      Požičať
-                    </button>
-                  </form>
-                </HelperModal>
-               </>
+                      <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+                        Požičať
+                      </button>
+                    </form>
+                  </HelperModal>
+                </>
               )}
               <button
                 onClick={navigateToBooks}

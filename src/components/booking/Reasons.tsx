@@ -10,6 +10,7 @@ const Reasons: React.FC = () => {
           <li>Zadali ste zle id knihy</li>
           <li>Zadali ste zlé používateľské meno</li>
           <li>Do dátum od alebo do ste zadali dátum z minulosti</li>
+          <li>Ak to nebol žiaden z týchto problémov je to problém applikácie napíšte na: pdinis1@gmail.com</li>
         </ul>
       </Typography>
     </div>

@@ -35,7 +35,7 @@ const AdminTeachers: React.FC = () => {
                     <th className="py-3 px-6 text-center">Dátum vytvorenia účtu</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-600 text-sm font-light">
+                <tbody className="bg-white">
                   {data &&
                     data.map((item: TeacherBasicInfo) => {
                       return (

@@ -34,7 +34,6 @@ const AdminBooking: React.FC = () => {
             <table className="w-full">
               <thead>
                 <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-                  <th className="px-4 py-3">Id Používateľa</th>
                   <th className="px-4 py-3">Meno používateľa</th>
                   <th className="px-4 py-3">Id knihy</th>
                   <th className="px-4 py-3">Požičaná od</th>
@@ -47,15 +46,6 @@ const AdminBooking: React.FC = () => {
                     return (
                       <>
                         <tr className="text-gray-700">
-                          <td className="px-4 py-3 border">
-                            <div className="flex items-center text-sm">
-                              <div>
-                                <p className="font-semibold text-black">
-                                  {item.id}
-                                </p>
-                              </div>
-                            </div>
-                          </td>
                           <td className="px-4 py-3 text-ms font-semibold border">
                             {item.username}
                           </td>

@@ -10,6 +10,7 @@
 - Tailwind css
 - React Query
 - Cypress
+- Vercel - future deploy
 
 ## How to run
 

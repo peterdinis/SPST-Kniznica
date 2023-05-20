@@ -100,7 +100,12 @@ const AdminBooks: React.FC = () => {
                           </td>
                           <td className="px-4 py-3 text-sm border">
                             <span className="px-2 py-1 font-bold   rounded-sm">
-                              <ReturnBookModal />
+                              <ReturnModal
+                                btnName={"Zmazať knihu"}
+                                modalHeader={"Zmazať knihu"}
+                              >
+                                fkfkf
+                              </ReturnModal>
                             </span>
                           </td>
                         </tr>

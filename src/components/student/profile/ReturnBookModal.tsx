@@ -14,7 +14,7 @@ const ReturnBookModal: React.FC = () => {
   const notify = () => toast.success("Kniha bola vratená");
   const errorRegister = () => toast.error("Kniha nebola vratená");
 
-  const { register, handleSubmit } = useForm<returnBookingType>({
+  const { register, handleSubmit, reset } = useForm<returnBookingType>({
     resolver: zodResolver(returnBookingSchema),
   });
 
@@ -32,6 +32,7 @@ const ReturnBookModal: React.FC = () => {
     data: IReturnBooking
   ) => {
     mutation.mutate(data);
+    reset();
   };
 
   return (

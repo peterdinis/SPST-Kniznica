@@ -48,7 +48,7 @@ const HelperModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) 
 
   return (
     <>
-      <button className="text-xl mt-6 bg-blue-200 rounded-lg p-2 font-extrabold" onClick={handleOpen}>{btnName}</button>
+      <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold" onClick={handleOpen}>{btnName}</button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"

@@ -1,5 +1,6 @@
 import PersonIcon from "@mui/icons-material/Person";
 import Options from "../Options";
+import Link from "next/link";
 
 const ProfileBody: React.FC = () => {
   return (
@@ -50,6 +51,28 @@ const ProfileBody: React.FC = () => {
                   </button>
                 </div>
               </div>
+              <div className="grid grid-cols-2">
+              <div className="px-4 py-2 font-semibold">Upraviť profil</div>
+              <div className="px-4 py-2">
+                <button
+                >
+                  <Link href="/student/new-password">
+                    Upraviť profil
+                  </Link>
+                </button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="px-4 py-2 font-semibold">Zmazať profil</div>
+              <div className="px-4 py-2">
+                <button
+                >
+                  <Link href="/student/new-password">
+                    Vymazať profil
+                  </Link>
+                </button>
+              </div>
+            </div>
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ const ProfileBody: React.FC = () => {
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2">rrr</div>
+                <div className="px-4 py-2 break-words">rrr</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola</div>

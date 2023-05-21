@@ -17,3 +17,11 @@ export const register = (data: IRegister) => {
 export const loginStudent = (data: ILogin) => {
   return api.post("student/login", data);
 }
+
+export const updateProfile = (data: any, username: string) => {
+  return api.patch(`student/profile/update/${username}`, data)
+}
+
+export const deleteProfile = (username: string) => {
+  return api.delete(`student/profile/update/${username}`);
+}

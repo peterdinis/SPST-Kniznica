@@ -5,7 +5,7 @@ import Reasons from "./Reasons";
 const FailedComponent: React.FC = () => {
     return (
         <Fragment>
-           <Header name="Vytvorenie knihy zlyhalo" />
+           <Header name="Nová kniha sa nevytvorila" />
            <Reasons />
         </Fragment>
     )

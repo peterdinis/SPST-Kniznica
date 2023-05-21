@@ -61,11 +61,11 @@ const ProfileBody: React.FC = () => {
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2  break-words">{teacher?.data.user.email}</div>
+                <div className="px-4 py-2 break-words">{teacher?.data.user.email}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola</div>
-                <div className="px-4 py-2">{teacher?.data.user.role}</div>
+                <div className="px-4 py-2 text-red-500">{teacher?.data.user.role}</div>
               </div>
               <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Moje požičané knihy</div>

@@ -5,7 +5,8 @@ import { placeholderStudent } from "@/data/placeholderStudent";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { getStudentsError } from "@/components/shared/errors/errorMessages";
-import { ILoginStudentInfo, StudentBasicInfo } from "@/interfaces/IStudent";
+import {  StudentBasicInfo } from "@/interfaces/IStudent";
+import ScrollToTop from "@/hooks/useScroll";
 
 const AdminStudents: React.FC = () => {
   const { data, isLoading, isError } = useQuery(
@@ -77,6 +78,7 @@ const AdminStudents: React.FC = () => {
             </div>
           </div>
         </div>
+        <ScrollToTop />
       </div>
     </>
   );

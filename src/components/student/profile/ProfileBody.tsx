@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 import useStudent from "@/hooks/useStudent";
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import useCopyToClipboard from "@/hooks/useCopy";
 import Link from "next/link";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
@@ -15,25 +15,25 @@ const ProfileBody: React.FC = () => {
   const logoutFromApp = () => {
     logoutToast();
     Cookies.remove("studentAccessToken", {
-      path: "/"
+      path: "/",
     });
     Cookies.remove("studentData", {
-      path: "/"
+      path: "/",
     });
     Cookies.remove("studentRegisterData", {
-      path: "/"
+      path: "/",
     });
     Cookies.remove("studentPersonalData", {
-      path: "/"
+      path: "/",
     });
     window.location.replace("/student/login");
   };
 
   const goToMyBooks = () => {
     setTimeout(() => {
-      window.location.replace(`/student/books/${student?.data.user.username}`)
+      window.location.replace(`/student/books/${student?.data.user.username}`);
     }, 500);
-  }
+  };
 
   return (
     <div className="w-full md:w-9/12 mx-2 h-64">
@@ -54,33 +54,37 @@ const ProfileBody: React.FC = () => {
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Používateľské meno</div>
-              <div className="px-4 py-2">{student?.data.user.username}<ContentCopyIcon onClick={() => copy(student?.data.user.username as unknown as string)} /></div>
+              <div className="px-4 py-2">
+                {student?.data.user.username}
+                <ContentCopyIcon
+                  onClick={() =>
+                    copy(student?.data.user.username as unknown as string)
+                  }
+                />
+              </div>
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Email</div>
-              <div className="px-4 py-2 break-words">{student?.data.user.email}</div>
+              <div className="px-4 py-2 break-words">
+                {student?.data.user.email}
+              </div>
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Rola</div>
-              <div className="px-4 py-2 text-red-500">{student?.data.user.role}</div>
+              <div className="px-4 py-2 text-red-500">
+                {student?.data.user.role}
+              </div>
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Moje požičané knihy</div>
               <div className="px-4 py-2">
-                <button
-                  onClick={goToMyBooks}
-                >
-                  Moje knihy
-                </button>
+                <button onClick={goToMyBooks}>Moje knihy</button>
               </div>
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>
               <div className="px-4 py-2">
-                <button
-                  onClick={logoutFromApp}
-                  className="text-red-500"
-                >
+                <button onClick={logoutFromApp} className="text-red-500">
                   Odlhásenie
                 </button>
               </div>
@@ -88,29 +92,49 @@ const ProfileBody: React.FC = () => {
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Nastaviť nové heslo</div>
               <div className="px-4 py-2">
-                <button
-                >
-                  <Link href="/student/new-password">
-                    Nové heslo
-                  </Link>
+                <button>
+                  <Link href="/student/new-password">Nové heslo</Link>
                 </button>
               </div>
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Upraviť profil</div>
               <div className="px-4 py-2">
-                <button
-                >
-                  <ReturnModal btnName={"Upraviť profil"} modalHeader={"Upraviť profil"}>
+                <button>
+                  <ReturnModal
+                    btnName={"Upraviť profil"}
+                    modalHeader={"Upraviť profil"}
+                  >
                     <form className="mt-4">
                     <label className="block text-grey-darker text-sm font-bold mb-2">
+                        Meno
+                      </label>
+                      <input
+                        type="text"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        placeholder="Používateľské meno"
+                        value={student?.data.user.name}
+                      />
+                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                        Priezivsko
+                      </label>
+                      <input
+                        type="text"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        placeholder="Používateľské meno"
+                        value={student?.data.user.name}
+                      />
+                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                         Používateľské meno
                       </label>
                       <input
                         type="text"
                         className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                         placeholder="Používateľské meno"
+                        value={student?.data.user.username }
                       />
+
+                      <button className="ml-8 mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">Upraviť profil</button>
                     </form>
                   </ReturnModal>
                 </button>
@@ -119,10 +143,24 @@ const ProfileBody: React.FC = () => {
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Zmazať profil</div>
               <div className="px-4 py-2">
-                <button
-                >
-                  <ReturnModal btnName={"Zmazať profil"} modalHeader={"Zmazať profil"}>
-                    I am children
+                <button>
+                  <ReturnModal
+                    btnName={"Zmazať profil"}
+                    modalHeader={"Zmazať profil"}
+                  >
+                       <form className="mt-4">
+                    <label className="block text-grey-darker text-sm font-bold mb-2">
+                        Meno
+                      </label>
+                      <input
+                        type="text"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        placeholder="Používateľské meno"
+                        value={student?.data.user.name}
+                      />
+
+                      <button className="ml-8 mt-6 bg-red-700 rounded-lg p-2 font-extrabold">Zmazať profil</button>
+                    </form>
                   </ReturnModal>
                 </button>
               </div>

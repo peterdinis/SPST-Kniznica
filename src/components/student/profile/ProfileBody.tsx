@@ -5,6 +5,7 @@ import useStudent from "@/hooks/useStudent";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import useCopyToClipboard from "@/hooks/useCopy";
 import Link from "next/link";
+import ReturnModal from "@/components/shared/modals/ReturnModal";
 
 const ProfileBody: React.FC = () => {
   const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
@@ -100,9 +101,18 @@ const ProfileBody: React.FC = () => {
               <div className="px-4 py-2">
                 <button
                 >
-                  <Link href="/student/new-password">
-                    Upraviť profil
-                  </Link>
+                  <ReturnModal btnName={"Upraviť profil"} modalHeader={"Upraviť profil"}>
+                    <form className="mt-4">
+                    <label className="block text-grey-darker text-sm font-bold mb-2">
+                        Používateľské meno
+                      </label>
+                      <input
+                        type="text"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        placeholder="Používateľské meno"
+                      />
+                    </form>
+                  </ReturnModal>
                 </button>
               </div>
             </div>
@@ -111,9 +121,9 @@ const ProfileBody: React.FC = () => {
               <div className="px-4 py-2">
                 <button
                 >
-                  <Link href="/student/new-password">
-                    Vymazať profil
-                  </Link>
+                  <ReturnModal btnName={"Zmazať profil"} modalHeader={"Zmazať profil"}>
+                    I am children
+                  </ReturnModal>
                 </button>
               </div>
             </div>

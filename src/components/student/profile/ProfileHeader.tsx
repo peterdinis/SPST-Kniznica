@@ -18,7 +18,7 @@ const ProfileHeader: React.FC = () => {
             height={700}
           />
         </div>
-        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
+        <h1 className="text-gray-900 font-bold text-xl leading-8 my-6">
           {studentPersonalInfo?.email}
         </h1>
       </div>

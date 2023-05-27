@@ -1,8 +1,37 @@
+import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
-import Options from "../Options";
+import Cookies from "js-cookie";
+import useTeacher from "@/hooks/useTeacher";
 import Link from "next/link";
+import useCopyToClipboard from "@/hooks/useCopy";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import Options from "../Options";
 
 const ProfileBody: React.FC = () => {
+  const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
+  const { teacher } = useTeacher();
+  const [value, copy] = useCopyToClipboard();
+
+  const logoutFromApp = () => {
+    logoutToast();
+    Cookies.remove("adminAccessToken", {
+      path: "/",
+    });
+    Cookies.remove("adminData", {
+      path: "/",
+    });
+    Cookies.remove("adminPersonalInfo", {
+      path: "/",
+    });
+    window.location.replace("/admin/login");
+  };
+
+  const goToMyBooks = () => {
+    setTimeout(() => {
+      window.location.replace(`/teacher/books/${teacher?.data.user.username}`);
+    }, 500);
+  };
+
   return (
     <>
       <div className="w-full md:w-9/12 mx-2 h-64">
@@ -15,64 +44,83 @@ const ProfileBody: React.FC = () => {
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Meno</div>
-                <div className="px-4 py-2">rrr</div>
+                <div className="px-4 py-2">{teacher?.data.user.name}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Priezvisko</div>
-                <div className="px-4 py-2">rrr</div>
+                <div className="px-4 py-2">{teacher?.data.user.lastName}</div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">
                   Používateľské meno
                 </div>
-                <div className="px-4 py-2">rrr</div>
+                <div className="px-4 py-2">
+                  {teacher?.data.user.username}
+                  <ContentCopyIcon
+                    onClick={() =>
+                      copy(teacher?.data.user.username as unknown as string)
+                    }
+                  />
+                </div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Email</div>
-                <div className="px-4 py-2 break-words">rrr</div>
+                <div className="px-4 py-2 break-words">
+                  {teacher?.data.user.email}
+                </div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Rola</div>
-                <div className="px-4 py-2">rrr</div>
+                <div className="px-4 py-2 text-red-500">
+                  {teacher?.data.user.role}
+                </div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">
                   Moje požičané knihy
                 </div>
                 <div className="px-4 py-2">
-                  <button>Moje knihy</button>
+                  <button onClick={goToMyBooks}>Moje knihy</button>
                 </div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>
                 <div className="px-4 py-2">
-                  <button className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                  <button onClick={logoutFromApp} className="text-red-500">
                     Odlhásenie
                   </button>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Upraviť profil</div>
-              <div className="px-4 py-2">
-                <button
-                >
-                  <Link href="/student/new-password">
-                    Upraviť profil
-                  </Link>
-                </button>
+                <div className="px-4 py-2 font-semibold">
+                  Nastaviť nové heslo
+                </div>
+                <div className="px-4 py-2">
+                  <button>
+                    <Link href="/teacher/new-password">Nové heslo</Link>
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Zmazať profil</div>
-              <div className="px-4 py-2">
-                <button
-                >
-                  <Link href="/student/new-password">
-                    Vymazať profil
-                  </Link>
-                </button>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">
+                  Upraviť profil
+                </div>
+                <div className="px-4 py-2">
+                  <button>
+                    <Link href="/teacher/new-password">Nové heslo</Link>
+                  </button>
+                </div>
               </div>
-            </div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">
+                  Vymazať profil
+                </div>
+                <div className="px-4 py-2">
+                  <button>
+                    <Link href="/teacher/new-password">Zmazať profil</Link>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

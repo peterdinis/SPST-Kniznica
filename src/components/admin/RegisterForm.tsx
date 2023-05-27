@@ -57,6 +57,7 @@ const RegisterForm: React.FC = () => {
       return;
     }
   };
+
   return (
     <>
       <Header name="Registrácia Admin" />
@@ -203,58 +204,6 @@ const RegisterForm: React.FC = () => {
                 {errors.password && errors.password.message}
               </p>
             </div>
-
-            <div className="mb-2">
-              <label
-                className="block text-grey-darker text-sm font-bold mb-2"
-                htmlFor="role"
-              >
-                Rola
-              </label>
-              <input
-                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-                id="Heslo"
-                type="text"
-                autoFocus
-                placeholder="STUDENT"
-                {...register("role", {
-                  required: "Rola je povinný",
-                })}
-                onKeyUp={() => {
-                  trigger("role");
-                }}
-              />
-
-              <p className="text-red-800">
-                {errors.role && errors.role.message}
-              </p>
-            </div>
-
-            <div className="mb-2">
-              <label
-                className="block text-grey-darker text-sm font-bold mb-2"
-                htmlFor="classRoom"
-              >
-                Trieda
-              </label>
-              <input
-                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-                id="Heslo"
-                type="text"
-                autoFocus
-                placeholder="1.A"
-                {...register("classRoom", {
-                  required: "Trieda je povinná",
-                })}
-                onKeyUp={() => {
-                  trigger("classRoom");
-                }}
-              />
-
-              <p className="text-red-800">
-                {errors.classRoom && errors.classRoom.message}
-              </p>
-            </div>
             <div>
               <button
                 className="mt-4 bg-red-700 rounded-lg p-2 text-white"
@@ -266,7 +215,7 @@ const RegisterForm: React.FC = () => {
               <div>
                 <Link
                   className="mt-4 inline-block align-baseline font-bold text-2xl text-blue hover:text-blue-darker"
-                  href="/student/login"
+                  href="/admin/login"
                 >
                   Prihlásenie
                 </Link>

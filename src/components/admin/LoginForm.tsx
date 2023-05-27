@@ -30,7 +30,7 @@ const LoginForm: React.FC = () => {
   const mutation = useMutation(mut.login, {
     onSuccess: (data: ILoginAdminInfo) => {
       Cookies.set("adminData", JSON.stringify(data));
-      Cookies.set("studentAdminData", JSON.stringify(data.data.user));
+      Cookies.set("adminPersonalData", JSON.stringify(data.data.user));
       Cookies.set("adminAccessToken", JSON.stringify(data.data.token));
       notify();
       window.location.replace("/admin/profile");

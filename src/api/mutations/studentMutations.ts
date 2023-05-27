@@ -25,3 +25,7 @@ export const updateProfile = (data: any, username: string) => {
 export const deleteProfile = (username: string) => {
   return api.delete(`student/profile/update/${username}`);
 }
+
+export const studentChangePassword = (username: string, newPassword: string) => {
+  return api.patch(`student/password/${username}/new`, newPassword);
+};

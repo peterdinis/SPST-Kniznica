@@ -17,3 +17,7 @@ export const register = (data: IRegister) => {
 export const login = (data: ILogin) => {
 return api.post("teacher/login", data);
 }
+
+export const teacherChangePassword = (username: string, newPassword: string) => {
+  return api.patch(`teacher/password/${username}/new`, newPassword);
+};

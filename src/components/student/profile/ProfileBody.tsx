@@ -35,6 +35,14 @@ const ProfileBody: React.FC = () => {
     }, 500);
   };
 
+  const updateProfile = () => {
+    return;
+  }
+
+  const deleteProfile = () => {
+    return;
+  }
+
   return (
     <div className="w-full md:w-9/12 mx-2 h-64">
       <div className="bg-white p-3 shadow-sm rounded-sm">
@@ -71,7 +79,7 @@ const ProfileBody: React.FC = () => {
             </div>
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Rola</div>
-              <div className="px-4 py-2 text-red-500">
+              <div className="px-4 py-2 text-red-700">
                 {student?.data.user.role}
               </div>
             </div>
@@ -84,7 +92,7 @@ const ProfileBody: React.FC = () => {
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>
               <div className="px-4 py-2">
-                <button onClick={logoutFromApp} className="text-red-500">
+                <button onClick={logoutFromApp} className="text-red-700">
                   Odlhásenie
                 </button>
               </div>
@@ -106,7 +114,7 @@ const ProfileBody: React.FC = () => {
                     modalHeader={"Upraviť profil"}
                   >
                     <form className="mt-4">
-                    <label className="block text-grey-darker text-sm font-bold mb-2">
+                      <label className="block text-grey-darker text-sm font-bold mb-2">
                         Meno
                       </label>
                       <input
@@ -122,7 +130,7 @@ const ProfileBody: React.FC = () => {
                         type="text"
                         className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                         placeholder="Používateľské meno"
-                        value={student?.data.user.name}
+                        value={student?.data.user.lastName}
                       />
                       <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                         Používateľské meno
@@ -131,10 +139,20 @@ const ProfileBody: React.FC = () => {
                         type="text"
                         className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                         placeholder="Používateľské meno"
-                        value={student?.data.user.username }
+                        value={student?.data.user.username}
                       />
-
-                      <button className="ml-8 mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">Upraviť profil</button>
+                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                        Email
+                      </label>
+                      <input
+                        type="temail"
+                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                        placeholder="Používateľské meno"
+                        value={student?.data.user.email}
+                      />
+                      <button className="ml-8 mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+                        Upraviť profil
+                      </button>
                     </form>
                   </ReturnModal>
                 </button>
@@ -148,8 +166,8 @@ const ProfileBody: React.FC = () => {
                     btnName={"Zmazať profil"}
                     modalHeader={"Zmazať profil"}
                   >
-                       <form className="mt-4">
-                    <label className="block text-grey-darker text-sm font-bold mb-2">
+                    <form className="mt-4">
+                      <label className="block text-grey-darker text-sm font-bold mb-2">
                         Meno
                       </label>
                       <input
@@ -159,7 +177,9 @@ const ProfileBody: React.FC = () => {
                         value={student?.data.user.name}
                       />
 
-                      <button className="ml-8 mt-6 bg-red-700 rounded-lg p-2 font-extrabold">Zmazať profil</button>
+                      <button className="ml-8 mt-6 bg-red-700 rounded-lg p-2 font-extrabold">
+                        Zmazať profil
+                      </button>
                     </form>
                   </ReturnModal>
                 </button>

@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
   const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
   const {
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors},
     trigger,
     register,
   } = useForm<createAdminRegisterType>({

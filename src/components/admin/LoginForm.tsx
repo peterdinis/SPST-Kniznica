@@ -2,9 +2,8 @@ import Header from "../shared/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
 import { useMutation } from "@tanstack/react-query";
-import * as mut from "../../api/mutations/studentMutations";
+import * as mut from "../../api/mutations/adminMutations";
 import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Cookies from "js-cookie";
@@ -12,6 +11,7 @@ import {
   createAdminRegisterType,
   loginAdminSchema,
 } from "@/validators/admin/adminSchema";
+import { ILogin, ILoginAdminInfo } from "@/interfaces/IAdmin";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -27,8 +27,8 @@ const LoginForm: React.FC = () => {
     resolver: zodResolver(loginAdminSchema),
   });
 
-  const mutation = useMutation(mut.loginStudent, {
-    onSuccess: (data: ILoginStudentInfo) => {
+  const mutation = useMutation(mut.login, {
+    onSuccess: (data: ILoginAdminInfo) => {
       Cookies.set("adminData", JSON.stringify(data));
       Cookies.set("studentAdminData", JSON.stringify(data.data.user));
       Cookies.set("adminAccessToken", JSON.stringify(data.data.token));

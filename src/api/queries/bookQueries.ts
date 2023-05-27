@@ -14,7 +14,6 @@ export const getOneBook = (externalId: string) => {
   return api.get(`book/${externalId}`).then((res) => res.data);
 };
 
-
 export const searchForBooks = (value: string) => {
   return api.get(`books/search?q=${value}`)
 }

@@ -1,19 +1,51 @@
-import { NextComponentType } from "next";
+import { useEffect, useState } from 'react';
+import Router from 'next/router';
 
-function withAuth<T>(Component: NextComponentType<T>) {
-  const Auth = (props: T) => {
-    const { isLoggedIn } = props;
-    if (!isLoggedIn) {
-      return <Login />;
-    }
-    return <Component {...props} />;
-  };
-  
-  if (Component.getInitialProps) {
-    Auth.getInitialProps = Component.getInitialProps;
-  }
+const spotify = new SpotifyWebApi();
 
-  return Auth;
-}
+const withAuth = (WrappedComponent: any) => {
+    const WithAuth = (props: any) => {
+        const [loading, setLoading] = useState(true);
+        const [token, setToken] = useState(null);
+    
+        useEffect(() => {
+            const hash = getTokenFromUrl();
+            window.location.hash = "";
+            const _token = hash.accessToken;
 
-export default withAuth;
+            if(_token) {
+                setToken(_token);
+                spotify.setAccessToken(_token);
+
+                spotify.getMe().then((user: any) => {
+                    console.log("Ping work", user);
+                })
+            }
+
+            setLoading(false);
+        }, []);
+    
+        if (loading) {
+            return <div>Loading...</div>;
+        }
+    
+        if (!token) {
+            Router.push('/login');
+            return null;
+        }
+    
+        return <WrappedComponent {...props} />;
+    };
+    
+    WithAuth.getInitialProps = async (ctx: any) => {
+        const wrappedComponentInitialProps = WrappedComponent.getInitialProps
+            ? await WrappedComponent.getInitialProps(ctx)
+            : {};
+    
+           return { ...wrappedComponentInitialProps };
+        };
+    
+       return WithAuth;
+    };
+    
+    export default withAuth;

@@ -14,6 +14,6 @@ export function middleware(request: NextRequest) {
             return NextResponse.rewrite(new URL("/", request.url));
         }
     } else {
-        return NextResponse.redirect("/forbidden");
+        return NextResponse.redirect(request.url);
     }
 }

@@ -1,5 +1,5 @@
-import {ReactNode} from "react";
-import withAuth from "../../hooks/useWIthAuth";
+import {Fragment, ReactNode} from "react";
+import withAuth from "../../hooks/useWithAuth";
 
 interface IProps {
     children?: ReactNode;
@@ -7,9 +7,9 @@ interface IProps {
 
 const ProtectedRoute = ({children}: IProps) => {
     return (
-        <>
+        <Fragment>
             {children}
-        </>
+        </Fragment>
     )
   };
   

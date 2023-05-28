@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import useTeacher from './useTeacher';
 import useAdmin from './useAdmin';
 
 const withAuth = (WrappedComponent: any) => {
+    const router = useRouter();
     const WithAuth = (props: any) => {
         const {teacher} = useTeacher();
         const {admin} = useAdmin();

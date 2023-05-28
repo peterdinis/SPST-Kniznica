@@ -1,40 +1,12 @@
 import { useEffect, useState } from 'react';
 import Router from 'next/router';
-
-const spotify = new SpotifyWebApi();
+import useTeacher from './useTeacher';
+import useAdmin from './useAdmin';
 
 const withAuth = (WrappedComponent: any) => {
     const WithAuth = (props: any) => {
-        const [loading, setLoading] = useState(true);
-        const [token, setToken] = useState(null);
-    
-        useEffect(() => {
-            const hash = getTokenFromUrl();
-            window.location.hash = "";
-            const _token = hash.accessToken;
-
-            if(_token) {
-                setToken(_token);
-                spotify.setAccessToken(_token);
-
-                spotify.getMe().then((user: any) => {
-                    console.log("Ping work", user);
-                })
-            }
-
-            setLoading(false);
-        }, []);
-    
-        if (loading) {
-            return <div>Loading...</div>;
-        }
-    
-        if (!token) {
-            Router.push('/login');
-            return null;
-        }
-    
-        return <WrappedComponent {...props} />;
+        const {teacher} = useTeacher();
+        const {admin} = useAdmin();
     };
     
     WithAuth.getInitialProps = async (ctx: any) => {

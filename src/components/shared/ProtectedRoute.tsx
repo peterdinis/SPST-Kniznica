@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import withAuth from "./ProtectedComponent";
+import withAuth from "../../hooks/useWIthAuth";
 
 interface IProps {
     children?: ReactNode;

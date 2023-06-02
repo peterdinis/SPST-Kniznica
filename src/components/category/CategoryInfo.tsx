@@ -63,7 +63,7 @@ const CategoryInfo: React.FC = () => {
                 Počet kníh ktoré majú túto kategóriu
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                {data.Books === undefined || data.Books === null ? (
+                {data.books === undefined || data.books === null ? (
                   <>
                     <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                       Táto kategórie nemá pridelené žiadne knihy{" "}
@@ -72,8 +72,8 @@ const CategoryInfo: React.FC = () => {
                   </>
                 ) : (
                   <div>
-                    {data.Books &&
-                      data.Books.map((item: { name: string }) => {
+                    {data.books &&
+                      data.books.map((item: { name: string }) => {
                         return (
                           <>
                             <div className="mt-1 pt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0 flex">

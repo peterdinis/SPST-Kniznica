@@ -1,43 +1,63 @@
 import Header from "../shared/Header";
-import { useMutation } from "@tanstack/react-query";
-import * as mut from "../../api/mutations/authorMutations";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import {
-  createAuthorType,
-  createAuthorSchema,
-} from "@/validators/author/authorSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { IAuthor } from "@/interfaces/IAuthor";
+import { useForm } from 'react-hook-form';
+import { useDropzone } from 'react-dropzone';
+import axios from 'axios';
 import { useRouter } from "next/router";
+
+type AuthorFormData = {
+  name: string;
+  lastName: string;
+  birthYear: number;
+  deathYear?: number;
+  country: string;
+  description: string;
+  litPeriod: string;
+  image: File | null;
+};
 
 const notify = () => toast.success("Nový spisovateľ bol vytvorený");
 const errorRegister = () => toast.error("Kategória nebola vytvorená");
 
 const CreateAuthorForm: React.FC = () => {
   const router = useRouter();
-  const { register, handleSubmit, reset } = useForm<createAuthorType>({
-    resolver: zodResolver(createAuthorSchema),
+
+  const { register, handleSubmit, setValue } = useForm<AuthorFormData>();
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: 'image/*' as any,
+    onDrop: (acceptedFiles: File[]) => {
+      if (acceptedFiles.length > 0) {
+        setValue('image', acceptedFiles[0]);
+      }
+    }
   });
 
+  const onHandleSubmit = async (data: AuthorFormData) => {
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('lastName', data.lastName);
+    formData.append('birthYear', data.birthYear.toString());
+    if (data.deathYear) {
+      formData.append('deathYear', data.deathYear.toString());
+    }
+    formData.append('country', data.country);
+    formData.append('description', data.description);
+    formData.append('litPeriod', data.litPeriod);
+    if (data.image) {
+      formData.append('image', data.image);
+    }
 
-  const mutation = useMutation(mut.createNewAuthor, {
-    onSuccess: (data) => {
+    try {
+      const response = await axios.post(process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string + 'authors', formData);
+      console.log('New author created:', response.data);
       notify();
-    },
-
-    onError: (data) => {
+    } catch (error) {
+      console.error('Error creating author:', error);
       errorRegister();
-      router.push("/authors/failed");
-    },
-  });
-
-  const onHandleSubmit: SubmitHandler<createAuthorType> = (
-    data: IAuthor
-  ) => {
-    mutation.mutate(data);
-    reset();
+    }
   };
+
 
   return (
     <>
@@ -59,6 +79,21 @@ const CreateAuthorForm: React.FC = () => {
               Meno autora
             </label>
           </div>
+          <div className="relative z-0 mb-6 group">
+            <input
+              type="text"
+              className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              {...register("country", {
+                required: true,
+              })}
+            />
+            <label
+              htmlFor="country"
+              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Krajina pôvodu
+            </label>
+          </div>
           <br />
           <div className="relative z-0 mb-6 group">
             <input
@@ -76,19 +111,17 @@ const CreateAuthorForm: React.FC = () => {
             </label>
           </div>
           <br />
-          <div className="relative z-0 mb-6 group">
+          <div {...getRootProps()} className="relative z-0 mb-6 group">
             <input
-              type="text"
+              type="file"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              {...register("picture", {
-                required: true,
-              })}
+              {...getInputProps()}
             />
             <label
               htmlFor="description"
               className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Fotka 
+              <p>Obrázok</p>
             </label>
           </div>
           <br />
@@ -109,14 +142,13 @@ const CreateAuthorForm: React.FC = () => {
           </div>
           <br />
           <div className="relative z-0 mb-6 group">
-          <div className="pt-4 text-red-500">Ak autor/ka je nažive nemusí byť vyplnení rok úmrtia</div>
             <input
               type="date"
               placeholder="Nemusí byť vyplnené ak autor/autorka je nažive"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("birthYear", {
                 required: true,
-                
+
               })}
             />
             <label
@@ -128,13 +160,13 @@ const CreateAuthorForm: React.FC = () => {
           </div>
           <br />
           <div className="relative z-0 mb-6 group">
-           <textarea
-            rows={3}
-            cols={3}
+            <textarea
+              rows={3}
+              cols={3}
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("description", {
                 required: true,
-                
+
               })}
             />
             <label
@@ -151,7 +183,7 @@ const CreateAuthorForm: React.FC = () => {
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("litPeriod", {
                 required: true,
-                
+
               })}
             />
             <label
@@ -162,7 +194,7 @@ const CreateAuthorForm: React.FC = () => {
             </label>
           </div>
           <br />
-          <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+          <button type="submit" className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
             Pridať nového autora
           </button>
         </form>

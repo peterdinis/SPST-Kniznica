@@ -20,7 +20,7 @@ import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Image from "next/image";
 import defaultImage from "../../images/default.png";
-import { getBookInfoError } from "../shared/errors/errorMessages";
+import { getBookInfoError } from "../shared/errors/constants/errorMessages";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();

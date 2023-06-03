@@ -6,7 +6,7 @@ import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { IBook } from "@/interfaces/IBook";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
-import { getAllBooksError } from "@/components/shared/errors/errorMessages";
+import { getAllBooksError } from "@/components/shared/errors/constants/errorMessages";
 import { useState } from "react";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 

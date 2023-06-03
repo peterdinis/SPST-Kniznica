@@ -12,7 +12,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { IPaginatedBooks } from "@/data/placeholderPaginatedBooks";
-import { getAllBooksError } from "../shared/errors/errorMessages";
+import { getAllBooksError } from "../shared/errors/constants/errorMessages";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(0);

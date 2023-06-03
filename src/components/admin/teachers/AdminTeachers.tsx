@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { placeholderTeacher } from "@/data/placeholerTeacher";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
-import { getTeachersError } from "@/components/shared/errors/errorMessages";
+import { getTeachersError } from "@/components/shared/errors/constants/errorMessages";
 import { TeacherBasicInfo } from "@/interfaces/ITeacher";
 import ScrollToTop from "@/hooks/useScroll";
 

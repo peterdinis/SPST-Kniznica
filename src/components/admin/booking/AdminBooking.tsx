@@ -4,7 +4,7 @@ import * as api from "@/api/queries/bookingQueries";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
 import ScrollToTop from "@/hooks/useScroll";
-import { getBookingError } from "@/components/shared/errors/errorMessages";
+import { getBookingError } from "@/components/shared/errors/constants/errorMessages";
 import { IBooking } from "@/interfaces/IBooking";
 import { placeholderBooking } from "@/data/placeholderBooking";
 

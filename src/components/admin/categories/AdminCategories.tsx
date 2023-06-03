@@ -6,7 +6,7 @@ import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { ICategory } from "@/interfaces/ICategory";
 import {useState} from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
-import { getAllCategoriesError } from "@/components/shared/errors/errorMessages";
+import { getAllCategoriesError } from "@/components/shared/errors/constants/errorMessages";
 import ScrollToTop from "@/hooks/useScroll";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 

@@ -1,11 +1,9 @@
-import { HelperHeader } from "@/styles/Component.styled";
-
 interface Props {
   name: string;
 }
 
 function Header({ name }: Props) {
-  return <HelperHeader>{name}</HelperHeader>;
+  return <h1 className="text-center text-5xl mt-8 text-black">{name}</h1>;
 }
 
 export default Header;

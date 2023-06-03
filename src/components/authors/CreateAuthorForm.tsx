@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 type AuthorFormData = {
   name: string;
@@ -16,19 +17,26 @@ type AuthorFormData = {
   image: File | null;
 };
 
+// from react-dropzone.d.ts 
+interface Accept {
+  [key: string]: string[];
+}
+
+
 const notify = () => toast.success("Nový spisovateľ bol vytvorený");
-const errorRegister = () => toast.error("Kategória nebola vytvorená");
+const errorRegister = () => toast.error("Spisovateľ nebol vytvorený");
 
 const CreateAuthorForm: React.FC = () => {
   const router = useRouter();
-
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const { register, handleSubmit, setValue } = useForm<AuthorFormData>();
 
   const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/*' as any,
+    accept: '.jpg, .jpeg, .png' as unknown as Accept,
     onDrop: (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 0) {
         setValue('image', acceptedFiles[0]);
+        setSelectedImage(acceptedFiles[0]);
       }
     }
   });
@@ -49,7 +57,7 @@ const CreateAuthorForm: React.FC = () => {
     }
 
     try {
-      const response = await axios.post(process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string + 'authors', formData);
+      const response = await axios.post('http://localhost:8111/authors', formData);
       console.log('New author created:', response.data);
       notify();
     } catch (error) {
@@ -123,6 +131,14 @@ const CreateAuthorForm: React.FC = () => {
             >
               <p>Obrázok</p>
             </label>
+            {/* Display image preview */}
+            {selectedImage && (
+              <img
+                src={URL.createObjectURL(selectedImage)}
+                alt="Selected Image"
+                className="mt-2 h-24 w-24 object-cover"
+              />
+            )}
           </div>
           <br />
           <div className="relative z-0 mb-6 group">

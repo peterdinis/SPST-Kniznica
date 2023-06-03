@@ -25,21 +25,6 @@ const ProfileBody: React.FC = () => {
     });
     window.location.replace("/admin/login");
   };
-
- /*  const goToMyBooks = () => {
-    setTimeout(() => {
-      window.location.replace(`/admin/books/${student?.data.user.username}`);
-    }, 500);
-  }; */
-
-  const updateProfile = () => {
-    return;
-  }
-
-  const deleteProfile = () => {
-    return;
-  }
-
   return (
     <div className="w-full md:w-9/12 mx-2 h-64">
       <div className="bg-white p-3 shadow-sm rounded-sm">
@@ -47,7 +32,8 @@ const ProfileBody: React.FC = () => {
           <PersonIcon />
           <span className="tracking-wide">Základné informácie</span>
         </div>
-        <div className="text-gray-700">
+
+       {/*  <div className="text-gray-700">
           <div className="grid md:grid-cols-2 text-sm">
             <div className="grid grid-cols-2">
               <div className="px-4 py-2  font-semibold">Meno</div>
@@ -183,7 +169,7 @@ const ProfileBody: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

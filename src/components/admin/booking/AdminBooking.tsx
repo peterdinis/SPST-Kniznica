@@ -35,7 +35,7 @@ const AdminBooking: React.FC = () => {
               <thead>
                 <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                   <th className="px-4 py-3">Meno používateľa</th>
-                  <th className="px-4 py-3">Id knihy</th>
+                  <th className="px-4 py-3">Id objednávky</th>
                   <th className="px-4 py-3">Požičaná od</th>
                   <th className="px-4 py-3">Požičaná do</th>
                 </tr>

@@ -41,7 +41,7 @@ const AdminCategories: React.FC = () => {
             <table className="w-full">
               <thead>
                 <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-                  <th className="px-4 py-3">Id knihy</th>
+                  <th className="px-4 py-3">Id kategórie</th>
                   <th className="px-4 py-3">Názov kategórie</th>
                   <th className="px-4 py-3">Popis kategórie</th>
                   <th className="px-4 py-3">Uprav kategóriu</th>

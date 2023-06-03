@@ -6,7 +6,7 @@ const useAdmin = () => {
   const [admin, setAdmin] = useState<ILoginAdminInfo | null>(null);
 
   useEffect(() => {
-    const currentAdmin = Cookies.get("adminData");
+    const currentAdmin = Cookies.get("adminData") as unknown as string;
     if (currentAdmin) {
       setAdmin(JSON.parse(currentAdmin));
     }

@@ -109,7 +109,6 @@ const CreateAuthorForm: React.FC = () => {
           </div>
           <br />
           <div className="relative z-0 mb-6 group">
-          <div className="pt-4 text-red-500">Ak autor/ka je nažive nemusí byť vyplnení rok úmrtia</div>
             <input
               type="date"
               placeholder="Nemusí byť vyplnené ak autor/autorka je nažive"

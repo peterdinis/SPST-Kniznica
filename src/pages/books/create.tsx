@@ -1,4 +1,5 @@
 import CreateBookForm from "@/components/books/CreateBookForm";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 
 const CreateNewBookPage: NextPage = () => {
@@ -7,4 +8,4 @@ const CreateNewBookPage: NextPage = () => {
     )
 }
 
-export default CreateNewBookPage;
+export default PrivateRoute(CreateNewBookPage);

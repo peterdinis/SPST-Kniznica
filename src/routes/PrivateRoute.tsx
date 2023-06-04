@@ -9,17 +9,20 @@ const PrivateRoute = <T extends object>(WrappedComponent: React.ComponentType<T>
     const teacher = useTeacher();
     const admin = useAdmin();
 
-    const isLoggedIn = teacher !== null && teacher !== undefined || admin !== null && admin !== undefined;
+    const checkIfIsTeacherOrAdmin = !teacher || !admin;
+
+    console.log(teacher);
+    console.log(admin);
 
     useEffect(() => {
       // Redirect to login if the user is not authenticated
-      if (!isLoggedIn) {
+      if (!checkIfIsTeacherOrAdmin) {
         router.push('/forbidden');
       }
     }, []);
 
     // Render the component only if the user is authenticated
-    return isLoggedIn ? <WrappedComponent {...props} /> : null;
+    return checkIfIsTeacherOrAdmin ? <WrappedComponent {...props} /> : null;
   };
 
   return AuthenticatedRoute;

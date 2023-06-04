@@ -30,3 +30,5 @@ export interface ILoginAdminInfo {
     }
   }
 }
+
+export type IUpdateAdmin = Partial<ILoginAdminInfo>;

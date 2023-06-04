@@ -48,3 +48,9 @@ export interface ILoginStudentPersonalInfo {
 
 
 export type StudentBasicInfo = Pick<ILoginStudentPersonalInfo, 'name' | 'username' | 'classRoom' | 'createdAt'>
+export type IUpdateStudent = Partial<ILoginStudentPersonalInfo>;
+
+export interface INewPasswordStudent {
+  username: string;
+  newPassword: string;
+}

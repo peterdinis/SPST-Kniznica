@@ -10,3 +10,5 @@ export interface IAuthor {
     description: string;
     litPeriod: string;
 };
+
+export type IUpdateAuthor = Partial<IAuthor>;

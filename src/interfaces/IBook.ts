@@ -15,3 +15,5 @@ export interface IBook {
 export interface IBookResult {
   data: Record<string, IBook>;
 }
+
+export type IUpdateBook = Partial<IBook>;

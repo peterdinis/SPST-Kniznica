@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ICategory } from "../../interfaces/ICategory";
+import { ICategory, IUpdateCategory } from "../../interfaces/ICategory";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string,
@@ -9,7 +9,7 @@ export const createNewCategory = (data: ICategory) => {
     return api.post("category", data);
 }
 
-export const updateCategory = (id: number, data: ICategory) => {
+export const updateCategory = (id: number, data: IUpdateCategory) => {
   if(!id) {
     return;
   }

@@ -43,4 +43,9 @@ export interface ILoginTeacherPersonalInfo {
   createdAt: string;
 }
 
-export type TeacherBasicInfo = Pick<ILoginTeacherPersonalInfo, 'name' | 'username' | 'createdAt' >
+export type TeacherBasicInfo = Pick<ILoginTeacherPersonalInfo, 'name' | 'username' | 'createdAt' >;
+
+export interface INewPasswordTeacher {
+  username: string;
+  newPassword: string;
+}

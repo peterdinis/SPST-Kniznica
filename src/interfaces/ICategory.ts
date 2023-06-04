@@ -7,3 +7,6 @@ export interface ICategory {
     description: string;
     books?: Array<IBook[]>;
 }
+
+export type IDeleteCategory = Pick<ICategory, 'id'>;
+export type IUpdateCategory = Partial<ICategory>;

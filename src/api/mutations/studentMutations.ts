@@ -1,4 +1,4 @@
-import { ILogin, IRegister, IUpdateStudent } from "@/interfaces/IStudent";
+import { ILogin, INewPasswordStudent, IRegister, IUpdateStudent } from "@/interfaces/IStudent";
 import axios from "axios";
 
 const api = axios.create({
@@ -21,6 +21,6 @@ export const deleteProfile = (username: string) => {
   return api.delete(`student/profile/update/${username}`);
 }
 
-export const studentChangePassword = (username: string, newPassword: string) => {
-  return api.patch(`student/password/${username}/new`, newPassword);
+export const studentChangePassword = (studentData: INewPasswordStudent) => {
+  return api.patch(`student/password/${studentData.username}/new`, studentData.newPassword);
 };

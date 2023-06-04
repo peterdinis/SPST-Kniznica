@@ -8,12 +8,14 @@ import {
   createCategorySchema,
 } from "@/validators/category/categorySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/router";
 import { ICategory } from "@/interfaces/ICategory";
 
 const notify = () => toast.success("Kategória bola vytvorená");
-const errorRegister = () => toast.error("Kategória nebola vytvorená");
+const errorRegister = () => toast.error("Nepodarilo sa vytvoriť novú kategóriu");
 
 const CreateNewCategory: React.FC = () => {
+  const router = useRouter();
   const { register, handleSubmit, reset } = useForm<createCategoryType>({
     resolver: zodResolver(createCategorySchema),
   });
@@ -25,6 +27,7 @@ const CreateNewCategory: React.FC = () => {
 
     onError: (data) => {
       errorRegister();
+      router.push("/category/failed");
     },
   });
 

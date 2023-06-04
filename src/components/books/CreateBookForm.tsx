@@ -6,11 +6,13 @@ import { IBook } from "@/interfaces/IBook";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createBookType, createBookSchema } from "@/validators/book/bookSchema";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
 const notify = () => toast.success("Kniha bola vytvorená");
 const errorRegister = () => toast.error("Kniha nebola vytvorená");
 
 const CreateBookForm: React.FC = () => {
+  const router = useRouter();
   const { register, handleSubmit } = useForm<createBookType>({
     resolver: zodResolver(createBookSchema),
   });
@@ -22,11 +24,10 @@ const CreateBookForm: React.FC = () => {
 
     onError: () => {
       errorRegister();
+      router.push("/books/failed");
     },
   });
 
-  // TODO: Remove any
-  // TODO1: Update this page later
   const onHandleSubmit: SubmitHandler<createBookType> = (data: IBook) => {
     mutation.mutate(data);
   };

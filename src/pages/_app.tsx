@@ -8,7 +8,6 @@ import { Inter } from "@next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import { FontDiv } from "@/styles/Component.styled";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +15,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <FontDiv className={inter.className}>
+      <div className={inter.className}>
         <Layout>
           <ErrorBoundary>
             <Component {...pageProps} />
@@ -25,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <CssBaseline />
           </ErrorBoundary>
         </Layout>
-      </FontDiv>
+      </div>
     </QueryClientProvider>
   );
 }

@@ -1,4 +1,4 @@
-import authApi from "../tokens/teacherInterceptor";
+import authApi from "../interceptors/teacherInterceptor";
 import axios from "axios";
 
 const api = axios.create({

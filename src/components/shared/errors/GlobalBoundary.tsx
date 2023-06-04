@@ -1,7 +1,7 @@
-import React, { Component, ErrorInfo } from "react";
+import React, { Component, ErrorInfo, ReactNode } from "react";
 
 interface Props {
-  children: any; // TODO: Not good not terrible :D
+  children: ReactNode
 }
 
 interface State {

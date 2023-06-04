@@ -1,9 +1,7 @@
 import axios from "axios";
 
-const baseEnv = process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string
-
 const api = axios.create({
-  baseURL: baseEnv,
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL as string,
 });
 
 export const getAllBookings = () => api.get("bookings").then((res) => res.data);

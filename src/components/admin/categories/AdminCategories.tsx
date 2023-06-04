@@ -1,18 +1,26 @@
 import Header from "@/components/shared/Header";
 import * as api from "../../../api/queries/categoryQueries";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackLoader from "@/components/shared/FallbackLoader";
 import FallbackRender from "@/components/shared/errors/ErrorRender";
 import { ICategory } from "@/interfaces/ICategory";
 import {useState} from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
-import { getAllCategoriesError } from "@/components/shared/errors/errorMessages";
+import { getAllCategoriesError } from "@/components/shared/errors/constants/errorMessages";
 import ScrollToTop from "@/hooks/useScroll";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
+import * as mut from "../../../api/mutations/categoryMutation";
+import {toast} from "react-toastify";
+import {useForm} from "react-hook-form";
 
 const AdminCategories: React.FC = () => {
   const [page] = useState(0);
   const [limit] = useState(12);
+
+  const deleteSuccess = () => toast.success("Zmazanie kategórie bolo úspešné");
+  const deleteFailed = () =>toast.error("Zmazanie kategórie bolo neuspešné");
+  const updateSuccess = () => toast.success("Kategória bola upravená");
+  const updateFailed = () => toast.error("Kategória nebola upravená");
 
   let initialCategories: IPaginatedCategories | any;
   const { data, isError, isLoading } = useQuery(
@@ -30,7 +38,22 @@ const AdminCategories: React.FC = () => {
   }
   if (isError) {
     return <FallbackRender error={getAllCategoriesError} />;
+
   }
+
+    const deleteCategoryMutation = useMutation(mut.deleteCategory(data.id as any) as any, {
+      onSuccess: () => {
+        deleteSuccess();
+      },
+
+      onError: () =>{
+        deleteFailed();
+      }
+    });
+
+    const onDeleteSubmit = (data: any) => {
+      deleteCategoryMutation.mutate(data);
+    }
 
   return (
     <>
@@ -41,7 +64,7 @@ const AdminCategories: React.FC = () => {
             <table className="w-full">
               <thead>
                 <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-                  <th className="px-4 py-3">Id knihy</th>
+                  <th className="px-4 py-3">Id kategórie</th>
                   <th className="px-4 py-3">Názov kategórie</th>
                   <th className="px-4 py-3">Popis kategórie</th>
                   <th className="px-4 py-3">Uprav kategóriu</th>

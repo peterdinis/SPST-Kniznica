@@ -14,6 +14,6 @@
 ## How to run
 
 - clone the repo
-- create .env file and use variables from .env.local
+- create .env file and use variables from .env.example
 - run npm install or npm i
 - run npm run dev

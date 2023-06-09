@@ -19,7 +19,7 @@ const AuthorDetail: React.FC = () => {
 
   const { data, isError, isLoading } = useQuery(
     ["authorDetail", query.id as unknown as number],
-    () => api.getOneAuthor(query.id as any),
+    () => api.getOneAuthor(query.id as unknown as string),
     {
       retry: 2,
       placeholderData: placeholderAuthor,

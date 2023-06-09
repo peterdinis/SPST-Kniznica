@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosHeaders } from "axios";
 import Cookies from "js-cookie";
 
 const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
@@ -9,9 +9,7 @@ const adminApi = axios.create({
 });
 
 interface RequestConfig extends AxiosRequestConfig {
-  headers: {
-    Authorization?: string | null;
-  };
+  headers: AxiosHeaders;
 }
 
 adminApi.interceptors.request.use((config) => {
@@ -19,7 +17,7 @@ adminApi.interceptors.request.use((config) => {
   config.headers = {
     ...config.headers,
     Authorization: `Bearer ${token}`,
-  } as any;
+  } as unknown as AxiosHeaders;
   return config;
 }) as unknown as (config: RequestConfig) => Promise<RequestConfig>;
 

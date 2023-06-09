@@ -1,4 +1,5 @@
-import axios from "axios";
+import { RequestConfig } from "@/interfaces/IAxios";
+import axios, { AxiosHeaders } from "axios";
 import Cookies from "js-cookie"
 
 const baseURL =
@@ -9,12 +10,13 @@ const authApi = axios.create({
   withCredentials: true,
 });
 
-authApi.interceptors.request.use((config: any) => {
+authApi.interceptors.request.use((config) => {
   const token = Cookies.get("studentAccessToken") as unknown as string;
   config.headers = {
+    ...config.headers,
     Authorization: `Bearer ${token}`,
-  };
+  } as unknown as AxiosHeaders;
   return config;
-});
+}) as unknown as (config: RequestConfig) => Promise<RequestConfig>;;
 
 export default authApi;

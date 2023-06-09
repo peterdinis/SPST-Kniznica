@@ -24,12 +24,12 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
     to: { opacity: open ? 1 : 0 },
     onStart: () => {
       if (open && onEnter) {
-        onEnter(null as any, true);
+        onEnter(null as unknown as HTMLElement, true);
       }
     },
     onRest: () => {
       if (!open && onExited) {
-        onExited(null as any, true);
+        onExited(null as unknown as HTMLElement, true);
       }
     },
   });

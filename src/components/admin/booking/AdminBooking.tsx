@@ -13,7 +13,7 @@ const AdminBooking: React.FC = () => {
     ["allBookings"],
     () => api.getAllBookings,
     {
-      initialData: placeholderBooking as any,
+      initialData: placeholderBooking as Record<string, any>,
       retry: 2,
     }
   );

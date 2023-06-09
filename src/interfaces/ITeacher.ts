@@ -49,3 +49,5 @@ export interface INewPasswordTeacher {
   username: string;
   newPassword: string;
 }
+
+export type IUpdateTeacher = Partial<ILoginTeacherPersonalInfo>;

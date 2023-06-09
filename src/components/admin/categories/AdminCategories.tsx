@@ -11,7 +11,6 @@ import ScrollToTop from "@/hooks/useScroll";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 import * as mut from "../../../api/mutations/categoryMutation";
 import {toast} from "react-toastify";
-import {useForm} from "react-hook-form";
 
 const AdminCategories: React.FC = () => {
   const [page] = useState(0);
@@ -23,6 +22,7 @@ const AdminCategories: React.FC = () => {
   const updateFailed = () => toast.error("Kategória nebola upravená");
 
   let initialCategories: IPaginatedCategories | any;
+  
   const { data, isError, isLoading } = useQuery(
     ["paginateBooks", page],
     () => api.paginateCategories(page, limit),
@@ -41,7 +41,7 @@ const AdminCategories: React.FC = () => {
 
   }
 
-    const deleteCategoryMutation = useMutation(mut.deleteCategory(data.id as any) as any, {
+    const deleteCategoryMutation = useMutation(mut.deleteCategory(data.id as unknown as number) as any, {
       onSuccess: () => {
         deleteSuccess();
       },
@@ -51,7 +51,7 @@ const AdminCategories: React.FC = () => {
       }
     });
 
-    const onDeleteSubmit = (data: any) => {
+    const onDeleteSubmit = (data: void) => {
       deleteCategoryMutation.mutate(data);
     }
 

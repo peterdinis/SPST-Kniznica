@@ -1,7 +1,7 @@
 export interface ICreateBooking {
   id?: number;
-  from: any;
-  to: any;
+  from: string;
+  to: string;
   username: string;
   bookId: number;
 }

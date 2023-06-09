@@ -16,3 +16,4 @@
 - clone the repo
 - create .env file and use variables from .env.local
 - run npm install or npm i
+- run npm run dev

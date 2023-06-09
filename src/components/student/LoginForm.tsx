@@ -36,7 +36,7 @@ const LoginForm: React.FC = () => {
       window.location.replace("/student/profile");
     },
 
-    onError: (data: any) => {
+    onError: () => {
       router.push("/failed");
       errorRegister();
       return;

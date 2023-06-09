@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosHeaders } from "axios";
+import { RequestConfig } from "@/interfaces/IAxios";
+import axios, { AxiosHeaders } from "axios";
 import Cookies from "js-cookie"
 
 const baseURL =
@@ -8,11 +9,6 @@ const authApi = axios.create({
   baseURL,
   withCredentials: true,
 });
-
-
-interface RequestConfig extends AxiosRequestConfig {
-  headers: AxiosHeaders;
-}
 
 authApi.interceptors.request.use((config) => {
   const token = Cookies.get("studentAccessToken") as unknown as string;

@@ -41,7 +41,7 @@ const AdminCategories: React.FC = () => {
 
   }
 
-    const deleteCategoryMutation = useMutation(mut.deleteCategory(data.id as any) as any, {
+    const deleteCategoryMutation = useMutation(mut.deleteCategory(data.id as unknown as number) as any, {
       onSuccess: () => {
         deleteSuccess();
       },
@@ -51,7 +51,7 @@ const AdminCategories: React.FC = () => {
       }
     });
 
-    const onDeleteSubmit = (data: any) => {
+    const onDeleteSubmit = (data: void) => {
       deleteCategoryMutation.mutate(data);
     }
 

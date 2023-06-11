@@ -10,7 +10,6 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ScrollToTop from "@/hooks/useScroll";
 import { IAuthor } from "@/interfaces/IAuthor";
-import DangerousIcon from "@mui/icons-material/Dangerous";
 
 const SearchAuthorsForm: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -32,6 +31,19 @@ const SearchAuthorsForm: React.FC = () => {
       setIsSearching(false);
     }
   }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10
+      );
+    }, 800);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <>
       <Header name="Hľadanie konkretného spisovateľa" />
@@ -64,9 +76,7 @@ const SearchAuthorsForm: React.FC = () => {
 
       <>
         {results.data === undefined ? (
-          <div className="text-center font-bold mt-4">
-            Nastala chyba <DangerousIcon />
-          </div>
+          <></>
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">

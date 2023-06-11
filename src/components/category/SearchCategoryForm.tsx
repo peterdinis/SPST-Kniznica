@@ -3,7 +3,7 @@ import * as api from "../../api/queries/categoryQueries";
 import Link from "next/link";
 import { ICategory } from "@/interfaces/ICategory";
 import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -75,9 +75,7 @@ const SearchCategoryForm: React.FC = () => {
 
       <>
         {results.data === undefined ? (
-         <div className="text-center font-bold mt-4">
-         Nastala chyba <DangerousIcon />
-       </div>
+         <></>
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">

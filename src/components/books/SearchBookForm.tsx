@@ -10,7 +10,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ScrollToTop from "@/hooks/useScroll";
-import DangerousIcon from "@mui/icons-material/Dangerous";
 
 const SearchOneBook: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -77,9 +76,7 @@ const SearchOneBook: React.FC = () => {
 
       <>
         {results.data === undefined ? (
-        <div className="text-center font-bold mt-4">
-           Nastala chyba <DangerousIcon />
-         </div>
+        <></>
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">

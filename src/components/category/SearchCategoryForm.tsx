@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ScrollToTop from "@/hooks/useScroll";
+import DangerousIcon from "@mui/icons-material/Dangerous";
 
 const SearchCategoryForm: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -74,7 +75,9 @@ const SearchCategoryForm: React.FC = () => {
 
       <>
         {results.data === undefined ? (
-          <Fragment />
+         <div className="text-center font-bold mt-4">
+         Nastala chyba <DangerousIcon />
+       </div>
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">

@@ -5,8 +5,9 @@ import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/errors/ErrorRender";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
+import { queryClient } from "@/api/queryClient";
 
-function Hero() {
+const Hero: React.FC = () => {
   const { data, isLoading, isError } = useQuery(["example"], api.getExampleData, {
     retry: 2,
   });
@@ -18,6 +19,9 @@ function Hero() {
   if (isError) {
     return <FallbackRender error={"Nastala chyba"} />;
   }
+
+  queryClient.setQueryData(["ping"], data);
+
   return (
     <>
       <div className="pt-32 lg:flex items-center relative z-10 container mx-auto">

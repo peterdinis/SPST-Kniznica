@@ -2,7 +2,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import SchoolIcon from "@mui/icons-material/School";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
-function Services() {
+const Services: React.FC = () => {
   return (
     <div className="overflow-y-hidden mt-4">
       <div className="pb-16">

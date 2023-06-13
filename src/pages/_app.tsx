@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
+import Helmet from "@/components/shared/Helmet";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,14 +17,16 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <div className={inter.className}>
-        <Layout>
-          <ErrorBoundary>
-            <Component {...pageProps} />
-            <ToastContainer />
-            <ReactQueryDevtools />
-            <CssBaseline />
-          </ErrorBoundary>
-        </Layout>
+        <Helmet>
+          <Layout>
+            <ErrorBoundary>
+              <Component {...pageProps} />
+              <ToastContainer />
+              <ReactQueryDevtools />
+              <CssBaseline />
+            </ErrorBoundary>
+          </Layout>
+        </Helmet>
       </div>
     </QueryClientProvider>
   );

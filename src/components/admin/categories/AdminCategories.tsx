@@ -2,7 +2,7 @@ import Header from "@/components/shared/Header";
 import * as api from "../../../api/queries/categoryQueries";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackLoader from "@/components/shared/FallbackLoader";
-import FallbackRender from "@/components/shared/errors/ErrorRender";
+import FallbackRender from "@/components/shared/errors/FallbackRender";
 import { ICategory } from "@/interfaces/ICategory";
 import {useState} from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";

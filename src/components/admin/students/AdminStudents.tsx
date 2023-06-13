@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import * as api from "../../../api/queries/studentQueries";
 import { placeholderStudent } from "@/data/placeholderStudent";
 import FallbackLoader from "@/components/shared/FallbackLoader";
-import FallbackRender from "@/components/shared/errors/ErrorRender";
+import FallbackRender from "@/components/shared/errors/FallbackRender";
 import { getStudentsError } from "@/components/shared/errors/constants/errorMessages";
 import {  StudentBasicInfo } from "@/interfaces/IStudent";
 import ScrollToTop from "@/hooks/useScroll";

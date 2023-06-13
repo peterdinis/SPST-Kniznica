@@ -2,7 +2,7 @@ import DateTimePicker from "../shared/DateTimePicker";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/exampleQuery";
 import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/errors/ErrorRender";
+import FallbackRender from "../shared/errors/FallbackRender";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import { queryClient } from "@/api/queryClient";

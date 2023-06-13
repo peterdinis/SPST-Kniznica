@@ -1,7 +1,7 @@
 import Header from "../shared/Header";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import FallbackRender from "../shared/errors/ErrorRender";
+import FallbackRender from "../shared/errors/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import * as api from "../../api/queries/authorQueries";
 import { placeholderAuthor } from "@/data/placeholderAuthor";

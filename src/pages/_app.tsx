@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <div className={inter.className}>
-        <Helmet>
+   {/*      <Helmet> */}
           <Layout>
             <ErrorBoundary>
               <Component {...pageProps} />
@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <CssBaseline />
             </ErrorBoundary>
           </Layout>
-        </Helmet>
+      {/*   </Helmet> */}
       </div>
     </QueryClientProvider>
   );

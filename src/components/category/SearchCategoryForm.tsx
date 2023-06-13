@@ -3,12 +3,13 @@ import * as api from "../../api/queries/categoryQueries";
 import Link from "next/link";
 import { ICategory } from "@/interfaces/ICategory";
 import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ScrollToTop from "@/hooks/useScroll";
+import DangerousIcon from "@mui/icons-material/Dangerous";
 
 const SearchCategoryForm: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -44,7 +45,7 @@ const SearchCategoryForm: React.FC = () => {
   }, []);
   return (
     <>
-          <Header name="Hľadanie konkretnej kategórie" />
+      <Header name="Hľadanie konkretnej kategórie" />
       <div className="flex justify-center align-top">
         <form className="mt-4">
           <input
@@ -74,7 +75,7 @@ const SearchCategoryForm: React.FC = () => {
 
       <>
         {results.data === undefined ? (
-          <Fragment />
+         <></>
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">
@@ -82,19 +83,16 @@ const SearchCategoryForm: React.FC = () => {
                 results.data.map((item: ICategory) => {
                   return (
                     <>
-                      <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
-                        <div className="text-center">
-                          <h3 className="text-2xl text-gray-800">
-                            {item.name}
-                          </h3>
-                          <div className="text-center mt-4">
+                      <div className="bg-whiterounded py-5 pl-6 flex items-start shadow">
+                        <div className="pl-3 pr-10 mt-1">
+                          <h3 className="font-normal leading-4 text-red-800 text-2xl break-all">
                             <Link
-                              className="link mt-10 bg-blue-200 p-2 rounded"
-                              href={`/category/detail/${item.id}`}
+                              id="categoryName"
+                              href={`/category/detail/${item.externalId}`}
                             >
-                              Detail
+                              {item.name}
                             </Link>
-                          </div>
+                          </h3>
                         </div>
                       </div>
                     </>
@@ -106,7 +104,7 @@ const SearchCategoryForm: React.FC = () => {
         )}
       </>
     </>
-  )
+  );
 };
 
 export default SearchCategoryForm;

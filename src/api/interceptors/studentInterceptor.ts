@@ -1,9 +1,8 @@
 import { RequestConfig } from "@/interfaces/IAxios";
 import axios, { AxiosHeaders } from "axios";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
-const baseURL =
-process.env.NEXT_PUBLIC_BACKEND_URL as string;
+const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
 const authApi = axios.create({
   baseURL,
@@ -17,6 +16,6 @@ authApi.interceptors.request.use((config) => {
     Authorization: `Bearer ${token}`,
   } as unknown as AxiosHeaders;
   return config;
-}) as unknown as (config: RequestConfig) => Promise<RequestConfig>;;
+}) as unknown as (config: RequestConfig) => Promise<RequestConfig>;
 
 export default authApi;

@@ -86,7 +86,7 @@ const ProfileBody: React.FC = () => {
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Moje požičané knihy</div>
               <div className="px-4 py-2">
-                <button onClick={goToMyBooks}>Moje knihy</button>
+                <button className="text-red-700" onClick={goToMyBooks}>Moje knihy</button>
               </div>
             </div>
             <div className="grid grid-cols-2">
@@ -101,7 +101,7 @@ const ProfileBody: React.FC = () => {
               <div className="px-4 py-2 font-semibold">Nastaviť nové heslo</div>
               <div className="px-4 py-2">
                 <button>
-                  <Link href="/student/new-password">Nové heslo</Link>
+                  <Link className="text-red-700" href="/student/new-password">Nové heslo</Link>
                 </button>
               </div>
             </div>

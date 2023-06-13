@@ -2,7 +2,7 @@ import Header from "../shared/Header";
 import * as api from "../../api/queries/authorQueries";
 import Link from "next/link";
 import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect} from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -31,6 +31,19 @@ const SearchAuthorsForm: React.FC = () => {
       setIsSearching(false);
     }
   }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10
+      );
+    }, 800);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <>
       <Header name="Hľadanie konkretného spisovateľa" />
@@ -63,7 +76,7 @@ const SearchAuthorsForm: React.FC = () => {
 
       <>
         {results.data === undefined ? (
-          <Fragment />
+          <></>
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">

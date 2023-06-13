@@ -3,7 +3,7 @@ import * as api from "../../api/queries/bookQueries";
 import Link from "next/link";
 import { IBook } from "@/interfaces/IBook";
 import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect} from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -22,7 +22,7 @@ const SearchOneBook: React.FC = () => {
   useEffect(() => {
     if (debouncedSearchTerm) {
       setIsSearching(true);
-      api.searchForBooks(debouncedSearchTerm).then((results: any) => {
+      api.searchForBooks(debouncedSearchTerm).then((results) => {
         setIsSearching(false);
         setResults(results);
       });
@@ -76,7 +76,7 @@ const SearchOneBook: React.FC = () => {
 
       <>
         {results.data === undefined ? (
-          <Fragment />
+        <></>
         ) : (
           <>
             <div className="grid gap-8 space-x-1 lg:grid-cols-6">

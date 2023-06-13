@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 const PrivateRoute = <T extends object>(WrappedComponent: React.ComponentType<T>) => {
-  const AuthenticatedRoute: React.FC<T> = (props) => {
+ /*  const AuthenticatedRoute: React.FC<T> = (props) => {
     const router = useRouter();
 
     // Simulate authentication check
@@ -19,7 +19,7 @@ const PrivateRoute = <T extends object>(WrappedComponent: React.ComponentType<T>
     return isAuthenticated ? <WrappedComponent {...props} /> : null;
   };
 
-  return AuthenticatedRoute;
+  return AuthenticatedRoute; */
 };
 
 export default PrivateRoute;

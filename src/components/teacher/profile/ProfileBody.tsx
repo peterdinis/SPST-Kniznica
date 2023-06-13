@@ -82,7 +82,7 @@ const ProfileBody: React.FC = () => {
                 <div className="px-4 py-2 font-semibold">
                   Moje požičané knihy
                 </div>
-                <div className="px-4 py-2">
+                <div className="px-4 py-2 text-red-700">
                   <button onClick={goToMyBooks}>Moje knihy</button>
                 </div>
               </div>
@@ -100,7 +100,7 @@ const ProfileBody: React.FC = () => {
                 </div>
                 <div className="px-4 py-2">
                   <button>
-                    <Link href="/teacher/new-password">Nové heslo</Link>
+                    <Link className="text-red-700" href="/teacher/new-password">Nové heslo</Link>
                   </button>
                 </div>
               </div>

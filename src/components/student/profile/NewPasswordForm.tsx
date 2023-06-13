@@ -10,6 +10,21 @@ const NewPasswordForm: React.FC = () => {
             <div className="mb-2">
               <label
                 className="block text-grey-darker text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                Meno
+              </label>
+              <input
+                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                id="Heslo"
+                type="text"
+                autoFocus
+                placeholder="meno"
+              />
+            </div>
+            <div className="mb-2">
+              <label
+                className="block text-grey-darker text-sm font-bold mb-2"
                 htmlFor="password"
               >
                 Heslo

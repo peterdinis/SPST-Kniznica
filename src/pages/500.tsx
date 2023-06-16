@@ -1,9 +1,9 @@
-import InternalServerError from "@/components/shared/errors/InternalServerError";
+import GlobalErrorComponent from "@/components/shared/errors/GlobalErrorComponent";
 import { NextPage } from "next";
 
 const InternalServerPage: NextPage = () => {
   return (
-    <InternalServerError />
+    <GlobalErrorComponent statusCode="500" message="Chyba na strane applikácie" />
   );
 };
 

@@ -1,13 +1,14 @@
 import Header from "../shared/Header";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import FallbackRender from "../shared/errors/ErrorRender";
+import FallbackRender from "../shared/errors/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import * as api from "../../api/queries/authorQueries";
 import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Image from "next/image";
 import defaultImage from "../../images/default.png";
+import { getAuthorDetailError } from "../shared/errors/constants/errorMessages";
 
 const AuthorDetail: React.FC = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const AuthorDetail: React.FC = () => {
   );
   
   if (isError) {
-    return <FallbackRender error="Nastala chyba" />;
+    return <FallbackRender error={getAuthorDetailError} />;
   }
 
   if (isLoading) {
@@ -53,6 +54,7 @@ const AuthorDetail: React.FC = () => {
                 src={defaultImage}
                 height={300}
                 width={300}
+                priority={true}
               />
             ) : (
               <LazyLoadImage

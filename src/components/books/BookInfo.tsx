@@ -2,7 +2,7 @@ import Header from "../shared/Header";
 import * as api from "../../api/queries/bookQueries";
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import FallbackRender from "../shared/errors/ErrorRender";
+import FallbackRender from "../shared/errors/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderBook } from "@/data/placeholderBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -109,6 +109,7 @@ const BookInfo: React.FC = () => {
                 src={defaultImage}
                 height={300}
                 width={300}
+                priority={true}
               />
             ) : (
               <LazyLoadImage

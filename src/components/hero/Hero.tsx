@@ -2,7 +2,7 @@ import DateTimePicker from "../shared/DateTimePicker";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/exampleQuery";
 import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/errors/ErrorRender";
+import FallbackRender from "../shared/errors/FallbackRender";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import { queryClient } from "@/api/queryClient";
@@ -32,6 +32,7 @@ const Hero: React.FC = () => {
            alt="Hero Image"
            width={700}
            height={700}
+           priority={true}
           />
         </div>
         <div role="contentinfo" className="w-full lg:w-1/2 h-full">

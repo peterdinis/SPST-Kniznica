@@ -15,6 +15,7 @@ const ProfileHeader: React.FC = () => {
             src={AvatarImage}
             alt="Default Image"
             width={700}
+            priority={true}
             height={700}
           />
         </div>

@@ -15,6 +15,7 @@ const ProfileHeader: React.FC = () => {
             alt="Default Image"
             width={700}
             height={700}
+            priority={true}
           />
         </div>
         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">

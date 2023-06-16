@@ -3,7 +3,7 @@ import AvatarImage from "../../../images/default.png";
 import useAdmin from "@/hooks/useAdmin";
 
 const ProfileHeader: React.FC = () => {
-  const {admin} = useAdmin();
+  const {admin} = useAdmin() as any; // TODO: Fix this later
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
     <div className="bg-white p-2">
@@ -14,6 +14,7 @@ const ProfileHeader: React.FC = () => {
           alt="Default Image"
           width={700}
           height={700}
+          priority={true}
         />
       </div>
       <h1 className="text-gray-900 font-bold text-xl leading-8 my-6">

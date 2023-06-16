@@ -1,13 +1,18 @@
 import Link from "next/link";
 
-const NotFoundComponent: React.FC = () => {
+interface IGlobalErrorProps {
+    statusCode: string;
+    message: string;
+};
+
+const GlobalErrorComponent: React.FC<IGlobalErrorProps> = ({statusCode, message}) => {
   return (
     <main className="h-screen w-full flex flex-col justify-center items-center">
       <h1 className="text-9xl font-extrabold text-black tracking-widest">
-        404
+        {statusCode}
       </h1>
       <div className="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
-        Stránka nebola nájdená
+        {message}
       </div>
       <div className="mt-5">
         <button className="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring">
@@ -22,4 +27,4 @@ const NotFoundComponent: React.FC = () => {
   );
 };
 
-export default NotFoundComponent;
+export default GlobalErrorComponent;

@@ -11,7 +11,10 @@ const Seo: React.FC = () => {
       <meta charSet="utf-8" />
       <meta name="description" content="SPŠT Knižnica" />
       <meta name="author" content="Peter Dinis" />
-      <meta name="keywords" content="SPŠT Knižnica, knižnica, kniznica, spst, spšt" />
+      <meta
+        name="keywords"
+        content="SPŠT Knižnica, knižnica, kniznica, spst, spšt"
+      />
     </Head>
   );
 };

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/categoryQueries";
 import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/errors/ErrorRender";
+import FallbackRender from "../shared/errors/FallbackRender";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ICategory } from "@/interfaces/ICategory";

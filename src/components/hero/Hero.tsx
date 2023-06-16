@@ -32,6 +32,7 @@ const Hero: React.FC = () => {
            alt="Hero Image"
            width={700}
            height={700}
+           priority={true}
           />
         </div>
         <div role="contentinfo" className="w-full lg:w-1/2 h-full">

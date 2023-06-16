@@ -54,6 +54,7 @@ const AuthorDetail: React.FC = () => {
                 src={defaultImage}
                 height={300}
                 width={300}
+                priority={true}
               />
             ) : (
               <LazyLoadImage

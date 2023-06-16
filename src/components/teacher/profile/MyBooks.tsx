@@ -5,7 +5,7 @@ import FallbackRender from "@/components/shared/errors/FallbackRender";
 import { useRouter } from "next/router";
 import { IBooking } from "@/interfaces/IBooking";
 import ReturnBookModal from "./ReturnBookModal";
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 const MyBooks: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -39,7 +39,13 @@ const MyBooks: React.FC = () => {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {data === null || data === undefined && <div className="flex justify-center aling-top text-black text-xl">Nemáte žiadne požičané knihy <SentimentVeryDissatisfiedIcon /></div>}
+              {data === null ||
+                (data === undefined && (
+                  <div className="flex justify-center aling-top text-black text-xl">
+                    Nemáte žiadne požičané knihy{" "}
+                    <SentimentVeryDissatisfiedIcon />
+                  </div>
+                ))}
               {data &&
                 data.map((item: IBooking) => {
                   return (
@@ -48,7 +54,9 @@ const MyBooks: React.FC = () => {
                         <td className="px-4 py-3 border">
                           <div className="flex items-center text-sm">
                             <div>
-                              <p className="font-semibold text-black">{item.bookId}</p>
+                              <p className="font-semibold text-black">
+                                {item.bookId}
+                              </p>
                             </div>
                           </div>
                         </td>

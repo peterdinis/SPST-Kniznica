@@ -1,0 +1,19 @@
+.card {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.card.online .status {
+  background-color: green;
+}
+
+.card.offline .status {
+  background-color: red;
+}

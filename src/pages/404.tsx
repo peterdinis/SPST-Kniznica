@@ -1,9 +1,9 @@
-import NotFoundComponent from "@/components/shared/errors/NotFoundComponent";
+import GlobalErrorComponent from "@/components/shared/errors/GlobalErrorComponent";
 import { NextPage } from "next";
 
 const ErrorPage: NextPage = () => {
   return (
-    <NotFoundComponent />
+    <GlobalErrorComponent statusCode="404" message="Stránka nebola najdená" />
   );
 };
 

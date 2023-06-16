@@ -1,4 +1,5 @@
 import ProfilePage from "@/components/admin/ProfilePage";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 
 const AdminProfilePage: NextPage = () => {
@@ -7,4 +8,4 @@ const AdminProfilePage: NextPage = () => {
     )
 }
 
-export default AdminProfilePage;
+export default PrivateRoute(AdminProfilePage);

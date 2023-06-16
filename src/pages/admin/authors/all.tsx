@@ -1,4 +1,5 @@
 import AdminAuthors from "@/components/admin/authors/AdminAuthors";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 
 const AllAuthorsPage: NextPage = () => {
@@ -9,4 +10,4 @@ const AllAuthorsPage: NextPage = () => {
     )
 }
 
-export default AllAuthorsPage;
+export default PrivateRoute(AllAuthorsPage);

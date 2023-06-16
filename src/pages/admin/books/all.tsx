@@ -1,4 +1,5 @@
 import AdminBooks from "@/components/admin/books/AdminBooks";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 
 const AllAdminBooks: NextPage = () => {
@@ -7,4 +8,4 @@ const AllAdminBooks: NextPage = () => {
     )
 }
 
-export default AllAdminBooks;
+export default PrivateRoute(AllAdminBooks);

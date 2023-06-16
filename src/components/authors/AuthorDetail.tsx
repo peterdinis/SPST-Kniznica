@@ -8,6 +8,7 @@ import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Image from "next/image";
 import defaultImage from "../../images/default.png";
+import { getAuthorDetailError } from "../shared/errors/constants/errorMessages";
 
 const AuthorDetail: React.FC = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const AuthorDetail: React.FC = () => {
   );
   
   if (isError) {
-    return <FallbackRender error="Nastala chyba" />;
+    return <FallbackRender error={getAuthorDetailError} />;
   }
 
   if (isLoading) {

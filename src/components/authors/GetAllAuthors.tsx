@@ -11,6 +11,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { IAuthor } from "@/interfaces/IAuthor";
+import { getAllAuthorsError } from "../shared/errors/constants/errorMessages";
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -34,7 +35,7 @@ const GetAllAuthors: React.FC = () => {
     return <FallbackLoader />;
   }
   if (isError) {
-    return <FallbackRender error="Nastala chyba" />;
+    return <FallbackRender error={getAllAuthorsError} />;
   }
 
   return (

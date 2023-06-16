@@ -1,4 +1,5 @@
 import CreateNewCategory from "@/components/category/CreateNewCategory";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 
 const CreateCategoryPage: NextPage = () => {
@@ -7,4 +8,4 @@ const CreateCategoryPage: NextPage = () => {
     )
 }
 
-export default CreateCategoryPage;
+export default PrivateRoute(CreateCategoryPage);

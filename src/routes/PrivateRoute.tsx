@@ -1,18 +1,16 @@
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, ComponentType } from 'react';
 
-const PrivateRoute = <T extends object>(WrappedComponent: React.ComponentType<T>) => {
+const PrivateRoute = <T extends object>(WrappedComponent: ComponentType<T>) => {
   return (props: T) => {
     const router = useRouter();
 
     useEffect(() => {
-      // Check if the cookie exists in session storage
       const teacherCookie = Cookies.get("teacherPersonalInfo");
       const adminCookie = Cookies.get("adminPersonalData");
 
-      if (!teacherCookie || !adminCookie) {
-        // Redirect the user to /forbidden
+      if (!teacherCookie && !adminCookie) {
         router.push('/forbidden');
       }
     }, []);

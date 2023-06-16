@@ -1,4 +1,5 @@
 import CreateAuthorForm from "@/components/authors/CreateAuthorForm";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 
 const CreateNewAuthorPage: NextPage = () => {
@@ -7,4 +8,4 @@ const CreateNewAuthorPage: NextPage = () => {
     )
 }
 
-export default CreateNewAuthorPage;
+export default PrivateRoute(CreateNewAuthorPage);

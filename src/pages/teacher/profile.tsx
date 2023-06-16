@@ -1,4 +1,5 @@
 import MyProfile from "@/components/teacher/MyProfile";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 
 const ProfileTeacherPage: NextPage = () => {
@@ -8,4 +9,4 @@ const ProfileTeacherPage: NextPage = () => {
 }
 
 
-export default ProfileTeacherPage
+export default PrivateRoute(ProfileTeacherPage);

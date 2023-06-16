@@ -1,4 +1,5 @@
 import AdminCategories from "@/components/admin/categories/AdminCategories";
+import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 
 const AllAdminCategories: NextPage = () =>{
@@ -7,4 +8,4 @@ const AllAdminCategories: NextPage = () =>{
     )
 }
 
-export default AllAdminCategories
+export default PrivateRoute(AllAdminCategories);

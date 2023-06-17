@@ -14,3 +14,7 @@ export const getAllAuthorsError: string = "Nastala chyba pri načítaní spisova
 export const getAuthorDetailError: string = "Nastala chyba pri načítaní informácií o spistovateľovi z databázy";
 export const updateAuthorError: string = "Nastala chyba pri uprave spisovateľa";
 export const deleteAuthorError: string = "Nastala chyba pri mazaní spisovateľa";
+export const getAllBookingsError: string = "Nastala chyba pri načítaní všetkých objednávok z databázy";
+export const getBookingInfoError: string = "Nastala chyba pri zobrazení detailu objednávky";
+export const createBookingError: string = "Nastala chyba pri vytvorení objednávky";
+export const updateBookingError: string = "Nastala chyba pri úpravení objednávky";

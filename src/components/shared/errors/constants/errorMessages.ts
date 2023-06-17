@@ -18,3 +18,4 @@ export const getAllBookingsError: string = "Nastala chyba pri načítaní všetk
 export const getBookingInfoError: string = "Nastala chyba pri zobrazení detailu objednávky";
 export const createBookingError: string = "Nastala chyba pri vytvorení objednávky";
 export const updateBookingError: string = "Nastala chyba pri úpravení objednávky";
+export const loadBorrowedBooksError: string = "Nastala chyba pri načítaní požičaných kníh";

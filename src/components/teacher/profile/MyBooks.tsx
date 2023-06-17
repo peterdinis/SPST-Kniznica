@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { IBooking } from "@/interfaces/IBooking";
 import ReturnBookModal from "./ReturnBookModal";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { loadBorrowedBooksError } from "@/components/shared/errors/constants/errorMessages";
 
 const MyBooks: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -22,7 +23,7 @@ const MyBooks: React.FC = () => {
   }
 
   if (isError) {
-    return <FallbackRender error={"Nastala Chyba"} />;
+    return <FallbackRender error={loadBorrowedBooksError} />;
   }
 
   return (

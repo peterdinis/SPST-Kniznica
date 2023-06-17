@@ -1,6 +1,6 @@
 {
   "name": "spst-next-app",
-  "version": "admin-1.0", 
+  "version": "2.6.0", 
   "private": true,
   "scripts": {
     "dev": "next dev",

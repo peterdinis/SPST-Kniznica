@@ -2,20 +2,17 @@ import { useMutation } from "@tanstack/react-query";
 import Header from "../shared/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
 import Link from "next/link";
 import * as mut from "../../api/mutations/adminMutations";
 import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createAdminRegisterType, createAdminSchema } from "@/validators/admin/adminSchema";
 import { IRegister } from "@/interfaces/IAdmin";
+import { notify, errorRegister } from "../shared/toasts/loginToasts";
 
 const RegisterForm: React.FC = () => {
 
   const router = useRouter();
-
-  const notify = () => toast.success("Registrácia bola úspešná");
-  const errorRegister = () => toast.error("Registrácia nebola úspešná");
 
   const mutation = useMutation(mut.register);
 

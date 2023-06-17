@@ -1,6 +1,5 @@
 import Header from "../shared/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { toast } from "react-toastify";
 import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/adminMutations";
@@ -12,12 +11,11 @@ import {
   loginAdminSchema,
 } from "@/validators/admin/adminSchema";
 import { ILogin, ILoginAdminInfo } from "@/interfaces/IAdmin";
+import { notify, errorRegister } from "../shared/toasts/loginToasts";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
 
-  const notify = () => toast.success("Prihlásenie bolo úspešné");
-  const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
   const {
     handleSubmit,
     formState: { errors},
@@ -30,7 +28,7 @@ const LoginForm: React.FC = () => {
   const mutation = useMutation(mut.login, {
     onSuccess: (data: ILoginAdminInfo) => {
       Cookies.set("adminData", JSON.stringify(data));
-      Cookies.set("adminPersonalData", JSON.stringify(data.data.user));
+      Cookies.set("adminPersonalData", JSON.stringify(data.data.admin));
       Cookies.set("adminAccessToken", JSON.stringify(data.data.token));
       notify();
       window.location.replace("/admin/profile");

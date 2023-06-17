@@ -10,16 +10,12 @@ import { getAllCategoriesError } from "@/components/shared/errors/constants/erro
 import ScrollToTop from "@/hooks/useScroll";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 import * as mut from "../../../api/mutations/categoryMutation";
-import {toast} from "react-toastify";
+import { deleteSuccess, deleteFailed } from "@/components/shared/toasts/adminToasts";
+
 
 const AdminCategories: React.FC = () => {
   const [page] = useState(0);
   const [limit] = useState(12);
-
-  const deleteSuccess = () => toast.success("Zmazanie kategórie bolo úspešné");
-  const deleteFailed = () =>toast.error("Zmazanie kategórie bolo neuspešné");
-  const updateSuccess = () => toast.success("Kategória bola upravená");
-  const updateFailed = () => toast.error("Kategória nebola upravená");
 
   let initialCategories: IPaginatedCategories | any;
   

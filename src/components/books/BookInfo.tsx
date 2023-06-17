@@ -8,7 +8,6 @@ import { placeholderBook } from "@/data/placeholderBook";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import * as mut from "../../api/mutations/bookingMutations";
 import { ICreateBooking } from "@/interfaces/IBooking";
-import { toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
 import HelperModal from "../shared/modals/HelperModal";
 import {
@@ -21,6 +20,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Image from "next/image";
 import defaultImage from "../../images/default.png";
 import { getBookInfoError } from "../shared/errors/constants/errorMessages";
+import { notify, errorRegister } from "../shared/toasts/bookToasts";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -54,12 +54,6 @@ const BookInfo: React.FC = () => {
   const navigateToBooks = () => {
     router.push("/books/all");
   };
-
-  const notify = () => toast.success("Objednávka bola vytvorená");
-  const errorRegister = () =>
-    toast.error(
-      "Objednávka nebola vytvorená. Skontroluje prosím údajte či sú správne"
-    );
 
   const mutation = useMutation(mut.createNewBooking, {
     onSuccess: (data) => {

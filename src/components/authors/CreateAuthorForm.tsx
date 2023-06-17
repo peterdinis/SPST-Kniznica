@@ -2,7 +2,6 @@ import Header from "../shared/Header";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/authorMutations";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import {
   createAuthorType,
   createAuthorSchema,
@@ -10,9 +9,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IAuthor } from "@/interfaces/IAuthor";
 import { useRouter } from "next/router";
-
-const notify = () => toast.success("Nový spisovateľ bol vytvorený");
-const errorRegister = () => toast.error("Kategória nebola vytvorená");
+import { notify, errorRegister } from "../shared/toasts/authorToasts";
 
 const CreateAuthorForm: React.FC = () => {
   const router = useRouter();

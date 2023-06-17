@@ -28,9 +28,7 @@ const ProfileBody: React.FC = () => {
   };
 
   const goToMyBooks = () => {
-    setTimeout(() => {
-      window.location.replace(`/admin/mybooks/${admin?.data.admin.username}`);
-    }, 500);
+    window.location.replace(`/admin/mybooks/${admin?.data.admin.username}`);
   };
 
   return (
@@ -41,7 +39,7 @@ const ProfileBody: React.FC = () => {
           <span className="tracking-wide">Základné informácie</span>
         </div>
 
-       <div className="text-gray-700">
+        <div className="text-gray-700">
           <div className="grid md:grid-cols-2 text-sm">
             <div className="grid grid-cols-2">
               <div className="px-4 py-2  font-semibold">Meno</div>
@@ -179,7 +177,7 @@ const ProfileBody: React.FC = () => {
               </div>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
       <Options />
     </div>

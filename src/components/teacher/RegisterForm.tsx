@@ -2,7 +2,6 @@ import Link from "next/link";
 import Header from "../shared/Header";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
 import { IRegister } from "@/interfaces/ITeacher";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/teacherMutations";
@@ -12,12 +11,11 @@ import {
   createRegisterTeacherType,
   registerTeacherSchema,
 } from "@/validators/teacher/teacherSchema";
+import { notify, errorRegister } from "../shared/toasts/registerToasts";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
 
-  const notify = () => toast.success("Registrácia bola úspešná");
-  const errorRegister = () => toast.error("Registrácia nebola úspešná");
   const {
     handleSubmit,
     formState: { errors },

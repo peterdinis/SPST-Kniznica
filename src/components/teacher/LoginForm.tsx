@@ -1,21 +1,19 @@
 import Link from "next/link";
 import Header from "../shared/Header";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/teacherMutations";
 import { ILogin, ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import { useRouter } from "next/router";
+import { notify, errorRegister } from "../shared/toasts/loginToasts";
 
 const LoginForm: React.FC = () => {
-  const notify = () => toast.success("Prihlásenie bolo úspešné");
-  const errorRegister = () => toast.error("Prihlásenie nebolo úspešné");
   const router = useRouter();
   const mutation = useMutation(mut.login, {
     onSuccess: (data: ILoginTeacherInfo) => {
       Cookies.set("teacherData", JSON.stringify(data));
-      Cookies.set("teacherPersonalInfo", JSON.stringify(data.data.user))
+      Cookies.set("teacherPersonalInfo", JSON.stringify(data.data.user));
       Cookies.set("teacherAccessDta", JSON.stringify(data.data.token));
       notify();
       window.location.replace("/teacher/profile");

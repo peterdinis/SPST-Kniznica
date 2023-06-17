@@ -10,7 +10,7 @@ const NavbarLinks: React.FC = () => {
 
   return (
     <>
-      <li className="text-black text-xl">
+      <li className="text-black text-xl ml-2">
         <Link href="/">Domov</Link>
       </li>
       <li className="text-black text-xl">

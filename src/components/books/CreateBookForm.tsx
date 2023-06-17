@@ -1,5 +1,4 @@
 import Header from "../shared/Header";
-import { toast } from "react-toastify";
 import * as mut from "../../api/mutations/bookMutations";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IBook } from "@/interfaces/IBook";
@@ -7,9 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createBookType, createBookSchema } from "@/validators/book/bookSchema";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-
-const notify = () => toast.success("Kniha bola vytvorená");
-const errorRegister = () => toast.error("Kniha nebola vytvorená");
+import { createNotify, createErrorRegister } from "../shared/toasts/bookToasts";
 
 const CreateBookForm: React.FC = () => {
   const router = useRouter();
@@ -19,11 +16,11 @@ const CreateBookForm: React.FC = () => {
 
   const mutation = useMutation(mut.createNewBook, {
     onSuccess: () => {
-      notify();
+      createNotify();
     },
 
     onError: () => {
-      errorRegister();
+      createErrorRegister();
       router.push("/books/failed");
     },
   });

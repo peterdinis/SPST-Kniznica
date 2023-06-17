@@ -2,18 +2,15 @@ import ReturnModal from "@/components/shared/modals/ReturnModal";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/bookingMutations"
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   returnBookingType,
   returnBookingSchema,
 } from "@/validators/booking/bookingSchema";
 import { IReturnBooking } from "@/interfaces/IBooking";
+import { notify, errorRegister } from "../shared/toasts/loginToasts";
 
 const ReturnBookModal: React.FC = () => {
-  const notify = () => toast.success("Kniha bola vratená");
-  const errorRegister = () => toast.error("Kniha nebola vratená");
-
   const { register, handleSubmit } = useForm<returnBookingType>({
     resolver: zodResolver(returnBookingSchema),
   });

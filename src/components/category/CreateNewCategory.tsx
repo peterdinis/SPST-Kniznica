@@ -2,7 +2,6 @@ import Header from "../shared/Header";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/categoryMutation";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import {
   createCategoryType,
   createCategorySchema,
@@ -10,9 +9,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { ICategory } from "@/interfaces/ICategory";
-
-const notify = () => toast.success("Kategória bola vytvorená");
-const errorRegister = () => toast.error("Nepodarilo sa vytvoriť novú kategóriu");
+import { createErrorRegister, createNotify } from "../shared/toasts/categoryToast";
 
 const CreateNewCategory: React.FC = () => {
   const router = useRouter();
@@ -22,11 +19,11 @@ const CreateNewCategory: React.FC = () => {
 
   const mutation = useMutation(mut.createNewCategory, {
     onSuccess: (data) => {
-      notify();
+      createNotify();
     },
 
     onError: (data) => {
-      errorRegister();
+      createErrorRegister();
       router.push("/category/failed");
     },
   });

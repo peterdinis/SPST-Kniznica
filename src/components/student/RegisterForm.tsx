@@ -1,7 +1,6 @@
 import Header from "../shared/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
 import Link from "next/link";
 import { IRegister } from "@/interfaces/IStudent";
 import { useMutation } from "@tanstack/react-query";
@@ -9,12 +8,10 @@ import * as mut from "../../api/mutations/studentMutations";
 import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createStudentRegisterType, registerStudentSchema } from "@/validators/student/studentSchema";
+import { notify, errorRegister } from "../shared/toasts/registerToasts";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
-
-  const notify = () => toast.success("Registrácia bola úspešná");
-  const errorRegister = () => toast.error("Registrácia nebola úspešná");
 
   const mutation = useMutation(mut.register);
 

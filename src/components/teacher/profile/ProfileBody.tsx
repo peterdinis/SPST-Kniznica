@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
 import Options from "./Options";
@@ -6,9 +5,9 @@ import useTeacher from "@/hooks/useTeacher";
 import Link from "next/link";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { logoutToast } from "@/components/shared/toasts/adminToasts";
 
 const ProfileBody: React.FC = () => {
-  const logoutToast = () => toast.success("Odhlásenie bolo úspešné");
   const { teacher } = useTeacher();
   const [value, copy] = useCopyToClipboard();
 

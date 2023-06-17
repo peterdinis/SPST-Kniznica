@@ -8,6 +8,7 @@
   box-sizing: border-box;
 }
 
+/* Scrollbar helper */
 html::-webkit-scrollbar {
   width: 16px;
   height: 16px;

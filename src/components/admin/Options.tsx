@@ -22,6 +22,14 @@ const Options: React.FC = () => {
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">
+                  Zobraziť všetkých autorov
+                </div>
+                <div className="px-4 py-2">
+                  <Link className="text-red-500" href="/admin/authors/all">Všetci Spistovatelia</Link>
+                </div>
+              </div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">
                   Zobraziť všetky kategórie
                 </div>
                 <div className="px-4 py-2">

@@ -16,14 +16,14 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <div className={inter.className}>
-          <Layout>
-            <ErrorBoundary>
-              <Component {...pageProps} />
-              <ToastContainer />
-              <ReactQueryDevtools />
-              <CssBaseline />
-            </ErrorBoundary>
-          </Layout>
+        <Layout>
+          <ErrorBoundary>
+            <Component {...pageProps} />
+            <ToastContainer />
+            <ReactQueryDevtools />
+            <CssBaseline />
+          </ErrorBoundary>
+        </Layout>
       </div>
     </QueryClientProvider>
   );

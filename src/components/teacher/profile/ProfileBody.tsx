@@ -30,9 +30,7 @@ const ProfileBody: React.FC = () => {
   };
 
   const goToMyBooks = () => {
-    setTimeout(() => {
-      window.location.replace(`/teacher/books/${teacher?.data.user.username}`);
-    }, 500);
+    window.location.replace(`/teacher/books/${teacher?.data.user.username}`);
   };
 
   return (

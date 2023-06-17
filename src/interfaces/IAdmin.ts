@@ -15,7 +15,7 @@ export interface ILogin {
 export interface ILoginAdminInfo {
   data: {
     token: string;
-    user: {
+    admin: {
       id: number;
       name: string;
       createdAt: string;

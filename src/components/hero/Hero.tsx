@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
     return <FallbackRender error={"Nastala chyba"} />;
   }
 
-  queryClient.setQueryData(["ping"], data);
+  queryClient.setQueryData(["Example Data"], data);
 
   return (
     <>

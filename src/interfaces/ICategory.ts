@@ -10,3 +10,4 @@ export interface ICategory {
 
 export type IDeleteCategory = Pick<ICategory, 'id'>;
 export type IUpdateCategory = Partial<ICategory>;
+export type ICategoryInfo = Partial<ICategory>;

@@ -108,7 +108,7 @@ const TableComponent: React.FC = () => {
                         className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex ? 'bg-blue-500 text-white' : 'bg-gray-200'
                             }`}
                     >
-                        {pageIndex + 1}
+                        {pageIndex}
                     </button>
                 ))}
                 <button
@@ -137,24 +137,6 @@ const TableComponent: React.FC = () => {
                     ))}
                 </select>
                 <span>{`of ${pageCount}`}</span>
-            </div>
-
-            <div className="flex justify-center mt-4">
-                <span>Page size:{' '}</span>
-                <select
-                    value={tableData.length}
-                    onChange={(e) => {
-                        const selectedPageSize = Number(e.target.value);
-                        setPageSize(selectedPageSize);
-                    }}
-                    className="px-4 py-2 mx-1 rounded"
-                >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            {pageSize}
-                        </option>
-                    ))}
-                </select>
             </div>
         </div>
     );

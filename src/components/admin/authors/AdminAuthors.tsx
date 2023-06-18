@@ -2,15 +2,13 @@ import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useTable, usePagination } from 'react-table';
 import Header from '@/components/shared/Header';
+import { IAuthorInfo } from '@/interfaces/IAuthor';
+import { backendURL } from '@/components/shared/constants/url';
+import ScrollToTop from '@/hooks/useScroll';
+import ReturnModal from '@/components/shared/modals/ReturnModal';
 
-interface Todo {
-    id: number;
-    title: string;
-    completed: boolean;
-}
-
-const TableComponent: React.FC = () => {
-    const [tableData, setTableData] = useState<Todo[]>([]);
+const AdminAuthors: React.FC = () => {
+    const [tableData, setTableData] = useState<IAuthorInfo[]>([]);
 
     const columns = useMemo(
         () => [
@@ -19,19 +17,35 @@ const TableComponent: React.FC = () => {
                 accessor: 'id',
             },
             {
-                Header: 'Title',
-                accessor: 'title',
+                Header: 'Meno',
+                accessor: 'name',
             },
             {
-                Header: 'Completed',
-                accessor: 'completed',
+                Header: 'Priezvisko',
+                accessor: 'lastName',
+            },
+            {
+                Header: "Literárne obdobie",
+                accessor: 'litPeriod'
+            },
+
+            {
+                Header: 'Uprav autora',
+                Cell: () => (
+                    <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
+                ),
+            },
+            {
+                Header: 'Zmaž autora',
+                Cell: () => (
+                    <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
+                ),
             },
         ],
         []
     );
 
     const {
-        getTableProps,
         getTableBodyProps,
         headerGroups,
         page,
@@ -40,11 +54,8 @@ const TableComponent: React.FC = () => {
         canNextPage,
         canPreviousPage,
         prepareRow,
-        state: { pageIndex },
         pageOptions,
         gotoPage,
-        pageCount,
-        setPageSize,
     } = useTable<any>(
         {
             columns,
@@ -56,7 +67,7 @@ const TableComponent: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get<Todo[]>('https://jsonplaceholder.typicode.com/todos')
+            .get<IAuthorInfo[]>(backendURL + "authors")
             .then((response) => {
                 const data = response.data;
                 setTableData(data);
@@ -64,82 +75,75 @@ const TableComponent: React.FC = () => {
             .catch((error) => {
                 console.log('Error fetching data:', error);
             });
-    }, []); // Run the effect only once on initial render
+    }, []);
 
     return (
         <div>
             <Header name="Zoznam všetkých spisovateľov" />
-            <table {...getTableProps()} className="table-auto">
-                <thead>
-                    {headerGroups.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                    {page.map((row: { getRowProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; cells: any[]; }) => {
-                        prepareRow(row);
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map((cell) => (
-                                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+            <section className="container mx-auto p-6 font-mono">
+                <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+                    <div className="w-full overflow-x-auto">
+                        <table className="w-full">
+                            <thead>
+                                {headerGroups.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
+                                    <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600" {...headerGroup.getHeaderGroupProps()}>
+                                        {headerGroup.headers.map((column) => (
+                                            <th className="px-4 py-3" {...column.getHeaderProps()}>{column.render('Header')}</th>
+                                        ))}
+                                    </tr>
                                 ))}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                            </thead>
+                            <tbody className="bg-white" {...getTableBodyProps()}>
+                                {page.map((row: { getRowProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; cells: any[]; }) => {
+                                    prepareRow(row);
+                                    return (
+                                        <tr className="text-gray-700" {...row.getRowProps()}>
+                                            {row.cells.map((cell) => (
+                                                <td className="px-4 py-3 text-xs border"{...cell.getCellProps()}>
+                                                    <span className="px-2 py-1 font-bold rounded-sm">
+                                                        {cell.render('Cell')}
+                                                    </span>
+                                                </td>
+                                            ))}
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
 
-            <div className="flex justify-center mt-4">
-                <button
-                    onClick={() => previousPage()}
-                    disabled={!canPreviousPage}
-                    className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
-                >
-                    Previous
-                </button>
-                {pageOptions.map((pageIndex: any) => (
-                    <button
-                        key={pageIndex}
-                        onClick={() => gotoPage(pageIndex)}
-                        className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                            }`}
-                    >
-                        {pageIndex}
-                    </button>
-                ))}
-                <button
-                    onClick={() => nextPage()}
-                    disabled={!canNextPage}
-                    className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
-                >
-                    Next
-                </button>
-            </div>
-
-            <div className="flex justify-center mt-4">
-                <span>Page{' '}</span>
-                <select
-                    value={pageIndex}
-                    onChange={(e) => {
-                        const selectedPageIndex = Number(e.target.value);
-                        gotoPage(selectedPageIndex);
-                    }}
-                    className="px-4 py-2 mx-1 rounded"
-                >
-                    {pageOptions.map((pageIndex: any) => (
-                        <option key={pageIndex} value={pageIndex}>
-                            {pageIndex + 1}
-                        </option>
-                    ))}
-                </select>
-                <span>{`of ${pageCount}`}</span>
-            </div>
+                        <div className="flex justify-center mt-8 pb-2">
+                            <button
+                                onClick={() => previousPage()}
+                                disabled={!canPreviousPage}
+                                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
+                            >
+                                Predchazajúca stránka
+                            </button>
+                            {pageOptions.map((pageIndex: string) => (
+                                <button
+                                    key={pageIndex}
+                                    onClick={() => gotoPage(pageIndex)}
+                                    className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                                        }`}
+                                >
+                                    {pageIndex}
+                                </button>
+                            ))}
+                            <button
+                                onClick={() => nextPage()}
+                                disabled={!canNextPage}
+                                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
+                            >
+                                Nasledujúca stránka
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <ScrollToTop />
         </div>
+
     );
 };
 
-export default TableComponent;
+export default AdminAuthors;

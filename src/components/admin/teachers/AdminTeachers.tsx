@@ -1,77 +1,135 @@
-import Header from "@/components/shared/Header";
-import * as api from "../../../api/queries/teacherQueries";
-import { useQuery } from "@tanstack/react-query";
-import { placeholderTeacher } from "@/data/placeholerTeacher";
-import FallbackLoader from "@/components/shared/FallbackLoader";
-import FallbackRender from "@/components/shared/errors/FallbackRender";
-import { getTeachersError } from "@/components/shared/errors/constants/errorMessages";
-import { TeacherBasicInfo } from "@/interfaces/ITeacher";
-import ScrollToTop from "@/hooks/useScroll";
+import React, { useEffect, useMemo, useState } from 'react';
+import axios from 'axios';
+import { useTable, usePagination } from 'react-table';
+import Header from '@/components/shared/Header';
+import { backendURL } from '@/components/shared/constants/url';
+import ScrollToTop from '@/hooks/useScroll';
+import { ITeacherInfo } from '@/interfaces/ITeacher';
 
 const AdminTeachers: React.FC = () => {
-  const {data, isLoading, isError} = useQuery(["allTeachers"], api.getAllTeachers, {
-    initialData: placeholderTeacher
-  })
+  const [tableData, setTableData] = useState<ITeacherInfo[]>([]);
 
-  if(isLoading) {
-    return <FallbackLoader />
-  }
 
-  if(isError) {
-    return <FallbackRender error={getTeachersError} />
-  }
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Id',
+        accessor: 'id',
+      },
+      {
+        Header: 'Meno učiteľa',
+        accessor: 'name',
+      },
+      {
+        Header: 'Používateľské meno',
+        accessor: 'username',
+      },
+      {
+        Header: "Dátum vytvorenia účtu",
+        accessor: "createdAt"
+      }
+    ],
+    []
+  );
+
+  const {
+    getTableBodyProps,
+    headerGroups,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    prepareRow,
+    pageOptions,
+    gotoPage,
+  } = useTable<any>(
+    {
+      columns,
+      data: tableData,
+      initialState: { pageIndex: 0 },
+    } as any,
+    usePagination
+  ) as any;
+
+  useEffect(() => {
+    axios
+      .get<ITeacherInfo[]>(backendURL + "teachers")
+      .then((response) => {
+        const data = response.data;
+        setTableData(data);
+      })
+      .catch((error) => {
+        console.log('Error fetching data:', error);
+      });
+  }, []);
 
   return (
-    <>
-      <Header name="Všetci učiteľia" />
-      <div className="overflow-x-auto">
-        <div className="min-w-screen min-h-screenflex items-center justify-center font-sans overflow-hidden">
-          <div className="w-full lg:w-5/6">
-            <div className="bg-white shadow-md rounded my-6">
-              <table className="min-w-max w-full table-auto ml-10">
-                <thead>
-                  <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                    <th className="py-3 px-6 text-left">Meno</th>
-                    <th className="py-3 px-6 text-left">Používateľské meno</th>
-                    <th className="py-3 px-6 text-center">Dátum vytvorenia účtu</th>
+    <div>
+      <Header name="Zoznam všetkých učiteľov" />
+      <section className="container mx-auto p-6 font-mono">
+        <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+          <div className="w-full overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                {headerGroups.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
+                  <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600" {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column) => (
+                      <th className="px-4 py-3" {...column.getHeaderProps()}>{column.render('Header')}</th>
+                    ))}
                   </tr>
-                </thead>
-                <tbody className="bg-white">
-                  {data &&
-                    data.map((item: TeacherBasicInfo) => {
-                      return (
-                        <>
-                          <tr className="border-b border-gray-200 hover:bg-gray-100">
-                            <td className="py-3 px-6 text-left whitespace-nowrap">
-                              <div className="flex items-center">
-                                <span className="font-medium">
-                                  {item.name}
-                                </span>
-                              </div>
-                            </td>
-                            <td className="py-3 px-6 text-left">
-                              <div className="flex items-center">
-                                <span>{item.username}</span>
-                              </div>
-                            </td>
-                            <td className="py-3 px-6 text-center">
-                              <div className="flex items-center justify-center">
-                               {item.createdAt}
-                              </div>
-                            </td>
-                          </tr>
-                        </>
-                      );
-                    })}
-                </tbody>
-              </table>
+                ))}
+              </thead>
+              <tbody className="bg-white" {...getTableBodyProps()}>
+                {page.map((row: { getRowProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; cells: any[]; }) => {
+                  prepareRow(row);
+                  return (
+                    <tr className="text-gray-700" {...row.getRowProps()}>
+                      {row.cells.map((cell) => (
+                        <td className="px-4 py-3 text-xs border"{...cell.getCellProps()}>
+                          <span className="px-2 py-1 font-bold rounded-sm">
+                            {cell.render('Cell')}
+                          </span>
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+
+            <div className="flex justify-center mt-8 pb-2">
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
+              >
+                Predchazajúca stránka
+              </button>
+              {pageOptions.map((pageIndex: string) => (
+                <button
+                  key={pageIndex}
+                  onClick={() => gotoPage(pageIndex)}
+                  className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                    }`}
+                >
+                  {pageIndex}
+                </button>
+              ))}
+              <button
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
+              >
+                Nasledujúca stránka
+              </button>
             </div>
           </div>
         </div>
-        <ScrollToTop />
-      </div>
-    </>
-  );
-};
+      </section>
+      <ScrollToTop />
+    </div>
+  )
+}
 
 export default AdminTeachers;

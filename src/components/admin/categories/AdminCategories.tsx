@@ -1,129 +1,144 @@
-import Header from "@/components/shared/Header";
-import * as api from "../../../api/queries/categoryQueries";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import FallbackLoader from "@/components/shared/FallbackLoader";
-import FallbackRender from "@/components/shared/errors/FallbackRender";
-import { ICategory } from "@/interfaces/ICategory";
-import {useState} from "react";
-import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
-import { getAllCategoriesError } from "@/components/shared/errors/constants/errorMessages";
-import ScrollToTop from "@/hooks/useScroll";
-import ReturnModal from "@/components/shared/modals/ReturnModal";
-import * as mut from "../../../api/mutations/categoryMutation";
-import { deleteSuccess, deleteFailed } from "@/components/shared/toasts/adminToasts";
-
+import React, { useEffect, useMemo, useState } from 'react';
+import axios from 'axios';
+import { useTable, usePagination } from 'react-table';
+import Header from '@/components/shared/Header';
+import { backendURL } from '@/components/shared/constants/url';
+import ScrollToTop from '@/hooks/useScroll';
+import ReturnModal from '@/components/shared/modals/ReturnModal';
+import { ICategoryInfo } from '@/interfaces/ICategory';
 
 const AdminCategories: React.FC = () => {
-  const [page] = useState(0);
-  const [limit] = useState(12);
+  const [tableData, setTableData] = useState<ICategoryInfo[]>([]);
 
-  let initialCategories: IPaginatedCategories | any;
-  
-  const { data, isError, isLoading } = useQuery(
-    ["paginateBooks", page],
-    () => api.paginateCategories(page, limit),
-    {
-      keepPreviousData: true,
-      initialData: initialCategories,
-      retry: 2,
-    }
-  );
-
-  if (isLoading) {
-    return <FallbackLoader />;
-  }
-  if (isError) {
-    return <FallbackRender error={getAllCategoriesError} />;
-
-  }
-
-    const deleteCategoryMutation = useMutation(mut.deleteCategory(data.id as unknown as number) as any, {
-      onSuccess: () => {
-        deleteSuccess();
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'ID',
+        accessor: 'id',
+      },
+      {
+        Header: 'Meno Kategórie',
+        accessor: 'name',
+      },
+      {
+        Header: 'Popis kategórie',
+        accessor: 'publisher',
       },
 
-      onError: () =>{
-        deleteFailed();
-      }
-    });
+      {
+        Header: 'Uprav autora',
+        Cell: () => (
+          <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
+        ),
+      },
+      {
+        Header: 'Zmaž autora',
+        Cell: () => (
+          <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
+        ),
+      },
+    ],
+    []
+  );
 
-    const onDeleteSubmit = (data: void) => {
-      deleteCategoryMutation.mutate(data);
-    }
+  const {
+    getTableBodyProps,
+    headerGroups,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    prepareRow,
+    pageOptions,
+    gotoPage,
+  } = useTable<any>(
+    {
+      columns,
+      data: tableData,
+      initialState: { pageIndex: 0 },
+    } as any,
+    usePagination
+  ) as any;
+
+  useEffect(() => {
+    axios
+      .get<ICategoryInfo[]>(backendURL + "category")
+      .then((response) => {
+        const data = response.data;
+        setTableData(data);
+      })
+      .catch((error) => {
+        console.log('Error fetching data:', error);
+      });
+  }, []);
 
   return (
-    <>
-      <Header name="Všetky kategórie" />
+    <div>
+      <Header name="Zoznam všetkých kategórií" />
       <section className="container mx-auto p-6 font-mono">
         <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
           <div className="w-full overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-                  <th className="px-4 py-3">Id kategórie</th>
-                  <th className="px-4 py-3">Názov kategórie</th>
-                  <th className="px-4 py-3">Popis kategórie</th>
-                  <th className="px-4 py-3">Uprav kategóriu</th>
-                  <th className="px-4 py-3">Zmaž kategóriu</th>
-                </tr>
+                {headerGroups.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
+                  <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600" {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column) => (
+                      <th className="px-4 py-3" {...column.getHeaderProps()}>{column.render('Header')}</th>
+                    ))}
+                  </tr>
+                ))}
               </thead>
-              <tbody className="bg-white">
-                {data.data.result &&
-                  data.data.result.map((item: ICategory) => {
-                    return (
-                      <>
-                        <tr className="text-gray-700">
-                          <td className="px-4 py-3 border">
-                            <div className="flex items-center text-sm">
-                              <div>
-                                <p className="font-semibold text-black">
-                                  {item.id}
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-4 py-3 text-ms font-semibold border">
-                            {item.name}
-                          </td>
-                          <td className="px-4 py-3 text-xs border">
-                            <span className="px-2 py-1 font-bold rounded-sm">
-                              {" "}
-                              {item.description}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-sm border">
-                            <span className="px-2 py-1 font-bold   rounded-sm">
-                              {" "}
-                              <ReturnModal
-                                btnName={"Upraviť kategóriu"}
-                                modalHeader={"Upraviť kategóriu"}
-                              >
-                                fkfkf
-                              </ReturnModal>
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-sm border">
-                            <span className="px-2 py-1 font-bold   rounded-sm">
-                              <ReturnModal
-                                btnName={"Zmazať kategóriu"}
-                                modalHeader={"Zmazať kategóriu"}
-                              >
-                                fkfkf
-                              </ReturnModal>
-                            </span>
-                          </td>
-                        </tr>
-                      </>
-                    );
-                  })}
+              <tbody className="bg-white" {...getTableBodyProps()}>
+                {page.map((row: { getRowProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; cells: any[]; }) => {
+                  prepareRow(row);
+                  return (
+                    <tr className="text-gray-700" {...row.getRowProps()}>
+                      {row.cells.map((cell) => (
+                        <td className="px-4 py-3 text-xs border"{...cell.getCellProps()}>
+                          <span className="px-2 py-1 font-bold rounded-sm">
+                            {cell.render('Cell')}
+                          </span>
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
+
+            <div className="flex justify-center mt-8 pb-2">
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
+              >
+                Predchazajúca stránka
+              </button>
+              {pageOptions.map((pageIndex: string) => (
+                <button
+                  key={pageIndex}
+                  onClick={() => gotoPage(pageIndex)}
+                  className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                    }`}
+                >
+                  {pageIndex}
+                </button>
+              ))}
+              <button
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+                className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
+              >
+                Nasledujúca stránka
+              </button>
+            </div>
           </div>
         </div>
-        <ScrollToTop />
       </section>
-    </>
-  );
-};
+      <ScrollToTop />
+    </div>
+  )
+}
 
 export default AdminCategories;

@@ -12,3 +12,5 @@ export interface IReturnBooking{
 }
 
 export interface IBooking extends ICreateBooking {}
+
+export type IBookingInfo = Partial<ICreateBooking>;

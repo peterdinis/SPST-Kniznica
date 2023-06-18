@@ -17,3 +17,4 @@ export interface IBookResult {
 }
 
 export type IUpdateBook = Partial<IBook>;
+export type IBookInfo = Partial<IBook>

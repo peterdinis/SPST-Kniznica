@@ -12,3 +12,4 @@ export interface IAuthor {
 };
 
 export type IUpdateAuthor = Partial<IAuthor>;
+export type IAuthorInfo = Partial<IAuthor>;

@@ -31,7 +31,6 @@ const TableComponent: React.FC = () => {
     );
 
     const {
-        getTableProps,
         getTableBodyProps,
         headerGroups,
         page,
@@ -40,10 +39,8 @@ const TableComponent: React.FC = () => {
         canNextPage,
         canPreviousPage,
         prepareRow,
-        state: { pageIndex },
         pageOptions,
         gotoPage,
-        pageCount,
     } = useTable<any>(
         {
             columns,
@@ -99,15 +96,15 @@ const TableComponent: React.FC = () => {
                             </tbody>
                         </table>
 
-                        <div className="flex justify-center mt-4">
+                        <div className="flex justify-center mt-8 pb-2">
                             <button
                                 onClick={() => previousPage()}
                                 disabled={!canPreviousPage}
                                 className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
                             >
-                                Previous
+                                Predchazajúca stránka
                             </button>
-                            {pageOptions.map((pageIndex: any) => (
+                            {pageOptions.map((pageIndex: string) => (
                                 <button
                                     key={pageIndex}
                                     onClick={() => gotoPage(pageIndex)}
@@ -122,27 +119,8 @@ const TableComponent: React.FC = () => {
                                 disabled={!canNextPage}
                                 className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
                             >
-                                Next
+                                Nasledujúca stránka
                             </button>
-                        </div>
-
-                        <div className="flex justify-center mt-4">
-                            <span>Page{' '}</span>
-                            <select
-                                value={pageIndex}
-                                onChange={(e) => {
-                                    const selectedPageIndex = Number(e.target.value);
-                                    gotoPage(selectedPageIndex);
-                                }}
-                                className="px-4 py-2 mx-1 rounded"
-                            >
-                                {pageOptions.map((pageIndex: any) => (
-                                    <option key={pageIndex} value={pageIndex}>
-                                        {pageIndex + 1}
-                                    </option>
-                                ))}
-                            </select>
-                            <span>{`of ${pageCount}`}</span>
                         </div>
                     </div>
                 </div>

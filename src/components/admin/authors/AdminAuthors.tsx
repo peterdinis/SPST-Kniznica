@@ -4,6 +4,8 @@ import { useTable, usePagination } from 'react-table';
 import Header from '@/components/shared/Header';
 import { IAuthorInfo } from '@/interfaces/IAuthor';
 import { backendURL } from '@/components/shared/constants/url';
+import ScrollToTop from '@/hooks/useScroll';
+import ReturnModal from '@/components/shared/modals/ReturnModal';
 
 const TableComponent: React.FC = () => {
     const [tableData, setTableData] = useState<IAuthorInfo[]>([]);
@@ -25,7 +27,20 @@ const TableComponent: React.FC = () => {
             {
                 Header: "Literárne obdobie",
                 accessor: 'litPeriod'
-            }
+            },
+
+            {
+                Header: 'Uprav autora',
+                Cell: () => (
+                  <ReturnModal btnName="Uprav autora" modalHeader="Edit author"  />
+                ),
+              },
+              {
+                Header: 'Zmaž autora',
+                Cell: () => (
+                  <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author"  />
+                ),
+              },
         ],
         []
     );
@@ -125,6 +140,7 @@ const TableComponent: React.FC = () => {
                     </div>
                 </div>
             </section>
+            <ScrollToTop />
         </div>
 
     );

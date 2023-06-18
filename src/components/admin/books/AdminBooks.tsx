@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, Column } from 'react-table';
 import Header from '@/components/shared/Header';
 import { backendURL } from '@/components/shared/constants/url';
 import ScrollToTop from '@/hooks/useScroll';
 import ReturnModal from '@/components/shared/modals/ReturnModal';
 import { IBookInfo } from '@/interfaces/IBook';
+import { CustomTableState } from '@/interfaces/ITable';
 
 const AdminBooks: React.FC = () => {
   const [tableData, setTableData] = useState<IBookInfo[]>([]);
@@ -61,12 +62,12 @@ const AdminBooks: React.FC = () => {
     prepareRow,
     pageOptions,
     gotoPage,
-  } = useTable<any>(
+  } = useTable(
     {
-      columns,
+      columns: columns as unknown as Column<IBookInfo>[],
       data: tableData,
-      initialState: { pageIndex: 0 },
-    } as any,
+      initialState: { pageIndex: 0 } as unknown as CustomTableState<IBookInfo>,
+    },
     usePagination
   ) as any;
 

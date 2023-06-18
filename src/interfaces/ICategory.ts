@@ -1,3 +1,4 @@
+import { UsePaginationState, UsePaginationInstanceProps, HeaderGroup } from "react-table";
 import { IBook } from "./IBook";
 
 export interface ICategory {
@@ -11,3 +12,9 @@ export interface ICategory {
 export type IDeleteCategory = Pick<ICategory, 'id'>;
 export type IUpdateCategory = Partial<ICategory>;
 export type ICategoryInfo = Partial<ICategory>;
+
+export interface ICategoryInfoUpdate extends ICategoryInfo, UsePaginationState<ICategoryInfo>, UsePaginationInstanceProps<ICategoryInfo> {
+    headerGroups?: HeaderGroup<ICategoryInfo>[];
+    getTableBodyProps: any;
+    prepareRow: (...args: any) => void;
+  }

@@ -7,7 +7,7 @@ import { backendURL } from '@/components/shared/constants/url';
 import ScrollToTop from '@/hooks/useScroll';
 import ReturnModal from '@/components/shared/modals/ReturnModal';
 
-const TableComponent: React.FC = () => {
+const AdminAuthors: React.FC = () => {
     const [tableData, setTableData] = useState<IAuthorInfo[]>([]);
 
     const columns = useMemo(
@@ -32,15 +32,15 @@ const TableComponent: React.FC = () => {
             {
                 Header: 'Uprav autora',
                 Cell: () => (
-                  <ReturnModal btnName="Uprav autora" modalHeader="Edit author"  />
+                    <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
                 ),
-              },
-              {
+            },
+            {
                 Header: 'Zmaž autora',
                 Cell: () => (
-                  <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author"  />
+                    <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
                 ),
-              },
+            },
         ],
         []
     );
@@ -146,4 +146,4 @@ const TableComponent: React.FC = () => {
     );
 };
 
-export default TableComponent;
+export default AdminAuthors;

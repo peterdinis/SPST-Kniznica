@@ -1,11 +1,3 @@
-/* 
-     <th className="px-4 py-3">Id kategórie</th>
-                  <th className="px-4 py-3">Názov kategórie</th>
-                  <th className="px-4 py-3">Popis kategórie</th>
-                  <th className="px-4 py-3">Uprav kategóriu</th>
-                  <th className="px-4 py-3">Zmaž kategóriu</th>
-*/
-
 import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useTable, usePagination } from 'react-table';

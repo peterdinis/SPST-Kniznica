@@ -2,15 +2,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useTable, usePagination } from 'react-table';
 import Header from '@/components/shared/Header';
-
-interface Todo {
-    id: number;
-    title: string;
-    completed: boolean;
-}
+import {IAuthorInfo } from '@/interfaces/IAuthor';
+import { backendURL } from '@/components/shared/constants/url';
 
 const TableComponent: React.FC = () => {
-    const [tableData, setTableData] = useState<Todo[]>([]);
+    const [tableData, setTableData] = useState<IAuthorInfo[]>([]);
 
     const columns = useMemo(
         () => [
@@ -44,7 +40,6 @@ const TableComponent: React.FC = () => {
         pageOptions,
         gotoPage,
         pageCount,
-        setPageSize,
     } = useTable<any>(
         {
             columns,
@@ -56,7 +51,7 @@ const TableComponent: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get<Todo[]>('https://jsonplaceholder.typicode.com/todos')
+            .get<IAuthorInfo[]>(backendURL + "authors")
             .then((response) => {
                 const data = response.data;
                 setTableData(data);
@@ -64,7 +59,7 @@ const TableComponent: React.FC = () => {
             .catch((error) => {
                 console.log('Error fetching data:', error);
             });
-    }, []); // Run the effect only once on initial render
+    }, []);
 
     return (
         <div>

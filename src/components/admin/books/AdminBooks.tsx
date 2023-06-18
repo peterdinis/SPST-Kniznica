@@ -5,7 +5,7 @@ import Header from '@/components/shared/Header';
 import { backendURL } from '@/components/shared/constants/url';
 import ScrollToTop from '@/hooks/useScroll';
 import ReturnModal from '@/components/shared/modals/ReturnModal';
-import { IBookInfo } from '@/interfaces/IBook';
+import { IBookInfo, IBookInfoUpdate } from '@/interfaces/IBook';
 import { CustomTableState } from '@/interfaces/ITable';
 
 const AdminBooks: React.FC = () => {
@@ -69,7 +69,7 @@ const AdminBooks: React.FC = () => {
       initialState: { pageIndex: 0 } as unknown as CustomTableState<IBookInfo>,
     },
     usePagination
-  ) as any;
+  ) as unknown as IBookInfoUpdate;
 
   useEffect(() => {
     axios

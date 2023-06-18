@@ -38,4 +38,6 @@ export interface IBookInfoUpdate extends IBookInfo {
   prepareRow?: any;
   pageOptions?: any;
   gotoPage?: any;
+  headerGroups?: any;
+  getTableBodyProps?: any;
 }

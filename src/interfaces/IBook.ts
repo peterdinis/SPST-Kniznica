@@ -1,3 +1,5 @@
+import { HeaderGroup, UsePaginationInstanceProps, UsePaginationState } from 'react-table';
+
 export interface IBook {
   id?: number;
   externalId?: string;
@@ -16,5 +18,12 @@ export interface IBookResult {
   data: Record<string, IBook>;
 }
 
+
 export type IUpdateBook = Partial<IBook>;
-export type IBookInfo = Partial<IBook>
+export type IBookInfo = Partial<IBook>;
+
+export interface IBookInfoUpdate extends IBookInfo, UsePaginationState<IBookInfo>, UsePaginationInstanceProps<IBookInfo> {
+  headerGroups?: HeaderGroup<IBookInfo>[];
+  getTableBodyProps: any;
+  prepareRow: (...args: any) => void;
+}

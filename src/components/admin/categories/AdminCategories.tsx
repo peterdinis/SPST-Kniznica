@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, Column } from 'react-table';
 import Header from '@/components/shared/Header';
 import { backendURL } from '@/components/shared/constants/url';
 import ScrollToTop from '@/hooks/useScroll';
 import ReturnModal from '@/components/shared/modals/ReturnModal';
-import { ICategoryInfo } from '@/interfaces/ICategory';
+import { ICategoryInfo, ICategoryInfoUpdate } from '@/interfaces/ICategory';
+import { CustomTableState } from '@/interfaces/ITable';
 
 const AdminCategories: React.FC = () => {
   const [tableData, setTableData] = useState<ICategoryInfo[]>([]);
@@ -26,13 +27,13 @@ const AdminCategories: React.FC = () => {
       },
 
       {
-        Header: 'Uprav autora',
+        Header: 'Uprav kategóriu',
         Cell: () => (
           <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
         ),
       },
       {
-        Header: 'Zmaž autora',
+        Header: 'Zmaž kategóriu',
         Cell: () => (
           <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
         ),
@@ -52,14 +53,14 @@ const AdminCategories: React.FC = () => {
     prepareRow,
     pageOptions,
     gotoPage,
-  } = useTable<any>(
+  } = useTable(
     {
-      columns,
+      columns: columns as unknown as Column<ICategoryInfo>[],
       data: tableData,
-      initialState: { pageIndex: 0 },
-    } as any,
+      initialState: { pageIndex: 0 } as unknown as CustomTableState<ICategoryInfo>,
+    },
     usePagination
-  ) as any;
+  ) as unknown as ICategoryInfoUpdate;
 
   useEffect(() => {
     axios
@@ -81,7 +82,7 @@ const AdminCategories: React.FC = () => {
           <div className="w-full overflow-x-auto">
             <table className="w-full">
               <thead>
-                {headerGroups.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
+                {headerGroups!.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
                   <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600" {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                       <th className="px-4 py-3" {...column.getHeaderProps()}>{column.render('Header')}</th>
@@ -115,7 +116,7 @@ const AdminCategories: React.FC = () => {
               >
                 Predchazajúca stránka
               </button>
-              {pageOptions.map((pageIndex: string) => (
+              {pageOptions.map((pageIndex) => (
                 <button
                   key={pageIndex}
                   onClick={() => gotoPage(pageIndex)}

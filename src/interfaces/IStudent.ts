@@ -1,3 +1,5 @@
+import { UsePaginationState, UsePaginationInstanceProps, HeaderGroup } from "react-table";
+
 export interface IRegister {
   name: string;
   lastName: string;
@@ -56,3 +58,9 @@ export interface INewPasswordStudent {
 }
 
 export type IStudentInfo = Partial<ILoginStudentInfo>;
+
+export interface IStudentInfoUpdate extends IStudentInfo, UsePaginationState<IStudentInfo>, UsePaginationInstanceProps<IStudentInfo> {
+  headerGroups?: HeaderGroup<IStudentInfo>[];
+  getTableBodyProps: any;
+  prepareRow: (...args: any) => void;
+}

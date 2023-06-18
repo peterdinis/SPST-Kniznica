@@ -1,12 +1,3 @@
-/* 
-                    <th className="py-3 px-6 text-left">Meno</th>
-                    <th className="py-3 px-6 text-left">Používateľské meno</th>
-                    <th className="py-3 px-6 text-center">Dátum vytvorenia účtu</th>
-                    <th className="py-3 px-6 text-center">Trieda</th>
-
-    name, username, createdAt, classRoom
-*/
-
 import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useTable, usePagination } from 'react-table';

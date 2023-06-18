@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, Column } from 'react-table';
 import Header from '@/components/shared/Header';
 import { backendURL } from '@/components/shared/constants/url';
 import ScrollToTop from '@/hooks/useScroll';
-import { IStudentInfo } from '@/interfaces/IStudent';
+import { IStudentInfo, IStudentInfoUpdate } from '@/interfaces/IStudent';
+import { CustomTableState } from '@/interfaces/ITable';
 
 const AdminStudents: React.FC = () => {
   const [tableData, setTableData] = useState<IStudentInfo[]>([]);
@@ -47,14 +48,14 @@ const AdminStudents: React.FC = () => {
     prepareRow,
     pageOptions,
     gotoPage,
-  } = useTable<any>(
+  } = useTable(
     {
-      columns,
+      columns: columns as unknown as Column<IStudentInfo>[],
       data: tableData,
-      initialState: { pageIndex: 0 },
-    } as any,
+      initialState: { pageIndex: 0 } as unknown as CustomTableState<IStudentInfo>,
+    },
     usePagination
-  ) as any;
+  ) as unknown as IStudentInfoUpdate;
 
   useEffect(() => {
     axios
@@ -76,7 +77,7 @@ const AdminStudents: React.FC = () => {
           <div className="w-full overflow-x-auto">
             <table className="w-full">
               <thead>
-                {headerGroups.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
+                {headerGroups!.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
                   <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600" {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                       <th className="px-4 py-3" {...column.getHeaderProps()}>{column.render('Header')}</th>
@@ -110,7 +111,7 @@ const AdminStudents: React.FC = () => {
               >
                 Predchazajúca stránka
               </button>
-              {pageOptions.map((pageIndex: string) => (
+              {pageOptions.map((pageIndex) => (
                 <button
                   key={pageIndex}
                   onClick={() => gotoPage(pageIndex)}

@@ -26,13 +26,13 @@ const AdminCategories: React.FC = () => {
       },
 
       {
-        Header: 'Uprav autora',
+        Header: 'Uprav kategóriu',
         Cell: () => (
           <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
         ),
       },
       {
-        Header: 'Zmaž autora',
+        Header: 'Zmaž kategóriu',
         Cell: () => (
           <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
         ),

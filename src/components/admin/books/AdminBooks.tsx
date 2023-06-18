@@ -35,13 +35,13 @@ const AdminBooks: React.FC = () => {
       },
 
       {
-        Header: 'Uprav autora',
+        Header: 'Uprav knihu',
         Cell: () => (
           <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
         ),
       },
       {
-        Header: 'Zmaž autora',
+        Header: 'Zmaž knihu',
         Cell: () => (
           <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
         ),

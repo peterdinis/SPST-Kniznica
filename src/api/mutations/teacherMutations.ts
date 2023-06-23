@@ -28,3 +28,11 @@ export const deleteProfile = (username: string) => {
 export const studentChangePassword = (teacherData: INewPasswordTeacher) => {
   return api.patch(`student/password/${teacherData.username}/new`, teacherData.newPassword);
 };
+
+export const deleteMessage = (id: number) => {
+  if(!id) {
+    return;
+  }
+
+  return api.delete(`message/delete/${id}`);
+}

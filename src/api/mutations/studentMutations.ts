@@ -25,6 +25,10 @@ export const studentChangePassword = (studentData: INewPasswordStudent) => {
   return api.patch(`student/password/${studentData.username}/new`, studentData.newPassword);
 };
 
-export const deleteMessage = () => {
-  return;
+export const deleteMessage = (id: number) => {
+  if(!id) {
+    return;
+  }
+
+  return api.delete(`message/delete/${id}`);
 }

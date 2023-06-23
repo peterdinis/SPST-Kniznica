@@ -14,3 +14,9 @@ export const getMyBorrowedBooks = (username: string) => {
 
   return authApi.get(`/booking/${username}`).then((res) => res.data);
 };
+
+export const getMyTeacherMessages = (username: string) => {
+  if(!username) return;
+
+  return authApi.get(`messages/my/${username}`);
+}

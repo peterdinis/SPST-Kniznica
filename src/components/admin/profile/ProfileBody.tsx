@@ -7,6 +7,7 @@ import ReturnModal from "@/components/shared/modals/ReturnModal";
 import useAdmin from "@/hooks/useAdmin";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import Options from "../Options";
+import AllMessages from "../Messages";
 
 const ProfileBody: React.FC = () => {
   const { admin } = useAdmin();
@@ -179,6 +180,7 @@ const ProfileBody: React.FC = () => {
         </div>
       </div>
       <Options />
+      <AllMessages />
     </div>
   );
 };

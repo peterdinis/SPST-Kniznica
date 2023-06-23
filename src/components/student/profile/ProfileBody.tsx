@@ -1,4 +1,3 @@
-
 import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
 import useStudent from "@/hooks/useStudent";
@@ -7,6 +6,7 @@ import useCopyToClipboard from "@/hooks/useCopy";
 import Link from "next/link";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
+import MyMessages from "../Messages";
 
 const ProfileBody: React.FC = () => {
   const { student } = useStudent();
@@ -186,6 +186,7 @@ const ProfileBody: React.FC = () => {
           </div>
         </div>
       </div>
+      <MyMessages />
     </div>
   );
 };

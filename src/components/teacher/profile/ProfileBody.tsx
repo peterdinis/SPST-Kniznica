@@ -126,7 +126,6 @@ const ProfileBody: React.FC = () => {
           </div>
         </div>
         <Options />
-        <MyMessages />
       </div>
     </>
   );

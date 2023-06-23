@@ -2,33 +2,33 @@ import {z} from "zod";
 
 export const createAdminSchema = z.object({
     name: z.string({
-        required_error: "Name must be defined"
+        required_error: "Meno nesmie byť prázdne"
     }),
 
     lastName: z.string({
-        required_error: "Last name must be defined"
+        required_error: "Priezvisko nesmie byť prázdne"
     }),
 
     username: z.string({
-        required_error: "Username must be defined"
+        required_error: "Používateľské meno nesmie byť prázdne"
     }),
 
     email: z.string({
-        required_error: "Email must be defined"
+        required_error: "Email nesmie byť prázdny"
     }),
 
     password: z.string({
-        required_error: "Password must be defined"
+        required_error: "Heslo nesmie byť prázdne"
     })
 });
 
 export const loginAdminSchema = z.object({
     email: z.string({
-        required_error: "Email must be defined"
+        required_error: "Email nesmie byť prázdny"
     }),
 
     password: z.string({
-        required_error: "Password must be defined"
+        required_error: "Heslo nesmie byť prázdne"
     })
 });
 

@@ -2,29 +2,29 @@ import { z } from "zod";
 
 export const createBookingSchema = z.object({
   from: z.string({
-    required_error: "From is required",
+    required_error: "Dátum od nesmie byť prázdny",
   }),
 
   to: z.string({
-    required_error: "To is required",
+    required_error: "Dátum do nesmie byť prádzndy",
   }),
 
   username: z.string({
-    required_error: "Username is required",
+    required_error: "Meno nesmie byť prázdne",
   }),
 
   bookId: z.number({
-    required_error: "Book id  must be defined",
+    required_error: "Id knihy nesmie byť prázdne",
   }),
 });
 
 export const returnBookingSchema = z.object({
   username: z.string({
-    required_error: "Username is required",
+    required_error: "Meno nesmie byť prázdne",
   }),
 
   bookId: z.number({
-    required_error: "Book id  must be defined",
+    required_error: "Id knihy nesmie byť prázdne",
   }),
 });
 

@@ -2,35 +2,35 @@ import {z} from "zod";
 
 export const createAuthorSchema = z.object({
     name: z.string({
-        required_error: "Name is required"
+        required_error: "Meno nesmie byť prázdne"
     }),
 
     lastName: z.string({
-        required_error: "Last name is required"
+        required_error: "Priezvisko nesmie byť prázdne"
     }),
 
     picture: z.string({
-        required_error: "Picture is required"
+        required_error: "Fotka nemôže byť prádna"
     }),
 
     birthYear: z.number({
-        required_error: "BirthYear is required and must be a number" 
+        required_error: "Dátum narodenia nesmie byť prázdny" 
     }),
 
     deathYear: z.number({
-        required_error: "DeathYear is required and must be a number"
+        required_error: "Dátum úmrtia nesmie byť prázdny"
     }).optional(),
 
     country: z.string({
-        required_error: "Country is required"
+        required_error: "Krajina pôvodu nesmie byť prázdna"
     }),
 
     description: z.string({
-        required_error: "Description is required"
+        required_error: "Popis k autorovi nesmie byť prázdny"
     }),
 
     litPeriod: z.string({
-        required_error: "LitPeriod is required"
+        required_error: "Literárne obdobie nesmie byť prázdne"
     })
 });
 

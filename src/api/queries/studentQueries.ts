@@ -9,3 +9,10 @@ export const getAllStudents = () => api.get("students").then((res) => res.data);
 
 export const getStudentProfile = () =>
   authApi.get("student/profile").then((res) => res.data);
+
+
+export const getMyStudentMessages = (username: string) => {
+  if(!username) return;
+
+  return authApi.get(`messages/my/${username}`);
+}

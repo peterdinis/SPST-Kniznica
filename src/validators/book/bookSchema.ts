@@ -2,45 +2,43 @@ import { z } from "zod";
 
 export const createBookSchema = z.object({
     name: z.string({
-        required_error: "Name is required"
+        required_error: "Meno nemôže byť prázdne"
     }),
 
     description: z.string({
-        required_error: "Description is required"
+        required_error: "Popis nemôže prázdny"
     }),
 
     image: z.string({
-        required_error: "Image is required"
+        required_error: "Obrázok nemôže byť prázdny"
     }),
 
     authorId: z.number({
-        required_error: "AuthorId is required"
+        required_error: "Id autora nesmie byť prázdne"
     }),
 
     publisher: z.string({
-        required_error: "Publisher is required"
+        required_error: "Vydavateľstvo nesmie byť prázdne"
     }),
 
     status: z.string({
-        required_error: "Status is required"
+        required_error: "Status nesmie byť prádny"
     }),
 
     quantity: z.number({
-        required_error: "Quantity is required"
+        required_error: "Počet kníh nesmie byť prázdny"
     }),
 
     pages: z.number({
-        required_error: "Pages is required",
-        invalid_type_error: "Page must be positive number"
+        required_error: "Počet strán nesmie byť prázdny",
     }),
 
     year: z.number({
-        invalid_type_error: "Year must be positive number",
-        required_error: "Year is required"
+        invalid_type_error: "Rok nesmie byť prádzny",
     }),
 
     categoryId: z.number({
-        description: "Category ID must be defined"
+        description: "Id kategórie nesmie byť prádzdne"
     })
 })
 

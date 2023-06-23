@@ -2,11 +2,11 @@ import { z } from "zod";
 
 export const createCategorySchema = z.object({
     name: z.string({
-        required_error: "Name is required"
+        required_error: "Meno nesmie byť prázdne"
     }),
 
     description: z.string({
-        required_error: "Description is required"
+        required_error: "Popis kategórie nesmie byť prázdny"
     }),
 })
 

@@ -57,7 +57,7 @@ const GetAllAuthors: React.FC = () => {
               <>
                 <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                   <div className="mb-8">
-                    {item.picture === null ? (
+                    {item.image === null ? (
                       <LazyLoadImage
                         alt="Placeholder"
                         className="h-auto w-full rounded-lg"
@@ -67,7 +67,7 @@ const GetAllAuthors: React.FC = () => {
                       <LazyLoadImage
                         alt="Placeholder"
                         className="h-auto w-full rounded-lg"
-                        src={item.picture}
+                        src={item.image}
                       />
                     )}
                   </div>

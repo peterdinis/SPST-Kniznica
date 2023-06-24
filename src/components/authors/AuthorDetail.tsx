@@ -26,6 +26,8 @@ const AuthorDetail: React.FC = () => {
       placeholderData: placeholderAuthor,
     }
   );
+
+  console.log(data);
   
   if (isError) {
     return <FallbackRender error={getAuthorDetailError} />;

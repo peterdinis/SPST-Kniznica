@@ -3,9 +3,9 @@ export interface IAuthor {
     externalId?: string
     name: string;
     lastName: string;
-    picture: string;
+    image: string;
     birthYear: number;
-    deathYear?: number;
+    isAlive: boolean;
     country: string;
     description: string;
     litPeriod: string;

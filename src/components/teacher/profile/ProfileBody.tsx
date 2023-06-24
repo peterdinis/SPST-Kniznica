@@ -6,6 +6,7 @@ import Link from "next/link";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
+import MyMessages from "../Messages";
 
 const ProfileBody: React.FC = () => {
   const { teacher } = useTeacher();

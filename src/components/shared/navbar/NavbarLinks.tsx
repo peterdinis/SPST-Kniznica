@@ -20,7 +20,7 @@ const NavbarLinks: React.FC = () => {
         <Link href="/books/all">Knihy</Link>
       </li>
       <li className="text-black text-xl">
-        <Link href="/authors/all">Autor</Link>
+        <Link href="/authors/all">Autori</Link>
       </li>
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>

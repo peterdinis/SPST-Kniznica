@@ -1,11 +1,11 @@
-import React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import NavbarLinks from "./NavbarLinks";
 
 export default function Navbar() {
-  const [navbar, setNavbar] = React.useState<Boolean>(false);
+  const [navbar, setNavbar] = useState<Boolean>(false);
 
   return (
     <nav className="w-full bg-white">

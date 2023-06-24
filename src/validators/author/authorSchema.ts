@@ -9,7 +9,7 @@ export const createAuthorSchema = z.object({
         required_error: "Priezvisko nesmie byť prázdne"
     }),
 
-    picture: z.string({
+    image: z.string({
         required_error: "Fotka nemôže byť prádna"
     }),
 

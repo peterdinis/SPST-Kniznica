@@ -3,7 +3,7 @@ export interface IAuthor {
     externalId?: string
     name: string;
     lastName: string;
-    picture: string;
+    image: string;
     birthYear: number;
     isAlive: boolean;
     country: string;

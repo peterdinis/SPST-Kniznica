@@ -5,7 +5,7 @@ export interface IAuthor {
     lastName: string;
     picture: string;
     birthYear: number;
-    deathYear?: number;
+    isAlive: boolean;
     country: string;
     description: string;
     litPeriod: string;

@@ -12,6 +12,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { IAuthor } from "@/interfaces/IAuthor";
 import { getAllAuthorsError } from "../shared/errors/constants/errorMessages";
+import { motion } from "framer-motion";
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -27,7 +28,7 @@ const GetAllAuthors: React.FC = () => {
     () => api.paginateAuthors(page, limit),
     {
       keepPreviousData: true,
-      retry: 2
+      retry: 2,
     }
   );
 
@@ -52,9 +53,14 @@ const GetAllAuthors: React.FC = () => {
           </div>
         )}
         {paginatedData?.data.result &&
-          paginatedData?.data.result.map((item: IAuthor) => {
+          paginatedData?.data.result.map((item: IAuthor, index: number) => {
             return (
-              <>
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                   <div className="mb-8">
                     {item.image === null ? (
@@ -86,7 +92,7 @@ const GetAllAuthors: React.FC = () => {
                   </div>
                 </div>
                 <ScrollToTop />
-              </>
+              </motion.div>
             );
           })}
       </div>

@@ -13,13 +13,14 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { IPaginatedBooks } from "@/data/placeholderPaginatedBooks";
 import { getAllBooksError } from "../shared/errors/constants/errorMessages";
+import { motion } from "framer-motion";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(0);
   const [limit] = useState(12);
 
   let initialBooks: IPaginatedBooks | any;
-  
+
   const {
     data: paginatedData,
     isError,
@@ -29,7 +30,7 @@ const AllBooks: React.FC = () => {
   } = useQuery(["paginateBooks", page], () => api.paginateBooks(page, limit), {
     keepPreviousData: true,
     initialData: initialBooks,
-    retry: 2
+    retry: 2,
   });
 
   if (isLoading) {
@@ -52,9 +53,14 @@ const AllBooks: React.FC = () => {
           </div>
         )}
         {paginatedData.data.result &&
-          paginatedData.data.result.map((item: IBook) => {
+          paginatedData.data.result.map((item: IBook, index: number) => {
             return (
-              <>
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                   <div className="mb-8">
                     <LazyLoadImage
@@ -78,7 +84,7 @@ const AllBooks: React.FC = () => {
                   </div>
                 </div>
                 <ScrollToTop />
-              </>
+              </motion.div>
             );
           })}
       </div>

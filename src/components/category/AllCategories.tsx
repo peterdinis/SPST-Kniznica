@@ -11,12 +11,13 @@ import ScrollToTop from "@/hooks/useScroll";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { useState } from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
+import { motion } from "framer-motion";
 
 const AllCategories: React.FC = () => {
   const [page, setPage] = useState(0);
   const [limit] = useState(12);
 
-  let initialCategories: IPaginatedCategories | any; 
+  let initialCategories: IPaginatedCategories | any;
   const {
     data: paginatedData,
     isError,
@@ -43,7 +44,7 @@ const AllCategories: React.FC = () => {
   return (
     <>
       <Header name="Všetky kategórie" />
-       <div className="mt-4 font-bold text-center text-red-800 text-xl">
+      <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/category/search">Hľadať konkretnú kategóriu</Link>
       </div>
       <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -53,9 +54,14 @@ const AllCategories: React.FC = () => {
           </div>
         )}
         {paginatedData.data.result &&
-          paginatedData.data.result.map((item: ICategory) => {
+          paginatedData.data.result.map((item: ICategory, index: number) => {
             return (
-              <>
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <div className="bg-whiterounded py-5 pl-6 flex items-start shadow">
                   <div className="pl-3 pr-10 mt-1">
                     <h3 className="font-normal leading-4 text-red-800 text-2xl break-all">
@@ -73,7 +79,7 @@ const AllCategories: React.FC = () => {
                     </h3>
                   </div>
                 </div>
-              </>
+              </motion.div>
             );
           })}
       </div>

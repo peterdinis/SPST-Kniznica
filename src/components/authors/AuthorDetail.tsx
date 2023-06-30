@@ -7,7 +7,7 @@ import * as api from "../../api/queries/authorQueries";
 import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Image from "next/image";
-import defaultImage from "../../images/default.png";
+import defaultImage from "../../images/noImage.png";
 import { getAuthorDetailError } from "../shared/errors/constants/errorMessages";
 
 const AuthorDetail: React.FC = () => {

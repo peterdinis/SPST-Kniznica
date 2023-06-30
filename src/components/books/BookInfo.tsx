@@ -18,7 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Image from "next/image";
-import defaultImage from "../../images/default.png";
+import defaultImage from "../../images/noImage.png";
 import { getBookInfoError } from "../shared/errors/constants/errorMessages";
 import { notify, errorRegister } from "../shared/toasts/bookToasts";
 import { motion } from "framer-motion";

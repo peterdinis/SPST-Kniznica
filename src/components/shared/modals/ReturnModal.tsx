@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import { useSpring, animated } from "@react-spring/web";
 import { FadeProps, IModalProps } from "@/interfaces/IModal";
 import { style } from "../../../styles/modalStyle";
+import { motion } from "framer-motion";
 
 const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   props,
@@ -41,29 +42,41 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
   );
 });
 
-const ReturnModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }) => {
+const ReturnModal: React.FC<IModalProps> = ({
+  children,
+  btnName,
+  modalHeader,
+}) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      <button className="text-red-800" onClick={handleOpen}>{btnName}</button>
-      <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
+      <button className="text-red-800" onClick={handleOpen}>
+        {btnName}
+      </button>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
       >
-        <Fade in={open}>
-          <Box sx={style}>
-            <h2 className="text-center font-bold text-2xl">{modalHeader}</h2>
-            {children}
-          </Box>
-        </Fade>
-      </Modal>
+        <Modal
+          aria-labelledby="spring-modal-title"
+          aria-describedby="spring-modal-description"
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+        >
+          <Fade in={open}>
+            <Box sx={style}>
+              <h2 className="text-center font-bold text-2xl">{modalHeader}</h2>
+              {children}
+            </Box>
+          </Fade>
+        </Modal>
+      </motion.div>
     </>
   );
 };

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useSpring, animated } from "@react-spring/web";
 import { FadeProps, IModalProps } from "@/interfaces/IModal";
-import { style } from "../../../styles/modalStyle";
+import { modalStyle } from "../../../styles/modalStyle";
 import { motion } from "framer-motion";
 
 const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
@@ -70,7 +70,7 @@ const ReturnModal: React.FC<IModalProps> = ({
           slots={{ backdrop: Backdrop }}
         >
           <Fade in={open}>
-            <Box sx={style}>
+            <Box sx={modalStyle}>
               <h2 className="text-center font-bold text-2xl">{modalHeader}</h2>
               {children}
             </Box>

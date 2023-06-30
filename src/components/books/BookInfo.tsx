@@ -18,9 +18,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Image from "next/image";
-import defaultImage from "../../images/default.png";
+import defaultImage from "../../images/noImage.png";
 import { getBookInfoError } from "../shared/errors/constants/errorMessages";
 import { notify, errorRegister } from "../shared/toasts/bookToasts";
+import { motion } from "framer-motion";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -28,7 +29,7 @@ const BookInfo: React.FC = () => {
   if (!isReady) {
     return <FallbackLoader />;
   }
-  
+
   const { data, isError, isLoading } = useQuery(
     ["bookDetail", query.id as unknown as number],
     () =>
@@ -174,97 +175,103 @@ const BookInfo: React.FC = () => {
                       {data.book && data.book.status}
                     </span>
                   </p>
-                  <HelperModal
-                    btnName={"Požičať si knihu"}
-                    modalHeader={"Požičanie knihy"}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <form
-                      onSubmit={handleSubmit(onHandleSubmit)}
-                      className="mt-4"
+                    <HelperModal
+                      btnName={"Požičať si knihu"}
+                      modalHeader={"Požičanie knihy"}
                     >
-                      <label className="block text-grey-darker text-sm font-bold mb-2">
-                        Používateľské meno
-                      </label>
-                      <input
-                        type="text"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="Používateľské meno"
-                        {...register("username", {
-                          required: "Meno je povinné",
-                        })}
-                        onKeyUp={() => {
-                          trigger("username");
-                        }}
-                      />
+                      <form
+                        onSubmit={handleSubmit(onHandleSubmit)}
+                        className="mt-4"
+                      >
+                        <label className="block text-grey-darker text-sm font-bold mb-2">
+                          Používateľské meno
+                        </label>
+                        <input
+                          type="text"
+                          className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                          placeholder="Používateľské meno"
+                          {...register("username", {
+                            required: "Meno je povinné",
+                          })}
+                          onKeyUp={() => {
+                            trigger("username");
+                          }}
+                        />
 
-                      <p className="text-red-800">
-                        {errors.username && errors.username.message}
-                      </p>
+                        <p className="text-red-800">
+                          {errors.username && errors.username.message}
+                        </p>
 
-                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                        Číslo knihy
-                      </label>
-                      <input
-                        type="number"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        {...register("bookId", { 
-                          valueAsNumber: true,
-                        })}
-                        onKeyUp={() => {
-                          trigger("bookId");
-                        }}
-                      />
+                        <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                          Číslo knihy
+                        </label>
+                        <input
+                          type="number"
+                          className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                          {...register("bookId", {
+                            valueAsNumber: true,
+                          })}
+                          onKeyUp={() => {
+                            trigger("bookId");
+                          }}
+                        />
 
-                      <p className="text-red-800">
-                        {errors.bookId && errors.bookId.message}
-                      </p>
+                        <p className="text-red-800">
+                          {errors.bookId && errors.bookId.message}
+                        </p>
 
-                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                        Od
-                      </label>
-                      <input
-                        type="date"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        {...register("from", {
-                          required: "Dátum od je povinný",
-                        })}
-                        onKeyUp={() => {
-                          trigger("from");
-                        }}
-                      />
+                        <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                          Od
+                        </label>
+                        <input
+                          type="date"
+                          className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                          {...register("from", {
+                            required: "Dátum od je povinný",
+                          })}
+                          onKeyUp={() => {
+                            trigger("from");
+                          }}
+                        />
 
-                      <p className="text-red-800">
-                        {errors.from && errors.from.message}
-                      </p>
+                        <p className="text-red-800">
+                          {errors.from && errors.from.message}
+                        </p>
 
-                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                        Do
-                      </label>
-                      <input
-                        type="date"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        {...register("to", {
-                          required: "Dátum do je povinný",
-                        })}
-                        onKeyUp={() => {
-                          trigger("to");
-                        }}
-                      />
+                        <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                          Do
+                        </label>
+                        <input
+                          type="date"
+                          className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                          {...register("to", {
+                            required: "Dátum do je povinný",
+                          })}
+                          onKeyUp={() => {
+                            trigger("to");
+                          }}
+                        />
 
-                      <p className="text-red-800">
-                        {errors.to && errors.to.message}
-                      </p>
+                        <p className="text-red-800">
+                          {errors.to && errors.to.message}
+                        </p>
 
-                      <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
-                        Požičať
-                      </button>
-                    </form>
-                  </HelperModal>
+                        <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+                          Požičať
+                        </button>
+                      </form>
+                    </HelperModal>
+                  </motion.div>
                 </>
               )}
               <button
                 onClick={navigateToBooks}
-                className="ml-8 mt-6 bg-blue-200 rounded-lg p-2 font-extrabold"
+                className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold"
               >
                 Návrat na knihy
               </button>

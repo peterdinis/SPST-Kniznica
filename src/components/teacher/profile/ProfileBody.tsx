@@ -127,6 +127,7 @@ const ProfileBody: React.FC = () => {
         </div>
         <Options />
       </div>
+      
     </>
   );
 };

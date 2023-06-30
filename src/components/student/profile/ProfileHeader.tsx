@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AvatarImage from "../../../images/default.png";
+import AvatarImage from "../../../images/noImage.png";
 import useStudent from "@/hooks/useStudent";
 
 

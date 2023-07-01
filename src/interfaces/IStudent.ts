@@ -62,5 +62,5 @@ export type IStudentInfo = Partial<ILoginStudentInfo>;
 export interface IStudentInfoUpdate extends IStudentInfo, UsePaginationState<IStudentInfo>, UsePaginationInstanceProps<IStudentInfo> {
   headerGroups?: HeaderGroup<IStudentInfo>[];
   getTableBodyProps: any;
-  prepareRow: (...args: any) => void;
+  prepareRow: (...args: unknown[]) => void;
 }

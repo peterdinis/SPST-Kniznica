@@ -59,5 +59,5 @@ export type ITeacherInfo = Partial<ILoginTeacherInfo>;
 export interface ITeacherInfoUpdate extends ITeacherInfo, UsePaginationState<ITeacherInfo>, UsePaginationInstanceProps<ITeacherInfo> {
   headerGroups?: HeaderGroup<ITeacherInfo>[];
   getTableBodyProps: any;
-  prepareRow: (...args: any) => void;
+  prepareRow: (...args: unknown[]) => void;
 }

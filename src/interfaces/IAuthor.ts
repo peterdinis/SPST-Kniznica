@@ -19,5 +19,5 @@ export type IAuthorInfo = Partial<IAuthor>;
 export interface IAuthorInfoUpdate extends IAuthorInfo, UsePaginationState<IAuthorInfo>, UsePaginationInstanceProps<IAuthorInfo> {
     headerGroups?: HeaderGroup<IAuthorInfo>[];
     getTableBodyProps: any;
-    prepareRow: (...args: any) => void;
+    prepareRow: (...args: unknown[]) => void;
   }

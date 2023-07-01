@@ -16,5 +16,5 @@ export type ICategoryInfo = Partial<ICategory>;
 export interface ICategoryInfoUpdate extends ICategoryInfo, UsePaginationState<ICategoryInfo>, UsePaginationInstanceProps<ICategoryInfo> {
     headerGroups?: HeaderGroup<ICategoryInfo>[];
     getTableBodyProps: any;
-    prepareRow: (...args: any) => void;
+    prepareRow: (...args: unknown[]) => void;
   }

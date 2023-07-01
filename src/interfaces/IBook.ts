@@ -25,5 +25,5 @@ export type IBookInfo = Partial<IBook>;
 export interface IBookInfoUpdate extends IBookInfo, UsePaginationState<IBookInfo>, UsePaginationInstanceProps<IBookInfo> {
   headerGroups?: HeaderGroup<IBookInfo>[];
   getTableBodyProps: any;
-  prepareRow: (...args: any) => void;
+  prepareRow: (...args: unknown[]) => void;
 }

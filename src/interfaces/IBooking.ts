@@ -20,5 +20,5 @@ export type IBookingInfo = Partial<ICreateBooking>;
 export interface IBookingInfoUpdate extends IBookingInfo, UsePaginationState<IBookingInfo>, UsePaginationInstanceProps<IBookingInfo> {
   headerGroups?: HeaderGroup<IBookingInfo>[];
   getTableBodyProps: any;
-  prepareRow: (...args: any) => void;
+  prepareRow: (...args: unknown[]) => void;
 }

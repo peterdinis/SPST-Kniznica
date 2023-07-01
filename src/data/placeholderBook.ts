@@ -4,11 +4,12 @@ export const placeholderBook = [
     {
         name: "Random Name",
         description: "Random Author",
-        author: "Random Author",
+        authorId: 2,
         year: 2020,
-        available: false,
+        status: "Dostupná",
         pages: 222,
         publisher: "Random Publisher",
-        image: "Random Image"
+        image: "Random Image",
+        categoryId: 2
     }
 ] as IBook[];

@@ -64,8 +64,8 @@ const MyBooks: React.FC = () => {
                         <td className="px-4 py-3 text-ms font-semibold border">
                           {item.from}
                         </td>
-                        <td className="px-4 py-3 text-xs border">
-                          <span className="px-2 py-1 font-bold  text-red-700 bg-red-100 rounded-sm">
+                        <td className="px-4 py-3 border">
+                          <span className="px-4 py-3 text-ms font-semibold">
                             {" "}
                             {item.to}
                           </span>

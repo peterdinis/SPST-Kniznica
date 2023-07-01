@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import Mailto from "../shared/Mailto";
+import Link from "next/link";
 
 const Reasons: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const Reasons: React.FC = () => {
           <Mailto mailto="Ak to nebol žiaden z týchto problémov je to problém applikácie napíšte na:"  mailtoEmail="pdinis1@gmail.com"/>
         </ul>
       </Typography>
+      <Link href="/">Návrat na domovskú stránku</Link>
     </div>
   );
 };

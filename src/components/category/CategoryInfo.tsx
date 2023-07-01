@@ -17,7 +17,7 @@ const CategoryInfo: React.FC = () => {
 
   const { data, isError, isLoading } = useQuery(
     ["categoryDetail", query.id as unknown as number],
-    () => api.getOneCategory(Number(query.id) as any),
+    () => api.getOneCategory(Number(query.id) as unknown as string),
     {
       retry: 2,
       placeholderData: placeholderCategory,

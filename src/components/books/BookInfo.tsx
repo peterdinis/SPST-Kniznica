@@ -84,6 +84,7 @@ const BookInfo: React.FC = () => {
     try {
       mutation.mutate(data);
       reset();
+      router.push("/books");
     } catch (err) {
       errorRegister();
       router.push("/books/all");

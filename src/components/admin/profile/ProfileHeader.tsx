@@ -3,7 +3,7 @@ import AvatarImage from "../../../images/noImage.png";
 import useAdmin from "@/hooks/useAdmin";
 
 const ProfileHeader: React.FC = () => {
-  const {admin} = useAdmin() as any; // TODO: Fix this later
+  const {admin} = useAdmin();
   return (
     <div className="w-full mt-20 md:w-3/12 md:mx-2">
     <div className="bg-white p-2">

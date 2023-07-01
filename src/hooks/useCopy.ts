@@ -1,8 +1,11 @@
 import { CopiedValue, CopyFn } from "@/interfaces/IHooks";
 import { useState } from "react";
+import {toast} from "react-toastify";
 
 function useCopyToClipboard(): [CopiedValue, CopyFn] {
   const [copiedText, setCopiedText] = useState<CopiedValue>(null);
+
+  const copiedValue = () =>toast.success("Skopirované");
 
   const copy: CopyFn = async (text) => {
     if (!navigator?.clipboard) {
@@ -12,6 +15,7 @@ function useCopyToClipboard(): [CopiedValue, CopyFn] {
 
     try {
       await navigator.clipboard.writeText(text);
+      copiedValue();
       setCopiedText(text);
       return true;
     } catch (error) {

@@ -8,6 +8,7 @@ import {
   returnBookingSchema,
 } from "@/validators/booking/bookingSchema";
 import { IReturnBooking } from "@/interfaces/IBooking";
+import {useRouter} from "next/router";
 import { notify, errorRegister } from "@/components/shared/toasts/bookingToasts";
 
 const ReturnBookModal: React.FC = () => {
@@ -15,9 +16,12 @@ const ReturnBookModal: React.FC = () => {
     resolver: zodResolver(returnBookingSchema),
   });
 
+  const router = useRouter();
+
   const mutation = useMutation(mut.returnBooking, {
     onSuccess: (data) => {
       notify();
+      router.push("/student/profile");
     },
 
     onError: (data) => {

@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <div className={inter.className}>
         <Layout>
-          <ErrorBoundary>
+         <ErrorBoundary>
             <Component {...pageProps} />
             <ToastContainer />
             <ReactQueryDevtools />

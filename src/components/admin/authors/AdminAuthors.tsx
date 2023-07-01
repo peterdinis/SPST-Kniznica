@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, Column } from 'react-table';
 import Header from '@/components/shared/Header';
-import { IAuthorInfo } from '@/interfaces/IAuthor';
+import { IAuthorInfo, IAuthorInfoUpdate } from '@/interfaces/IAuthor';
 import { backendURL } from '@/components/shared/constants/url';
 import ScrollToTop from '@/hooks/useScroll';
 import ReturnModal from '@/components/shared/modals/ReturnModal';
+import { ILoginAdminInfo } from '@/interfaces/IAdmin';
+import { CustomTableState } from '@/interfaces/ITable';
 
 const AdminAuthors: React.FC = () => {
     const [tableData, setTableData] = useState<IAuthorInfo[]>([]);
@@ -56,14 +58,14 @@ const AdminAuthors: React.FC = () => {
         prepareRow,
         pageOptions,
         gotoPage,
-    } = useTable<any>(
+    } = useTable(
         {
-            columns,
+            columns: columns as unknown as Column<IAuthorInfo>[],
             data: tableData,
-            initialState: { pageIndex: 0 },
-        } as any,
+            initialState: { pageIndex: 0 } as unknown as CustomTableState<IAuthorInfo>,
+        },
         usePagination
-    ) as any;
+    ) as unknown as IAuthorInfoUpdate;
 
     useEffect(() => {
         axios
@@ -85,7 +87,7 @@ const AdminAuthors: React.FC = () => {
                     <div className="w-full overflow-x-auto">
                         <table className="w-full">
                             <thead>
-                                {headerGroups.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
+                                {headerGroups!.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
                                     <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600" {...headerGroup.getHeaderGroupProps()}>
                                         {headerGroup.headers.map((column) => (
                                             <th className="px-4 py-3" {...column.getHeaderProps()}>{column.render('Header')}</th>
@@ -119,7 +121,7 @@ const AdminAuthors: React.FC = () => {
                             >
                                 Predchazajúca stránka
                             </button>
-                            {pageOptions.map((pageIndex: string) => (
+                            {pageOptions.map((pageIndex: number) => (
                                 <button
                                     key={pageIndex}
                                     onClick={() => gotoPage(pageIndex)}

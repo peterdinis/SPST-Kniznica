@@ -1,3 +1,5 @@
+import { UsePaginationState, UsePaginationInstanceProps, HeaderGroup } from "react-table";
+
 export interface IAuthor {
     id?: number | string;
     externalId?: string
@@ -13,3 +15,9 @@ export interface IAuthor {
 
 export type IUpdateAuthor = Partial<IAuthor>;
 export type IAuthorInfo = Partial<IAuthor>;
+
+export interface IAuthorInfoUpdate extends IAuthorInfo, UsePaginationState<IAuthorInfo>, UsePaginationInstanceProps<IAuthorInfo> {
+    headerGroups?: HeaderGroup<IAuthorInfo>[];
+    getTableBodyProps: any;
+    prepareRow: (...args: any) => void;
+  }

@@ -1,4 +1,5 @@
 import { UsePaginationState, UsePaginationInstanceProps, HeaderGroup } from "react-table";
+import { ITableProps } from "./ITable";
 
 export interface IRegister {
   name: string;
@@ -58,6 +59,6 @@ export type ITeacherInfo = Partial<ILoginTeacherInfo>;
 
 export interface ITeacherInfoUpdate extends ITeacherInfo, UsePaginationState<ITeacherInfo>, UsePaginationInstanceProps<ITeacherInfo> {
   headerGroups?: HeaderGroup<ITeacherInfo>[];
-  getTableBodyProps: any;
+  getTableBodyProps: (props?: ITableProps) => ITableProps;
   prepareRow: (...args: unknown[]) => void;
 }

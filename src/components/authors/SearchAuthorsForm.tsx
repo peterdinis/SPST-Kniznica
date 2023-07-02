@@ -89,7 +89,7 @@ const SearchAuthorsForm: React.FC = () => {
                           <LazyLoadImage
                             alt="Placeholder"
                             className="h-auto w-full"
-                            src={item.picture}
+                            src={item.image}
                           />
                         </div>
                         <div className="text-center">

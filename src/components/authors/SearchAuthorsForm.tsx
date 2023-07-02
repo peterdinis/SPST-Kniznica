@@ -68,7 +68,7 @@ const SearchAuthorsForm: React.FC = () => {
           {results.data === undefined ||
             (results.data.length === 0 && (
               <div className="text-center font-bold mt-4">
-                Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
+                Spisovateľ/ka nebol/a najdený/á <SentimentVeryDissatisfiedIcon />
               </div>
             ))}
         </form>

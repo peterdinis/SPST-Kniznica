@@ -8,3 +8,5 @@ export interface TableBodyProps {
     class?: string;
     role?: string;
 }
+
+export interface ITableProps extends TableBodyProps {}

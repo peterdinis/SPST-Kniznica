@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import app, {storage} from "../../lib/firebase-config"
+import firebase from "firebase/app";
 
 const FileUploadComponent: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -12,7 +12,7 @@ const FileUploadComponent: React.FC = () => {
 
   const handleUpload = () => {
     if (file) {
-      const storageRef = storage().ref();
+        const storageRef = firebase.storage().ref();
       const fileRef = storageRef.child(`uploads/${file.name}`);
       const uploadTask = fileRef.put(file);
 

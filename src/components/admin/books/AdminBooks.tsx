@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import axios from 'axios';
-import { useTable, usePagination, Column } from 'react-table';
-import Header from '@/components/shared/Header';
-import { backendURL } from '@/components/shared/constants/url';
-import ScrollToTop from '@/hooks/useScroll';
-import ReturnModal from '@/components/shared/modals/ReturnModal';
-import { IBookInfo, IBookInfoUpdate } from '@/interfaces/IBook';
-import { CustomTableState } from '@/interfaces/ITable';
+import React, { useEffect, useMemo, useState } from "react";
+import axios from "axios";
+import { useTable, usePagination, Column } from "react-table";
+import Header from "@/components/shared/Header";
+import { backendURL } from "@/components/shared/constants/url";
+import ScrollToTop from "@/hooks/useScroll";
+import ReturnModal from "@/components/shared/modals/ReturnModal";
+import { IBookInfo, IBookInfoUpdate } from "@/interfaces/IBook";
+import { CustomTableState } from "@/interfaces/ITable";
 
 const AdminBooks: React.FC = () => {
   const [tableData, setTableData] = useState<IBookInfo[]>([]);
@@ -14,35 +14,35 @@ const AdminBooks: React.FC = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'ID',
-        accessor: 'id',
+        Header: "ID",
+        accessor: "id",
       },
       {
-        Header: 'Meno Knihy',
-        accessor: 'name',
+        Header: "Meno Knihy",
+        accessor: "name",
       },
       {
-        Header: 'Vydavateľstvo',
-        accessor: 'publisher',
+        Header: "Vydavateľstvo",
+        accessor: "publisher",
       },
       {
         Header: "Rok vydania",
-        accessor: 'year'
+        accessor: "year",
       },
 
       {
         Header: "Detail",
-        accessor: 'description'
+        accessor: "description",
       },
 
       {
-        Header: 'Uprav knihu',
+        Header: "Uprav knihu",
         Cell: () => (
           <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
         ),
       },
       {
-        Header: 'Zmaž knihu',
+        Header: "Zmaž knihu",
         Cell: () => (
           <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
         ),
@@ -79,7 +79,7 @@ const AdminBooks: React.FC = () => {
         setTableData(data);
       })
       .catch((error) => {
-        console.log('Error fetching data:', error);
+        console.log("Error fetching data:", error);
       });
   }, []);
 
@@ -91,23 +91,31 @@ const AdminBooks: React.FC = () => {
           <div className="w-full overflow-x-auto">
             <table className="w-full">
               <thead>
-                {headerGroups!.map((headerGroup: { getHeaderGroupProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; headers: any[]; }) => (
-                  <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600" {...headerGroup.getHeaderGroupProps()}>
+                {headerGroups!.map((headerGroup) => (
+                  <tr
+                    className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+                    {...headerGroup.getHeaderGroupProps()}
+                  >
                     {headerGroup.headers.map((column) => (
-                      <th className="px-4 py-3" {...column.getHeaderProps()}>{column.render('Header')}</th>
+                      <th className="px-4 py-3" {...column.getHeaderProps()}>
+                        {column.render("Header")}
+                      </th>
                     ))}
                   </tr>
                 ))}
               </thead>
               <tbody className="bg-white" {...getTableBodyProps()}>
-                {page.map((row: { getRowProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; cells: any[]; }) => {
+                {page.map((row) => {
                   prepareRow(row);
                   return (
                     <tr className="text-gray-700" {...row.getRowProps()}>
                       {row.cells.map((cell) => (
-                        <td className="px-4 py-3 text-xs border"{...cell.getCellProps()}>
+                        <td
+                          className="px-4 py-3 text-xs border"
+                          {...cell.getCellProps()}
+                        >
                           <span className="px-2 py-1 font-bold rounded-sm">
-                            {cell.render('Cell')}
+                            {cell.render("Cell")}
                           </span>
                         </td>
                       ))}
@@ -129,8 +137,11 @@ const AdminBooks: React.FC = () => {
                 <button
                   key={pageIndex}
                   onClick={() => gotoPage(pageIndex)}
-                  className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                    }`}
+                  className={`px-4 py-2 mx-1 rounded ${
+                    pageIndex === pageIndex
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200"
+                  }`}
                 >
                   {pageIndex}
                 </button>
@@ -148,7 +159,7 @@ const AdminBooks: React.FC = () => {
       </section>
       <ScrollToTop />
     </div>
-  )
-}
+  );
+};
 
 export default AdminBooks;

@@ -157,13 +157,14 @@ const ProfileBody: React.FC = () => {
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Zmazať profil</div>
+              <div className="px-4 py-2 font-semibold">Deaktivovať profil</div>
               <div className="px-4 py-2">
                 <button>
                   <ReturnModal
-                    btnName={"Zmazať profil"}
-                    modalHeader={"Zmazať profil"}
+                    btnName={"Deaktivácia profilu"}
+                    modalHeader={"Deaktivácia profilu"}
                   >
+                    <span className="mt-4 ml-4">TEXT LATER</span>
                     <form className="mt-4">
                       <label className="block text-grey-darker text-sm font-bold mb-2">
                         Meno

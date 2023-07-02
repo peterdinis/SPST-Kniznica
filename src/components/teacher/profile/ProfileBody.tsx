@@ -114,11 +114,11 @@ const ProfileBody: React.FC = () => {
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 font-semibold">
-                  Vymazať profil
+                  Deaktivácia profilu
                 </div>
                 <div className="px-4 py-2">
                   <button>
-                    <Link href="/teacher/new-password">Zmazať profil</Link>
+                    <Link href="/teacher/new-password">Deaktivácia profilu</Link>
                   </button>
                 </div>
               </div>

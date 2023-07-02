@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import axios from 'axios';
-import { useTable, usePagination, Column } from 'react-table';
-import Header from '@/components/shared/Header';
-import { backendURL } from '@/components/shared/constants/url';
-import ScrollToTop from '@/hooks/useScroll';
-import { IBookingInfo, IBookingInfoUpdate } from '@/interfaces/IBooking';
-import { CustomTableState } from '@/interfaces/ITable';
+import React, { useEffect, useMemo, useState } from "react";
+import axios from "axios";
+import { useTable, usePagination, Column } from "react-table";
+import Header from "@/components/shared/Header";
+import { backendURL } from "@/components/shared/constants/url";
+import ScrollToTop from "@/hooks/useScroll";
+import { IBookingInfo, IBookingInfoUpdate } from "@/interfaces/IBooking";
+import { CustomTableState } from "@/interfaces/ITable";
 
 const AdminBookings: React.FC = () => {
   const [tableData, setTableData] = useState<IBookingInfo[]>([]);
@@ -13,26 +13,26 @@ const AdminBookings: React.FC = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'ID objednávky',
-        accessor: 'id',
+        Header: "ID objednávky",
+        accessor: "id",
       },
       {
-        Header: 'Meno Používateľa',
-        accessor: 'username',
+        Header: "Meno Používateľa",
+        accessor: "username",
       },
       {
-        Header: 'ID knihy',
-        accessor: 'bookId',
+        Header: "ID knihy",
+        accessor: "bookId",
       },
       {
         Header: "Požičaná od",
-        accessor: "from"
+        accessor: "from",
       },
 
       {
         Header: "Požičaná do",
-        accessor: "to"
-      }
+        accessor: "to",
+      },
     ],
     []
   );
@@ -52,7 +52,9 @@ const AdminBookings: React.FC = () => {
     {
       columns: columns as unknown as Column<IBookingInfo>[],
       data: tableData,
-      initialState: { pageIndex: 0 } as unknown as CustomTableState<IBookingInfo>,
+      initialState: {
+        pageIndex: 0,
+      } as unknown as CustomTableState<IBookingInfo>,
     },
     usePagination
   ) as unknown as IBookingInfoUpdate;
@@ -65,7 +67,7 @@ const AdminBookings: React.FC = () => {
         setTableData(data);
       })
       .catch((error) => {
-        console.log('Error fetching data:', error);
+        console.log("Error fetching data:", error);
       });
   }, []);
 
@@ -76,7 +78,7 @@ const AdminBookings: React.FC = () => {
         <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
           <div className="w-full overflow-x-auto">
             <table className="w-full">
-            <thead>
+              <thead>
                 {headerGroups!.map((headerGroup) => (
                   <tr
                     className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
@@ -91,14 +93,17 @@ const AdminBookings: React.FC = () => {
                 ))}
               </thead>
               <tbody className="bg-white" {...getTableBodyProps()}>
-                {page.map((row: { getRowProps: () => JSX.IntrinsicAttributes & React.ClassAttributes<HTMLTableRowElement> & React.HTMLAttributes<HTMLTableRowElement>; cells: any[]; }) => {
+                {page.map((row) => {
                   prepareRow(row);
                   return (
                     <tr className="text-gray-700" {...row.getRowProps()}>
                       {row.cells.map((cell) => (
-                        <td className="px-4 py-3 text-xs border"{...cell.getCellProps()}>
+                        <td
+                          className="px-4 py-3 text-xs border"
+                          {...cell.getCellProps()}
+                        >
                           <span className="px-2 py-1 font-bold rounded-sm">
-                            {cell.render('Cell')}
+                            {cell.render("Cell")}
                           </span>
                         </td>
                       ))}
@@ -120,8 +125,11 @@ const AdminBookings: React.FC = () => {
                 <button
                   key={pageIndex}
                   onClick={() => gotoPage(pageIndex)}
-                  className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                    }`}
+                  className={`px-4 py-2 mx-1 rounded ${
+                    pageIndex === pageIndex
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200"
+                  }`}
                 >
                   {pageIndex}
                 </button>
@@ -139,7 +147,7 @@ const AdminBookings: React.FC = () => {
       </section>
       <ScrollToTop />
     </div>
-  )
-}
+  );
+};
 
-export default AdminBookings
+export default AdminBookings;

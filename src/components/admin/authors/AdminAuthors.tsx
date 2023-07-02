@@ -6,7 +6,6 @@ import { IAuthorInfo, IAuthorInfoUpdate } from "@/interfaces/IAuthor";
 import { backendURL } from "@/components/shared/constants/url";
 import ScrollToTop from "@/hooks/useScroll";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
-import { ILoginAdminInfo } from "@/interfaces/IAdmin";
 import { CustomTableState } from "@/interfaces/ITable";
 
 const AdminAuthors: React.FC = () => {
@@ -103,30 +102,23 @@ const AdminAuthors: React.FC = () => {
                 ))}
               </thead>
               <tbody className="bg-white" {...getTableBodyProps()}>
-                {page.map(
-                  (row: {
-                    getRowProps: () => JSX.IntrinsicAttributes &
-                      React.ClassAttributes<HTMLTableRowElement> &
-                      React.HTMLAttributes<HTMLTableRowElement>;
-                    cells: any[];
-                  }) => {
-                    prepareRow(row);
-                    return (
-                      <tr className="text-gray-700" {...row.getRowProps()}>
-                        {row.cells.map((cell) => (
-                          <td
-                            className="px-4 py-3 text-xs border"
-                            {...cell.getCellProps()}
-                          >
-                            <span className="px-2 py-1 font-bold rounded-sm">
-                              {cell.render("Cell")}
-                            </span>
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  }
-                )}
+                {page.map((row) => {
+                  prepareRow(row);
+                  return (
+                    <tr className="text-gray-700" {...row.getRowProps()}>
+                      {row.cells.map((cell) => (
+                        <td
+                          className="px-4 py-3 text-xs border"
+                          {...cell.getCellProps()}
+                        >
+                          <span className="px-2 py-1 font-bold rounded-sm">
+                            {cell.render("Cell")}
+                          </span>
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
 

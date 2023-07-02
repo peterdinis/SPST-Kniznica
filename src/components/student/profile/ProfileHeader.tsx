@@ -1,7 +1,7 @@
 import Image from "next/image";
 import AvatarImage from "../../../images/noImage.png";
 import useStudent from "@/hooks/useStudent";
-
+import HelperModal from "@/components/shared/modals/HelperModal";
 
 const ProfileHeader: React.FC = () => {
   const { studentPersonalInfo } = useStudent();
@@ -18,8 +18,9 @@ const ProfileHeader: React.FC = () => {
             priority={true}
             height={700}
           />
+          <HelperModal btnName={"Nová fotka"} modalHeader={"Nahranie novej fotky"}>rrrr</HelperModal>
         </div>
-        <h1 className="text-gray-900 font-bold text-xl leading-8 my-6">
+        <h1 className="text-gray-900 font-bold text-xl break-words leading-8 my-6">
           {studentPersonalInfo?.email}
         </h1>
       </div>

@@ -4,13 +4,55 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import {
+  passwordChangeError,
+  passwordChangeSuccess,
+} from "@/components/shared/toasts/passwordToasts";
+import * as mut from "@/api/mutations/studentMutations";
+import {
+  changePasswordSchema,
+  changePasswordSchemaType,
+} from "@/validators/student/studentSchema";
 
 const NewPasswordForm: React.FC = () => {
+  const router = useRouter();
+  const mutation = useMutation(mut.studentChangePassword, {
+    onSuccess: (data: any) => {
+      console.log(data);
+    },
+
+    onError: (data: any) => {
+      console.log(data);
+    },
+  });
+
+  const {
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    trigger,
+    register,
+  } = useForm<changePasswordSchemaType>({
+    resolver: zodResolver(changePasswordSchema),
+  });
+
+  const onHandleSubmit: SubmitHandler<changePasswordSchemaType> = (
+    data: any
+  ) => {
+    try {
+      mutation.mutate(data);
+      passwordChangeSuccess();
+      router.push("/student/login");
+    } catch (err) {
+      router.push("/failed");
+      passwordChangeError();
+      return;
+    }
+  };
+
   return (
     <>
       <Header name="Nové heslo" />
-      <form>
+      <form onSubmit={handleSubmit(onHandleSubmit)}>
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
           <div className="mb-4">
             <div className="mb-2">
@@ -22,11 +64,21 @@ const NewPasswordForm: React.FC = () => {
               </label>
               <input
                 className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-                id="Heslo"
+                id="Username"
                 type="text"
                 autoFocus
                 placeholder="meno"
+                {...register("username", {
+                  required: true,
+                })}
+                onKeyUp={() => {
+                  trigger("username");
+                }}
               />
+
+              <p className="text-red-800">
+                {errors.username && errors.username.message}
+              </p>
             </div>
             <div className="mb-2">
               <label
@@ -42,6 +94,20 @@ const NewPasswordForm: React.FC = () => {
                 autoFocus
                 autoComplete="current-password"
                 placeholder="********************************************"
+                {...register("newPassword", {
+                  required: "Zadajte heslo",
+                  minLength: {
+                    value: 8,
+                    message: "Heslo musí mať viac znakov ako je 8",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "Heslo môže mať najviac 20 znakov",
+                  },
+                })}
+                onKeyUp={() => {
+                  trigger("newPassword");
+                }}
               />
             </div>
             <div>

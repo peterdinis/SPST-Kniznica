@@ -1,4 +1,10 @@
 import Header from "@/components/shared/Header";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { useMutation } from "@tanstack/react-query";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 
 const NewPasswordForm: React.FC = () => {
   return (

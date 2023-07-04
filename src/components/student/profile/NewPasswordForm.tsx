@@ -13,16 +13,37 @@ import {
   changePasswordSchema,
   changePasswordSchemaType,
 } from "@/validators/student/studentSchema";
+import Cookies from "js-cookie";
+import { logoutToast } from "@/components/shared/toasts/adminToasts";
 
 const NewPasswordForm: React.FC = () => {
   const router = useRouter();
+
+  const logoutFromApp = () => {
+    logoutToast();
+    Cookies.remove("studentAccessToken", {
+      path: "/",
+    });
+    Cookies.remove("studentData", {
+      path: "/",
+    });
+    Cookies.remove("studentRegisterData", {
+      path: "/",
+    });
+    Cookies.remove("studentPersonalData", {
+      path: "/",
+    });
+    window.location.replace("/student/login");
+  };
+
   const mutation = useMutation(mut.studentChangePassword, {
     onSuccess: (data: any) => {
+      logoutFromApp();
       console.log(data);
     },
 
     onError: (data: any) => {
-      console.log(data);
+      router.push("/password-failed");
     },
   });
 

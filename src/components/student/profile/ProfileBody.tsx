@@ -37,12 +37,8 @@ const ProfileBody: React.FC = () => {
     return;
   }
 
-  const deleteProfile = () => {
-    return;
-  }
-
   return (
-    <div className="w-full md:w-9/12 mx-2 h-64">
+    <div className="w-full md:w-9/12 mx-2 h-128">
       <div className="bg-white p-3 shadow-sm rounded-sm">
         <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
           <PersonIcon />
@@ -143,40 +139,13 @@ const ProfileBody: React.FC = () => {
                         Email
                       </label>
                       <input
-                        type="temail"
+                        type="email"
                         className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                         placeholder="Používateľské meno"
                         value={student?.data.user.email}
                       />
                       <button className="ml-8 mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
                         Upraviť profil
-                      </button>
-                    </form>
-                  </ReturnModal>
-                </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Zmazať profil</div>
-              <div className="px-4 py-2">
-                <button>
-                  <ReturnModal
-                    btnName={"Zmazať profil"}
-                    modalHeader={"Zmazať profil"}
-                  >
-                    <form className="mt-4">
-                      <label className="block text-grey-darker text-sm font-bold mb-2">
-                        Meno
-                      </label>
-                      <input
-                        type="text"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="Používateľské meno"
-                        value={student?.data.user.name}
-                      />
-
-                      <button className="ml-8 mt-6 bg-red-700 rounded-lg p-2 font-extrabold">
-                        Zmazať profil
                       </button>
                     </form>
                   </ReturnModal>

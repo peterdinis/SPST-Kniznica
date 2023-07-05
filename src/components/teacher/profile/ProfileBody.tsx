@@ -2,7 +2,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
 import Options from "./Options";
 import useTeacher from "@/hooks/useTeacher";
-import Link from "next/link";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
@@ -88,26 +87,6 @@ const ProfileBody: React.FC = () => {
                 <div className="px-4 py-2">
                   <button onClick={logoutFromApp} className="text-red-500">
                     Odlhásenie
-                  </button>
-                </div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
-                  Nastaviť nové heslo
-                </div>
-                <div className="px-4 py-2">
-                  <button>
-                    <Link className="text-red-700" href="/teacher/new-password">Nové heslo</Link>
-                  </button>
-                </div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
-                  Upraviť profil
-                </div>
-                <div className="px-4 py-2">
-                  <button>
-                    <Link href="/teacher/new-password">Nové heslo</Link>
                   </button>
                 </div>
               </div>

@@ -3,9 +3,11 @@ import Cookies from "js-cookie";
 import useStudent from "@/hooks/useStudent";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import useCopyToClipboard from "@/hooks/useCopy";
-import Link from "next/link";
+import { useMutation } from "@tanstack/react-query";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
+import * as mut from "@/api/mutations/studentMutations";
+import { IUpdateStudent } from "@/interfaces/IStudent";
 
 const ProfileBody: React.FC = () => {
   const { student } = useStudent();
@@ -32,9 +34,18 @@ const ProfileBody: React.FC = () => {
     window.location.replace(`/student/books/${student?.data.user.username}`);
   };
 
-  const updateProfile = () => {
-    return;
+  const updateProfileMutation = useMutation((dataToUpdate: IUpdateStudent) =>
+  mut.updateProfile(dataToUpdate, student?.data.user.username!)
+);
+
+const updateProfile = async (data: any) => {
+  try {
+    await updateProfileMutation.mutate(data);
+    // Handle successful mutation
+  } catch (error) {
+    // Handle error
   }
+};
 
   return (
     <div className="w-full md:w-9/12 mx-2 h-128">

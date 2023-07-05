@@ -1,13 +1,9 @@
 import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
 import useStudent from "@/hooks/useStudent";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import useCopyToClipboard from "@/hooks/useCopy";
-import { useMutation } from "@tanstack/react-query";
-import ReturnModal from "@/components/shared/modals/ReturnModal";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
-import * as mut from "@/api/mutations/studentMutations";
-import { IUpdateStudent } from "@/interfaces/IStudent";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const ProfileBody: React.FC = () => {
   const { student } = useStudent();
@@ -33,19 +29,6 @@ const ProfileBody: React.FC = () => {
   const goToMyBooks = () => {
     window.location.replace(`/student/books/${student?.data.user.username}`);
   };
-
-  const updateProfileMutation = useMutation((dataToUpdate: IUpdateStudent) =>
-  mut.updateProfile(dataToUpdate, student?.data.user.username!)
-);
-
-const updateProfile = async (data: any) => {
-  try {
-    await updateProfileMutation.mutate(data);
-    // Handle successful mutation
-  } catch (error) {
-    // Handle error
-  }
-};
 
   return (
     <div className="w-full md:w-9/12 mx-2 h-128">
@@ -98,59 +81,6 @@ const updateProfile = async (data: any) => {
               <div className="px-4 py-2">
                 <button onClick={logoutFromApp} className="text-red-700">
                   Odlhásenie
-                </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Upraviť profil</div>
-              <div className="px-4 py-2">
-                <button>
-                  <ReturnModal
-                    btnName={"Upraviť profil"}
-                    modalHeader={"Upraviť profil"}
-                  >
-                    <form className="mt-4">
-                      <label className="block text-grey-darker text-sm font-bold mb-2">
-                        Meno
-                      </label>
-                      <input
-                        type="text"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="Používateľské meno"
-                        value={student?.data.user.name}
-                      />
-                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                        Priezivsko
-                      </label>
-                      <input
-                        type="text"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="Používateľské meno"
-                        value={student?.data.user.lastName}
-                      />
-                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                        Používateľské meno
-                      </label>
-                      <input
-                        type="text"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="Používateľské meno"
-                        value={student?.data.user.username}
-                      />
-                      <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                        placeholder="Používateľské meno"
-                        value={student?.data.user.email}
-                      />
-                      <button className="ml-8 mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
-                        Upraviť profil
-                      </button>
-                    </form>
-                  </ReturnModal>
                 </button>
               </div>
             </div>

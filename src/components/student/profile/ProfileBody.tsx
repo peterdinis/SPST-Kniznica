@@ -91,14 +91,6 @@ const ProfileBody: React.FC = () => {
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Nastaviť nové heslo</div>
-              <div className="px-4 py-2">
-                <button>
-                  <Link className="text-red-700" href="/student/new-password">Nové heslo</Link>
-                </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Upraviť profil</div>
               <div className="px-4 py-2">
                 <button>

@@ -62,6 +62,10 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     },
 
+    onSettled: () =>{
+      router.push("/500");
+    },
+
     onError: () => {
       errorRegister();
       router.push("/booking/failed");

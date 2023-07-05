@@ -22,6 +22,9 @@ import defaultImage from "../../images/noImage.png";
 import { getBookInfoError } from "../shared/errors/constants/errorMessages";
 import { notify, errorRegister } from "../shared/toasts/bookToasts";
 import { motion } from "framer-motion";
+import useStudent from "@/hooks/useStudent";
+import useAdmin from "@/hooks/useAdmin";
+import useTeacher from "@/hooks/useTeacher";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -62,10 +65,6 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     },
 
-    onSettled: () =>{
-      router.push("/500");
-    },
-
     onError: () => {
       errorRegister();
       router.push("/booking/failed");
@@ -82,13 +81,21 @@ const BookInfo: React.FC = () => {
     resolver: zodResolver(createBookingSchema),
   });
 
+  const { student } = useStudent();
+  const { admin } = useAdmin();
+  const { teacher } = useTeacher();
+
   const onHandleSubmit: SubmitHandler<createBookingType> = (
     data: ICreateBooking
   ) => {
     try {
-      mutation.mutate(data);
-      reset();
-      router.push("/books");
+      if (!student && !admin && !teacher) {
+        router.push("/500");
+      } else {
+        mutation.mutate(data);
+        reset();
+        router.push("/books/all");
+      }
     } catch (err) {
       errorRegister();
       router.push("/books/all");

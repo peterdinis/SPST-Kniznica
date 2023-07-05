@@ -90,7 +90,7 @@ const BookInfo: React.FC = () => {
   ) => {
     try {
       if (!student && !admin && !teacher) {
-        router.push("/500");
+        router.push("/forbidden");
       } else {
         mutation.mutate(data);
         reset();

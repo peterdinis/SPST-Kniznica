@@ -2,6 +2,7 @@ import Link from "next/link";
 import useStudent from "@/hooks/useStudent";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
+import NotificationDropdown from "../notifications/NotificationDropdown";
 
 const NavbarLinks: React.FC = () => {
   const { student } = useStudent();
@@ -43,6 +44,9 @@ const NavbarLinks: React.FC = () => {
           <li className="text-black text-xl">
             <Link href="/student/profile">Profil</Link>
           </li>
+          <li className="text-black text-xl">
+            <NotificationDropdown />
+          </li>
         </>
       )}
 
@@ -51,6 +55,9 @@ const NavbarLinks: React.FC = () => {
           <li className="text-black text-xl">
             <Link href="/teacher/profile">Profil</Link>
           </li>
+          <li className="text-black text-xl">
+            <NotificationDropdown />
+          </li>
         </>
       )}
 
@@ -58,6 +65,9 @@ const NavbarLinks: React.FC = () => {
         <>
           <li className="text-black text-xl">
             <Link href="/admin/profile">Profil</Link>
+          </li>
+          <li className="text-black text-xl">
+            <NotificationDropdown />
           </li>
         </>
       )}

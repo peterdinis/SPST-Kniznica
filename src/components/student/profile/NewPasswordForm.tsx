@@ -1,7 +1,6 @@
 import Header from "@/components/shared/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -14,13 +13,11 @@ import {
   changePasswordSchemaType,
 } from "@/validators/student/studentSchema";
 import Cookies from "js-cookie";
-import { logoutToast } from "@/components/shared/toasts/adminToasts";
 
 const NewPasswordForm: React.FC = () => {
   const router = useRouter();
 
   const logoutFromApp = () => {
-    logoutToast();
     Cookies.remove("studentAccessToken", {
       path: "/",
     });

@@ -1,4 +1,5 @@
 import GlobalErrorComponent from "@/components/shared/errors/GlobalErrorComponent";
+import { failedLoginError } from "@/components/shared/errors/constants/errorMessages";
 import { NextPage } from "next";
 
 const AuthFailed: NextPage = () => {
@@ -6,7 +7,7 @@ const AuthFailed: NextPage = () => {
     <>
       <GlobalErrorComponent
         statusCode="401"
-        message="Prihlásenie nebolo úspešne"
+        message={failedLoginError}
       />
     </>
   );

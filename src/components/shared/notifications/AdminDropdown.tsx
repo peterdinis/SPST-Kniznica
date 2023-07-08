@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { Notifications } from "@mui/icons-material";
 import { logoutToast } from "../toasts/adminToasts";
 import Cookies from "js-cookie";
-import { dropdownState } from "@/api/client/atoms/dropdownAtom";
-import { useRecoilValue } from "recoil";
 
 const AdminDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownCount = useRecoilValue(dropdownState);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -33,7 +30,7 @@ const AdminDropdown: React.FC = () => {
         className="flex items-center justify-center text-gray-600 hover:text-gray-900 focus:outline-none"
         onClick={toggleDropdown}
       >
-        <Notifications className="w-6 h-6" />  {dropdownCount}
+        <Notifications className="w-6 h-6" />  0
       </button>
 
       {isOpen && (

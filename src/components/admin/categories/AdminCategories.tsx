@@ -23,7 +23,7 @@ const AdminCategories: React.FC = () => {
       },
       {
         Header: "Popis kategórie",
-        accessor: "publisher",
+        accessor: "description",
       },
 
       {

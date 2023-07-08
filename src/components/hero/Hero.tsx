@@ -8,8 +8,9 @@ import FallbackRender from "../shared/errors/FallbackRender";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import { queryClient } from "@/api/queryClient";
-import socket from "@/lib/socket";
+import { io } from 'socket.io-client';
 
+const socket = io('http://localhost:8111'); 
 
 const Hero: React.FC = () => {
   useEffect(() => {

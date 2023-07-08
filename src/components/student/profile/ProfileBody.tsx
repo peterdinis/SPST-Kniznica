@@ -1,30 +1,11 @@
 import PersonIcon from "@mui/icons-material/Person";
-import Cookies from "js-cookie";
 import useStudent from "@/hooks/useStudent";
 import useCopyToClipboard from "@/hooks/useCopy";
-import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const ProfileBody: React.FC = () => {
   const { student } = useStudent();
   const [value, copy] = useCopyToClipboard();
-
-  const logoutFromApp = () => {
-    logoutToast();
-    Cookies.remove("studentAccessToken", {
-      path: "/",
-    });
-    Cookies.remove("studentData", {
-      path: "/",
-    });
-    Cookies.remove("studentRegisterData", {
-      path: "/",
-    });
-    Cookies.remove("studentPersonalData", {
-      path: "/",
-    });
-    window.location.replace("/student/login");
-  };
 
   const goToMyBooks = () => {
     window.location.replace(`/student/books/${student?.data.user.username}`);
@@ -74,14 +55,6 @@ const ProfileBody: React.FC = () => {
               <div className="px-4 py-2 font-semibold">Moje požičané knihy</div>
               <div className="px-4 py-2">
                 <button className="text-red-700" onClick={goToMyBooks}>Moje knihy</button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>
-              <div className="px-4 py-2">
-                <button onClick={logoutFromApp} className="text-red-700">
-                  Odlhásenie
-                </button>
               </div>
             </div>
           </div>

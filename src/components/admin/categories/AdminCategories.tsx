@@ -66,7 +66,7 @@ const AdminCategories: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<ICategoryInfo[]>(backendURL + "category")
+      .get<ICategoryInfo[]>(backendURL + "categories")
       .then((response) => {
         const data = response.data;
         setTableData(data);

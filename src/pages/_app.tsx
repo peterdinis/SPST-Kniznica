@@ -9,14 +9,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
-import { RecoilRoot } from "recoil";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
         <div className={inter.className}>
           <Layout>
             <ErrorBoundary>
@@ -27,7 +25,6 @@ export default function App({ Component, pageProps }: AppProps) {
             </ErrorBoundary>
           </Layout>
         </div>
-      </RecoilRoot>
     </QueryClientProvider>
   );
 }

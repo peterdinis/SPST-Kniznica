@@ -8,7 +8,6 @@ const NotificationDropdown: React.FC = () => {
     'Message 1',
     'Message 2',
     'Message 3',
-    // Add more messages as needed
   ];
 
   const toggleDropdown = () => {

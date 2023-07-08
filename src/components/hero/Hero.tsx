@@ -9,6 +9,7 @@ import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import { queryClient } from "@/api/queryClient";
 import {socket} from "@/lib/socket"
+import { apiError } from "../shared/errors/constants/errorMessages";
 
 const Hero: React.FC = () => {
   useEffect(() => {
@@ -32,7 +33,7 @@ const Hero: React.FC = () => {
   }
 
   if (isError) {
-    return <FallbackRender error={"Nastala chyba"} />;
+    return <FallbackRender error={apiError} />;
   }
 
   queryClient.setQueryData(["Example Data"], data);

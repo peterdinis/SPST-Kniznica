@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { motion } from "framer-motion";
 import DateTimePicker from "../shared/DateTimePicker";
 import { useQuery } from "@tanstack/react-query";
@@ -8,8 +8,18 @@ import FallbackRender from "../shared/errors/FallbackRender";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import { queryClient } from "@/api/queryClient";
+import {socket} from "@/lib/socket"
+import { apiError } from "../shared/errors/constants/errorMessages";
 
 const Hero: React.FC = () => {
+  useEffect(() => {
+    console.log('Connected to the Socket.io server');
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
   const { data, isLoading, isError } = useQuery(
     ["example"],
     api.getExampleData,
@@ -23,7 +33,7 @@ const Hero: React.FC = () => {
   }
 
   if (isError) {
-    return <FallbackRender error={"Nastala chyba"} />;
+    return <FallbackRender error={apiError} />;
   }
 
   queryClient.setQueryData(["Example Data"], data);

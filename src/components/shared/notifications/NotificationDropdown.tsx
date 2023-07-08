@@ -8,7 +8,6 @@ const NotificationDropdown: React.FC = () => {
     'Message 1',
     'Message 2',
     'Message 3',
-    // Add more messages as needed
   ];
 
   const toggleDropdown = () => {
@@ -16,7 +15,7 @@ const NotificationDropdown: React.FC = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative z-20">
       <button
         className="flex items-center justify-center text-gray-600 hover:text-gray-900 focus:outline-none"
         onClick={toggleDropdown}
@@ -25,7 +24,7 @@ const NotificationDropdown: React.FC = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 bg-white border rounded shadow">
+        <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
           <ul className="py-2">
             {messages.map((message, index) => (
               <li key={index} className="px-4 py-2 hover:bg-gray-100">

@@ -1,28 +1,12 @@
 import PersonIcon from "@mui/icons-material/Person";
-import Cookies from "js-cookie";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import useCopyToClipboard from "@/hooks/useCopy";
 import useAdmin from "@/hooks/useAdmin";
-import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import Options from "../Options";
 
 const ProfileBody: React.FC = () => {
   const { admin } = useAdmin();
   const [value, copy] = useCopyToClipboard();
-
-  const logoutFromApp = () => {
-    logoutToast();
-    Cookies.remove("adminAccessToken", {
-      path: "/",
-    });
-    Cookies.remove("adminData", {
-      path: "/",
-    });
-    Cookies.remove("adminPersonalData", {
-      path: "/",
-    });
-    window.location.replace("/admin/login");
-  };
 
   const goToMyBooks = () => {
     window.location.replace(`/admin/mybooks/${admin?.data.admin.username}`);
@@ -74,14 +58,6 @@ const ProfileBody: React.FC = () => {
               <div className="px-4 py-2">
                 <button onClick={goToMyBooks}>
                   Moje knihy
-                </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>
-              <div className="px-4 py-2">
-                <button onClick={logoutFromApp} className="text-red-700">
-                  Odlhásenie
                 </button>
               </div>
             </div>

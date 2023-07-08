@@ -1,31 +1,12 @@
 import PersonIcon from "@mui/icons-material/Person";
-import Cookies from "js-cookie";
 import Options from "./Options";
 import useTeacher from "@/hooks/useTeacher";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { logoutToast } from "@/components/shared/toasts/adminToasts";
 
 const ProfileBody: React.FC = () => {
   const { teacher } = useTeacher();
   const [value, copy] = useCopyToClipboard();
-
-  const logoutFromApp = () => {
-    logoutToast();
-    Cookies.remove("teacherAccessToken", {
-      path: "/",
-    });
-    Cookies.remove("teacherData", {
-      path: "/",
-    });
-    Cookies.remove("teacherPersonalInfo", {
-      path: "/",
-    });
-    Cookies.remove("teacherRegisterData", {
-      path: "/",
-    });
-    window.location.replace("/teacher/login");
-  };
 
   const goToMyBooks = () => {
     window.location.replace(`/teacher/books/${teacher?.data.user.username}`);
@@ -82,20 +63,11 @@ const ProfileBody: React.FC = () => {
                   <button onClick={goToMyBooks}>Moje knihy</button>
                 </div>
               </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Odhlásiť sa</div>
-                <div className="px-4 py-2">
-                  <button onClick={logoutFromApp} className="text-red-500">
-                    Odlhásenie
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
         <Options />
       </div>
-      
     </>
   );
 };

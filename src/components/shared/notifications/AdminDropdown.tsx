@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { dropdownState } from "@/api/client/atoms/dropdownAtom";
 import { useRecoilValue } from "recoil";
 
-const NotificationDropdown: React.FC = () => {
+const AdminDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownCount = useRecoilValue(dropdownState);
 
@@ -15,19 +15,16 @@ const NotificationDropdown: React.FC = () => {
 
   const logoutFromApp = () => {
     logoutToast();
-    Cookies.remove("studentAccessToken", {
+    Cookies.remove("adminAccessToken", {
       path: "/",
     });
-    Cookies.remove("studentData", {
+    Cookies.remove("adminData", {
       path: "/",
     });
-    Cookies.remove("studentRegisterData", {
+    Cookies.remove("adminPersonalData", {
       path: "/",
     });
-    Cookies.remove("studentPersonalData", {
-      path: "/",
-    });
-    window.location.replace("/student/login");
+    window.location.replace("/admin/login");
   };
 
   return (
@@ -36,14 +33,13 @@ const NotificationDropdown: React.FC = () => {
         className="flex items-center justify-center text-gray-600 hover:text-gray-900 focus:outline-none"
         onClick={toggleDropdown}
       >
-        <Notifications className="w-6 h-6" /> {dropdownCount}
+        <Notifications className="w-6 h-6" />  {dropdownCount}
       </button>
 
       {isOpen && (
         <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
           <ul className="py-2">
             <li className="px-4 py-2 hover:bg-gray-100">
-              <hr />
               <button onClick={logoutFromApp} className="text-red-700">
                 Odlhásenie
               </button>
@@ -55,4 +51,4 @@ const NotificationDropdown: React.FC = () => {
   );
 };
 
-export default NotificationDropdown;
+export default AdminDropdown;

@@ -20,3 +20,6 @@ export const createBookingError: string = "Nastala chyba pri vytvorení objedná
 export const updateBookingError: string = "Nastala chyba pri úpravení objednávky";
 export const loadBorrowedBooksError: string = "Nastala chyba pri načítaní požičaných kníh";
 export const apiError: string = "Chyba na strane applikácie opakujte request neskôr";
+export const failedLoginError: string = "Prihlásenie nebolo úspešne";
+export const forbiddenError: string = "K tejto stránke nemáte prístup";
+export const notFoundError: string = "Stránka nebola najdená";

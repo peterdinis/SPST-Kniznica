@@ -23,19 +23,19 @@ const AdminCategories: React.FC = () => {
       },
       {
         Header: "Popis kategórie",
-        accessor: "publisher",
+        accessor: "description",
       },
 
       {
         Header: "Uprav kategóriu",
         Cell: () => (
-          <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
+          <ReturnModal btnName="Uprav kategóriu" modalHeader="Upraviť kategóriu" />
         ),
       },
       {
         Header: "Zmaž kategóriu",
         Cell: () => (
-          <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
+          <ReturnModal btnName="Zmaž kategóriu" modalHeader="Zmazať kategóriu" />
         ),
       },
     ],
@@ -66,7 +66,7 @@ const AdminCategories: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<ICategoryInfo[]>(backendURL + "category")
+      .get<ICategoryInfo[]>(backendURL + "categories")
       .then((response) => {
         const data = response.data;
         setTableData(data);

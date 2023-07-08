@@ -1,9 +1,13 @@
 import GlobalErrorComponent from "@/components/shared/errors/GlobalErrorComponent";
+import { apiError } from "@/components/shared/errors/constants/errorMessages";
 import { NextPage } from "next";
 
 const InternalServerPage: NextPage = () => {
   return (
-    <GlobalErrorComponent statusCode="500" message="Chyba na strane applikácie" />
+    <GlobalErrorComponent
+      statusCode="500"
+      message={apiError}
+    />
   );
 };
 

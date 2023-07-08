@@ -38,13 +38,13 @@ const AdminBooks: React.FC = () => {
       {
         Header: "Uprav knihu",
         Cell: () => (
-          <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
+          <ReturnModal btnName="Upraviť knihu" modalHeader="Upraviť knihu" />
         ),
       },
       {
         Header: "Zmaž knihu",
         Cell: () => (
-          <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
+          <ReturnModal btnName="Zmazať knigu" modalHeader="Zmazať knihu" />
         ),
       },
     ],

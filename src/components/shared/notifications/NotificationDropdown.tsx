@@ -11,21 +11,21 @@ const NotificationDropdown: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  const [notifications, setNotifications] = useState<string[]>([]);
+  const [notification, setNotification] = useState("");
 
   useEffect(() => {
     // Listen for the 'notification' event from the server
-    socket.on("sendNotificationToStudent", (message: string) => {
-      setNotifications((prevNotifications) => [...prevNotifications, message]);
+    socket.on("notification", (message: string) => {
+      setNotification(message);
     });
 
     return () => {
       // Clean up the event listener when the component unmounts
-      socket.off("sendNotificationToStudent");
+      socket.off("notification");
     };
   }, []);
 
-  console.log(notifications);
+  console.log(notification);
 
   const logoutFromApp = () => {
     logoutToast();
@@ -57,6 +57,7 @@ const NotificationDropdown: React.FC = () => {
         <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
           <ul className="py-2">
             <li className="px-4 py-2 hover:bg-gray-100">
+              <p>{notification}</p>
               <hr />
               <button onClick={logoutFromApp} className="text-red-700">
                 Odlhásenie

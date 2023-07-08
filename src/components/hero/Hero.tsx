@@ -13,7 +13,8 @@ import { apiError } from "../shared/errors/constants/errorMessages";
 
 const Hero: React.FC = () => {
   useEffect(() => {
-    console.log('Connected to the Socket.io server');
+    const message = "Connected to the Socket.io server";
+    queryClient.setQueryData(["socketMessage"], message);
 
     return () => {
       socket.disconnect();

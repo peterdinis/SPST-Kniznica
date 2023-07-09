@@ -29,13 +29,50 @@ const AdminCategories: React.FC = () => {
       {
         Header: "Uprav kategóriu",
         Cell: () => (
-          <ReturnModal btnName="Uprav kategóriu" modalHeader="Upraviť kategóriu" />
+          <ReturnModal
+            btnName="Uprav kategóriu"
+            modalHeader="Upraviť kategóriu"
+          >
+             <form className="mt-4">
+              <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                Id Kategórie
+              </label>
+              <input
+                type="number"
+                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+              />
+               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                Meno kategórie
+              </label>
+              <input
+                type="number"
+                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+              />
+               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                Popis kategórie
+              </label>
+              <input
+                type="number"
+                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </form>
+          </ReturnModal>
         ),
       },
       {
         Header: "Zmaž kategóriu",
         Cell: () => (
-          <ReturnModal btnName="Zmaž kategóriu" modalHeader="Zmazať kategóriu" />
+          <ReturnModal btnName="Zmaž kategóriu" modalHeader="Zmazať kategóriu">
+            <form className="mt-4">
+              <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+                Id Kategórie
+              </label>
+              <input
+                type="number"
+                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </form>
+          </ReturnModal>
         ),
       },
     ],

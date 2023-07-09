@@ -56,9 +56,39 @@ const ProfileBody: React.FC = () => {
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Moje požičané knihy</div>
               <div className="px-4 py-2">
-                <button onClick={goToMyBooks}>
-                  Moje knihy
-                </button>
+                <button onClick={goToMyBooks}>Moje knihy</button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="px-4 py-2 font-semibold">
+                Obnovenie účtu študent
+              </div>
+              <div className="px-4 py-2">
+                <button onClick={goToMyBooks}>Obnov účet študent</button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="px-4 py-2 font-semibold">
+                Obnovenie účtu učiteľ
+              </div>
+              <div className="px-4 py-2">
+                <button onClick={goToMyBooks}>Obnov účet učiteľ</button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="px-4 py-2 font-semibold">
+                Deaktivácia učtu učiteľ
+              </div>
+              <div className="px-4 py-2">
+                <button onClick={goToMyBooks}>Deaktivuj učet učiteľ</button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="px-4 py-2 font-semibold">
+                Deaktivácia učtu žiak
+              </div>
+              <div className="px-4 py-2">
+                <button onClick={goToMyBooks}>Deaktivuj učet žiak</button>
               </div>
             </div>
           </div>

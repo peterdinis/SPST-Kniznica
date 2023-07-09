@@ -17,9 +17,6 @@ const NavbarLinks: React.FC = () => {
         <Link href="/">Domov</Link>
       </li>
       <li className="text-black text-xl">
-        <Link href="/about">O Stránke</Link>
-      </li>
-      <li className="text-black text-xl">
         <Link href="/books/all">Knihy</Link>
       </li>
       <li className="text-black text-xl">

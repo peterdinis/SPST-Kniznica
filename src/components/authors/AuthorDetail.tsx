@@ -106,6 +106,10 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold">Literárne obdobie</span>:{" "}
                 {data.litPeriod}
               </p>
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold">Author/ka napísal/a tieto knihy</span>:{" "}
+                {data.litPeriod}
+              </p>
               <hr className="mt-6" />
               <button
                 onClick={navigateToAuthors}

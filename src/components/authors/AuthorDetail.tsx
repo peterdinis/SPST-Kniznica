@@ -9,6 +9,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import Image from "next/image";
 import defaultImage from "../../images/noImage.png";
 import { getAuthorDetailError } from "../shared/errors/constants/errorMessages";
+import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 
 const AuthorDetail: React.FC = () => {
   const router = useRouter();
@@ -105,6 +106,32 @@ const AuthorDetail: React.FC = () => {
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Literárne obdobie</span>:{" "}
                 {data.litPeriod}
+              </p>
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold">Author/ka napísal/a tieto knihy</span>:{" "}
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                {data.books.length === 0 ? (
+                  <>
+                    <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      Autor/ka nenapísal/a žiadne knihy{" "}
+                      <SentimentDissatisfiedIcon />
+                    </dd>
+                  </>
+                ) : (
+                  <div>
+                    {data.books &&
+                      data.books.map((item: { name: string }) => {
+                        return (
+                          <>
+                            <div className="mt-1 pt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0 flex">
+                              {item.name} {""}
+                            </div>
+                          </>
+                        );
+                      })}
+                  </div>
+                )}
+              </dd>
               </p>
               <hr className="mt-6" />
               <button

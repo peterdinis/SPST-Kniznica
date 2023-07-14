@@ -24,8 +24,6 @@ const CategoryInfo: React.FC = () => {
     }
   );
 
-  console.log(data);
-
   if (isError) {
     return <FallbackRender error="Nastala chyba" />;
   }

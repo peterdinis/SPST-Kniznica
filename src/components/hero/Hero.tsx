@@ -1,18 +1,19 @@
-import React, {useEffect} from "react";
 import { motion } from "framer-motion";
 import DateTimePicker from "../shared/DateTimePicker";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import {socket} from "@/lib/socket"
+import { useEffectOnce } from "@/hooks/useEffectOnce";
 
 const Hero: React.FC = () => {
-  useEffect(() => {
+
+  useEffectOnce(() =>{
     const message = "Connected to the Socket.io server";
     console.log(message);
     return () => {
       socket.disconnect();
     };
-  }, []);
+  })
 
   const containerVariants = {
     hidden: { opacity: 0 },

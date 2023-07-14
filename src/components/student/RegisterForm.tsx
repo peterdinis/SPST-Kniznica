@@ -14,10 +14,9 @@ import {
 import {
   notify,
   errorRegister,
-  emailAlreadyExistsToast,
-  applicationErrorToast,
 } from "../shared/toasts/registerToasts";
 import { IErrorMessage } from "@/interfaces/IError";
+import { applicationErrorToast, emailAlreadyExistsToast } from "../shared/toasts/applicationToasts";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();

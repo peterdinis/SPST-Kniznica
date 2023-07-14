@@ -11,7 +11,7 @@ const AccessRoute = <T extends object>(WrappedComponent: ComponentType<T>) => {
       const adminCookie = Cookies.get("adminPersonalData");
       const studentCookie = Cookies.get("studentPersonalInfo");
 
-      if (!teacherCookie && !adminCookie) {
+      if (!teacherCookie && !adminCookie && !studentCookie) {
         router.push('/forbidden');
       }
     }, []);

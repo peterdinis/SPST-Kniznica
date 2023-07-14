@@ -8,12 +8,29 @@ import * as mut from "../../api/mutations/studentMutations";
 import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createStudentRegisterType, registerStudentSchema } from "@/validators/student/studentSchema";
-import { notify, errorRegister } from "../shared/toasts/registerToasts";
+import { notify, errorRegister, userAlreadyExistsToast, emailAlreadyExistsToast } from "../shared/toasts/registerToasts";
+import { IErrorMessage } from "@/interfaces/IError";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
 
-  const mutation = useMutation(mut.register);
+  const mutation = useMutation(mut.register, {
+    onError: (error: IErrorMessage) => {
+      if (error.response?.status === 409) {
+        // Display error message for conflict (409) status code
+        emailAlreadyExistsToast();
+      } else if (error.response?.data?.message === "Email already exists") {
+        // Display error message for email duplication
+        userAlreadyExistsToast();
+      } else {
+        // Display generic error message
+        errorRegister();
+      }
+    },
+    onSuccess: () => {
+      router.push("/student/login");
+    },
+  });
 
   const {
     handleSubmit,
@@ -24,16 +41,20 @@ const RegisterForm: React.FC = () => {
     resolver: zodResolver(registerStudentSchema)
   });
 
-  const onHandleSubmit: SubmitHandler<createStudentRegisterType> = (data: IRegister) => {
+  const onHandleSubmit: SubmitHandler<createStudentRegisterType> = async (data: IRegister) => {
     try {
       Cookies.set("studentRegisterData", JSON.stringify(data));
-      mutation.mutate(data);
+      await mutation.mutateAsync(data);
       notify();
-      router.push("/student/login");
-    } catch (err) {
-      router.push("/failed");
-      errorRegister();
-      return;
+    } catch (err: any) {
+      // Handle error
+      if (err.response?.data?.message === "Email already exists") {
+        // Display error message for email duplication
+        emailAlreadyExistsToast();
+      } else {
+        // Display generic error message
+        errorRegister();
+      }
     }
   };
 

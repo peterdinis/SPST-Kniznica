@@ -1,43 +1,19 @@
-import React, {useEffect} from "react";
 import { motion } from "framer-motion";
 import DateTimePicker from "../shared/DateTimePicker";
-import { useQuery } from "@tanstack/react-query";
-import * as api from "../../api/queries/exampleQuery";
-import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/errors/FallbackRender";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
-import { queryClient } from "@/api/queryClient";
 import {socket} from "@/lib/socket"
-import { apiError } from "../shared/errors/constants/errorMessages";
+import { useEffectOnce } from "@/hooks/useEffectOnce";
 
 const Hero: React.FC = () => {
-  useEffect(() => {
-    const message = "Connected to the Socket.io server";
-    queryClient.setQueryData(["socketMessage"], message);
 
+  useEffectOnce(() =>{
+    const message = "Connected to the Socket.io server";
+    console.log(message);
     return () => {
       socket.disconnect();
     };
-  }, []);
-
-  const { data, isLoading, isError } = useQuery(
-    ["example"],
-    api.getExampleData,
-    {
-      retry: 2,
-    }
-  );
-
-  if (isLoading) {
-    return <FallbackLoader />;
-  }
-
-  if (isError) {
-    return <FallbackRender error={apiError} />;
-  }
-
-  queryClient.setQueryData(["Example Data"], data);
+  })
 
   const containerVariants = {
     hidden: { opacity: 0 },

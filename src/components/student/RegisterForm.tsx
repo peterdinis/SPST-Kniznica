@@ -16,9 +16,12 @@ const RegisterForm: React.FC = () => {
 
   const mutation = useMutation(mut.register, {
     onError: (error: IErrorMessage) => {
-      if (error.response?.data?.message === "Email already exists") {
+      if (error.response?.status === 409) {
+        // Display error message for conflict (409) status code
+        emailAlreadyExistsToast();
+      } else if (error.response?.data?.message === "Email already exists") {
         // Display error message for email duplication
-        userAlreadyExistsToast()
+        userAlreadyExistsToast();
       } else {
         // Display generic error message
         errorRegister();

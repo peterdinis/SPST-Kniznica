@@ -12,7 +12,7 @@ import {
 } from "@/validators/student/studentSchema";
 import Cookies from "js-cookie";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
-import { IErrorMessage } from "@/interfaces/IError";
+import { IErrorMessage } from "@/interfaces/IGlobalError";
 import {
   applicationErrorToast,
   emailAlreadyExistsToast,

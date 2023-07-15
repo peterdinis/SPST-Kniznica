@@ -15,7 +15,7 @@ import {
   notify,
   errorRegister,
 } from "../shared/toasts/registerToasts";
-import { IErrorMessage } from "@/interfaces/IError";
+import { IErrorMessage } from "@/interfaces/IGlobalError";
 import { applicationErrorToast, emailAlreadyExistsToast } from "../shared/toasts/applicationToasts";
 
 const RegisterForm: React.FC = () => {

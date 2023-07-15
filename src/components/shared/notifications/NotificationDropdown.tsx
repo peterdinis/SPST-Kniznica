@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Notifications } from "@mui/icons-material";
 import { logoutToast } from "../toasts/adminToasts";
 import Cookies from "js-cookie";
-import {socket} from "@/lib/socket";
+import { socket } from "@/lib/socket";
 
 const NotificationDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,21 +11,22 @@ const NotificationDropdown: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  const [notification, setNotification] = useState("");
+  const [notifications, setNotifications] = useState<any>([]);
 
   useEffect(() => {
-    // Listen for the 'notification' event from the server
-    socket.on("notification", (message: string) => {
-      setNotification(message);
+    socket.on("newNotification", (notification) => {
+      setNotifications((prevNotifications: any) => [
+        ...prevNotifications,
+        notification,
+      ]);
     });
 
     return () => {
-      // Clean up the event listener when the component unmounts
-      socket.off("notification");
+      socket.off("newNotification");
     };
   }, []);
 
-  console.log(notification);
+  console.log(notifications);
 
   const logoutFromApp = () => {
     logoutToast();
@@ -57,7 +58,13 @@ const NotificationDropdown: React.FC = () => {
         <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
           <ul className="py-2">
             <li className="px-4 py-2 hover:bg-gray-100">
-              <p>{notification}</p>
+              {notifications.map((notification: any) => (
+                <li key={notification.id}>
+                  <h3>{notification.title}</h3>
+                  <p>{notification.message}</p>
+                </li>
+              ))}
+
               <hr />
               <button onClick={logoutFromApp} className="text-red-700">
                 Odlhásenie

@@ -52,8 +52,6 @@ const NotificationDropdown: React.FC = () => {
     return <FallbackLoader />;
   }
 
-  console.log(data);
-
   return (
     <div className="relative z-20">
       <button

@@ -2,6 +2,7 @@ import { UsePaginationState, UsePaginationInstanceProps, HeaderGroup } from "rea
 import { ITableProps } from "./ITable";
 
 export interface IRegister {
+  id?: number;
   name: string;
   lastName: string;
   username: string;

@@ -4,12 +4,14 @@ import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import {socket} from "@/lib/socket"
 import { useEffectOnce } from "@/hooks/useEffectOnce";
+import { queryClient } from "@/api/queryClient";
 
 const Hero: React.FC = () => {
 
   useEffectOnce(() =>{
     const message = "Connected to the Socket.io server";
-    console.log(message);
+    queryClient.setQueryData(["exampleMessage"], message);
+    
     return () => {
       socket.disconnect();
     };

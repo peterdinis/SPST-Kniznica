@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { Notifications } from "@mui/icons-material";
 import { logoutToast } from "../toasts/adminToasts";
 import Cookies from "js-cookie";
-import { socket } from "@/lib/socket";
+import { useQuery } from "@tanstack/react-query";
+import * as api from "@/api/queries/notificationsQueries";
+import useStudent from "@/hooks/useStudent"
+import FallbackLoader from "../FallbackLoader";
+import FallbackRender from "../errors/FallbackRender";
 
 const NotificationDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { studentPersonalInfo } = useStudent();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
-  const [notifications, setNotifications] = useState<any>([]);
-
-  useEffect(() => {
-    socket.on("newNotification", (notification) => {
-      setNotifications((prevNotifications: any) => [
-        ...prevNotifications,
-        notification,
-      ]);
-    });
-
-    return () => {
-      socket.off("newNotification");
-    };
-  }, []);
-
-  console.log(notifications);
 
   const logoutFromApp = () => {
     logoutToast();
@@ -45,6 +33,22 @@ const NotificationDropdown: React.FC = () => {
     window.location.replace("/student/login");
   };
 
+/*   const studentUsername = studentPersonalInfo?.username;
+
+  const {data, isLoading, isError} = useQuery(["myNotifications", studentUsername], () => {
+    api.getMyNotifications(studentUsername as unknown as string)
+  })
+
+  if (isError) {
+    return <FallbackRender error={"Nepodarilo sa načítať notifikácie"} />;
+  }
+
+  if (isLoading) {
+    return <FallbackLoader />;
+  }
+
+  console.log(data); */
+  
   return (
     <div className="relative z-20">
       <button
@@ -58,17 +62,17 @@ const NotificationDropdown: React.FC = () => {
         <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
           <ul className="py-2">
             <li className="px-4 py-2 hover:bg-gray-100">
-              {notifications.map((notification: any) => (
+             {/*  {notifications.map((notification: any) => (
                 <li key={notification.id}>
                   <h3>{notification.title}</h3>
                   <p>{notification.message}</p>
                 </li>
-              ))}
+              ))} */}
 
               <hr />
-              <button onClick={logoutFromApp} className="text-red-700">
+              <li onClick={logoutFromApp} className="text-red-700">
                 Odlhásenie
-              </button>
+              </li>
             </li>
           </ul>
         </div>

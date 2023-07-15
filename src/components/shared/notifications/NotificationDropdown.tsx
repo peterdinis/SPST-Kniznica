@@ -78,8 +78,7 @@ const NotificationDropdown: React.FC = () => {
                   <p>{notification.message}</p>
                 </li>
               ))}
-
-              <hr />
+              <br />
               <li onClick={logoutFromApp} className="text-red-700">
                 Odlhásenie
               </li>

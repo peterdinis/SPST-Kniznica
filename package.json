@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -43,6 +46,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^13.4.10",
     "@tailwindcss/typography": "^0.5.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -51,6 +55,7 @@
     "@types/react-select": "^5.0.1",
     "@types/react-table": "^7.7.14",
     "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4",
     "typescript": "^5.1.3"

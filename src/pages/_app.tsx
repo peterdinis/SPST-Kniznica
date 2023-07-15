@@ -11,8 +11,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
 
 const roboto = Montserrat({
-  weight: '300',
+  weight: ['400'],
+  style: ['normal'],
   subsets: ['latin'],
+  display: "auto"
 })
  
 

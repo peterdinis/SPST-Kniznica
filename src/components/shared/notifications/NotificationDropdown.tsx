@@ -71,17 +71,15 @@ const NotificationDropdown: React.FC = () => {
                 <div>
                   {" "}
                   <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    Žiadne správy{" "}
-                    <SentimentDissatisfiedIcon />
+                    Žiadne správy <SentimentDissatisfiedIcon />
                   </dd>
                 </div>
               )}
-              {/*  {notifications.map((notification: any) => (
+              {data.map((notification: any) => (
                 <li key={notification.id}>
-                  <h3>{notification.title}</h3>
                   <p>{notification.message}</p>
                 </li>
-              ))} */}
+              ))}
 
               <hr />
               <li onClick={logoutFromApp} className="text-red-700">

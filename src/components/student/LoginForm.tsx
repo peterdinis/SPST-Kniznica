@@ -12,6 +12,11 @@ import {
 } from "@/validators/student/studentSchema";
 import Cookies from "js-cookie";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
+import { IErrorMessage } from "@/interfaces/IGlobalError";
+import {
+  passwordErrors,
+  userDoesNotExists,
+} from "../shared/toasts/applicationToasts";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -34,7 +39,16 @@ const LoginForm: React.FC = () => {
       window.location.replace("/student/profile");
     },
 
-    onError: () => {
+    onError: (error: IErrorMessage) => {
+      if (error.response?.status === 400) {
+        userDoesNotExists();
+      } else if (error.response?.data?.message === "User does not exist") {
+        userDoesNotExists();
+      } else if (error.response?.data?.message === "Password does not match.") {
+        passwordErrors();
+      } else {
+        errorRegister();
+      }
       router.push("/failed");
       errorRegister();
       return;

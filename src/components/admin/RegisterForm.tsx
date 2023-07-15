@@ -9,12 +9,27 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createAdminRegisterType, createAdminSchema } from "@/validators/admin/adminSchema";
 import { IRegister } from "@/interfaces/IAdmin";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
+import { IErrorMessage } from "@/interfaces/IGlobalError";
+import { applicationErrorToast, emailAlreadyExistsToast } from "../shared/toasts/applicationToasts";
 
 const RegisterForm: React.FC = () => {
 
   const router = useRouter();
 
-  const mutation = useMutation(mut.register);
+  const mutation = useMutation(mut.register, {
+    onError: (error: IErrorMessage) => {
+      if (error.response?.status === 409) {
+        applicationErrorToast();
+      } else if (error.response?.data?.message === "Email already exists") {
+        emailAlreadyExistsToast();
+      } else {
+        errorRegister();
+      }
+    },
+    onSuccess: () => {
+      router.push("/admin/login");
+    },
+  });
 
   const {
     handleSubmit,
@@ -31,7 +46,12 @@ const RegisterForm: React.FC = () => {
       mutation.mutate(data);
       notify();
       router.push("/admin/login");
-    } catch (err) {
+    } catch (err: any) {
+      if (err.response?.data?.message === "Email already exists") {
+        emailAlreadyExistsToast();
+      } else {
+        errorRegister();
+      }
       router.push("/failed");
       errorRegister();
       return;

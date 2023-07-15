@@ -7,6 +7,11 @@ import * as mut from "../../api/mutations/teacherMutations";
 import { ILogin, ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import { useRouter } from "next/router";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
+import { IErrorMessage } from "@/interfaces/IGlobalError";
+import {
+  applicationErrorToast,
+  emailAlreadyExistsToast,
+} from "../shared/toasts/applicationToasts";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -19,7 +24,14 @@ const LoginForm: React.FC = () => {
       window.location.replace("/teacher/profile");
     },
 
-    onError: (data) => {
+    onError: (error: IErrorMessage) => {
+      if (error.response?.status === 409) {
+        applicationErrorToast();
+      } else if (error.response?.data?.message === "Email already exists") {
+        emailAlreadyExistsToast();
+      } else {
+        errorRegister();
+      }
       router.push("/failed");
       errorRegister();
       return;
@@ -34,7 +46,17 @@ const LoginForm: React.FC = () => {
   } = useForm<ILogin>();
 
   const onHandleSubmit = (data: ILogin) => {
-    mutation.mutate(data);
+    try {
+      Cookies.set("teacherData", JSON.stringify(data));
+      mutation.mutate(data);
+      notify();
+    } catch (err: any) {
+      if (err.response?.data?.message === "Email already exists") {
+        emailAlreadyExistsToast();
+      } else {
+        errorRegister();
+      }
+    }
   };
 
   return (

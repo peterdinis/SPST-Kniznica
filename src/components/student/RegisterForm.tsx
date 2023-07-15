@@ -7,9 +7,16 @@ import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutations";
 import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createStudentRegisterType, registerStudentSchema } from "@/validators/student/studentSchema";
-import { notify, errorRegister, userAlreadyExistsToast, emailAlreadyExistsToast } from "../shared/toasts/registerToasts";
-import { IErrorMessage } from "@/interfaces/IError";
+import {
+  createStudentRegisterType,
+  registerStudentSchema,
+} from "@/validators/student/studentSchema";
+import {
+  notify,
+  errorRegister,
+} from "../shared/toasts/registerToasts";
+import { IErrorMessage } from "@/interfaces/IGlobalError";
+import { applicationErrorToast, emailAlreadyExistsToast } from "../shared/toasts/applicationToasts";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -17,13 +24,10 @@ const RegisterForm: React.FC = () => {
   const mutation = useMutation(mut.register, {
     onError: (error: IErrorMessage) => {
       if (error.response?.status === 409) {
-        // Display error message for conflict (409) status code
-        emailAlreadyExistsToast();
+        applicationErrorToast();
       } else if (error.response?.data?.message === "Email already exists") {
-        // Display error message for email duplication
-        userAlreadyExistsToast();
+        emailAlreadyExistsToast();
       } else {
-        // Display generic error message
         errorRegister();
       }
     },
@@ -38,21 +42,20 @@ const RegisterForm: React.FC = () => {
     trigger,
     register,
   } = useForm<createStudentRegisterType>({
-    resolver: zodResolver(registerStudentSchema)
+    resolver: zodResolver(registerStudentSchema),
   });
 
-  const onHandleSubmit: SubmitHandler<createStudentRegisterType> = async (data: IRegister) => {
+  const onHandleSubmit: SubmitHandler<createStudentRegisterType> = async (
+    data: IRegister
+  ) => {
     try {
       Cookies.set("studentRegisterData", JSON.stringify(data));
       await mutation.mutateAsync(data);
       notify();
     } catch (err: any) {
-      // Handle error
       if (err.response?.data?.message === "Email already exists") {
-        // Display error message for email duplication
         emailAlreadyExistsToast();
       } else {
-        // Display generic error message
         errorRegister();
       }
     }

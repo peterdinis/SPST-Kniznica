@@ -12,6 +12,11 @@ import {
   registerTeacherSchema,
 } from "@/validators/teacher/teacherSchema";
 import { notify, errorRegister } from "../shared/toasts/registerToasts";
+import { IErrorMessage } from "@/interfaces/IGlobalError";
+import {
+  applicationErrorToast,
+  emailAlreadyExistsToast,
+} from "../shared/toasts/applicationToasts";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -25,17 +30,34 @@ const RegisterForm: React.FC = () => {
     resolver: zodResolver(registerTeacherSchema),
   });
 
-  const mutation = useMutation(mut.register);
-  const onHandleSubmit: SubmitHandler<createRegisterTeacherType> = (data: IRegister) => {
+  const mutation = useMutation(mut.register, {
+    onError: (error: IErrorMessage) => {
+      if (error.response?.status === 409) {
+        applicationErrorToast();
+      } else if (error.response?.data?.message === "Email already exists") {
+        emailAlreadyExistsToast();
+      } else {
+        errorRegister();
+      }
+    },
+    onSuccess: () => {
+      router.push("/teacher/login");
+    },
+  });
+
+  const onHandleSubmit: SubmitHandler<createRegisterTeacherType> = async (
+    data: IRegister
+  ) => {
     try {
       Cookies.set("teacherRegisterData", JSON.stringify(data));
       mutation.mutate(data);
       notify();
-      router.push("/teacher/login");
-    } catch (err) {
-      router.push("/failed");
-      errorRegister();
-      return;
+    } catch (err: any) {
+      if (err.response?.data?.message === "Email already exists") {
+        emailAlreadyExistsToast();
+      } else {
+        errorRegister();
+      }
     }
   };
 

@@ -39,6 +39,17 @@ const GetAllAuthors: React.FC = () => {
     return <FallbackRender error={getAllAuthorsError} />;
   }
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
   return (
     <>
       <Header name="Všetci spisovatelia" />
@@ -57,9 +68,9 @@ const GetAllAuthors: React.FC = () => {
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial="hidden"
+                animate="visible"
+                variants={itemVariants}
               >
                 <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                   <div className="mb-8">

@@ -24,13 +24,10 @@ const RegisterForm: React.FC = () => {
   const mutation = useMutation(mut.register, {
     onError: (error: IErrorMessage) => {
       if (error.response?.status === 409) {
-        // Display error message for conflict (409) status code
         applicationErrorToast();
       } else if (error.response?.data?.message === "Email already exists") {
-        // Display error message for email duplication
         emailAlreadyExistsToast();
       } else {
-        // Display generic error message
         errorRegister();
       }
     },
@@ -56,12 +53,9 @@ const RegisterForm: React.FC = () => {
       await mutation.mutateAsync(data);
       notify();
     } catch (err: any) {
-      // Handle error
       if (err.response?.data?.message === "Email already exists") {
-        // Display error message for email duplication
         emailAlreadyExistsToast();
       } else {
-        // Display generic error message
         errorRegister();
       }
     }

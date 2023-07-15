@@ -14,8 +14,6 @@ import Cookies from "js-cookie";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
 import { IErrorMessage } from "@/interfaces/IGlobalError";
 import {
-  applicationErrorToast,
-  emailAlreadyExistsToast,
   passwordErrors,
   userDoesNotExists,
 } from "../shared/toasts/applicationToasts";

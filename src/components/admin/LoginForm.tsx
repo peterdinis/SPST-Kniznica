@@ -12,6 +12,8 @@ import {
 } from "@/validators/admin/adminSchema";
 import { ILogin, ILoginAdminInfo } from "@/interfaces/IAdmin";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
+import { IErrorMessage } from "@/interfaces/IGlobalError";
+import { userDoesNotExists, passwordErrors } from "../shared/toasts/applicationToasts";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -34,7 +36,16 @@ const LoginForm: React.FC = () => {
       window.location.replace("/admin/profile");
     },
 
-    onError: () => {
+    onError: (error: IErrorMessage) => {
+      if (error.response?.status === 400) {
+        userDoesNotExists();
+      } else if (error.response?.data?.message === "User does not exist") {
+        userDoesNotExists();
+      } else if (error.response?.data?.message === "Password does not match.") {
+        passwordErrors();
+      } else {
+        errorRegister();
+      }
       router.push("/failed");
       errorRegister();
       return;

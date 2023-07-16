@@ -29,7 +29,7 @@ const AuthorDetail: React.FC = () => {
   );
 
   console.log(data);
-  
+
   if (isError) {
     return <FallbackRender error={getAuthorDetailError} />;
   }
@@ -82,14 +82,16 @@ const AuthorDetail: React.FC = () => {
               {data.deathYear === null || data.deathYear === undefined ? (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                    <span className="font-bold text-green-800">Author/ka je medzi živymi</span>
+                    <span className="font-bold text-green-800">
+                      Author/ka je medzi živymi
+                    </span>
                   </p>
                 </>
               ) : (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                    <span className="font-bold text-red-800">Dátum Umrtia</span>:{" "}
-                    {data.deathYear}
+                    <span className="font-bold text-red-800">Dátum Umrtia</span>
+                    : {data.deathYear}
                   </p>
                 </>
               )}
@@ -98,9 +100,7 @@ const AuthorDetail: React.FC = () => {
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Krátke info o autorovi/ke</span>:{" "}
-                <span className="break-words">
-                {data.description}
-                </span>
+                <span className="break-words">{data.description}</span>
               </p>
 
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
@@ -108,30 +108,33 @@ const AuthorDetail: React.FC = () => {
                 {data.litPeriod}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Author/ka napísal/a tieto knihy</span>:{" "}
+                <span className="font-bold">
+                  Author/ka napísal/a tieto knihy
+                </span>
+                :{" "}
                 <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                {data.books.length === 0 ? (
-                  <>
-                    <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                      Autor/ka nenapísal/a žiadne knihy{" "}
-                      <SentimentDissatisfiedIcon />
-                    </dd>
-                  </>
-                ) : (
-                  <div>
-                    {data.books &&
-                      data.books.map((item: { name: string }) => {
+                  {!data.books || data.books.length === 0 ? (
+                    <>
+                      <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                        Autor/ka nenapísal/a žiadne knihy{" "}
+                        <SentimentDissatisfiedIcon />
+                      </dd>
+                    </>
+                  ) : (
+                    <div>
+                      {data.books.map((item: { name: string }) => {
                         return (
-                          <>
-                            <div className="mt-1 pt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0 flex">
-                              {item.name} {""}
-                            </div>
-                          </>
+                          <div
+                            key={item.name}
+                            className="mt-1 pt-2 text-lg text-gray-900 sm:col-span-2 sm:mt-0"
+                          >
+                            {item.name} {""}
+                          </div>
                         );
                       })}
-                  </div>
-                )}
-              </dd>
+                    </div>
+                  )}
+                </dd>
               </p>
               <hr className="mt-6" />
               <button

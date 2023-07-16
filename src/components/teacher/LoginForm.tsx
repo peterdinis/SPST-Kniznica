@@ -7,7 +7,7 @@ import * as mut from "../../api/mutations/teacherMutations";
 import { ILogin, ILoginTeacherInfo } from "@/interfaces/ITeacher";
 import { useRouter } from "next/router";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
-import { IErrorMessage } from "@/interfaces/IGlobalError";
+import { IErrorMessage } from "@/interfaces/IError";
 import {
   applicationErrorToast,
   emailAlreadyExistsToast,

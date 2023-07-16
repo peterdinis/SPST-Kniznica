@@ -12,7 +12,7 @@ import {
 } from "@/validators/admin/adminSchema";
 import { ILogin, ILoginAdminInfo } from "@/interfaces/IAdmin";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
-import { IErrorMessage } from "@/interfaces/IGlobalError";
+import { IErrorMessage } from "@/interfaces/IError";
 import { userDoesNotExists, passwordErrors } from "../shared/toasts/applicationToasts";
 
 const LoginForm: React.FC = () => {

@@ -63,25 +63,25 @@ const CategoryInfo: React.FC = () => {
                 Počet kníh ktoré majú túto kategóriu
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                {data.books.length === 0 ? (
+                {!data.books || data.books.length === 0 ? (
                   <>
-                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                      Táto kategórie nemá pridelené žiadne knihy{" "}
+                    <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      Autor/ka nenapísal/a žiadne knihy{" "}
                       <SentimentDissatisfiedIcon />
                     </dd>
                   </>
                 ) : (
                   <div>
-                    {data.books &&
-                      data.books.map((item: { name: string }) => {
-                        return (
-                          <>
-                            <div className="mt-1 pt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0 flex">
-                              {item.name} {""}
-                            </div>
-                          </>
-                        );
-                      })}
+                    {data.books.map((item: { name: string }) => {
+                      return (
+                        <div
+                          key={item.name}
+                          className="mt-1 pt-2 text-lg text-gray-900 sm:col-span-2 sm:mt-0"
+                        >
+                          {item.name} {""}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </dd>

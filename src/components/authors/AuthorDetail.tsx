@@ -126,7 +126,7 @@ const AuthorDetail: React.FC = () => {
                         return (
                           <div
                             key={item.name}
-                            className="mt-1 pt-2 text-lg text-gray-900 sm:col-span-2 sm:mt-0 flex"
+                            className="mt-1 pt-2 text-lg text-gray-900 sm:col-span-2 sm:mt-0"
                           >
                             {item.name} {""}
                           </div>

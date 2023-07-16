@@ -8,7 +8,7 @@ import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Image from "next/image";
 import defaultImage from "../../images/noImage.png";
-import { getAuthorDetailError } from "../shared/errors/constants/errorMessages";
+import { getAuthorDetailError } from "../../constants/errorMessages";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 
 const AuthorDetail: React.FC = () => {

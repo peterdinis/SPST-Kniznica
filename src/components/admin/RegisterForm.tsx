@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createAdminRegisterType, createAdminSchema } from "@/validators/admin/adminSchema";
 import { IRegister } from "@/interfaces/IAdmin";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
-import { IErrorMessage } from "@/interfaces/IGlobalError";
+import { IErrorMessage } from "@/interfaces/IError";
 import { applicationErrorToast, emailAlreadyExistsToast } from "../shared/toasts/applicationToasts";
 
 const RegisterForm: React.FC = () => {

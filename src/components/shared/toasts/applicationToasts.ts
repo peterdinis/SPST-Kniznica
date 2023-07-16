@@ -5,3 +5,5 @@ export const emailAlreadyExistsToast = () => toast.error("Email už existuje");
 export const applicationErrorToast = () => toast.error("Nepodarilo sa vykonať request");
 export const userDoesNotExists = () => toast.error("Používateľ neexistuje");
 export const passwordErrors = () => toast.error("Heslá sa nezhodujú");
+export const studentRoleError = () => toast.error("Rola musí byť STUDENT");
+export const teacherRoleError = () => toast.error("Rola musí byť TEACHER");

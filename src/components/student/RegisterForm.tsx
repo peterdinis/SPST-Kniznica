@@ -17,9 +17,10 @@ import {
   errorRegister,
 } from '../shared/toasts/registerToasts';
 import { IErrorMessage } from '@/interfaces/IError';
-import { applicationErrorToast, emailAlreadyExistsToast } from '../shared/toasts/applicationToasts';
+import { applicationErrorToast, emailAlreadyExistsToast, studentRoleError } from '../shared/toasts/applicationToasts';
 import Header from '../shared/Header';
 import {socket} from "@/lib/socket"
+import { STUDENT } from '@/constants/applicationConstants';
 
 
 const RegisterForm: React.FC = () => {
@@ -52,6 +53,9 @@ const RegisterForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createStudentRegisterType> = async (
     data: IRegister
   ) => {
+    if(data.role === STUDENT) {
+      studentRoleError();
+    }
     try {
       Cookies.set('studentRegisterData', JSON.stringify(data));
       await mutation.mutateAsync(data);

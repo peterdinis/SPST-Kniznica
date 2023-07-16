@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 interface IMailtoProps {
   mailto: string;
   mailtoEmail: string;
@@ -6,7 +8,7 @@ interface IMailtoProps {
 export default function Mailto({ mailto, mailtoEmail }: IMailtoProps) {
   return (
     <li>
-      {mailto} na: <a className="text-red-700" href="pdinis1@gmail.com">{mailtoEmail}</a>
+      {mailto} na: <Link className="text-red-700" href="pdinis1@gmail.com">{mailtoEmail}</Link>
     </li>
   );
 }

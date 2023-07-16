@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Container, Typography } from "@mui/material";
+import Link from "next/link";
 
 const Creator: React.FC = () => {
   const creatorVariants = {
@@ -9,7 +10,7 @@ const Creator: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.3,
         delay: 0.2,
       },
     },
@@ -25,9 +26,9 @@ const Creator: React.FC = () => {
       <Container>
         <Typography mt={3} fontSize={20}>
           Author applikácie{" "}
-          <a className="text-red-400" href="https://www.facebook.com/peto.dinis/">
+          <Link className="text-red-400" href="https://www.facebook.com/peto.dinis/">
             Peter Dinis
-          </a>
+          </Link>
         </Typography>
       </Container>
     </motion.div>

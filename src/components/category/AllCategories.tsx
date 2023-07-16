@@ -41,6 +41,17 @@ const AllCategories: React.FC = () => {
     return <FallbackRender error="Nastala chyba" />;
   }
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
   return (
     <>
       <Header name="Všetky kategórie" />
@@ -58,9 +69,9 @@ const AllCategories: React.FC = () => {
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial="hidden"
+                animate="visible"
+                variants={itemVariants}
               >
                 <div className="bg-whiterounded py-5 pl-6 flex items-start shadow">
                   <div className="pl-3 pr-10 mt-1">

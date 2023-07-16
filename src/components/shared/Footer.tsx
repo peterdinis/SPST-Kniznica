@@ -7,7 +7,7 @@ function Footer() {
     visible: {
       opacity: 1,
       transition: {
-        duration: 1,
+        duration: 0.3,
         delay: 0.5,
       },
     },

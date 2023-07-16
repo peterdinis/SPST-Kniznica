@@ -11,24 +11,25 @@ import CssBaseline from "@mui/material/CssBaseline";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
 
 const roboto = Montserrat({
-  weight: '300',
-  subsets: ['latin'],
-})
- 
+  weight: ["400"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "auto",
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-        <div className={roboto.className}>
-          <Layout>
-            <ErrorBoundary>
-              <Component {...pageProps} />
-              <ToastContainer />
-              <ReactQueryDevtools />
-              <CssBaseline />
-            </ErrorBoundary>
-          </Layout>
-        </div>
+      <div className={roboto.className}>
+        <Layout>
+          <ErrorBoundary>
+            <Component {...pageProps} />
+            <ToastContainer />
+            <ReactQueryDevtools />
+            <CssBaseline />
+          </ErrorBoundary>
+        </Layout>
+      </div>
     </QueryClientProvider>
   );
 }

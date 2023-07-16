@@ -16,7 +16,7 @@ import {
   notify,
   errorRegister,
 } from '../shared/toasts/registerToasts';
-import { IErrorMessage } from '@/interfaces/IGlobalError';
+import { IErrorMessage } from '@/interfaces/IError';
 import { applicationErrorToast, emailAlreadyExistsToast } from '../shared/toasts/applicationToasts';
 import Header from '../shared/Header';
 import {socket} from "@/lib/socket"

@@ -30,17 +30,16 @@ const AdminDropdown: React.FC = () => {
         className="flex items-center justify-center text-gray-600 hover:text-gray-900 focus:outline-none"
         onClick={toggleDropdown}
       >
-        <Notifications className="w-6 h-6" />  0
+        <Notifications className="w-6 h-6" /> 0
       </button>
 
       {isOpen && (
         <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
           <ul className="py-2">
-            <li className="px-4 py-2 hover:bg-gray-100">
-              <button onClick={logoutFromApp} className="text-red-700">
-                Odlhásenie
-              </button>
-            </li>
+            <li className="px-4 py-2 hover:bg-gray-100">Žiadne správy</li>
+            <dd onClick={logoutFromApp} className="text-red-700">
+              Odlhásenie
+            </dd>
           </ul>
         </div>
       )}

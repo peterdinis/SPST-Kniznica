@@ -11,3 +11,5 @@ export const Creator = dynamic(() => import("./Creator"));
 export const AdminDropdown = dynamic(() => import("./notifications/AdminDropdown"));
 export const NotificationDropdown = dynamic(() => import("./notifications/NotificationDropdown"));
 export const TeacherDropdown = dynamic(() => import("./notifications/TeacherDropdown"));
+export const Navbar = dynamic(() => import("./navbar/Navbar"));
+export const NavbarLinks = dynamic(() => import("./navbar/NavbarLinks"));

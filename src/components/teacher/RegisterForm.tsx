@@ -16,7 +16,9 @@ import { IErrorMessage } from "@/interfaces/IError";
 import {
   applicationErrorToast,
   emailAlreadyExistsToast,
+  teacherRoleError,
 } from "../shared/toasts/applicationToasts";
+import { TEACHER } from "@/constants/applicationConstants";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -48,6 +50,9 @@ const RegisterForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createRegisterTeacherType> = async (
     data: IRegister
   ) => {
+    if(data.role === TEACHER) {
+      teacherRoleError();
+    }
     try {
       Cookies.set("teacherRegisterData", JSON.stringify(data));
       mutation.mutate(data);

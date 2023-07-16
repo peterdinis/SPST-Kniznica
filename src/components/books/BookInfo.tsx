@@ -101,6 +101,18 @@ const BookInfo: React.FC = () => {
       router.push("/books/all");
     }
   };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
   return (
     <>
       <Header name="Detail Knihy" />
@@ -188,9 +200,9 @@ const BookInfo: React.FC = () => {
                     </span>
                   </p>
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial="hidden"
+                    animate="visible"
+                    variants={itemVariants}
                   >
                     <HelperModal
                       btnName={"Požičať si knihu"}

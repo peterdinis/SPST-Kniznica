@@ -12,13 +12,11 @@ import { useRouter } from "next/router";
 import { ICategory } from "@/interfaces/ICategory";
 import {
   allFieldsErrors,
-  createErrorRegister,
   createNotify,
 } from "../shared/toasts/categoryToast";
 
 const CreateNewCategory: React.FC = () => {
   const router = useRouter();
-  const [formError, setFormError] = useState<string | null>(null);
 
   const { handleSubmit, register, reset } = useForm<createCategoryType>({
     resolver: zodResolver(createCategorySchema),
@@ -27,12 +25,7 @@ const CreateNewCategory: React.FC = () => {
   const mutation = useMutation(mut.createNewCategory, {
     onSuccess: (data) => {
       createNotify();
-    },
-
-    onError: (data) => {
-      createErrorRegister();
-      router.push("/category/failed");
-    },
+    }
   });
 
   const onHandleSubmit: SubmitHandler<createCategoryType> = (
@@ -40,7 +33,6 @@ const CreateNewCategory: React.FC = () => {
   ) => {
     if (!data.name || !data.description) {
       allFieldsErrors();
-      setFormError("Please fill in all required fields.");
       return;
     }
 

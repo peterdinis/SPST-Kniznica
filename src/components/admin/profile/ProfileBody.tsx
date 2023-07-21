@@ -79,7 +79,7 @@ const ProfileBody: React.FC = () => {
               <div className="px-4 py-2 ">
                 Deaktivácia učtu učiteľ
               </div>
-              <div className="px-4 py-2">
+              <div className="px-4 py-2 text-red-500">
                 <button onClick={goToMyBooks}>Deaktivuj učet učiteľ</button>
               </div>
             </div>

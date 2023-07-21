@@ -37,7 +37,7 @@ const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
       {isOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Upload Image</h2>
+            <h2 className="text-xl font-bold mb-4">Nová fotka</h2>
             <input
               type="file"
               accept="image/*"

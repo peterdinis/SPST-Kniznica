@@ -3,15 +3,52 @@ import { useState } from "react";
 import AvatarImage from "../../../images/noImage.png";
 import useStudent from "@/hooks/useStudent";
 import ImageUploadModal from "@/components/shared/ImageModal";
+import axios from "axios";
+
+const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string;
 
 const ProfileHeader: React.FC = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { studentPersonalInfo } = useStudent();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    setSelectedFile(file);
+  };
 
-  const handleUpload = (file: File) => {
-    // Implement your image upload logic here
-    console.log("Uploading file:", file.name);
+  const handleUpload = async () => {
+    if (selectedFile) {
+      setIsLoading(true);
+
+      const formData = new FormData();
+      formData.append("avatar", selectedFile);
+
+      try {
+        const response = await axios.post(
+          `${backendURL}student/${studentPersonalInfo!.id}/upload`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        const updatedStudentInfo = {
+          ...studentPersonalInfo,
+          picture: response.data.picture,
+        };
+
+        console.log(updatedStudentInfo);
+
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
   };
 
   return (

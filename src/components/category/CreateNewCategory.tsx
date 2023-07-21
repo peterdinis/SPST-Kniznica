@@ -8,7 +8,6 @@ import {
   createCategorySchema,
 } from "@/validators/category/categorySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
 import { ICategory } from "@/interfaces/ICategory";
 import {
   allFieldsErrors,
@@ -16,7 +15,6 @@ import {
 } from "../shared/toasts/categoryToast";
 
 const CreateNewCategory: React.FC = () => {
-  const router = useRouter();
 
   const { handleSubmit, register, reset } = useForm<createCategoryType>({
     resolver: zodResolver(createCategorySchema),

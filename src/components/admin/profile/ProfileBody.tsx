@@ -15,7 +15,7 @@ const ProfileBody: React.FC = () => {
   return (
     <div className="w-full md:w-9/12 mx-2 h-64">
       <div className="bg-white p-3 shadow-sm rounded-sm">
-        <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+        <div className="flex items-center space-x-2  text-gray-900 leading-8">
           <PersonIcon />
           <span className="tracking-wide">Základné informácie</span>
         </div>
@@ -23,15 +23,15 @@ const ProfileBody: React.FC = () => {
         <div className="text-gray-700">
           <div className="grid md:grid-cols-2 text-sm">
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2  font-semibold">Meno</div>
+              <div className="px-4 py-2  ">Meno</div>
               <div className="px-4 py-2">{admin?.data.admin.name}</div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Priezvisko</div>
+              <div className="px-4 py-2 ">Priezvisko</div>
               <div className="px-4 py-2">{admin?.data.admin.lastName}</div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Používateľské meno</div>
+              <div className="px-4 py-2 ">Používateľské meno</div>
               <div className="px-4 py-2">
                 {admin?.data.admin.username}
                 <ContentCopyIcon
@@ -42,41 +42,41 @@ const ProfileBody: React.FC = () => {
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Email</div>
+              <div className="px-4 py-2 ">Email</div>
               <div className="px-4 py-2 break-words">
                 {admin?.data.admin.email}
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Rola</div>
-              <div className="px-4 py-2 text-red-700">
+              <div className="px-4 py-2 ">Rola</div>
+              <div className="px-4 py-2 text-red-500">
                 {admin?.data.admin.role}
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Moje požičané knihy</div>
-              <div className="px-4 py-2">
+              <div className="px-4 py-2 ">Moje požičané knihy</div>
+              <div className="px-4 py-2 text-red-500">
                 <button onClick={goToMyBooks}>Moje knihy</button>
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">
+              <div className="px-4 py-2  ">
                 Obnovenie účtu študent
               </div>
-              <div className="px-4 py-2">
+              <div className="px-4 py-2 text-red-500 ">
                 <button onClick={goToMyBooks}>Obnov účet študent</button>
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">
+              <div className="px-4 py-2 ">
                 Obnovenie účtu učiteľ
               </div>
-              <div className="px-4 py-2">
+              <div className="px-4 py-2 text-red-500 ">
                 <button onClick={goToMyBooks}>Obnov účet učiteľ</button>
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">
+              <div className="px-4 py-2 ">
                 Deaktivácia učtu učiteľ
               </div>
               <div className="px-4 py-2">
@@ -84,10 +84,10 @@ const ProfileBody: React.FC = () => {
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">
+              <div className="px-4 py-2  ">
                 Deaktivácia učtu žiak
               </div>
-              <div className="px-4 py-2">
+              <div className="px-4 py-2 text-red-500 ">
                 <button onClick={goToMyBooks}>Deaktivuj učet žiak</button>
               </div>
             </div>

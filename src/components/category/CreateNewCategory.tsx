@@ -8,36 +8,32 @@ import {
   createCategorySchema,
 } from "@/validators/category/categorySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
 import { ICategory } from "@/interfaces/ICategory";
 import {
-  createErrorRegister,
+  allFieldsErrors,
   createNotify,
 } from "../shared/toasts/categoryToast";
 
 const CreateNewCategory: React.FC = () => {
-  const router = useRouter();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
 
-  const { handleSubmit, reset } = useForm<createCategoryType>({
+  const { handleSubmit, register, reset } = useForm<createCategoryType>({
     resolver: zodResolver(createCategorySchema),
   });
 
   const mutation = useMutation(mut.createNewCategory, {
     onSuccess: (data) => {
       createNotify();
-    },
-
-    onError: (data) => {
-      createErrorRegister();
-      router.push("/category/failed");
-    },
+    }
   });
 
   const onHandleSubmit: SubmitHandler<createCategoryType> = (
     data: ICategory
   ) => {
+    if (!data.name || !data.description) {
+      allFieldsErrors();
+      return;
+    }
+
     mutation.mutate(data);
     reset();
   };
@@ -51,14 +47,12 @@ const CreateNewCategory: React.FC = () => {
             <input
               type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
+              {...register("name", { required: true })}
             />
             <label
               htmlFor="name"
               className={`absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] ${
-                name ? "up" : ""
+                register.name ? "up" : ""
               }`}
             >
               Meno kategórie
@@ -69,15 +63,11 @@ const CreateNewCategory: React.FC = () => {
             <input
               type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
+              {...register("description", { required: true })}
             />
             <label
               htmlFor="description"
-              className={`absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] ${
-                description ? "up" : ""
-              }`}
+              className={`absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]`}
             >
               Popis kategórie
             </label>

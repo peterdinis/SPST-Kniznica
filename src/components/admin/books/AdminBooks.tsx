@@ -2,11 +2,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useTable, usePagination, Column } from "react-table";
 import Header from "@/components/shared/Header";
-import { backendURL } from "@/components/shared/constants/url";
 import ScrollToTop from "@/hooks/useScroll";
 import ReturnModal from "@/components/shared/modals/ReturnModal";
 import { IBookInfo, IBookInfoUpdate } from "@/interfaces/IBook";
 import { CustomTableState } from "@/interfaces/ITable";
+import { backendURL } from "@/constants/url";
 
 const AdminBooks: React.FC = () => {
   const [tableData, setTableData] = useState<IBookInfo[]>([]);

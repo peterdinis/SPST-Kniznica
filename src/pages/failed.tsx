@@ -1,5 +1,6 @@
 import GlobalErrorComponent from "@/components/shared/errors/GlobalErrorComponent";
-import { failedLoginError } from "@/components/shared/errors/constants/errorMessages";
+import { failedLoginError } from "@/constants/errorMessages";
+
 import { NextPage } from "next";
 
 const AuthFailed: NextPage = () => {

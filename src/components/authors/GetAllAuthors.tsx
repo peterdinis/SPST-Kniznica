@@ -11,7 +11,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { IAuthor } from "@/interfaces/IAuthor";
-import { getAllAuthorsError } from "../shared/errors/constants/errorMessages";
+import { getAllAuthorsError } from "../../constants/errorMessages";
 import { motion } from "framer-motion";
 
 const GetAllAuthors: React.FC = () => {

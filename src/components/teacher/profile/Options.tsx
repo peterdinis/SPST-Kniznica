@@ -6,14 +6,14 @@ const Options: React.FC = () => {
     <>
       <div className="mt-10 w-full md:w-9/12 mx-2 h-64">
         <div className="bg-white p-3 shadow-sm rounded-sm">
-          <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+          <div className="flex items-center space-x-2  text-gray-900 leading-8">
             <SettingsIcon />
             <span className="tracking-wide">Moje možnosti</span>
           </div>
           <div className="text-gray-700">
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
+                <div className="px-4 py-2 ">
                   Zobraziť všetky knihy
                 </div>
                 <div className="px-4 py-2">
@@ -21,7 +21,7 @@ const Options: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
+                <div className="px-4 py-2 ">
                   Zobraziť všetky kategórie
                 </div>
                 <div className="px-4 py-2">
@@ -29,7 +29,7 @@ const Options: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
+                <div className="px-4 py-2 ">
                   Zobraziť všetkých autorov
                 </div>
                 <div className="px-4 py-2">
@@ -37,7 +37,7 @@ const Options: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
+                <div className="px-4 py-2 ">
                   Zobraziť všetky objednávky
                 </div>
                 <div className="px-4 py-2">
@@ -45,13 +45,13 @@ const Options: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Pridať novú knihu</div>
+                <div className="px-4 py-2 ">Pridať novú knihu</div>
                 <div className="px-4 py-2">
                   <Link className="text-red-500" href="/books/create">Nová kniha</Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
+                <div className="px-4 py-2 ">
                   Pridanie novej kategórie
                 </div>
                 <div className="px-4 py-2">
@@ -59,7 +59,7 @@ const Options: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
+                <div className="px-4 py-2 ">
                   Zoznam všetkých žiakov
                 </div>
                 <div className="px-4 py-2">
@@ -67,7 +67,7 @@ const Options: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
+                <div className="px-4 py-2 ">
                   Zoznam všetkých učiteľov
                 </div>
                 <div className="px-4 py-2">
@@ -75,7 +75,7 @@ const Options: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">
+                <div className="px-4 py-2 ">
                   Návrat na edupage
                 </div>
                 <div className="px-4 py-2">

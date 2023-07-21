@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { ICategory } from "@/interfaces/ICategory";
 import {
+  allFieldsErrors,
   createErrorRegister,
   createNotify,
 } from "../shared/toasts/categoryToast";
@@ -38,6 +39,7 @@ const CreateNewCategory: React.FC = () => {
     data: ICategory
   ) => {
     if (!data.name || !data.description) {
+      allFieldsErrors();
       setFormError("Please fill in all required fields.");
       return;
     }

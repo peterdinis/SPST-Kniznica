@@ -1,4 +1,4 @@
-import MyProfile from "@/components/teacher/MyProfile";
+import { MyProfile } from "@/components/teacher";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 

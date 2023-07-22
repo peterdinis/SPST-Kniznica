@@ -1,4 +1,4 @@
-import FailedComponent from "@/components/category/FailedComponent";
+import { FailedComponent } from "@/components/category";
 import { NextPage } from "next";
 
 const FailedPage: NextPage = () => {

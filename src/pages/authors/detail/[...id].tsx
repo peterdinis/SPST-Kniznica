@@ -1,4 +1,4 @@
-import AuthorDetail from "@/components/authors/AuthorDetail";
+import { AuthorDetail } from "@/components/authors";
 import { NextPage } from "next";
 
 const AuthorDetailPage: NextPage = () => {

@@ -1,4 +1,4 @@
-import CreateAuthorForm from "@/components/authors/CreateAuthorForm";
+import { CreateAuthorForm } from "@/components/authors";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 

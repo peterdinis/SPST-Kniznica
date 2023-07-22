@@ -2,7 +2,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import useCopyToClipboard from "@/hooks/useCopy";
 import useAdmin from "@/hooks/useAdmin";
-import Options from "../Options";
+import { Options } from "..";
 
 const ProfileBody: React.FC = () => {
   const { admin } = useAdmin();

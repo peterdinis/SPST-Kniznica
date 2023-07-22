@@ -1,4 +1,4 @@
-import SearchAuthorsForm from "@/components/authors/SearchAuthorsForm";
+import { SearchAuthorsForm } from "@/components/authors";
 import { NextPage } from "next";
 
 const SearchAuthorPage: NextPage = () => {

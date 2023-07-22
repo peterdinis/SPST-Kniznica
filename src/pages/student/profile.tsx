@@ -1,4 +1,4 @@
-import MyProfile from "@/components/student/MyProfile";
+import { MyProfile } from "@/components/student";
 import { NextPage } from "next";
 
 const ProfileStudentPage: NextPage = () => {

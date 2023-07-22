@@ -1,4 +1,4 @@
-import AdminStudents from "@/components/admin/students/AdminStudents";
+import { AdminStudents } from "@/components/admin";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 

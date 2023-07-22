@@ -1,4 +1,4 @@
-import FailedComponent from "@/components/booking/FailedComponent";
+import { FailedComponent } from "@/components/booking";
 import { NextPage } from "next";
 
 const FailedBookingPage: NextPage = () => {

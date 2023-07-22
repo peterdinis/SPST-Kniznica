@@ -1,7 +1,5 @@
-import Footer from "@/components/shared/Footer";
-import Hero from "@/components/hero/Hero";
-import Services from "@/components/hero/Services";
-import Creator from "@/components/shared/Creator";
+import { Hero, Services } from "@/components/hero";
+import { Creator, Footer } from "@/components/shared";
 import { NextPage } from "next";
 
  

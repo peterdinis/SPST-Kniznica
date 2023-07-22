@@ -1,4 +1,4 @@
-import CreateNewCategory from "@/components/category/CreateNewCategory";
+import { CreateNewCategory } from "@/components/category";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 

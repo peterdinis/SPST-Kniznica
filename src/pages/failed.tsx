@@ -1,4 +1,4 @@
-import GlobalErrorComponent from "@/components/shared/errors/GlobalErrorComponent";
+import { GlobalErrorComponent } from "@/components/shared/errors";
 import { failedLoginError } from "@/constants/errorMessages";
 
 import { NextPage } from "next";

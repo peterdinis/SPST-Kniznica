@@ -1,4 +1,3 @@
-import Layout from "@/components/shared/Layout";
 import { Suspense } from "react";
 import "@/styles/tailwind.css";
 import type { AppProps } from "next/app";
@@ -10,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
-import { FallbackLoader } from "@/components/shared";
+import { FallbackLoader, Layout } from "@/components/shared";
 
 const roboto = Montserrat({
   weight: ["400"],

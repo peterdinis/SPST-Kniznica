@@ -2,9 +2,7 @@ import Link from "next/link";
 import useStudent from "@/hooks/useStudent";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
-import NotificationDropdown from "../notifications/NotificationDropdown";
-import TeacherDropdown from "../notifications/TeacherDropdown";
-import AdminDropdown from "../notifications/AdminDropdown";
+import { AdminDropdown, NotificationDropdown, TeacherDropdown } from "..";
 
 const NavbarLinks: React.FC = () => {
   const { student } = useStudent();

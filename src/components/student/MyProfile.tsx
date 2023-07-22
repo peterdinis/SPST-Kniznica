@@ -1,5 +1,4 @@
-import ProfileHeader from "./profile/ProfileHeader";
-import ProfileBody from "./profile/ProfileBody";
+import { ProfileHeader, ProfileBody } from ".";
 
 const MyProfile: React.FC = () => {
   return (

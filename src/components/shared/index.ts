@@ -13,3 +13,4 @@ export const NotificationDropdown = dynamic(() => import("./notifications/Notifi
 export const TeacherDropdown = dynamic(() => import("./notifications/TeacherDropdown"));
 export const Navbar = dynamic(() => import("./navbar/Navbar"));
 export const NavbarLinks = dynamic(() => import("./navbar/NavbarLinks"));
+export const FallbackRender = dynamic(() => import("./errors/FallbackRender"));

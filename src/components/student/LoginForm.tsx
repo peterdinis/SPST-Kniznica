@@ -1,4 +1,3 @@
-import Header from "../shared/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";
@@ -17,6 +16,7 @@ import {
   passwordErrors,
   userDoesNotExists,
 } from "../shared/toasts/applicationToasts";
+import { Header } from "../shared";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();

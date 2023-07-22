@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import NavbarLinks from "./NavbarLinks";
+import { NavbarLinks } from "..";
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState<Boolean>(false);

@@ -1,3 +1,5 @@
 import { io } from 'socket.io-client';
 
-export const socket = io('http://localhost:8111'); 
+const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string;
+
+export const socket = io(backendURL); 

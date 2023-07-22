@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import Header from "../shared/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -11,6 +10,7 @@ import { IRegister } from "@/interfaces/IAdmin";
 import { notify, errorRegister } from "../shared/toasts/loginToasts";
 import { IErrorMessage } from "@/interfaces/IError";
 import { applicationErrorToast, emailAlreadyExistsToast } from "../shared/toasts/applicationToasts";
+import { Header } from "../shared";
 
 const RegisterForm: React.FC = () => {
 

@@ -1,4 +1,4 @@
-import AllBooks from "@/components/books/AllBooks";
+import { AllBooks } from "@/components/books";
 import { NextPage } from "next";
 
 const AllBooksPage: NextPage = () => {

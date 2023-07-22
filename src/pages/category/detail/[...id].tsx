@@ -1,4 +1,4 @@
-import CategoryInfo from "@/components/category/CategoryInfo";
+import { CategoryInfo } from "@/components/category";
 import { NextPage } from "next";
 
 const CategoryDetail: NextPage = () => {

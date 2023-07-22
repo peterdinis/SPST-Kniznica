@@ -1,4 +1,3 @@
-import Header from "../shared/Header";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/authorMutations";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -10,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IAuthor } from "@/interfaces/IAuthor";
 import { useRouter } from "next/router";
 import { notify, errorRegister } from "../shared/toasts/authorToasts";
+import { Header } from "../shared";
 
 const CreateAuthorForm: React.FC = () => {
   const router = useRouter();

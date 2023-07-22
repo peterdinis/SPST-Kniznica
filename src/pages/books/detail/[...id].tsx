@@ -1,4 +1,4 @@
-import BookInfo from "@/components/books/BookInfo";
+import { BookInfo } from "@/components/books";
 import { NextPage } from "next";
 
 const BookDetailPage: NextPage = () => {

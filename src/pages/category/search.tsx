@@ -1,4 +1,4 @@
-import SearchCategoryForm from "@/components/category/SearchCategoryForm";
+import { SearchCategoryForm } from "@/components/category";
 import { NextPage } from "next";
 
 const SearchCategoryPage: NextPage = () => {

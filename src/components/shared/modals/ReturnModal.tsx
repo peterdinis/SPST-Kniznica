@@ -1,7 +1,5 @@
 import * as React from "react";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
+import { Backdrop, Box, Modal } from "@mui/material";
 import { useSpring, animated } from "@react-spring/web";
 import { FadeProps, IModalProps } from "@/interfaces/IModal";
 import { modalStyle } from "../../../styles/modalStyle";

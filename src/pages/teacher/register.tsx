@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/teacher/RegisterForm";
+import { RegisterForm } from "@/components/teacher";
 import { NextPage } from "next";
 
 const RegisterTeacherPage: NextPage = () => {

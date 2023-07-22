@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useTable, usePagination, Column } from "react-table";
-import Header from "@/components/shared/Header";
 import { IAuthorInfo, IAuthorInfoUpdate } from "@/interfaces/IAuthor";
 import ScrollToTop from "@/hooks/useScroll";
-import ReturnModal from "@/components/shared/modals/ReturnModal";
 import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/url";
+import { Header, ReturnModal } from "@/components/shared";
 
 const AdminAuthors: React.FC = () => {
   const [tableData, setTableData] = useState<IAuthorInfo[]>([]);

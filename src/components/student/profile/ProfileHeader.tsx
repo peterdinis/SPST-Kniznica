@@ -47,7 +47,6 @@ const ProfileHeader: React.FC = () => {
         };
 
         console.log(updatedStudentInfo);
-
       } catch (error) {
         console.error("Error uploading file:", error);
       } finally {
@@ -78,7 +77,7 @@ const ProfileHeader: React.FC = () => {
         >
           Nová fotka
         </button>
-        
+
         {isModalOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -90,20 +89,20 @@ const ProfileHeader: React.FC = () => {
                 ref={fileInputRef}
                 onClick={() => fileInputRef.current?.click()}
               />
-              <div className="flex mt-4">
+              <div className="flex mt-4 justify-between">
                 <button
                   className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                   onClick={handleClose}
                 >
                   Zavrieť
                 </button>
+                <button
+                  className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                  onClick={handleUpload}
+                >
+                  Nahrať
+                </button>
               </div>
-              <button
-                className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                onClick={handleUpload}
-              >
-                Nahrať
-              </button>
             </div>
           </div>
         )}

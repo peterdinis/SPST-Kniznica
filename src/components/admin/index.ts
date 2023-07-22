@@ -13,3 +13,5 @@ export const Options = dynamic(() => import("./Options"));
 export const ProfilePage = dynamic(() => import("./ProfilePage"));
 export const RegisterForm = dynamic(() => import("./RegisterForm"));
 export const ReturnBookModal = dynamic(() => import("./ReturnBookModal"));
+export const ProfileHeader = dynamic(() => import("./profile/ProfileHeader"));
+export const ProfileBody = dynamic(() => import("./profile/ProfileBody"));

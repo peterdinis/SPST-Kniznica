@@ -1,4 +1,3 @@
-import ReturnModal from "@/components/shared/modals/ReturnModal";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../../api/mutations/bookingMutations";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -10,6 +9,7 @@ import {
 import { IReturnBooking } from "@/interfaces/IBooking";
 import {useRouter} from "next/router";
 import { notify, errorRegister } from "@/components/shared/toasts/bookingToasts";
+import ReturnModal from "@/components/shared/modals/ReturnModal";
 
 const ReturnBookModal: React.FC = () => {
   const { register, handleSubmit, reset } = useForm<returnBookingType>({

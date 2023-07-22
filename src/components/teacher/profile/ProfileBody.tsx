@@ -1,8 +1,8 @@
 import PersonIcon from "@mui/icons-material/Person";
-import Options from "./Options";
 import useTeacher from "@/hooks/useTeacher";
 import useCopyToClipboard from "@/hooks/useCopy";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { Options } from "..";
 
 const ProfileBody: React.FC = () => {
   const { teacher } = useTeacher();

@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { io, Socket } from 'socket.io-client';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { IRegister } from '@/interfaces/IStudent';
-import { useMutation } from '@tanstack/react-query';
-import * as mut from '../../api/mutations/studentMutations';
-import Cookies from 'js-cookie';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { IRegister } from "@/interfaces/IStudent";
+import { useMutation } from "@tanstack/react-query";
+import * as mut from "../../api/mutations/studentMutations";
+import Cookies from "js-cookie";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   createStudentRegisterType,
   registerStudentSchema,
-} from '@/validators/student/studentSchema';
+} from "@/validators/student/studentSchema";
+import { notify, errorRegister } from "../shared/toasts/registerToasts";
+import { IErrorMessage } from "@/interfaces/IError";
 import {
-  notify,
-  errorRegister,
-} from '../shared/toasts/registerToasts';
-import { IErrorMessage } from '@/interfaces/IError';
-import { applicationErrorToast, emailAlreadyExistsToast, studentRoleError } from '../shared/toasts/applicationToasts';
-import Header from '../shared/Header';
-import {socket} from "@/lib/socket"
-import { STUDENT } from '@/constants/applicationConstants';
-
+  applicationErrorToast,
+  emailAlreadyExistsToast,
+  studentRoleError,
+} from "../shared/toasts/applicationToasts";
+import Header from "../shared/Header";
+import { socket } from "@/lib/socket";
+import { STUDENT } from "@/constants/applicationConstants";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -30,14 +29,14 @@ const RegisterForm: React.FC = () => {
     onError: (error: IErrorMessage) => {
       if (error.response?.status === 409) {
         applicationErrorToast();
-      } else if (error.response?.data?.message === 'Email already exists') {
+      } else if (error.response?.data?.message === "Email already exists") {
         emailAlreadyExistsToast();
       } else {
         errorRegister();
       }
     },
     onSuccess: () => {
-      router.push('/student/login');
+      router.push("/student/login");
     },
   });
 
@@ -53,15 +52,15 @@ const RegisterForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createStudentRegisterType> = async (
     data: IRegister
   ) => {
-    if(data.role === STUDENT) {
+    if (data.role === STUDENT) {
       studentRoleError();
     }
     try {
-      Cookies.set('studentRegisterData', JSON.stringify(data));
+      Cookies.set("studentRegisterData", JSON.stringify(data));
       await mutation.mutateAsync(data);
       notify();
     } catch (err: any) {
-      if (err.response?.data?.message === 'Email already exists') {
+      if (err.response?.data?.message === "Email already exists") {
         emailAlreadyExistsToast();
       } else {
         errorRegister();
@@ -70,12 +69,12 @@ const RegisterForm: React.FC = () => {
   };
 
   useEffect(() => {
-    socket.on('connect', () => {
-      console.log('Connected to socket server');
+    socket.on("connect", () => {
+      console.log("Connected to socket server");
     });
 
-    socket.on('newNotification', (notification) => {
-      console.log('Received new notification:', notification);
+    socket.on("newNotification", (notification) => {
+      console.log("Received new notification:", notification);
       // Handle the notification as per your requirements
     });
 
@@ -83,7 +82,6 @@ const RegisterForm: React.FC = () => {
       socket.disconnect();
     };
   }, []);
-
 
   return (
     <>

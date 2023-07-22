@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Header from "../shared/Header";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
@@ -12,6 +11,7 @@ import {
   applicationErrorToast,
   emailAlreadyExistsToast,
 } from "../shared/toasts/applicationToasts";
+import { Header } from "../shared";
 
 const LoginForm: React.FC = () => {
   const router = useRouter();

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Header from "../shared/Header";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { IRegister } from "@/interfaces/ITeacher";
@@ -19,6 +18,7 @@ import {
   teacherRoleError,
 } from "../shared/toasts/applicationToasts";
 import { TEACHER } from "@/constants/applicationConstants";
+import { Header } from "../shared";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();

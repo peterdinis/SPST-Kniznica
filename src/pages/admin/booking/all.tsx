@@ -1,4 +1,4 @@
-import AdminBooking from "@/components/admin/booking/AdminBooking";
+import { AdminBooking } from "@/components/admin";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 

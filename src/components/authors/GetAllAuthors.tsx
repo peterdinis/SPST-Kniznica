@@ -1,8 +1,5 @@
-import Header from "../shared/Header";
 import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/authorQueries";
-import FallbackLoader from "../shared/FallbackLoader";
-import FallbackRender from "../shared/errors/FallbackRender";
 import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -13,6 +10,7 @@ import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDiss
 import { IAuthor } from "@/interfaces/IAuthor";
 import { getAllAuthorsError } from "../../constants/errorMessages";
 import { motion } from "framer-motion";
+import { FallbackLoader, FallbackRender, Header } from "../shared";
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);

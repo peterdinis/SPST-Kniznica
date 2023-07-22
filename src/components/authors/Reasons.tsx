@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
-import Mailto from "../shared/Mailto";
 import Link from "next/link";
+import { Mailto } from "../shared";
 
 const Reasons: React.FC = () => {
   return (

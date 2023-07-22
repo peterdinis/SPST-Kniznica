@@ -1,4 +1,3 @@
-
 import { AdminCategories } from "@/components/admin";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";

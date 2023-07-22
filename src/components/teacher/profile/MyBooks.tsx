@@ -1,12 +1,11 @@
 import * as api from "@/api/queries/bookingQueries";
 import { useQuery } from "@tanstack/react-query";
-import FallbackLoader from "@/components/shared/FallbackLoader";
-import FallbackRender from "@/components/shared/errors/FallbackRender";
 import { useRouter } from "next/router";
 import { IBooking } from "@/interfaces/IBooking";
-import ReturnBookModal from "./ReturnBookModal";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import { loadBorrowedBooksError } from "@/components/shared/errors/constants/errorMessages";
+import { loadBorrowedBooksError } from "@/constants/errorMessages";
+import { ReturnBookModal } from "..";
+import { FallbackLoader, FallbackRender } from "@/components/shared";
 
 const MyBooks: React.FC = () => {
   const { query, isReady } = useRouter();

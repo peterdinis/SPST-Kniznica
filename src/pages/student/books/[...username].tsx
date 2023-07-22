@@ -1,5 +1,5 @@
-import Header from "@/components/shared/Header";
-import MyBooks from "@/components/student/profile/MyBooks";
+import { Header } from "@/components/shared";
+import { MyBooks } from "@/components/student";
 import { NextPage } from "next";
 
 const MyBorrowedBooks: NextPage = () => {

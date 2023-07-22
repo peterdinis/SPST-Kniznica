@@ -1,4 +1,4 @@
-import CreateBookForm from "@/components/books/CreateBookForm";
+import { CreateBookForm } from "@/components/books";
 import PrivateRoute from "@/routes/PrivateRoute";
 import { NextPage } from "next";
 

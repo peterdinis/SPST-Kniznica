@@ -9,7 +9,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ScrollToTop from "@/hooks/useScroll";
-import DangerousIcon from "@mui/icons-material/Dangerous";
 
 const SearchCategoryForm: React.FC = () => {
   const initialSearchValue: never[] = [];

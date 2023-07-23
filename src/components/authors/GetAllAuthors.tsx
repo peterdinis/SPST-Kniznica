@@ -50,7 +50,7 @@ const GetAllAuthors: React.FC = () => {
 
   return (
     <>
-      <Header name="Všetci spisovatelia" />
+      <Header name="Všetci Autori" />
       <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/authors/search">Hľadať konkretného authora </Link>
       </div>

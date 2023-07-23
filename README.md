@@ -8,8 +8,8 @@
 - Next.js
 - Typescript
 - Tailwind css
+- Socket.io
 - React Query
-- Vercel - future deploy
 
 ## How to run
 

@@ -25,7 +25,7 @@ const Options: React.FC = () => {
                   Zobraziť všetkých autorov
                 </div>
                 <div className="px-4 py-2">
-                  <Link className="break-words text-red-500" href="/admin/authors/all">Všetci Spistovatelia</Link>
+                  <Link className="break-words text-red-500" href="/admin/authors/all">Všetci Autori</Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">

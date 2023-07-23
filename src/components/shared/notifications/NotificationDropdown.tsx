@@ -80,9 +80,9 @@ const NotificationDropdown: React.FC = () => {
               ))}
               <br />
             </li>
-            <dd onClick={logoutFromApp} className="text-red-700">
+            <span onClick={logoutFromApp} className="text-red-700">
               Odlhásenie
-            </dd>
+            </span>
           </ul>
         </div>
       )}

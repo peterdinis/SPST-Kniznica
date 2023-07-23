@@ -30,6 +30,8 @@ const ProfileHeader: React.FC = () => {
       const formData = new FormData();
       formData.append("avatar", selectedFile);
 
+      console.log(formData);
+
       try {
         const response = await axios.post(
           `${backendURL}student/${studentPersonalInfo!.id}/upload`,
@@ -88,7 +90,7 @@ const ProfileHeader: React.FC = () => {
                 onChange={handleFileChange}
                 ref={fileInputRef}
               />
-              <div className="flex mt-4 justify-between">
+              <div className="flex mt-6 justify-between">
                 <button
                   className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                   onClick={handleClose}

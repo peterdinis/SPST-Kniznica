@@ -66,7 +66,7 @@ const CategoryInfo: React.FC = () => {
                 {!data.books || data.books.length === 0 ? (
                   <>
                     <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                      Autor/ka nenapísal/a žiadne knihy{" "}
+                      Kategória nie je priradená pri žiadnej knihe{" "}
                       <SentimentDissatisfiedIcon />
                     </dd>
                   </>

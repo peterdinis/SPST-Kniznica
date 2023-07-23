@@ -4,7 +4,7 @@ import AvatarImage from "../../../images/noImage.png";
 import useStudent from "@/hooks/useStudent";
 import axios from "axios";
 
-const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL as unknown as string;
+const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
 const ProfileHeader: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -27,14 +27,12 @@ const ProfileHeader: React.FC = () => {
     if (selectedFile) {
       setIsLoading(true);
 
-      const formData = new FormData();
-      formData.append("avatar", selectedFile);
-
-      console.log(formData);
-
       try {
+        const formData = new FormData();
+        formData.append("avatar", selectedFile);
+
         const response = await axios.post(
-          `${backendURL}student/${studentPersonalInfo!.id}/upload`,
+          `${backendURL}student/${studentPersonalInfo?.id}/upload`,
           formData,
           {
             headers: {
@@ -48,7 +46,19 @@ const ProfileHeader: React.FC = () => {
           picture: response.data.picture,
         };
 
+        console.log(response);
+        console.log(formData);
+
         console.log(updatedStudentInfo);
+
+        // Update studentPersonalInfo with the new picture URL
+        // Assuming you have a function to update student info in your custom hook
+        // For example, if your hook is defined like this:
+        // const { studentPersonalInfo, updateStudentPersonalInfo } = useStudent();
+        // You can update it like this:
+        // updateStudentPersonalInfo(updatedStudentInfo);
+
+        setIsModalOpen(false); // Close the modal
       } catch (error) {
         console.error("Error uploading file:", error);
       } finally {
@@ -63,11 +73,11 @@ const ProfileHeader: React.FC = () => {
         <div className="image overflow-hidden">
           <Image
             className="h-auto w-full rounded-2xl mx-auto"
-            src={AvatarImage}
-            alt="Default Image"
+            src={studentPersonalInfo?.picture || AvatarImage}
+            alt="Profile Image"
             width={700}
-            priority={true}
             height={700}
+            priority={true}
           />
         </div>
         <h1 className="break-words text-gray-900 font-bold text-xl leading-8 my-6">

@@ -9,7 +9,6 @@
 - Typescript
 - Tailwind css
 - React Query
-- Vercel - future deploy
 
 ## How to run
 

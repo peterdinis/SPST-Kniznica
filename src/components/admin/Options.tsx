@@ -38,10 +38,10 @@ const Options: React.FC = () => {
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 ">
-                  Zobraziť všetky objednávky
+                  Zobraziť všetky vypožičané knihy
                 </div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/booking/all">Všetky objednávky</Link>
+                  <Link className="text-red-500" href="/admin/booking/all">Všetky vypožičané knihy</Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">

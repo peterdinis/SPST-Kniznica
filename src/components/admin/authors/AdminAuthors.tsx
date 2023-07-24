@@ -27,20 +27,7 @@ const AdminAuthors: React.FC = () => {
       {
         Header: "Literárne obdobie",
         accessor: "litPeriod",
-      },
-
-      {
-        Header: "Uprav autora",
-        Cell: () => (
-          <ReturnModal btnName="Uprav autora" modalHeader="Edit author" />
-        ),
-      },
-      {
-        Header: "Zmaž autora",
-        Cell: () => (
-          <ReturnModal btnName="Zmaž autora" modalHeader="Delete the author" />
-        ),
-      },
+      }
     ],
     []
   );

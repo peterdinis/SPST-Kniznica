@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState} from "react";
 import axios from "axios";
 import { useTable, usePagination, Column } from "react-table";
 import ScrollToTop from "@/hooks/useScroll";
 import { ICategoryInfo, ICategoryInfoUpdate } from "@/interfaces/ICategory";
 import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/url";
-import { ReturnModal, Header } from "@/components/shared";
+import { Header } from "@/components/shared";
 
 const AdminCategories: React.FC = () => {
   const [tableData, setTableData] = useState<ICategoryInfo[]>([]);
@@ -23,56 +23,6 @@ const AdminCategories: React.FC = () => {
       {
         Header: "Popis kategórie",
         accessor: "description",
-      },
-
-      {
-        Header: "Uprav kategóriu",
-        Cell: () => (
-          <ReturnModal
-            btnName="Uprav kategóriu"
-            modalHeader="Upraviť kategóriu"
-          >
-             <form className="mt-4">
-              <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                Id Kategórie
-              </label>
-              <input
-                type="number"
-                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-              />
-               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                Meno kategórie
-              </label>
-              <input
-                type="number"
-                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-              />
-               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                Popis kategórie
-              </label>
-              <input
-                type="number"
-                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-              />
-            </form>
-          </ReturnModal>
-        ),
-      },
-      {
-        Header: "Zmaž kategóriu",
-        Cell: () => (
-          <ReturnModal btnName="Zmaž kategóriu" modalHeader="Zmazať kategóriu">
-            <form className="mt-4">
-              <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
-                Id Kategórie
-              </label>
-              <input
-                type="number"
-                className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-              />
-            </form>
-          </ReturnModal>
-        ),
       },
     ],
     []
@@ -166,11 +116,10 @@ const AdminCategories: React.FC = () => {
                 <button
                   key={pageIndex}
                   onClick={() => gotoPage(pageIndex)}
-                  className={`px-4 py-2 mx-1 rounded ${
-                    pageIndex === pageIndex
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
-                  }`}
+                  className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                    }`}
                 >
                   {pageIndex}
                 </button>

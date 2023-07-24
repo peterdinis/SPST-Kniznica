@@ -1,8 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import { queryCache } from "./cache/queryCache";
 import { mutationCache } from "./cache/mutationCache";
-
-const twentyFourHoursInMs: number = 1000 * 60 * 60 * 24;
+import { twentyFourHoursInMs } from "@/constants/apiConstants";
 
 export const queryClient = new QueryClient({
   queryCache,
@@ -11,7 +10,8 @@ export const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-      staleTime: twentyFourHoursInMs
+      staleTime: twentyFourHoursInMs,
+      suspense: true
     },
     mutations: {
       networkMode: "offlineFirst",

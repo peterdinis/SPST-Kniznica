@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, FormEvent } from "react";
 import axios from "axios";
 import { useTable, usePagination, Column } from "react-table";
 import ScrollToTop from "@/hooks/useScroll";
@@ -6,9 +6,37 @@ import { ICategoryInfo, ICategoryInfoUpdate } from "@/interfaces/ICategory";
 import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/url";
 import { ReturnModal, Header } from "@/components/shared";
+import { useRouter } from "next/router";
+import { deleteSuccess, deleteError } from "@/components/shared/toasts/categoryToast";
 
 const AdminCategories: React.FC = () => {
   const [tableData, setTableData] = useState<ICategoryInfo[]>([]);
+
+  const router = useRouter();
+
+  const updateCategory = (event: FormEvent<HTMLFormElement>) => {
+    return;
+  }
+
+  const deleteCategory = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formElements = event.currentTarget.elements;
+    const categoryIdInput = formElements.namedItem("categoryId") as HTMLInputElement;
+  
+    if (categoryIdInput) {
+      const categoryId = categoryIdInput.value;
+      axios
+        .delete(`${backendURL}category/${categoryId}`)
+        .then((response) => {
+          deleteSuccess();
+          router.push("/admin/categories/all");
+        })
+        .catch((error) => {
+          deleteError();
+          router.push("/category/failed");
+        });
+    }
+  };
 
   const columns = useMemo(
     () => [
@@ -32,7 +60,7 @@ const AdminCategories: React.FC = () => {
             btnName="Uprav kategóriu"
             modalHeader="Upraviť kategóriu"
           >
-             <form className="mt-4">
+            <form className="mt-4" onSubmit={updateCategory}>
               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                 Id Kategórie
               </label>
@@ -40,14 +68,14 @@ const AdminCategories: React.FC = () => {
                 type="number"
                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
               />
-               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+              <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                 Meno kategórie
               </label>
               <input
                 type="number"
                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
               />
-               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
+              <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                 Popis kategórie
               </label>
               <input
@@ -62,14 +90,21 @@ const AdminCategories: React.FC = () => {
         Header: "Zmaž kategóriu",
         Cell: () => (
           <ReturnModal btnName="Zmaž kategóriu" modalHeader="Zmazať kategóriu">
-            <form className="mt-4">
+            <form className="mt-4" onSubmit={deleteCategory}>
               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                 Id Kategórie
               </label>
               <input
                 type="number"
+                name="categoryId"
                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
               />
+              <button
+                type="submit"
+                className="px-4 py-2 mt-4 bg-red-500 text-white rounded"
+              >
+                Zmaž kategóriu
+              </button>
             </form>
           </ReturnModal>
         ),
@@ -166,11 +201,10 @@ const AdminCategories: React.FC = () => {
                 <button
                   key={pageIndex}
                   onClick={() => gotoPage(pageIndex)}
-                  className={`px-4 py-2 mx-1 rounded ${
-                    pageIndex === pageIndex
+                  className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex
                       ? "bg-blue-500 text-white"
                       : "bg-gray-200"
-                  }`}
+                    }`}
                 >
                   {pageIndex}
                 </button>

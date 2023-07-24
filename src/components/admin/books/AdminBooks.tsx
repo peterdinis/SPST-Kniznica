@@ -33,21 +33,6 @@ const AdminBooks: React.FC = () => {
         Header: "Detail",
         accessor: "description",
       },
-
-      {
-        Header: "Uprav knihu",
-        Cell: () => (
-          <ReturnModal btnName="Upraviť knihu" modalHeader="Upraviť knihu">
-              CHILDREN
-          </ReturnModal>
-        ),
-      },
-      {
-        Header: "Zmaž knihu",
-        Cell: () => (
-          <ReturnModal btnName="Zmazať knihu" modalHeader="Zmazať knihu" />
-        ),
-      },
     ],
     []
   );

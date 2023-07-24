@@ -120,8 +120,8 @@ const BookInfo: React.FC = () => {
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             {(data.book && data.book.image === null) ||
-            (data.book && data.book.image === undefined) ||
-            (data.book && data.book.image === "string") ? (
+              (data.book && data.book.image === undefined) ||
+              (data.book && data.book.image === "string") ? (
               <Image
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -299,6 +299,17 @@ const BookInfo: React.FC = () => {
               >
                 Návrat na knihy
               </button>
+              <br />
+              {(teacher || admin) && (
+                <>
+                  <button className="float-right">
+                    Uprav kategóriu
+                  </button>
+                  <button className="mr-4 float-right">
+                    Zmaž kategóriu
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

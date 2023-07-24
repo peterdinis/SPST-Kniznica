@@ -8,9 +8,13 @@ import defaultImage from "../../images/noImage.png";
 import { getAuthorDetailError } from "../../constants/errorMessages";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import { FallbackLoader, Header, FallbackRender } from "../shared";
+import useTeacher from "@/hooks/useTeacher";
+import useAdmin from "@/hooks/useAdmin";
 
 const AuthorDetail: React.FC = () => {
   const router = useRouter();
+  const { teacher } = useTeacher();
+  const { admin } = useAdmin();
   const { query, isReady } = useRouter();
 
   if (!isReady) {
@@ -45,8 +49,8 @@ const AuthorDetail: React.FC = () => {
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             {data.picture === null ||
-            data.picture === undefined ||
-            data.picture === "string" ? (
+              data.picture === undefined ||
+              data.picture === "string" ? (
               <Image
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -139,6 +143,17 @@ const AuthorDetail: React.FC = () => {
               >
                 Návrat na spisovateľov
               </button>
+              <br />
+              {(teacher || admin) && (
+                <>
+                  <button className="float-right">
+                    Uprav kategóriu
+                  </button>
+                  <button className="mr-4 float-right">
+                    Zmaž kategóriu
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

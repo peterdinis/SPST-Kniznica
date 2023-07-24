@@ -79,6 +79,7 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold">Dátum Narodenia</span>:{" "}
                 {data.birthYear}
               </p>
+
               {data.deathYear === null || data.deathYear === undefined ? (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">

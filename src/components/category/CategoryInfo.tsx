@@ -6,10 +6,14 @@ import FallbackRender from "../shared/errors/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderCategory } from "@/data/placeholderCategory";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import useTeacher from "@/hooks/useTeacher";
+import useAdmin from "@/hooks/useAdmin";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
   const { query, isReady } = useRouter();
+  const { teacher } = useTeacher();
+  const { admin } = useAdmin();
 
   if (!isReady) {
     return <FallbackLoader />;
@@ -35,6 +39,8 @@ const CategoryInfo: React.FC = () => {
   const navigateToCategories = () => {
     router.push("/category/all");
   };
+
+  console.log(teacher);
 
   return (
     <>
@@ -93,6 +99,17 @@ const CategoryInfo: React.FC = () => {
           >
             Späť na kategórie
           </button>
+
+          {(teacher || admin) && (
+            <>
+              <button className="float-right">
+                Uprav kategóriu
+              </button>
+              <button className="mr-4 float-right">
+                Zmaž kategóriu
+              </button>
+            </>
+          )}
         </div>
       </div>
     </>

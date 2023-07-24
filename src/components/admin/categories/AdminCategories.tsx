@@ -7,7 +7,8 @@ import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/url";
 import { ReturnModal, Header } from "@/components/shared";
 import { useRouter } from "next/router";
-import { deleteSuccess, deleteError } from "@/components/shared/toasts/categoryToast";
+import { deleteSuccess, deleteError, updateSuccess, updateError } from "@/components/shared/toasts/categoryToast";
+
 
 const AdminCategories: React.FC = () => {
   const [tableData, setTableData] = useState<ICategoryInfo[]>([]);
@@ -15,14 +16,39 @@ const AdminCategories: React.FC = () => {
   const router = useRouter();
 
   const updateCategory = (event: FormEvent<HTMLFormElement>) => {
-    return;
-  }
+    event.preventDefault();
+    const formElements = event.currentTarget.elements;
+    const categoryIdInput = formElements.namedItem("categoryId") as HTMLInputElement;
+    const nameInput = formElements.namedItem("name") as HTMLInputElement;
+    const descriptionInput = formElements.namedItem("description") as HTMLInputElement;
+
+    if (categoryIdInput && nameInput && descriptionInput) {
+      const categoryId = categoryIdInput.value;
+      const name = nameInput.value;
+      const description = descriptionInput.value;
+
+      const data = {
+        id: categoryId,
+        name: name,
+        description: description,
+      };
+
+      axios
+        .patch(`${backendURL}category/${categoryId}`, data)
+        .then((response) => {
+          updateSuccess();
+        })
+        .catch((error) => {
+          updateError();
+        });
+    }
+  };
 
   const deleteCategory = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formElements = event.currentTarget.elements;
     const categoryIdInput = formElements.namedItem("categoryId") as HTMLInputElement;
-  
+
     if (categoryIdInput) {
       const categoryId = categoryIdInput.value;
       axios
@@ -56,32 +82,38 @@ const AdminCategories: React.FC = () => {
       {
         Header: "Uprav kategóriu",
         Cell: () => (
-          <ReturnModal
-            btnName="Uprav kategóriu"
-            modalHeader="Upraviť kategóriu"
-          >
+          <ReturnModal btnName="Uprav kategóriu" modalHeader="Upraviť kategóriu">
             <form className="mt-4" onSubmit={updateCategory}>
               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                 Id Kategórie
               </label>
               <input
                 type="number"
+                name="categoryId"
                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
               />
               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                 Meno kategórie
               </label>
               <input
-                type="number"
+                type="text"
+                name="name"
                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
               />
               <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                 Popis kategórie
               </label>
               <input
-                type="number"
+                type="text"
+                name="description"
                 className="outline-none mt-2 block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
               />
+              <button
+                type="submit"
+                className="px-4 py-2 mt-4 bg-blue-500 text-white rounded"
+              >
+                Uprav kategóriu
+              </button>
             </form>
           </ReturnModal>
         ),
@@ -202,8 +234,8 @@ const AdminCategories: React.FC = () => {
                   key={pageIndex}
                   onClick={() => gotoPage(pageIndex)}
                   className={`px-4 py-2 mx-1 rounded ${pageIndex === pageIndex
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
                     }`}
                 >
                   {pageIndex}

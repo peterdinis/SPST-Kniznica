@@ -7,7 +7,6 @@ import { queryClient } from "@/api/queryClient";
 import { Montserrat } from "@next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CssBaseline from "@mui/material/CssBaseline";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
 import { FallbackLoader, Layout } from "@/components/shared";
 import { ChakraProvider } from '@chakra-ui/react'
@@ -30,7 +29,6 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Component {...pageProps} />
                 <ToastContainer />
                 <ReactQueryDevtools />
-                <CssBaseline />
               </ErrorBoundary>
             </Layout>
           </ChakraProvider>

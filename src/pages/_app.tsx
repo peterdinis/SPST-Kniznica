@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
 import { FallbackLoader, Layout } from "@/components/shared";
+import { ChakraProvider } from '@chakra-ui/react'
 
 const roboto = Montserrat({
   weight: ["400"],
@@ -23,14 +24,16 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<FallbackLoader />}>
         <div className={roboto.className}>
-          <Layout>
-            <ErrorBoundary>
-              <Component {...pageProps} />
-              <ToastContainer />
-              <ReactQueryDevtools />
-              <CssBaseline />
-            </ErrorBoundary>
-          </Layout>
+          <ChakraProvider>
+            <Layout>
+              <ErrorBoundary>
+                <Component {...pageProps} />
+                <ToastContainer />
+                <ReactQueryDevtools />
+                <CssBaseline />
+              </ErrorBoundary>
+            </Layout>
+          </ChakraProvider>
         </div>
       </Suspense>
     </QueryClientProvider>

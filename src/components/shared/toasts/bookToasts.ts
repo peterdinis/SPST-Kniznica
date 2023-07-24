@@ -8,3 +8,9 @@ export const errorRegister = () =>
 
 export const createNotify = () => toast.success("Kniha bola vytvorená");
 export const createErrorRegister = () => toast.error("Kniha nebola vytvorená");
+
+export const updateBookSuccess = () => toast.success("Kniha bola upravená");
+export const updateBookError = () => toast.error("Kniha nebola upravená");
+
+export const deleteBookError = () => toast.error("Kniha nebola vytvorená");
+export const deleteBookSuccess = () => toast.success("Kniha bola vytvorená");

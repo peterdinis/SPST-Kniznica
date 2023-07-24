@@ -5,9 +5,7 @@ import { ICategory } from "@/interfaces/ICategory";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
+import { Box, Text, Progress } from "@chakra-ui/react"
 import ScrollToTop from "@/hooks/useScroll";
 
 const SearchCategoryForm: React.FC = () => {
@@ -57,9 +55,9 @@ const SearchCategoryForm: React.FC = () => {
           {isSearching && (
             <div className="text-center mt-4 font-bold text-xl">
               <Box sx={{ display: "flex" }}>
-                <CircularProgress variant="determinate" value={progress} />
+                <Progress variant="determinate" value={progress} />
               </Box>
-              <Typography>Vyhľadám...</Typography>
+              <Text>Vyhľadám...</Text>
             </div>
           )}
 

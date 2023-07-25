@@ -85,7 +85,6 @@ const GetAllAuthors: React.FC = () => {
                   <Stack
                     borderWidth="1px"
                     borderRadius="lg"
-                    // w={{ sm: '100%', md: '540px' }}
                     direction={{ base: 'column', md: 'row' }}
                     // eslint-disable-next-line react-hooks/rules-of-hooks
                     bg={useColorModeValue('white', 'gray.900')}

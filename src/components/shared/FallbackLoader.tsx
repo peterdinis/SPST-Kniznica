@@ -1,32 +1,28 @@
 import React from 'react';
-import CircularProgress, {
-  CircularProgressProps,
-} from '@mui/material/CircularProgress';
-import { Typography, Box } from '@mui/material';
+import { CircularProgress, Box, Text } from '@chakra-ui/react';
 
-function CircularProgressWithLabel(
-  props: CircularProgressProps & { value: number },
-) {
+function CircularProgressWithLabel(props: { value: any }) { // TODO: Replace any
   return (
-    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-      <CircularProgress variant="determinate" {...props} />
+    <Box position="relative" display="inline-flex">
+      <CircularProgress
+        value={props.value}
+        size="120px" // Set the size of the circular progress
+        color="teal.500" // Replace with your preferred color
+        thickness="8px" // Adjust the thickness of the circular progress
+      />
       <Box
-        sx={{
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          position: 'absolute',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        top="0"
+        left="0"
+        bottom="0"
+        right="0"
+        position="absolute"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
       >
-        <Typography
-          variant="caption"
-          component="div"
-          color="text.secondary"
-        >{`${Math.round(props.value)}%`}</Typography>
+        <Text fontSize="sm" color="gray.500">
+          {`${Math.round(props.value)}%`}
+        </Text>
       </Box>
     </Box>
   );

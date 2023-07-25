@@ -6,7 +6,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import Image from "next/image";
 import defaultImage from "../../images/noImage.png";
 import { getAuthorDetailError } from "../../constants/errorMessages";
-import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import { WarningIcon } from "@chakra-ui/icons";
 import { FallbackLoader, Header, FallbackRender } from "../shared";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
@@ -118,7 +118,7 @@ const AuthorDetail: React.FC = () => {
                     <>
                       <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                         Autor/ka nenapísal/a žiadne knihy{" "}
-                        <SentimentDissatisfiedIcon />
+                        <WarningIcon/>
                       </dd>
                     </>
                   ) : (

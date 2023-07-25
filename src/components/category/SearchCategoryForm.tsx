@@ -4,10 +4,8 @@ import Link from "next/link";
 import { ICategory } from "@/interfaces/ICategory";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect } from "react";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
+import { WarningIcon } from "@chakra-ui/icons";
+import { Box, Text, Progress } from "@chakra-ui/react"
 import ScrollToTop from "@/hooks/useScroll";
 
 const SearchCategoryForm: React.FC = () => {
@@ -57,16 +55,16 @@ const SearchCategoryForm: React.FC = () => {
           {isSearching && (
             <div className="text-center mt-4 font-bold text-xl">
               <Box sx={{ display: "flex" }}>
-                <CircularProgress variant="determinate" value={progress} />
+                <Progress variant="determinate" value={progress} />
               </Box>
-              <Typography>Vyhľadám...</Typography>
+              <Text>Vyhľadám...</Text>
             </div>
           )}
 
           {results.data === undefined ||
             (results.data.length === 0 && (
               <div className="text-center font-bold mt-4">
-                Kategória nebola najdená <SentimentVeryDissatisfiedIcon />
+                Kategória nebola najdená <WarningIcon />
               </div>
             ))}
         </form>

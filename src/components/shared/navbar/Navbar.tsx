@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
+import { Icon } from '@chakra-ui/react';
+import { HiMenuAlt1, HiX } from 'react-icons/hi'; 
 import { NavbarLinks } from "..";
 
 export default function Navbar() {
@@ -21,9 +21,9 @@ export default function Navbar() {
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
-                  <CloseIcon className="font-bold" />
+                  <Icon as={HiX} boxSize={6} className="font-bold" />
                 ) : (
-                  <MenuIcon className="font-bold" />
+                  <Icon as={HiMenuAlt1} boxSize={6} className="font-bold" />
                 )}
               </button>
             </div>

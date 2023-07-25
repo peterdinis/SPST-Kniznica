@@ -2,10 +2,10 @@ import * as api from "@/api/queries/bookingQueries";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { IBooking } from "@/interfaces/IBooking";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { loadBorrowedBooksError } from "@/constants/errorMessages";
 import { ReturnBookModal } from "..";
 import { FallbackLoader, FallbackRender } from "@/components/shared";
+import { WarningIcon } from "@chakra-ui/icons";
 
 const MyBooks: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -43,7 +43,7 @@ const MyBooks: React.FC = () => {
                 (data === undefined && (
                   <div className="flex justify-center aling-top text-black text-xl">
                     Nemáte žiadne požičané knihy{" "}
-                    <SentimentVeryDissatisfiedIcon />
+                    <WarningIcon/>
                   </div>
                 ))}
               {data &&

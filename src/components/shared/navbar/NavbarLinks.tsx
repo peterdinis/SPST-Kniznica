@@ -3,11 +3,14 @@ import useStudent from "@/hooks/useStudent";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { AdminDropdown, NotificationDropdown, TeacherDropdown } from "..";
+import { useColorMode } from "@chakra-ui/react";
+import {Text} from "@chakra-ui/react"
 
 const NavbarLinks: React.FC = () => {
   const { student } = useStudent();
   const { teacher } = useTeacher();
   const { admin } = useAdmin();
+ /*  const { colorMode, toggleColorMode } = useColorMode() */
 
   return (
     <>
@@ -22,8 +25,13 @@ const NavbarLinks: React.FC = () => {
       </li>
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
-      </li>
+      </li> 
 
+    {/* TODO: Fix me later */}
+    {/*   <li className="text-black text-xl" onClick={toggleColorMode}>
+        <Text>Toggle {colorMode === 'light' ? 'Dark' : 'Light'}</Text>
+      </li>
+ */}
       {student === null && teacher === null && admin === null && (
         <>
           <li className="text-black text-xl">

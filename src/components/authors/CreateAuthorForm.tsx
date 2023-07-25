@@ -8,7 +8,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IAuthor } from "@/interfaces/IAuthor";
 import { useRouter } from "next/router";
-import { notify, errorRegister } from "../shared/toasts/authorToasts";
+import { notify, errorRegister, allAuthorFieldsError } from "../shared/toasts/authorToasts";
 import { Header } from "../shared";
 
 const CreateAuthorForm: React.FC = () => {
@@ -36,6 +36,9 @@ const CreateAuthorForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createAuthorType> = (
     data: IAuthor
   ) => {
+    if(!data.name || !data.lastName || !data.image || !data.birthYear || !data.country || !data.description || !data.litPeriod) {
+      allAuthorFieldsError();
+    }
     mutation.mutate(data);
     reset();
   };

@@ -5,12 +5,23 @@ import ScrollToTop from "@/hooks/useScroll";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState } from "react";
 import { Icon } from "@chakra-ui/icons";
-import { IoArrowForward, IoArrowBack } from 'react-icons/io5'; 
+import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 import { WarningIcon } from "@chakra-ui/icons";
 import { IAuthor } from "@/interfaces/IAuthor";
 import { getAllAuthorsError } from "../../constants/errorMessages";
 import { motion } from "framer-motion";
 import { FallbackLoader, FallbackRender, Header } from "../shared";
+import {
+  Badge,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Image,
+  Stack,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react'
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -70,36 +81,82 @@ const GetAllAuthors: React.FC = () => {
                 animate="visible"
                 variants={itemVariants}
               >
-                <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
-                  <div className="mb-8">
-                    {item.image === null ? (
-                      <LazyLoadImage
-                        alt="Placeholder"
-                        className="h-auto w-full rounded-lg"
-                        src="https://picsum.photos/200/300"
-                      />
-                    ) : (
-                      <LazyLoadImage
-                        alt="Placeholder"
-                        className="h-auto w-full rounded-lg"
-                        src={item.image}
-                      />
-                    )}
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-2xl text-gray-800 break-all">
-                      {item.name} - {item.lastName}
-                    </h3>
-                    <div className="text-center mt-4">
-                      <Link
-                        className="link mt-10 bg-blue-200 p-2 rounded"
+                <Center py={6}>
+                  <Stack
+                    borderWidth="1px"
+                    borderRadius="lg"
+                    // w={{ sm: '100%', md: '540px' }}
+                    direction={{ base: 'column', md: 'row' }}
+                    // eslint-disable-next-line react-hooks/rules-of-hooks
+                    bg={useColorModeValue('white', 'gray.900')}
+                    boxShadow={'2xl'}>
+                    <Flex flex={1} bg="blue.200">
+                      {item.image == null ? (
+                        <>
+                          <Image
+                            objectFit="cover"
+                            boxSize="100%"
+                            src={
+                              'https://picsum.photos/200/300'
+                            }
+                            alt="#"
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <LazyLoadImage
+                            alt="Placeholder"
+                            className="h-auto w-full rounded-lg"
+                            src={item.image}
+                          />
+                        </>
+                      )}
+                    </Flex>
+                    <Stack
+                      flex={1}
+                      flexDirection="column"
+                      justifyContent="center"
+                      alignItems="center"
+                      p={1}
+                      pt={2}>
+                      <Heading fontSize={'2xl'} fontFamily={'body'}>
+                      {item.name}
+                      </Heading>
+                      <Text fontWeight={600} color={'gray.500'} size="sm" mb={4}>
+                      {item.lastName}
+                      </Text>
+                      <Stack
+                        width={'100%'}
+                        mt={'2rem'}
+                        direction={'row'}
+                        padding={2}
+                        justifyContent={'space-between'}
+                        alignItems={'center'}>
+                        <Button
+                          flex={1}
+                          fontSize={'sm'}
+                          rounded={'full'}
+                          bg={'blue.400'}
+                          color={'white'}
+                          boxShadow={
+                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                          }
+                          _hover={{
+                            bg: 'blue.500',
+                          }}
+                          _focus={{
+                            bg: 'blue.500',
+                          }}>
+                           <Link
                         href={`/authors/detail/${item.externalId}`}
                       >
                         Detail
                       </Link>
-                    </div>
-                  </div>
-                </div>
+                        </Button>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Center>
                 <ScrollToTop />
               </motion.div>
             );

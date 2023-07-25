@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Notifications } from "@mui/icons-material";
+import { Icon } from '@chakra-ui/react';
+import { HiBell } from 'react-icons/hi';
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import Cookies from "js-cookie";
 const TeacherDropdown: React.FC = () => {
@@ -32,7 +33,7 @@ const TeacherDropdown: React.FC = () => {
         className="flex items-center justify-center text-gray-600 hover:text-gray-900 focus:outline-none"
         onClick={toggleDropdown}
       >
-        <Notifications className="w-6 h-6" /> 0
+       <Icon as={HiBell} boxSize={6} className="w-6 h-6" /> 0
       </button>
 
       {isOpen && (

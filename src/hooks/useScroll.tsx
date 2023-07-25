@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { ChevronUpIcon } from '@chakra-ui/icons';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState<Boolean>(false);
@@ -32,7 +32,7 @@ export default function ScrollToTop() {
           onClick={scrollToTop}
           className="fixed p-2 rounded-lg bg-pink-900 text-white bottom-3 right-3 lg:bottom-5 lg:right-5 cursor-pointer"
         >
-          <ArrowUpwardIcon />
+          <ChevronUpIcon />
         </div>
       )}
     </div>

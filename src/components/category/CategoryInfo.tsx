@@ -5,9 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import FallbackRender from "../shared/errors/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderCategory } from "@/data/placeholderCategory";
-import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
+import { WarningIcon } from "@chakra-ui/icons";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
@@ -73,7 +73,7 @@ const CategoryInfo: React.FC = () => {
                   <>
                     <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                       Kategória nie je priradená pri žiadnej knihe{" "}
-                      <SentimentDissatisfiedIcon />
+                      <WarningIcon />
                     </dd>
                   </>
                 ) : (

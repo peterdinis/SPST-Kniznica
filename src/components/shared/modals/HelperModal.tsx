@@ -1,67 +1,48 @@
 import * as React from "react";
-import { Backdrop, Box, Modal } from "@mui/material";
-import { useSpring, animated } from "@react-spring/web";
-import { FadeProps, IModalProps } from "@/interfaces/IModal";
-import { modalStyle } from "../../../styles/modalStyle";
+import {
+  Box,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
-const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(
-  props,
-  ref
-) {
-  const {
-    children,
-    in: open,
-    onClick,
-    onEnter,
-    onExited,
-    ownerState,
-    ...other
-  } = props;
-  const style = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
-    onStart: () => {
-      if (open && onEnter) {
-        onEnter(null as unknown as HTMLElement, true);
-      }
-    },
-    onRest: () => {
-      if (!open && onExited) {
-        onExited(null as unknown as HTMLElement, true);
-      }
-    },
-  });
+interface IModalProps {
+  children?: React.ReactNode;
+  btnName: string;
+  modalHeader: string
+}
 
-  return (
-    <animated.div ref={ref} style={style} {...other}>
-      {React.cloneElement(children, { onClick })}
-    </animated.div>
-  );
-});
+const HelperModal = ({ children, btnName, modalHeader }: IModalProps) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-const HelperModal: React.FC<IModalProps> = ({ children, btnName, modalHeader }: IModalProps) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const modalMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+    transition: { duration: 0.3 },
+  };
 
   return (
     <>
-      <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold" onClick={handleOpen}>{btnName}</button>
-      <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-      >
-        <Fade in={open}>
-          <Box sx={modalStyle}>
-            <h2 className="text-center font-bold text-2xl">{modalHeader}</h2>
-            <hr />
-            {children}
-          </Box>
-        </Fade>
+      <button className="text-red-800" onClick={onOpen}>
+        {btnName}
+      </button>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
+        <motion.div {...modalMotionProps}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader className="text-center font-bold text-2xl">
+              {modalHeader}
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>{children}</ModalBody>
+          </ModalContent>
+        </motion.div>
       </Modal>
     </>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Notifications } from "@mui/icons-material";
+import { Icon } from '@chakra-ui/react';
+import { HiBell } from 'react-icons/hi'; 
 import { logoutToast } from "../toasts/adminToasts";
 import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +8,7 @@ import * as api from "@/api/queries/notificationsQueries";
 import useStudent from "@/hooks/useStudent";
 import FallbackLoader from "../FallbackLoader";
 import FallbackRender from "../errors/FallbackRender";
-import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import { HiOutlineEmojiSad } from 'react-icons/hi';
 
 const NotificationDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +59,7 @@ const NotificationDropdown: React.FC = () => {
         className="flex items-center justify-center text-gray-600 hover:text-gray-900 focus:outline-none"
         onClick={toggleDropdown}
       >
-        <Notifications className="w-6 h-6" /> 0
+        <Icon as={HiBell} boxSize={6} className="w-6 h-6" /> 0
       </button>
 
       {isOpen && (
@@ -69,7 +70,7 @@ const NotificationDropdown: React.FC = () => {
                 <div>
                   {" "}
                   <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    Žiadne správy <SentimentDissatisfiedIcon />
+                    Žiadne správy <Icon as={HiOutlineEmojiSad} boxSize={6} />
                   </dd>
                 </div>
               )}

@@ -4,13 +4,13 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { AdminDropdown, NotificationDropdown, TeacherDropdown } from "..";
 import { useColorMode } from "@chakra-ui/react";
-import {Text} from "@chakra-ui/react"
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const NavbarLinks: React.FC = () => {
   const { student } = useStudent();
   const { teacher } = useTeacher();
   const { admin } = useAdmin();
- /*  const { colorMode, toggleColorMode } = useColorMode() */
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
@@ -25,13 +25,8 @@ const NavbarLinks: React.FC = () => {
       </li>
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
-      </li> 
-
-    {/* TODO: Fix me later */}
-    {/*   <li className="text-black text-xl" onClick={toggleColorMode}>
-        <Text>Toggle {colorMode === 'light' ? 'Dark' : 'Light'}</Text>
       </li>
- */}
+
       {student === null && teacher === null && admin === null && (
         <>
           <li className="text-black text-xl">
@@ -40,6 +35,11 @@ const NavbarLinks: React.FC = () => {
 
           <li className="text-black text-xl">
             <Link href="/teacher/login">Učiteľ</Link>
+          </li>
+
+          {/* TODO: Fix me later */}
+          <li className="text-black text-xl" onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </li>
         </>
       )}

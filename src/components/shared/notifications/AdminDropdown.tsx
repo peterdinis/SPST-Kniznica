@@ -28,7 +28,7 @@ const AdminDropdown: React.FC = () => {
   return (
     <div className="relative z-20">
       <button
-        className="flex items-center justify-center text-gray-600 hover:text-gray-900 focus:outline-none"
+       className="flex items-center justify-center text-gray-800"
         onClick={toggleDropdown}
       >
         <Icon as={HiBell} boxSize={6}  className="w-6 h-6" /> 0

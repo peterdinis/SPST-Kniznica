@@ -38,9 +38,9 @@ const NavbarLinks: React.FC = () => {
           </li>
 
           {/* TODO: Fix me later */}
-          <li className="text-black text-xl" onClick={toggleColorMode}>
+   {/*        <li className="text-black text-xl" onClick={toggleColorMode}>
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-          </li>
+          </li> */}
         </>
       )}
 

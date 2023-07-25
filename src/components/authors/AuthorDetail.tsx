@@ -12,14 +12,14 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 
 const AuthorDetail: React.FC = () => {
-  const router = useRouter();
-  const { teacher } = useTeacher();
-  const { admin } = useAdmin();
   const { query, isReady } = useRouter();
 
   if (!isReady) {
     return <FallbackLoader />;
   }
+  const router = useRouter();
+  const { teacher } = useTeacher();
+  const { admin } = useAdmin();
 
   const { data, isError, isLoading } = useQuery(
     ["authorDetail", query.id as unknown as number],

@@ -3,7 +3,7 @@ import * as api from "../../api/queries/authorQueries";
 import Link from "next/link";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect} from "react";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { WarningIcon } from "@chakra-ui/icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import {Box, Text, Progress} from "@chakra-ui/react";
 import ScrollToTop from "@/hooks/useScroll";
@@ -66,7 +66,7 @@ const SearchAuthorsForm: React.FC = () => {
           {results.data === undefined ||
             (results.data.length === 0 && (
               <div className="text-center font-bold mt-4">
-                Spisovateľ/ka nebol/a najdený/á <SentimentVeryDissatisfiedIcon />
+                Spisovateľ/ka nebol/a najdený/á <WarningIcon />
               </div>
             ))}
         </form>

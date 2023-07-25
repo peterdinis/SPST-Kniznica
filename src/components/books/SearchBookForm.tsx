@@ -4,11 +4,9 @@ import Link from "next/link";
 import { IBook } from "@/interfaces/IBook";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect} from "react";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { WarningIcon } from "@chakra-ui/icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
+import {Progress, Text, Box} from "@chakra-ui/react";
 import ScrollToTop from "@/hooks/useScroll";
 
 const SearchOneBook: React.FC = () => {
@@ -59,16 +57,16 @@ const SearchOneBook: React.FC = () => {
           {isSearching && (
             <div className="text-center mt-4 font-bold text-xl">
               <Box sx={{ display: "flex" }}>
-                <CircularProgress variant="determinate" value={progress} />
+                <Progress variant="determinate" value={progress} />
               </Box>
-              <Typography>Vyhľadám...</Typography>
+              <Text>Vyhľadám...</Text>
             </div>
           )}
 
           {results.data === undefined ||
             (results.data.length === 0 && (
               <div className="text-center font-bold mt-4">
-                Kniha nebola najdená <SentimentVeryDissatisfiedIcon />
+                Kniha nebola najdená <WarningIcon />
               </div>
             ))}
         </form>

@@ -1,7 +1,7 @@
-import PersonIcon from "@mui/icons-material/Person";
 import useTeacher from "@/hooks/useTeacher";
 import useCopyToClipboard from "@/hooks/useCopy";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { ChatIcon, CopyIcon } from '@chakra-ui/icons'; 
+
 import { Options } from "..";
 
 const ProfileBody: React.FC = () => {
@@ -17,7 +17,7 @@ const ProfileBody: React.FC = () => {
       <div className="w-full md:w-9/12 mx-2 h-128">
         <div className="bg-white p-3 shadow-sm rounded-sm">
           <div className="flex items-center space-x-2  text-gray-900 leading-8">
-            <PersonIcon />
+            <ChatIcon />
             <span className="tracking-wide">Základné informácie</span>
           </div>
           <div className="text-gray-700">
@@ -36,7 +36,7 @@ const ProfileBody: React.FC = () => {
                 </div>
                 <div className="px-4 py-2">
                   {teacher?.data.user.username}
-                  <ContentCopyIcon
+                  <CopyIcon
                     onClick={() =>
                       copy(teacher?.data.user.username as unknown as string)
                     }

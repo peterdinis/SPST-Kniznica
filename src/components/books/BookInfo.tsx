@@ -16,7 +16,7 @@ import {
 } from "@/validators/booking/bookingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useCopyToClipboard from "@/hooks/useCopy";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { CopyIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 import defaultImage from "../../images/noImage.png";
 import { getBookInfoError } from "../../constants/errorMessages";
@@ -152,7 +152,7 @@ const BookInfo: React.FC = () => {
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Id knihy pre požičanie</span>:{" "}
-                <ContentCopyIcon
+                <CopyIcon
                   className="transform scale-10"
                   onClick={() => copy(data.book.id)}
                 />{" "}

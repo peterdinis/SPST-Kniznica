@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Container, Typography } from "@mui/material";
+import { Container, Text } from "@chakra-ui/react"
 import Link from "next/link";
 
 const Creator: React.FC = () => {
@@ -24,12 +24,12 @@ const Creator: React.FC = () => {
       animate="visible"
     >
       <Container>
-        <Typography mt={3} fontSize={20}>
+        <Text mt={3} fontSize={20}>
           Author applikácie{" "}
           <Link className="text-red-400" href="https://www.facebook.com/peto.dinis/">
             Peter Dinis
           </Link>
-        </Typography>
+        </Text>
       </Container>
     </motion.div>
   );

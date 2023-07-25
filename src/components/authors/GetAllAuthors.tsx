@@ -4,9 +4,9 @@ import Link from "next/link";
 import ScrollToTop from "@/hooks/useScroll";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState } from "react";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { Icon } from "@chakra-ui/icons";
+import { IoArrowForward, IoArrowBack } from 'react-icons/io5'; 
+import { WarningIcon } from "@chakra-ui/icons";
 import { IAuthor } from "@/interfaces/IAuthor";
 import { getAllAuthorsError } from "../../constants/errorMessages";
 import { motion } from "framer-motion";
@@ -58,7 +58,7 @@ const GetAllAuthors: React.FC = () => {
         {paginatedData?.data.result.length === 0 && (
           <div className="text-center font-bold mt-4">
             Žiadných spisovateľov som nenanšiel{" "}
-            <SentimentVeryDissatisfiedIcon />
+            <WarningIcon />
           </div>
         )}
         {paginatedData?.data.result &&
@@ -113,7 +113,7 @@ const GetAllAuthors: React.FC = () => {
               disabled={page === 0}
               className="text-sm ml-3 font-medium leading-none "
             >
-              <ArrowBackIcon />
+              <Icon as={IoArrowBack} boxSize={6} />
             </button>
           </div>
           <span className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
@@ -129,7 +129,7 @@ const GetAllAuthors: React.FC = () => {
               disabled={isPreviousData || !paginatedData?.data.hasNextPage}
               className="text-sm font-medium leading-none mr-3"
             >
-              <ArrowForwardIcon />
+              <Icon as={IoArrowForward} boxSize={6} />
             </button>
           </div>
           {isFetching ? <FallbackLoader /> : null}

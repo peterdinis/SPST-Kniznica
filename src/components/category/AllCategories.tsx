@@ -4,11 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/categoryQueries";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/errors/FallbackRender";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Icon } from '@chakra-ui/react';
+import { IoArrowForward, IoArrowBack } from 'react-icons/io5'; // Import the Chakra UI icons
 import { ICategory } from "@/interfaces/ICategory";
 import ScrollToTop from "@/hooks/useScroll";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { WarningIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
 import { motion } from "framer-motion";
@@ -61,7 +61,7 @@ const AllCategories: React.FC = () => {
       <div className="w-full mt-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {paginatedData.data.result.length === 0 && (
           <div className="text-center font-bold mt-4">
-            Nenašli sa žiadne kategórie <SentimentVeryDissatisfiedIcon />
+            Nenašli sa žiadne kategórie <WarningIcon />
           </div>
         )}
         {paginatedData.data.result &&
@@ -103,7 +103,7 @@ const AllCategories: React.FC = () => {
               disabled={page === 0}
               className="text-sm ml-3 font-medium leading-none "
             >
-              <ArrowBackIcon />
+              <IoArrowBack />
             </button>
           </div>
           <span className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
@@ -119,7 +119,7 @@ const AllCategories: React.FC = () => {
               disabled={isPreviousData || !paginatedData.data.hasNextPage}
               className="text-sm font-medium leading-none mr-3"
             >
-              <ArrowForwardIcon />
+              <IoArrowForward/>
             </button>
           </div>
           {isFetching ? <FallbackLoader /> : null}

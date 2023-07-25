@@ -6,7 +6,7 @@ import { AdminDropdown, NotificationDropdown, TeacherDropdown } from "..";
 import { useColorMode } from "@chakra-ui/react";
 import {Text} from "@chakra-ui/react"
 
-function NavbarLinks() {
+const NavbarLinks: React.FC = () => {
   const { student } = useStudent();
   const { teacher } = useTeacher();
   const { admin } = useAdmin();

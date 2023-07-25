@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ICategory } from "@/interfaces/ICategory";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useEffect } from "react";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { WarningIcon } from "@chakra-ui/icons";
 import { Box, Text, Progress } from "@chakra-ui/react"
 import ScrollToTop from "@/hooks/useScroll";
 
@@ -64,7 +64,7 @@ const SearchCategoryForm: React.FC = () => {
           {results.data === undefined ||
             (results.data.length === 0 && (
               <div className="text-center font-bold mt-4">
-                Kategória nebola najdená <SentimentVeryDissatisfiedIcon />
+                Kategória nebola najdená <WarningIcon />
               </div>
             ))}
         </form>

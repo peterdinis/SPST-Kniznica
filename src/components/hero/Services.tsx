@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import HomeIcon from "@mui/icons-material/Home";
-import SchoolIcon from "@mui/icons-material/School";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import { Icon } from '@chakra-ui/react';
+import { FaHome, FaSchool, FaThumbsUp } from 'react-icons/fa';
+
 
 const Services: React.FC = () => {
   const cardVariants = {
@@ -38,7 +38,7 @@ const Services: React.FC = () => {
                     tabIndex={0}
                     className="focus:outline-none text-lg font-medium leading-6 text-gray-800 text-center pt-5"
                   >
-                    <HomeIcon /> Doma Objednáš
+                    <Icon as={FaHome} boxSize={6} /> Doma Objednáš
                   </h4>
                 </motion.div>
                 <motion.div
@@ -51,7 +51,7 @@ const Services: React.FC = () => {
                     tabIndex={0}
                     className="focus:outline-none text-lg font-medium leading-6 text-gray-800 text-center pt-5"
                   >
-                    <SchoolIcon /> V škole vyzdhvineš
+                    <Icon as={FaSchool} boxSize={6}  /> V škole vyzdhvineš
                   </h4>
                 </motion.div>
                 <motion.div
@@ -64,7 +64,7 @@ const Services: React.FC = () => {
                     tabIndex={0}
                     className="focus:outline-none text-lg font-medium leading-6 text-gray-800 text-center pt-5"
                   >
-                    <ThumbUpIcon /> Ľahké že 👀
+                    <Icon as={FaThumbsUp} boxSize={6} /> Ľahké že 👀
                   </h4>
                 </motion.div>
               </motion.div>

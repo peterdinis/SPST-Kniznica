@@ -8,7 +8,7 @@ import * as api from "@/api/queries/notificationsQueries";
 import useStudent from "@/hooks/useStudent";
 import FallbackLoader from "../FallbackLoader";
 import FallbackRender from "../errors/FallbackRender";
-import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import { HiOutlineEmojiSad } from 'react-icons/hi';
 
 const NotificationDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,7 +70,7 @@ const NotificationDropdown: React.FC = () => {
                 <div>
                   {" "}
                   <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    Žiadne správy <SentimentDissatisfiedIcon />
+                    Žiadne správy <Icon as={HiOutlineEmojiSad} boxSize={6} />
                   </dd>
                 </div>
               )}

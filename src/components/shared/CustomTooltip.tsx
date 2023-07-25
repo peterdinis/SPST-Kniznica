@@ -1,6 +1,5 @@
 import { Tooltip } from "@chakra-ui/react";
 
-
 // From chakra UI tooltip
 type Logical = "start-start" | "start-end" | "end-start" | "end-end" | "start" | "end";
 
@@ -14,7 +13,7 @@ interface ITooltipProps {
 
 const CustomTooltip: React.FC<ITooltipProps> = ({children, label, fontSize, placement, className}) => {
     return (
-        <Tooltip className={className} label={label} fontSize={fontSize} placement={placement}>
+        <Tooltip  hasArrow  className={className} label={label} fontSize={fontSize} placement={placement}>
             {children}
         </Tooltip>
     )

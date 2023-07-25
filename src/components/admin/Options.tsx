@@ -1,4 +1,4 @@
-import SettingsIcon from "@mui/icons-material/Settings";
+import { SettingsIcon } from '@chakra-ui/icons';
 import Link from "next/link";
 
 const Options: React.FC = () => {

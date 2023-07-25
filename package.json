@@ -13,6 +13,7 @@
     "depcheck": "npx depcheck"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.0",
     "@chakra-ui/next-js": "^2.1.5",
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
@@ -39,6 +40,7 @@
     "react-dom": "18.2.0",
     "react-error-boundary": "^4.0.3",
     "react-hook-form": "^7.44.3",
+    "react-icons": "^4.10.1",
     "react-lazy-load-image-component": "^1.5.6",
     "react-select": "^5.7.4",
     "react-spring": "^9.7.1",

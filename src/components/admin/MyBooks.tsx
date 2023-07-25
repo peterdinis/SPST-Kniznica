@@ -2,7 +2,7 @@ import * as api from "@/api/queries/bookingQueries";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { IBooking } from "@/interfaces/IBooking";
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import { WarningIcon } from '@chakra-ui/icons';
 import { ReturnBookModal } from ".";
 import { FallbackLoader, FallbackRender } from "../shared";
 
@@ -38,7 +38,7 @@ const MyBooks: React.FC = () => {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {data === null || data === undefined && <div className="flex justify-center aling-top text-black text-xl">Nemáte žiadne požičané knihy <SentimentVeryDissatisfiedIcon /></div>}
+              {data === null || data === undefined && <div className="flex justify-center aling-top text-black text-xl">Nemáte žiadne požičané knihy <WarningIcon /></div>}
               {data &&
                 data.map((item: IBooking) => {
                   return (

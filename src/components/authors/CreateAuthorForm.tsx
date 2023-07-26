@@ -10,6 +10,8 @@ import { IAuthor } from "@/interfaces/IAuthor";
 import { useRouter } from "next/router";
 import { notify, errorRegister, allAuthorFieldsError } from "../shared/toasts/authorToasts";
 import { Header } from "../shared";
+import CustomTooltip from "../shared/tooltip/CustomTooltip";
+import { Checkbox } from "@chakra-ui/react";
 
 const CreateAuthorForm: React.FC = () => {
   const router = useRouter();
@@ -23,9 +25,9 @@ const CreateAuthorForm: React.FC = () => {
       notify();
     },
 
-    onSettled: (data) =>{
+    onSettled: (data) => {
       console.log(data)
-    }, 
+    },
 
     onError: (data) => {
       errorRegister();
@@ -36,7 +38,7 @@ const CreateAuthorForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createAuthorType> = (
     data: IAuthor
   ) => {
-    if(!data.name || !data.lastName || !data.image || !data.birthYear || !data.country || !data.description || !data.litPeriod) {
+    if (!data.name || !data.lastName || !data.image || !data.birthYear || !data.country || !data.description || !data.litPeriod) {
       allAuthorFieldsError();
     }
     mutation.mutate(data);
@@ -92,7 +94,7 @@ const CreateAuthorForm: React.FC = () => {
               htmlFor="description"
               className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Fotka 
+              Fotka
             </label>
           </div>
           <br />
@@ -104,6 +106,7 @@ const CreateAuthorForm: React.FC = () => {
                 required: true,
               })}
             />
+
             <label
               htmlFor="description"
               className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -112,32 +115,34 @@ const CreateAuthorForm: React.FC = () => {
             </label>
           </div>
           <br />
-          <div className="relative z-0 mb-6 group">
-            <input
-              type="checkbox"
-              placeholder="Nemusí byť vyplnené ak autor/autorka je nažive"  
-              className="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out"  
-              {...register("isAlive", {
-                required: true,
-                
-              })}
-            />
-            <label
-              htmlFor="description"
-              className="ml-2 text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Je spisovtateľ/ka nažive
-            </label>
-          </div>
+          <CustomTooltip label={"Ak je autor/ka nažive nemusí byť daný element vyplnený"} placement={"start-start"}>
+            <div className="relative z-0 mb-6 group">
+              <Checkbox
+                type="checkbox"
+                placeholder="Nemusí byť vyplnené ak autor/autorka je nažive"
+                className="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out"
+                {...register("isAlive", {
+                  required: true,
+
+                })}
+              />
+              <label
+                htmlFor="description"
+                className="ml-2 text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Je spisovtateľ/ka nažive
+              </label>
+            </div>
+          </CustomTooltip>
           <br />
           <div className="relative z-0 mb-6 group">
-           <textarea
-            rows={3}
-            cols={3}
+            <textarea
+              rows={3}
+              cols={3}
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("description", {
                 required: true,
-                
+
               })}
             />
             <label
@@ -154,7 +159,7 @@ const CreateAuthorForm: React.FC = () => {
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("litPeriod", {
                 required: true,
-                
+
               })}
             />
             <label

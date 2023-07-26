@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { notify, errorRegister, allAuthorFieldsError } from "../shared/toasts/authorToasts";
 import { Header } from "../shared";
 import CustomTooltip from "../shared/tooltip/CustomTooltip";
-import { Checkbox } from "@chakra-ui/react";
+import { Checkbox, Input, Textarea  } from "@chakra-ui/react";
 
 const CreateAuthorForm: React.FC = () => {
   const router = useRouter();
@@ -21,15 +21,10 @@ const CreateAuthorForm: React.FC = () => {
 
 
   const mutation = useMutation(mut.createNewAuthor, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       notify();
     },
-
-    onSettled: (data) => {
-      console.log(data)
-    },
-
-    onError: (data) => {
+    onError: () => {
       errorRegister();
       router.push("/authors/failed");
     },
@@ -51,70 +46,45 @@ const CreateAuthorForm: React.FC = () => {
       <div className="max-w-2xl mx-auto mt-10">
         <form onSubmit={handleSubmit(onHandleSubmit)}>
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("name", {
                 required: true,
               })}
+              placeholder="Meno Autora/ky"
             />
-            <label
-              htmlFor="name"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Meno autora
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("lastName", {
                 required: true,
               })}
+              placeholder="Priezvisko autora/ky"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Priezivsko autora
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("image", {
                 required: true,
               })}
+              placeholder="Autorova fotka"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Fotka
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="number"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("birthYear", {
                 required: true,
               })}
+              placeholder="Rok narodenia"
             />
-
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Rok Narodenia
-            </label>
           </div>
-          <br />
           <CustomTooltip label={"Ak je autor/ka nažive nemusí byť daný element vyplnený"} placement={"start-start"}>
             <div className="relative z-0 mb-6 group">
               <Checkbox
@@ -134,9 +104,8 @@ const CreateAuthorForm: React.FC = () => {
               </label>
             </div>
           </CustomTooltip>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <textarea
+            <Textarea
               rows={3}
               cols={3}
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -144,32 +113,19 @@ const CreateAuthorForm: React.FC = () => {
                 required: true,
 
               })}
+              placeholder="Info o spisovateľovi/ke"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Krátke info o spisovateľovi
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("litPeriod", {
                 required: true,
-
               })}
+              placeholder="Literárne obdobie"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Literárne obdobie
-            </label>
           </div>
-          <br />
           <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
             Pridať nového autora
           </button>

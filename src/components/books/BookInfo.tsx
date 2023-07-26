@@ -25,7 +25,7 @@ import { motion } from "framer-motion";
 import useStudent from "@/hooks/useStudent";
 import useAdmin from "@/hooks/useAdmin";
 import useTeacher from "@/hooks/useTeacher";
-import CustomTooltip from "../shared/CustomTooltip";
+import CustomTooltip from "../shared/tooltip/CustomTooltip";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();

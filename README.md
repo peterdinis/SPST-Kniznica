@@ -8,7 +8,6 @@
 - Next.js
 - Typescript
 - Tailwind css
-- Socket.io
 - React Query
 
 ## How to run

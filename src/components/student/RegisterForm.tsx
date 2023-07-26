@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -19,7 +18,6 @@ import {
   studentRoleError,
 } from "../shared/toasts/applicationToasts";
 import Header from "../shared/Header";
-import { socket } from "@/lib/socket";
 import { STUDENT } from "@/constants/applicationConstants";
 
 const RegisterForm: React.FC = () => {
@@ -67,21 +65,6 @@ const RegisterForm: React.FC = () => {
       }
     }
   };
-
-  useEffect(() => {
-    socket.on("connect", () => {
-      console.log("Connected to socket server");
-    });
-
-    socket.on("newNotification", (notification) => {
-      console.log("Received new notification:", notification);
-      // Handle the notification as per your requirements
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
 
   return (
     <>

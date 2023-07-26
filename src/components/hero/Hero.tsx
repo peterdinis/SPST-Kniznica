@@ -2,20 +2,8 @@ import { motion } from "framer-motion";
 import DateTimePicker from "../shared/DateTimePicker";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
-import {socket} from "@/lib/socket"
-import { useEffectOnce } from "@/hooks/useEffectOnce";
-import { queryClient } from "@/api/queryClient";
 
 const Hero: React.FC = () => {
-
-  useEffectOnce(() =>{
-    const message = "Connected to the Socket.io server";
-    queryClient.setQueryData(["exampleMessage"], message);
-    
-    return () => {
-      socket.disconnect();
-    };
-  })
 
   const containerVariants = {
     hidden: { opacity: 0 },

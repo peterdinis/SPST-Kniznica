@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createBookType, createBookSchema } from "@/validators/book/bookSchema";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { createNotify, createErrorRegister } from "../shared/toasts/bookToasts";
+import { createNotify, createErrorRegister, allFieldsBooksError } from "../shared/toasts/bookToasts";
 
 const CreateBookForm: React.FC = () => {
   const router = useRouter();
@@ -26,6 +26,9 @@ const CreateBookForm: React.FC = () => {
   });
 
   const onHandleSubmit: SubmitHandler<createBookType> = (data: IBook) => {
+    if(!data.authorId || !data.name || !data.description || !data.authorId || !data.year || !data.pages || !data.image || !data.status || !data.categoryId) {
+      allFieldsBooksError();
+    }
     mutation.mutate(data);
   };
 

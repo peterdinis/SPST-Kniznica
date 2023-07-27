@@ -9,7 +9,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
 import { FallbackLoader, Layout } from "@/components/shared";
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import theme from "./theme";
 
 const roboto = Montserrat({
   weight: ["400"],
@@ -23,7 +24,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<FallbackLoader />}>
         <div className={roboto.className}>
-          <ChakraProvider>
+          <ChakraProvider theme={theme}>
+            <ColorModeScript initialColorMode={theme.config.initialColorMode} />
             <Layout>
               <ErrorBoundary>
                 <Component {...pageProps} />

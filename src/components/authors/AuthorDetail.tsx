@@ -10,16 +10,17 @@ import { WarningIcon } from "@chakra-ui/icons";
 import { FallbackLoader, Header, FallbackRender } from "../shared";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
+import CustomTooltip from "../shared/tooltip/CustomTooltip";
 
 const AuthorDetail: React.FC = () => {
-  const router = useRouter();
-  const { teacher } = useTeacher();
-  const { admin } = useAdmin();
   const { query, isReady } = useRouter();
 
   if (!isReady) {
     return <FallbackLoader />;
   }
+  const router = useRouter();
+  const { teacher } = useTeacher();
+  const { admin } = useAdmin();
 
   const { data, isError, isLoading } = useQuery(
     ["authorDetail", query.id as unknown as number],
@@ -83,9 +84,11 @@ const AuthorDetail: React.FC = () => {
               {data.deathYear === null || data.deathYear === undefined ? (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                    <CustomTooltip label={"Ak je autor/ka živý/á dátum úmrtia nie je uvedený"} placement={"start-start"}>
                     <span className="font-bold text-green-800">
                       Author/ka je medzi živymi
                     </span>
+                    </CustomTooltip>
                   </p>
                 </>
               ) : (

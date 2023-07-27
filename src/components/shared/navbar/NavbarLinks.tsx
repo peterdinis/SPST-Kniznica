@@ -22,13 +22,8 @@ const NavbarLinks: React.FC = () => {
       </li>
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
-      </li> 
-
-    {/* TODO: Fix me later */}
-    {/*   <li className="text-black text-xl" onClick={toggleColorMode}>
-        <Text>Toggle {colorMode === 'light' ? 'Dark' : 'Light'}</Text>
       </li>
- */}
+
       {student === null && teacher === null && admin === null && (
         <>
           <li className="text-black text-xl">
@@ -38,6 +33,11 @@ const NavbarLinks: React.FC = () => {
           <li className="text-black text-xl">
             <Link href="/teacher/login">Učiteľ</Link>
           </li>
+
+          {/* TODO: Fix me later */}
+   {/*        <li className="text-black text-xl" onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </li> */}
         </>
       )}
 

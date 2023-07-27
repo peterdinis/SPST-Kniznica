@@ -12,7 +12,6 @@ import { getAllAuthorsError } from "../../constants/errorMessages";
 import { motion } from "framer-motion";
 import { FallbackLoader, FallbackRender, Header } from "../shared";
 import {
-  Badge,
   Button,
   Center,
   Flex,

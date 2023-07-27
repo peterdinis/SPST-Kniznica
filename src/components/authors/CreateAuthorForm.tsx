@@ -33,7 +33,8 @@ const CreateAuthorForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createAuthorType> = (
     data: IAuthor
   ) => {
-    if (!data.name || !data.lastName || !data.image || !data.birthYear || !data.country || !data.description || !data.litPeriod) {
+    console.log(data);
+    if (!data.name || !data.lastName || !data.image || !data.isAlive ||  !data.birthYear || !data.country || !data.description || !data.litPeriod) {
       allAuthorFieldsError();
     }
     mutation.mutate(data);

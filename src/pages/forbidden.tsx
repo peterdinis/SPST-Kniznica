@@ -1,5 +1,5 @@
 import { GlobalErrorComponent } from "@/components/shared/errors";
-import { forbiddenError } from "@/components/shared/errors/constants/errorMessages";
+import { forbiddenError } from "@/constants/errorMessages";
 import { NextPage } from "next";
 
 const AuthFailed: NextPage = () => {

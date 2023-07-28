@@ -3,7 +3,7 @@ import useStudent from "@/hooks/useStudent";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import TeacherDropdown from "@/components/dropdowns/TeacherDropdown";
-import NotificationDropdown from "@/components/dropdowns/StudentDropdown";
+import StudentDropdown from "@/components/dropdowns/StudentDropdown";
 import AdminDropdown from "@/components/dropdowns/AdminDropdown";
 
 const NavbarLinks: React.FC = () => {
@@ -44,7 +44,7 @@ const NavbarLinks: React.FC = () => {
             <Link href="/student/profile">Profil</Link>
           </li>
           <li className="text-black text-xl">
-            <NotificationDropdown />
+            <StudentDropdown />
           </li>
         </>
       )}

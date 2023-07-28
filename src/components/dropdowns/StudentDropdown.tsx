@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import {HamburgerIcon} from "@chakra-ui/icons";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 
-const NotificationDropdown: React.FC = () => {
+const StudentDropdown: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -50,4 +50,4 @@ const NotificationDropdown: React.FC = () => {
     );
 };
 
-export default NotificationDropdown;
+export default StudentDropdown;

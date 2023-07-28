@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import AvatarImage from "../../../images/noImage.png";
 import useTeacher from "@/hooks/useTeacher";

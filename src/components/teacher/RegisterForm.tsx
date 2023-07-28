@@ -42,19 +42,23 @@ const RegisterForm: React.FC = () => {
         errorRegister();
       }
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      // Registration is successful, so set the teacher cookie here.
+      Cookies.set("teacherRegisterData", JSON.stringify(data));
       router.push("/teacher/login");
     },
   });
-
+  
   const onHandleSubmit: SubmitHandler<createRegisterTeacherType> = async (
     data: IRegister
   ) => {
-    if(data.role !== TEACHER) {
+    if (data.role !== TEACHER) {
       teacherRoleError();
+      return; // Stop the function execution here if the role is not TEACHER.
     }
     try {
-      Cookies.set("teacherRegisterData", JSON.stringify(data));
+      // Remove this line that sets the cookie here.
+      // Cookies.set("teacherRegisterData", JSON.stringify(data));
       mutation.mutate(data);
       notify();
     } catch (err: any) {

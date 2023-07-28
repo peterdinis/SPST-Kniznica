@@ -28,7 +28,7 @@ const CreateBookForm: React.FC = () => {
   });
 
   const onHandleSubmit: SubmitHandler<createBookType> = (data: IBook) => {
-    if(!data.authorId || !data.name || !data.description || !data.authorId || !data.year || !data.pages || !data.image || !data.status || !data.categoryId) {
+    if(!data.name || !data.description || !data.authorName || !data.year || !data.pages || !data.image || !data.status || !data.categoryName) {
       allFieldsBooksError();
     }
     mutation.mutate(data);

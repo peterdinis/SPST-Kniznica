@@ -78,6 +78,9 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold">Priezvisko</span>: {data.lastName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold">Celé meno</span>: {data.fullName}
+              </p>
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Dátum Narodenia</span>:{" "}
                 {data.birthYear}
               </p>

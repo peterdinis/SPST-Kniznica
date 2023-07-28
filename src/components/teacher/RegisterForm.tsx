@@ -43,7 +43,6 @@ const RegisterForm: React.FC = () => {
       }
     },
     onSuccess: (data: any) => {
-      // Registration is successful, so set the teacher cookie here.
       Cookies.set("teacherRegisterData", JSON.stringify(data));
       router.push("/teacher/login");
     },
@@ -54,11 +53,9 @@ const RegisterForm: React.FC = () => {
   ) => {
     if (data.role !== TEACHER) {
       teacherRoleError();
-      return; // Stop the function execution here if the role is not TEACHER.
+      return;
     }
     try {
-      // Remove this line that sets the cookie here.
-      // Cookies.set("teacherRegisterData", JSON.stringify(data));
       mutation.mutate(data);
       notify();
     } catch (err: any) {

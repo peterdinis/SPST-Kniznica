@@ -100,23 +100,28 @@ const CategoryInfo: React.FC = () => {
           >
             Späť na kategórie
           </button>
-
-          {(teacher || admin) && (
-            <>
-              <button className="float-right">
-                <HelperModal btnName={"Uprav Kategóriu"} modalHeader={"Upraviť kategóriu"}>
-                  CHILDREN
-                </HelperModal>
-              </button>
-              <button className="mr-4 float-right">
-              <HelperModal btnName={"Zmať Kategóriu"} modalHeader={"Zmazať kategóriu"}>
-                  CHILDREN
-                </HelperModal>
-              </button>
-            </>
-          )}
         </div>
       </div>
+      {(teacher || admin) && (
+        <>
+          <button className="float-right"></button>
+          <button className="mr-4 float-right">
+            <HelperModal
+              btnName={"Zmať Kategóriu"}
+              modalHeader={"Zmazať kategóriu"}
+            >
+              CHILDREN
+            </HelperModal>
+            <HelperModal
+             
+              btnName={"Zmať Kategóriu"}
+              modalHeader={"Zmazať kategóriu"}
+            >
+              CHILDREN
+            </HelperModal>
+          </button>
+        </>
+      )}
     </>
   );
 };

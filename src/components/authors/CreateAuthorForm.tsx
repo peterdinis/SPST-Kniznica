@@ -35,7 +35,7 @@ const CreateAuthorForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createAuthorType> = (
     data: IAuthor
   ) => {
-    if (!data.name || !data.lastName || !data.image || !data.isAlive ||  !data.birthYear || !data.country || !data.description || !data.litPeriod) {
+    if (!data.name || !data.lastName || !data.image || !data.isAlive ||  !data.birthYear || !data.country || !data.description || !data.litPeriod || !data.fullName) {
       allAuthorFieldsError();
     }
     mutation.mutate(data);
@@ -65,6 +65,16 @@ const CreateAuthorForm: React.FC = () => {
                 required: true,
               })}
               placeholder="Priezvisko autora/ky"
+            />
+          </div>
+          <div className="relative z-0 mb-6 group">
+            <Input
+              type="text"
+              className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              {...register("fullName", {
+                required: true,
+              })}
+              placeholder="Celé meno autora/ky"
             />
           </div>
           <div className="relative z-0 mb-6 group">

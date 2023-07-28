@@ -1,3 +1,5 @@
+"use client"
+
 import Header from "../shared/Header";
 import * as mut from "../../api/mutations/bookMutations";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -7,6 +9,7 @@ import { createBookType, createBookSchema } from "@/validators/book/bookSchema";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { createNotify, createErrorRegister, allFieldsBooksError } from "../shared/toasts/bookToasts";
+import { Input, Textarea } from "@chakra-ui/react";
 
 const CreateBookForm: React.FC = () => {
   const router = useRouter();
@@ -26,7 +29,7 @@ const CreateBookForm: React.FC = () => {
   });
 
   const onHandleSubmit: SubmitHandler<createBookType> = (data: IBook) => {
-    if(!data.authorId || !data.name || !data.description || !data.authorId || !data.year || !data.pages || !data.image || !data.status || !data.categoryId) {
+    if(!data.name || !data.description || !data.authorName || !data.year || !data.pages || !data.image || !data.status || !data.categoryName) {
       allFieldsBooksError();
     }
     mutation.mutate(data);
@@ -38,148 +41,97 @@ const CreateBookForm: React.FC = () => {
       <div className="max-w-2xl mx-auto mt-10">
         <form onSubmit={handleSubmit(onHandleSubmit)}>
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("name", {
                 required: true,
               })}
+              placeholder="Meno Knihy"
             />
-            <label
-              htmlFor="name"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Meno knihy
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <textarea
+            <Textarea
               rows={2}
               cols={2}
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("description", {
                 required: true,
               })}
+              placeholder="Popis knihy"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Popis knihy
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
-              type="number"
+            <Input
+              type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              {...register("authorId", {
+              {...register("authorName", {
                 required: true,
               })}
+              placeholder="Celé meno autorka/ky"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Id Autora
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="number"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("year", {
+                valueAsNumber: true,
                 required: true,
               })}
+              placeholder="Rok vydania"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Rok vydania
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="string"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("status", {
                 required: true,
               })}
+              placeholder="Status knihy"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Stav knihy
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="number"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("pages", {
                 required: true,
+                valueAsNumber: true
               })}
+              placeholder="Počet strán"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Počet strán
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="string"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("publisher", {
                 required: true,
               })}
+              placeholder="Vydavateľstvo"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Vydavateľstvo
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
+            <Input
               type="string"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("image", {
                 required: true,
               })}
+              placeholder="Obrázok"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Obrázok
-            </label>
           </div>
-          <br />
           <div className="relative z-0 mb-6 group">
-            <input
-              type="number"
+            <Input
+              type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              {...register("categoryId", {
+              {...register("categoryName", {
                 required: true,
               })}
+              placeholder="Meno kategórie"
             />
-            <label
-              htmlFor="description"
-              className="absolute text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Id kategórie
-            </label>
           </div>
           <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
             Pridaj novú knihu

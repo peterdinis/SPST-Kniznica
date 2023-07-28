@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { Container, Text } from "@chakra-ui/react"
 import Link from "next/link";
 

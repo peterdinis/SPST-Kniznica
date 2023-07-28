@@ -100,6 +100,7 @@ const CreateBookForm: React.FC = () => {
                 required: true,
                 valueAsNumber: true
               })}
+              placeholder="Počet strán"
             />
           </div>
           <div className="relative z-0 mb-6 group">
@@ -109,6 +110,7 @@ const CreateBookForm: React.FC = () => {
               {...register("publisher", {
                 required: true,
               })}
+              placeholder="Vydavateľstvo"
             />
           </div>
           <div className="relative z-0 mb-6 group">
@@ -118,6 +120,7 @@ const CreateBookForm: React.FC = () => {
               {...register("image", {
                 required: true,
               })}
+              placeholder="Obrázok"
             />
           </div>
           <div className="relative z-0 mb-6 group">
@@ -127,6 +130,7 @@ const CreateBookForm: React.FC = () => {
               {...register("categoryName", {
                 required: true,
               })}
+              placeholder="Meno kategórie"
             />
           </div>
           <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">

@@ -10,6 +10,7 @@ export interface IAuthor {
   externalId?: string;
   name: string;
   lastName: string;
+  fullName: string
   image: string;
   birthYear: number;
   isAlive?: boolean;

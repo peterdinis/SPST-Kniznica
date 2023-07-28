@@ -13,10 +13,11 @@ import { motion } from "framer-motion";
 interface IModalProps {
   children?: React.ReactNode;
   btnName: string;
-  modalHeader: string
+  modalHeader: string;
+  className?: string;
 }
 
-const ReturnModal = ({ children, btnName, modalHeader }: IModalProps) => {
+const ReturnModal = ({ children, btnName, modalHeader, className }: IModalProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const modalMotionProps = {
@@ -27,7 +28,7 @@ const ReturnModal = ({ children, btnName, modalHeader }: IModalProps) => {
   };
 
   return (
-    <>
+    <div className={className}>
       <button className="text-red-800" onClick={onOpen}>
         {btnName}
       </button>
@@ -43,7 +44,7 @@ const ReturnModal = ({ children, btnName, modalHeader }: IModalProps) => {
           </ModalContent>
         </motion.div>
       </Modal>
-    </>
+    </div>
   );
 };
 

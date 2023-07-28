@@ -11,7 +11,8 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
       staleTime: twentyFourHoursInMs,
-      suspense: true
+      suspense: true,
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
     },
     mutations: {
       networkMode: "offlineFirst",

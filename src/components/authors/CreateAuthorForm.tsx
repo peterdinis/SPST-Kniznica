@@ -1,3 +1,5 @@
+"use client"
+
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/authorMutations";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -11,7 +13,7 @@ import { useRouter } from "next/router";
 import { notify, errorRegister, allAuthorFieldsError } from "../shared/toasts/authorToasts";
 import { Header } from "../shared";
 import CustomTooltip from "../shared/tooltip/CustomTooltip";
-import { Checkbox, Input, Textarea  } from "@chakra-ui/react";
+import { Checkbox, Input, Textarea } from "@chakra-ui/react";
 
 const CreateAuthorForm: React.FC = () => {
   const router = useRouter();
@@ -33,7 +35,6 @@ const CreateAuthorForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createAuthorType> = (
     data: IAuthor
   ) => {
-    console.log(data);
     if (!data.name || !data.lastName || !data.image || !data.isAlive ||  !data.birthYear || !data.country || !data.description || !data.litPeriod) {
       allAuthorFieldsError();
     }
@@ -78,11 +79,19 @@ const CreateAuthorForm: React.FC = () => {
           </div>
           <div className="relative z-0 mb-6 group">
             <Input
-              type="number"
+              type="text"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              {...register("birthYear", {
+              {...register("country", {
                 required: true,
               })}
+              placeholder="Krajina pôvodu autora"
+            />
+          </div>
+          <div className="relative z-0 mb-6 group">
+            <Input
+              type="number"
+              className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              {...register('birthYear', { valueAsNumber: true })}
               placeholder="Rok narodenia"
             />
           </div>

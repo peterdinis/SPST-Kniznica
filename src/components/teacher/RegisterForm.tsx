@@ -50,7 +50,7 @@ const RegisterForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createRegisterTeacherType> = async (
     data: IRegister
   ) => {
-    if(data.role === TEACHER) {
+    if(data.role !== TEACHER) {
       teacherRoleError();
     }
     try {

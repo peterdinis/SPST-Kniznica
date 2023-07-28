@@ -7,7 +7,6 @@ const NavbarLinks: React.FC = () => {
   const { student } = useStudent();
   const { teacher } = useTeacher();
   const { admin } = useAdmin();
- /*  const { colorMode, toggleColorMode } = useColorMode() */
 
   return (
     <>
@@ -33,11 +32,6 @@ const NavbarLinks: React.FC = () => {
           <li className="text-black text-xl">
             <Link href="/teacher/login">Učiteľ</Link>
           </li>
-
-          {/* TODO: Fix me later */}
-   {/*        <li className="text-black text-xl" onClick={toggleColorMode}>
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-          </li> */}
         </>
       )}
 

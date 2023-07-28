@@ -19,7 +19,7 @@ export const createAuthorSchema = z.object({
 
     isAlive: z.boolean({
         required_error: "isAlive musí byť true alebo false"
-    }),
+    }).optional(),
 
     country: z.string({
         required_error: "Krajina pôvodu nesmie byť prázdna"

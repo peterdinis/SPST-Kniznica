@@ -8,7 +8,7 @@ import { placeholderCategory } from "@/data/placeholderCategory";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { WarningIcon } from "@chakra-ui/icons";
-import { HelperModal } from "../shared/modals";
+import { ApiModal } from "../shared/modals";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
@@ -104,21 +104,23 @@ const CategoryInfo: React.FC = () => {
       </div>
       {(teacher || admin) && (
         <>
-          <button className="float-right"></button>
+          <button className="float-right">
+            <ApiModal
+              modalButtonText={"Uprav kategóriu"}
+              modalHeaderText={"Uprav kategóriu"}
+              modalCloseText={"Zatvor"}
+            >
+              CHILDREN
+            </ApiModal>
+          </button>
           <button className="mr-4 float-right">
-            <HelperModal
-              btnName={"Zmať Kategóriu"}
-              modalHeader={"Zmazať kategóriu"}
+            <ApiModal
+              modalButtonText={"Zmazať kategóriu"}
+              modalHeaderText={"Zmazať kategóriu"}
+              modalCloseText={"Zatvor"}
             >
               CHILDREN
-            </HelperModal>
-            <HelperModal
-             
-              btnName={"Zmať Kategóriu"}
-              modalHeader={"Zmazať kategóriu"}
-            >
-              CHILDREN
-            </HelperModal>
+            </ApiModal>
           </button>
         </>
       )}

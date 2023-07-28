@@ -26,6 +26,7 @@ import useStudent from "@/hooks/useStudent";
 import useAdmin from "@/hooks/useAdmin";
 import useTeacher from "@/hooks/useTeacher";
 import CustomTooltip from "../shared/tooltip/CustomTooltip";
+import { ApiModal } from "../shared/modals";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -306,10 +307,22 @@ const BookInfo: React.FC = () => {
               {(teacher || admin) && (
                 <>
                   <button className="float-right">
-                    Uprav kategóriu
+                    <ApiModal
+                      modalButtonText={"Uprav kategóriu"}
+                      modalHeaderText={"Uprav kategóriu"}
+                      modalCloseText={"Zatvor"}
+                    >
+                      CHILDREN
+                    </ApiModal>
                   </button>
                   <button className="mr-4 float-right">
-                    Zmaž kategóriu
+                    <ApiModal
+                      modalButtonText={"Zmazať kategóriu"}
+                      modalHeaderText={"Zmazať kategóriu"}
+                      modalCloseText={"Zatvor"}
+                    >
+                      CHILDREN
+                    </ApiModal>
                   </button>
                 </>
               )}

@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { notify, errorRegister, allAuthorFieldsError } from "../shared/toasts/authorToasts";
 import { Header } from "../shared";
 import CustomTooltip from "../shared/tooltip/CustomTooltip";
-import { Checkbox, Input, Textarea  } from "@chakra-ui/react";
+import { Checkbox, Input } from "@chakra-ui/react";
 
 const CreateAuthorForm: React.FC = () => {
   const router = useRouter();
@@ -90,9 +90,7 @@ const CreateAuthorForm: React.FC = () => {
             <Input
               type="number"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              {...register("birthYear", {
-                required: true,
-              })}
+              {...register('birthYear', { valueAsNumber: true })}
               placeholder="Rok narodenia"
             />
           </div>
@@ -116,9 +114,7 @@ const CreateAuthorForm: React.FC = () => {
             </div>
           </CustomTooltip>
           <div className="relative z-0 mb-6 group">
-            <Textarea
-              rows={3}
-              cols={3}
+            <Input
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("description", {
                 required: true,

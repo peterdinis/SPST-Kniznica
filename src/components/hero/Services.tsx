@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Icon } from '@chakra-ui/react';
 import { FaHome, FaSchool, FaThumbsUp } from 'react-icons/fa';
+import ApiModal from "../shared/modals/ApiModal";
 
 const Services: React.FC = () => {
   const cardVariants = {

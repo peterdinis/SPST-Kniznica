@@ -68,7 +68,7 @@ const CreateBookForm: React.FC = () => {
               {...register("authorName", {
                 required: true,
               })}
-              placeholder="Meno autora/ky"
+              placeholder="Celé meno autorka/ky"
             />
           </div>
           <div className="relative z-0 mb-6 group">

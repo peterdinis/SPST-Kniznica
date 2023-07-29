@@ -1,5 +1,3 @@
-"use client"
-
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { ILogin, ILoginStudentInfo } from "@/interfaces/IStudent";

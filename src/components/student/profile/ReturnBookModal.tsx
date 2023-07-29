@@ -9,7 +9,7 @@ import {
 import { IReturnBooking } from "@/interfaces/IBooking";
 import {useRouter} from "next/router";
 import { notify, errorRegister } from "@/components/shared/toasts/bookingToasts";
-import ReturnModal from "@/components/shared/modals/ReturnModal";
+import { ApiModal } from "@/components/shared/modals";
 
 const ReturnBookModal: React.FC = () => {
   const { register, handleSubmit, reset } = useForm<returnBookingType>({
@@ -38,7 +38,7 @@ const ReturnBookModal: React.FC = () => {
 
   return (
     <div className="text-sm ml-10 font-normal text-gray-500 tracking-wide">
-      <ReturnModal btnName={"Vrátiť knihu"} modalHeader={"Vrátenie knihy"}>
+      <ApiModal modalButtonText={"Vrátenie knihy"} modalHeaderText={"Vrátiť knihu"} modalCloseText={"Zavrieť"}>
         <form onSubmit={handleSubmit(onHandleSubmit)} className="mt-4">
           <label className="block text-grey-darker text-sm font-bold mb-2">
             Používateľské meno
@@ -68,7 +68,7 @@ const ReturnBookModal: React.FC = () => {
             Vrátiť knihu
           </button>
         </form>
-      </ReturnModal>
+      </ApiModal>
     </div>
   );
 };

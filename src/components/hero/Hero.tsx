@@ -1,12 +1,8 @@
-"use client"
-
 import { motion } from "framer-motion";
 import DateTimePicker from "../shared/DateTimePicker";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import Link from "next/link";
-import { schollURL } from "@/constants/url";
-
 const Hero: React.FC = () => {
 
   const containerVariants = {

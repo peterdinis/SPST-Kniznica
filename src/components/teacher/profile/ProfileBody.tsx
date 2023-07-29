@@ -1,5 +1,3 @@
-"use client"
-
 import useTeacher from "@/hooks/useTeacher";
 import useCopyToClipboard from "@/hooks/useCopy";
 import { ChatIcon, CopyIcon } from '@chakra-ui/icons'; 

@@ -1,5 +1,3 @@
-"use client"
-
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/authorMutations";
 import { SubmitHandler, useForm } from "react-hook-form";

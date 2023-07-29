@@ -11,6 +11,7 @@ import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
 import { FallbackLoader, Layout } from "@/components/shared";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
+import AuthContextProvider from "@/context/AuthContext";
 
 const roboto = Montserrat({
   weight: ["400"],
@@ -24,16 +25,20 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<FallbackLoader />}>
         <div className={roboto.className}>
-          <ChakraProvider theme={theme}>
-            <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-            <Layout>
-              <ErrorBoundary>
-                <Component {...pageProps} />
-                <ToastContainer />
-                <ReactQueryDevtools />
-              </ErrorBoundary>
-            </Layout>
-          </ChakraProvider>
+          <AuthContextProvider>
+            <ChakraProvider theme={theme}>
+              <ColorModeScript
+                initialColorMode={theme.config.initialColorMode}
+              />
+              <Layout>
+                <ErrorBoundary>
+                  <Component {...pageProps} />
+                  <ToastContainer />
+                  <ReactQueryDevtools />
+                </ErrorBoundary>
+              </Layout>
+            </ChakraProvider>
+          </AuthContextProvider>
         </div>
       </Suspense>
     </QueryClientProvider>

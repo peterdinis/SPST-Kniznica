@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
           variants={containerVariants}
         >
           Návrat na školskú stránku - {" "}
-          <Link href={schollURL} className="font-bold">Školská stránka</Link>
+          <Link href="https://www.spsbj.sk" className="font-bold">Školská stránka</Link>
         </motion.div>
       </motion.div>
     </motion.div>

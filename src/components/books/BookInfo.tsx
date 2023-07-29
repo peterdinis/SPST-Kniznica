@@ -210,6 +210,7 @@ const BookInfo: React.FC = () => {
                       modalButtonText={"Požičať si knihu"}
                       modalHeaderText={"Požičať si knihu"}
                       modalCloseText={"Zavrieť"}
+                      className="bg-blue-200 rounded-lg p-2 font-extrabold"
                     >
                       <form
                         onSubmit={handleSubmit(onHandleSubmit)}

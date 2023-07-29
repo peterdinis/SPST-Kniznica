@@ -15,9 +15,10 @@ interface IApiModalProps {
     modalButtonText: string;
     modalHeaderText: string;
     modalCloseText: string;
+    className?: string;
 }
 
-const ApiModal: React.FC<IApiModalProps> = ({children, modalButtonText, modalCloseText, modalHeaderText}: IApiModalProps) => {
+const ApiModal: React.FC<IApiModalProps> = ({children, modalButtonText, modalCloseText, modalHeaderText, className}: IApiModalProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -33,7 +34,7 @@ const ApiModal: React.FC<IApiModalProps> = ({children, modalButtonText, modalClo
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button className={className} colorScheme="blue" mr={3} onClick={onClose}>
               {modalCloseText}
             </Button>
           </ModalFooter>

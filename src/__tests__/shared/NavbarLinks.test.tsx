@@ -1,5 +1,5 @@
 import { NavbarLinks } from "@/components/shared";
-import { fireEvent, render } from "@testing-library/react";
+import {render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Cookies from "js-cookie";
 

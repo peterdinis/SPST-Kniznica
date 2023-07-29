@@ -21,7 +21,7 @@ const AdminAuthors: React.FC = () => {
         accessor: "name",
       },
       {
-        Header: "Priezvisko",
+        Header: "Priezvisko", 
         accessor: "lastName",
       },
       {

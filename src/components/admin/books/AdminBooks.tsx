@@ -5,7 +5,7 @@ import ScrollToTop from "@/hooks/useScroll";
 import { IBookInfo, IBookInfoUpdate } from "@/interfaces/IBook";
 import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/url";
-import { ReturnModal, Header } from "@/components/shared";
+import { Header } from "@/components/shared";
 
 const AdminBooks: React.FC = () => {
   const [tableData, setTableData] = useState<IBookInfo[]>([]);

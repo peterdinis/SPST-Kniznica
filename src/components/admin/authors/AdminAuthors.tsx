@@ -5,7 +5,7 @@ import { IAuthorInfo, IAuthorInfoUpdate } from "@/interfaces/IAuthor";
 import ScrollToTop from "@/hooks/useScroll";
 import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/url";
-import { Header, ReturnModal } from "@/components/shared";
+import { Header} from "@/components/shared";
 
 const AdminAuthors: React.FC = () => {
   const [tableData, setTableData] = useState<IAuthorInfo[]>([]);
@@ -21,7 +21,7 @@ const AdminAuthors: React.FC = () => {
         accessor: "name",
       },
       {
-        Header: "Priezvisko",
+        Header: "Priezvisko", 
         accessor: "lastName",
       },
       {

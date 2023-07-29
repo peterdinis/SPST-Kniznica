@@ -9,7 +9,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import * as mut from "../../api/mutations/bookingMutations";
 import { ICreateBooking } from "@/interfaces/IBooking";
 import { useForm, SubmitHandler } from "react-hook-form";
-import HelperModal from "../shared/modals/HelperModal";
 import {
   createBookingSchema,
   createBookingType,
@@ -25,8 +24,9 @@ import { motion } from "framer-motion";
 import useStudent from "@/hooks/useStudent";
 import useAdmin from "@/hooks/useAdmin";
 import useTeacher from "@/hooks/useTeacher";
-import {CustomTooltip} from "../shared/tooltip";
+import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
+import { Text } from "@chakra-ui/react";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -122,8 +122,8 @@ const BookInfo: React.FC = () => {
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             {(data.book && data.book.image === null) ||
-              (data.book && data.book.image === undefined) ||
-              (data.book && data.book.image === "string") ? (
+            (data.book && data.book.image === undefined) ||
+            (data.book && data.book.image === "string") ? (
               <Image
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -162,7 +162,7 @@ const BookInfo: React.FC = () => {
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Author</span>:{" "}
-                {data.author && data.author.name}
+                {data.author && data.author.fullName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold"> Rok</span>:{" "}
@@ -206,9 +206,10 @@ const BookInfo: React.FC = () => {
                     animate="visible"
                     variants={itemVariants}
                   >
-                    <HelperModal
-                      btnName={"Požičať si knihu"}
-                      modalHeader={"Požičanie knihy"}
+                    <ApiModal
+                      modalButtonText={"Požičať si knihu"}
+                      modalHeaderText={"Požičať si knihu"}
+                      modalCloseText={"Zavrieť"}
                     >
                       <form
                         onSubmit={handleSubmit(onHandleSubmit)}
@@ -287,13 +288,19 @@ const BookInfo: React.FC = () => {
                           {errors.to && errors.to.message}
                         </p>
 
-                        <CustomTooltip label={"Kniha je dostupná na týždeň!"} placement={"end"}>
+                        <CustomTooltip
+                          label={"Kniha je dostupná na týždeň!"}
+                          placement={"end"}
+                        >
                           <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
                             Požičať
                           </button>
                         </CustomTooltip>
+                        <Text mt={6} color="red.800" fontWeight={"bold"}>
+                          Pred požičaním si skontroluje údaje!!!
+                        </Text>
                       </form>
-                    </HelperModal>
+                    </ApiModal>
                   </motion.div>
                 </>
               )}

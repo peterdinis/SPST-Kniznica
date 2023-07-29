@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Header from "../shared/Header";
 import * as mut from "../../api/mutations/bookMutations";
@@ -8,8 +8,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createBookType, createBookSchema } from "@/validators/book/bookSchema";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { createNotify, createErrorRegister, allFieldsBooksError } from "../shared/toasts/bookToasts";
+import {
+  createNotify,
+  createErrorRegister,
+  allFieldsBooksError,
+} from "../shared/toasts/bookToasts";
 import { Input, Textarea } from "@chakra-ui/react";
+import { CustomTooltip } from "../shared/tooltip";
 
 const CreateBookForm: React.FC = () => {
   const router = useRouter();
@@ -29,7 +34,16 @@ const CreateBookForm: React.FC = () => {
   });
 
   const onHandleSubmit: SubmitHandler<createBookType> = (data: IBook) => {
-    if(!data.name || !data.description || !data.authorName || !data.year || !data.pages || !data.image || !data.status || !data.categoryName) {
+    if (
+      !data.name ||
+      !data.description ||
+      !data.authorName ||
+      !data.year ||
+      !data.pages ||
+      !data.image ||
+      !data.status ||
+      !data.categoryName
+    ) {
       allFieldsBooksError();
     }
     mutation.mutate(data);
@@ -61,16 +75,23 @@ const CreateBookForm: React.FC = () => {
               placeholder="Popis knihy"
             />
           </div>
-          <div className="relative z-0 mb-6 group">
-            <Input
-              type="text"
-              className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              {...register("authorName", {
-                required: true,
-              })}
-              placeholder="Celé meno autorka/ky"
-            />
-          </div>
+          <CustomTooltip
+            label={
+              "Skontrolujte či author existuje. Ak neexistuje najprv vytvorte authorka/ku"
+            }
+            placement={"start-start"}
+          >
+            <div className="relative z-0 mb-6 group">
+              <Input
+                type="text"
+                className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                {...register("authorName", {
+                  required: true,
+                })}
+                placeholder="Celé meno autorka/ky"
+              />
+            </div>
+          </CustomTooltip>
           <div className="relative z-0 mb-6 group">
             <Input
               type="number"
@@ -98,7 +119,7 @@ const CreateBookForm: React.FC = () => {
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("pages", {
                 required: true,
-                valueAsNumber: true
+                valueAsNumber: true,
               })}
               placeholder="Počet strán"
             />
@@ -109,7 +130,7 @@ const CreateBookForm: React.FC = () => {
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               {...register("quantity", {
                 required: true,
-                valueAsNumber: true
+                valueAsNumber: true,
               })}
               placeholder="Počet kusov"
             />
@@ -134,16 +155,23 @@ const CreateBookForm: React.FC = () => {
               placeholder="Obrázok"
             />
           </div>
-          <div className="relative z-0 mb-6 group">
-            <Input
-              type="text"
-              className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              {...register("categoryName", {
-                required: true,
-              })}
-              placeholder="Meno kategórie"
-            />
-          </div>
+          <CustomTooltip
+            label={
+              "Skontroluje si či kategória existuje. Ak neexistuje najprv vytvorte kategóriu"
+            }
+            placement={"end"}
+          >
+            <div className="relative z-0 mb-6 group">
+              <Input
+                type="text"
+                className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                {...register("categoryName", {
+                  required: true,
+                })}
+                placeholder="Meno kategórie"
+              />
+            </div>
+          </CustomTooltip>
           <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
             Pridaj novú knihu
           </button>

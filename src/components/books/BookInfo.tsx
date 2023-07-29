@@ -62,7 +62,7 @@ const BookInfo: React.FC = () => {
   };
 
   const mutation = useMutation(mut.createNewBooking, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       notify();
       router.push("/books/all");
     },
@@ -270,7 +270,8 @@ const BookInfo: React.FC = () => {
                         <p className="text-red-800">
                           {errors.from && errors.from.message}
                         </p>
-
+                        
+                        {/* TODO: Aktuálny dátum od + 7 dní do inputu do */}
                         <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                           Do
                         </label>
@@ -316,8 +317,8 @@ const BookInfo: React.FC = () => {
                 <>
                   <button className="float-right">
                     <ApiModal
-                      modalButtonText={"Uprav kategóriu"}
-                      modalHeaderText={"Uprav kategóriu"}
+                      modalButtonText={"Uprav knihu"}
+                      modalHeaderText={"Uprav knihu"}
                       modalCloseText={"Zatvor"}
                     >
                       CHILDREN
@@ -325,8 +326,8 @@ const BookInfo: React.FC = () => {
                   </button>
                   <button className="mr-4 float-right">
                     <ApiModal
-                      modalButtonText={"Zmazať kategóriu"}
-                      modalHeaderText={"Zmazať kategóriu"}
+                      modalButtonText={"Zmazať knihu"}
+                      modalHeaderText={"Zmazať knihu"}
                       modalCloseText={"Zatvor"}
                     >
                       CHILDREN

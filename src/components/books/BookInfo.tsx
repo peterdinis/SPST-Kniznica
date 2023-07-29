@@ -270,7 +270,7 @@ const BookInfo: React.FC = () => {
                         <p className="text-red-800">
                           {errors.from && errors.from.message}
                         </p>
-                        
+
                         {/* TODO: Aktuálny dátum od + 7 dní do inputu do */}
                         <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                           Do
@@ -289,15 +289,9 @@ const BookInfo: React.FC = () => {
                         <p className="text-red-800">
                           {errors.to && errors.to.message}
                         </p>
-
-                        <CustomTooltip
-                          label={"Kniha je dostupná na týždeň!"}
-                          placement={"end"}
-                        >
-                          <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
-                            Požičať
-                          </button>
-                        </CustomTooltip>
+                        <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+                          Požičať
+                        </button>
                         <Text mt={6} color="red.800" fontWeight={"bold"}>
                           Pred požičaním si skontroluje údaje!!!
                         </Text>

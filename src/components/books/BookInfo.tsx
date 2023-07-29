@@ -25,7 +25,7 @@ import { motion } from "framer-motion";
 import useStudent from "@/hooks/useStudent";
 import useAdmin from "@/hooks/useAdmin";
 import useTeacher from "@/hooks/useTeacher";
-import CustomTooltip from "../shared/tooltip/CustomTooltip";
+import {CustomTooltip} from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
 
 const BookInfo: React.FC = () => {

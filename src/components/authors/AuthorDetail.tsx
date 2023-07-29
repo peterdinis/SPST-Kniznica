@@ -10,8 +10,8 @@ import { WarningIcon } from "@chakra-ui/icons";
 import { FallbackLoader, Header, FallbackRender } from "../shared";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
-import CustomTooltip from "../shared/tooltip/CustomTooltip";
-import { ApiModal, HelperModal } from "../shared/modals";
+import {CustomTooltip} from "../shared/tooltip";
+import { ApiModal } from "../shared/modals";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();

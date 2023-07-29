@@ -19,7 +19,7 @@ import {
 } from "../shared/toasts/applicationToasts";
 import { TEACHER } from "@/constants/applicationConstants";
 import { Header } from "../shared";
-import CustomTooltip from "../shared/tooltip/CustomTooltip";
+import {CustomTooltip} from "../shared/tooltip";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();

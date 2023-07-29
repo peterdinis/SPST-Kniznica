@@ -3,8 +3,7 @@ import { useState, useRef } from "react";
 import AvatarImage from "../../../images/noImage.png";
 import useStudent from "@/hooks/useStudent";
 import axios from "axios";
-
-const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
+import { backendURL } from "@/constants/url";
 
 const ProfileHeader: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);

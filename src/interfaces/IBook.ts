@@ -6,13 +6,13 @@ export interface IBook {
   externalId?: string;
   name: string;
   description: string;
-  authorId: number;
+  authorName: string;
   year: number;
   pages: number;
   publisher: string;
   image: string;
   status: string;
-  categoryId: number;
+  categoryName: string;
 }
 
 export interface IBookResult {

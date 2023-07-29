@@ -1,5 +1,5 @@
 import { GlobalErrorComponent } from "@/components/shared/errors";
-import { apiError } from "@/components/shared/errors/constants/errorMessages";
+import { apiError } from "@/constants/errorMessages";
 import { NextPage } from "next";
 
 const InternalServerPage: NextPage = () => {

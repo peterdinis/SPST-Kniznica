@@ -80,7 +80,7 @@ const SearchCategoryForm: React.FC = () => {
                 results.data.map((item: ICategory) => {
                   return (
                     <>
-                      <div className="bg-whiterounded py-5 pl-6 flex items-start shadow">
+                      <div className="mt-4 bg-whiterounded py-5 pl-6 flex items-start shadow">
                         <div className="pl-3 pr-10 mt-1">
                           <h3 className="font-normal leading-4 text-red-800 text-2xl break-all">
                             <Link

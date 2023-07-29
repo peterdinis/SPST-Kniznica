@@ -25,6 +25,7 @@ import { motion } from "framer-motion";
 import useStudent from "@/hooks/useStudent";
 import useAdmin from "@/hooks/useAdmin";
 import useTeacher from "@/hooks/useTeacher";
+import CustomTooltip from "../shared/tooltip/CustomTooltip";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -285,9 +286,11 @@ const BookInfo: React.FC = () => {
                           {errors.to && errors.to.message}
                         </p>
 
-                        <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
-                          Požičať
-                        </button>
+                        <CustomTooltip label={"Kniha je dostupná na týždeň!"} placement={"end"}>
+                          <button className="mt-6 bg-blue-200 rounded-lg p-2 font-extrabold">
+                            Požičať
+                          </button>
+                        </CustomTooltip>
                       </form>
                     </HelperModal>
                   </motion.div>

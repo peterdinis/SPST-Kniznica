@@ -1,7 +1,7 @@
 import React from 'react';
 import { CircularProgress, Box, Text } from '@chakra-ui/react';
 
-function CircularProgressWithLabel(props: { value: any }) { // TODO: Replace any
+function CircularProgressWithLabel(props: { value: number}) {
   return (
     <Box position="relative" display="inline-flex">
       <CircularProgress

@@ -1,7 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import { queryCache } from "./cache/queryCache";
 import { mutationCache } from "./cache/mutationCache";
-import { twentyFourHoursInMs } from "@/constants/apiConstants";
+import { twentyFourHoursInMs } from "@/constants/queryHelper";
 
 export const queryClient = new QueryClient({
   queryCache,

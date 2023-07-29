@@ -82,7 +82,7 @@ const SearchOneBook: React.FC = () => {
                 results.data.map((item: IBook) => {
                   return (
                     <>
-                      <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
+                      <div className="mt-4 w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
                         <div className="mb-8">
                           <LazyLoadImage
                             alt="Placeholder"

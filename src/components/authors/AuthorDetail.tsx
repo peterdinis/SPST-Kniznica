@@ -10,16 +10,18 @@ import { WarningIcon } from "@chakra-ui/icons";
 import { FallbackLoader, Header, FallbackRender } from "../shared";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
+import CustomTooltip from "../shared/tooltip/CustomTooltip";
+import { HelperModal } from "../shared/modals";
 
 const AuthorDetail: React.FC = () => {
-  const router = useRouter();
-  const { teacher } = useTeacher();
-  const { admin } = useAdmin();
   const { query, isReady } = useRouter();
 
   if (!isReady) {
     return <FallbackLoader />;
   }
+  const router = useRouter();
+  const { teacher } = useTeacher();
+  const { admin } = useAdmin();
 
   const { data, isError, isLoading } = useQuery(
     ["authorDetail", query.id as unknown as number],
@@ -49,8 +51,8 @@ const AuthorDetail: React.FC = () => {
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             {data.picture === null ||
-              data.picture === undefined ||
-              data.picture === "string" ? (
+            data.picture === undefined ||
+            data.picture === "string" ? (
               <Image
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -76,6 +78,9 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold">Priezvisko</span>: {data.lastName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <span className="font-bold">Celé meno</span>: {data.fullName}
+              </p>
+              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Dátum Narodenia</span>:{" "}
                 {data.birthYear}
               </p>
@@ -83,9 +88,16 @@ const AuthorDetail: React.FC = () => {
               {data.deathYear === null || data.deathYear === undefined ? (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                    <span className="font-bold text-green-800">
-                      Author/ka je medzi živymi
-                    </span>
+                    <CustomTooltip
+                      label={
+                        "Ak je autor/ka živý/á dátum úmrtia nie je uvedený"
+                      }
+                      placement={"start-start"}
+                    >
+                      <span className="font-bold text-green-800">
+                        Author/ka je medzi živymi
+                      </span>
+                    </CustomTooltip>
                   </p>
                 </>
               ) : (
@@ -117,8 +129,7 @@ const AuthorDetail: React.FC = () => {
                   {!data.books || data.books.length === 0 ? (
                     <>
                       <dd className="mt-3 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                        Autor/ka nenapísal/a žiadne knihy{" "}
-                        <WarningIcon/>
+                        Autor/ka nenapísal/a žiadne knihy <WarningIcon />
                       </dd>
                     </>
                   ) : (
@@ -148,10 +159,20 @@ const AuthorDetail: React.FC = () => {
               {(teacher || admin) && (
                 <>
                   <button className="float-right">
-                    Uprav kategóriu
+                    <HelperModal
+                      btnName={"Uprav Kategóriu"}
+                      modalHeader={"Upraviť kategóriu"}
+                    >
+                      CHILDREN
+                    </HelperModal>
                   </button>
                   <button className="mr-4 float-right">
-                    Zmaž kategóriu
+                    <HelperModal
+                      btnName={"Zmať Kategóriu"}
+                      modalHeader={"Zmazať kategóriu"}
+                    >
+                      CHILDREN
+                    </HelperModal>
                   </button>
                 </>
               )}

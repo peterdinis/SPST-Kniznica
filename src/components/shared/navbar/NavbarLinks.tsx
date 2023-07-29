@@ -2,12 +2,14 @@ import Link from "next/link";
 import useStudent from "@/hooks/useStudent";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
+import TeacherDropdown from "@/components/dropdowns/TeacherDropdown";
+import StudentDropdown from "@/components/dropdowns/StudentDropdown";
+import AdminDropdown from "@/components/dropdowns/AdminDropdown";
 
 const NavbarLinks: React.FC = () => {
   const { student } = useStudent();
   const { teacher } = useTeacher();
   const { admin } = useAdmin();
- /*  const { colorMode, toggleColorMode } = useColorMode() */
 
   return (
     <>
@@ -22,13 +24,8 @@ const NavbarLinks: React.FC = () => {
       </li>
       <li className="text-black text-xl">
         <Link href="/category/all">Kategórie</Link>
-      </li> 
-
-    {/* TODO: Fix me later */}
-    {/*   <li className="text-black text-xl" onClick={toggleColorMode}>
-        <Text>Toggle {colorMode === 'light' ? 'Dark' : 'Light'}</Text>
       </li>
- */}
+
       {student === null && teacher === null && admin === null && (
         <>
           <li className="text-black text-xl">
@@ -46,6 +43,9 @@ const NavbarLinks: React.FC = () => {
           <li className="text-black text-xl">
             <Link href="/student/profile">Profil</Link>
           </li>
+          <li className="text-black text-xl">
+            <StudentDropdown />
+          </li>
         </>
       )}
 
@@ -54,6 +54,9 @@ const NavbarLinks: React.FC = () => {
           <li className="text-black text-xl">
             <Link href="/teacher/profile">Profil</Link>
           </li>
+          <li className="text-black text-xl">
+            <TeacherDropdown />
+          </li>
         </>
       )}
 
@@ -61,6 +64,9 @@ const NavbarLinks: React.FC = () => {
         <>
           <li className="text-black text-xl">
             <Link href="/admin/profile">Profil</Link>
+          </li>
+          <li className="text-black text-xl">
+            <AdminDropdown />
           </li>
         </>
       )}

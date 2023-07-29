@@ -10,7 +10,11 @@ export const createAuthorSchema = z.object({
     }),
 
     image: z.string({
-        required_error: "Fotka nemôže byť prádna"
+        required_error: "Fotka nemôže byť prázdna"
+    }),
+
+    fullName: z.string({
+        required_error: "Autorove celé meno nesmie byť prázdne",
     }),
 
     birthYear: z.number({
@@ -19,7 +23,7 @@ export const createAuthorSchema = z.object({
 
     isAlive: z.boolean({
         required_error: "isAlive musí byť true alebo false"
-    }),
+    }).optional(),
 
     country: z.string({
         required_error: "Krajina pôvodu nesmie byť prázdna"

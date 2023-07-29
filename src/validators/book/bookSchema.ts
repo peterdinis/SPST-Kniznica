@@ -13,10 +13,6 @@ export const createBookSchema = z.object({
         required_error: "Obrázok nemôže byť prázdny"
     }),
 
-    authorId: z.number({
-        required_error: "Id autora nesmie byť prázdne"
-    }),
-
     publisher: z.string({
         required_error: "Vydavateľstvo nesmie byť prázdne"
     }),
@@ -36,9 +32,12 @@ export const createBookSchema = z.object({
     year: z.number({
         invalid_type_error: "Rok nesmie byť prádzny",
     }),
+    authorName: z.string({
+        required_error: "Autor name is required"
+    }),
 
-    categoryId: z.number({
-        description: "Id kategórie nesmie byť prádzdne"
+    categoryName: z.string({
+        required_error: "Category name is required"
     })
 })
 

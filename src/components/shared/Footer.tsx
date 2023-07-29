@@ -1,5 +1,6 @@
+"use client"
+
 import { motion } from "framer-motion";
-import { CopyIcon } from "@chakra-ui/icons";
 function Footer() {
   const footerVariants = {
     hidden: { opacity: 0 },
@@ -28,9 +29,8 @@ function Footer() {
                 className="text-blueGray-500 text-2xl hover:text-gray-800"
               >
                 <motion.span className="inline-block" whileHover={{ scale: 1.1 }}>
-                  <CopyIcon />
+                &copy; SPŠT Knižnica 2023
                 </motion.span>{" "}
-                SPŠT Knižnica 2023
               </a>
             </div>
           </div>

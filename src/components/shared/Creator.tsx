@@ -5,7 +5,7 @@ const Creator: React.FC = () => {
   return (
     <Container>
       <Text mt={3} fontSize={20}>
-        Author applikácie{" "}
+        Autor applikácie{" "}
         <Link className="text-red-400" href="https://www.facebook.com/peto.dinis/">
           Peter Dinis
         </Link>

@@ -50,14 +50,7 @@ const ProfileHeader: React.FC = () => {
 
         console.log(updatedStudentInfo);
 
-        // Update studentPersonalInfo with the new picture URL
-        // Assuming you have a function to update student info in your custom hook
-        // For example, if your hook is defined like this:
-        // const { studentPersonalInfo, updateStudentPersonalInfo } = useStudent();
-        // You can update it like this:
-        // updateStudentPersonalInfo(updatedStudentInfo);
-
-        setIsModalOpen(false); // Close the modal
+        setIsModalOpen(false);
       } catch (error) {
         console.error("Error uploading file:", error);
       } finally {

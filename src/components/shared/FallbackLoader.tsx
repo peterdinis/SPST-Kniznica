@@ -6,9 +6,9 @@ function CircularProgressWithLabel(props: { value: number}) {
     <Box position="relative" display="inline-flex">
       <CircularProgress
         value={props.value}
-        size="120px" // Set the size of the circular progress
-        color="teal.500" // Replace with your preferred color
-        thickness="8px" // Adjust the thickness of the circular progress
+        size="120px"
+        color="teal.500"
+        thickness="8px"
       />
       <Box
         top="0"

@@ -18,7 +18,7 @@ import { CustomTooltip } from "../shared/tooltip";
 
 const CreateBookForm: React.FC = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<createBookType>({
+  const { register, handleSubmit, reset } = useForm<createBookType>({
     resolver: zodResolver(createBookSchema),
   });
 
@@ -47,6 +47,7 @@ const CreateBookForm: React.FC = () => {
       allFieldsBooksError();
     }
     mutation.mutate(data);
+    reset();
   };
 
   return (

@@ -160,8 +160,8 @@ const AuthorDetail: React.FC = () => {
                 <>
                   <button className="float-right">
                     <ApiModal
-                      modalButtonText={"Uprav kategóriu"}
-                      modalHeaderText={"Uprav kategóriu"}
+                      modalButtonText={"Uprav autora/ku"}
+                      modalHeaderText={"Uprav autora/ku"}
                       modalCloseText={"Zatvor"}
                     >
                       CHILDREN
@@ -169,8 +169,8 @@ const AuthorDetail: React.FC = () => {
                   </button>
                   <button className="mr-4 float-right">
                     <ApiModal
-                      modalButtonText={"Zmazať kategóriu"}
-                      modalHeaderText={"Zmazať kategóriu"}
+                      modalButtonText={"Zmazať autora/ku"}
+                      modalHeaderText={"Zmazať autora/ku"}
                       modalCloseText={"Zatvor"}
                     >
                       CHILDREN

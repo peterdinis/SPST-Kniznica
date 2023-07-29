@@ -1,4 +1,4 @@
-import { ILogin, INewPasswordStudent, IRegister, IUpdateStudent } from "@/interfaces/IStudent";
+import { ILogin, IRegister } from "@/interfaces/IStudent";
 import axios from "axios";
 
 const api = axios.create({
@@ -13,22 +13,6 @@ export const loginStudent = (data: ILogin) => {
   return api.post("student/login", data);
 }
 
-export const updateProfile = (data: IUpdateStudent, username: string) => {
-  return api.patch(`student/profile/update/${username}`, data)
-}
-
 export const deleteProfile = (username: string) => {
   return api.delete(`student/profile/update/${username}`);
-}
-
-export const studentChangePassword = (studentData: INewPasswordStudent) => {
-  return api.put(`student/password/${studentData.username}/new`, studentData.newPassword);
-};
-
-export const deleteMessage = (id: number) => {
-  if(!id) {
-    return;
-  }
-
-  return api.delete(`message/delete/${id}`);
 }

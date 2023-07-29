@@ -2,12 +2,23 @@ import Header from "../shared/Header";
 import * as api from "../../api/queries/authorQueries";
 import Link from "next/link";
 import useDebounce from "@/hooks/useDebounce";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { WarningIcon } from "@chakra-ui/icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import {Box, Text, Progress} from "@chakra-ui/react";
 import ScrollToTop from "@/hooks/useScroll";
 import { IAuthor } from "@/interfaces/IAuthor";
+import {
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Image,
+  Stack,
+  Box,
+  Progress,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 const SearchAuthorsForm: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -82,28 +93,88 @@ const SearchAuthorsForm: React.FC = () => {
                 results.data.map((item: IAuthor) => {
                   return (
                     <>
-                      <div className="w-full bg-white rounded-lg p-12 flex flex-col justify-center items-center">
-                        <div className="mb-8">
-                          <LazyLoadImage
-                            alt="Placeholder"
-                            className="h-auto w-full"
-                            src={item.image}
-                          />
-                        </div>
-                        <div className="text-center">
-                          <h3 className="text-2xl text-gray-800">
-                            {item.name}
-                          </h3>
-                          <div className="text-center mt-4">
-                            <Link
-                              className="link mt-10 bg-blue-200 p-2 rounded"
-                              href={`/authors/detail/${item.id}`}
+                      <Center py={6}>
+                        <Stack
+                          borderWidth="1px"
+                          borderRadius="lg"
+                          direction={{ base: "column", md: "row" }}
+                          // eslint-disable-next-line react-hooks/rules-of-hooks
+                          bg={useColorModeValue("white", "gray.900")}
+                          boxShadow={"2xl"}
+                        >
+                          <Flex flex={1} bg="blue.200">
+                            {item.image == null ? (
+                              <>
+                                <Image
+                                  objectFit="cover"
+                                  boxSize="100%"
+                                  src={"https://picsum.photos/200/300"}
+                                  alt="#"
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <LazyLoadImage
+                                  alt="Placeholder"
+                                  className="h-auto w-full rounded-lg"
+                                  src={item.image}
+                                />
+                              </>
+                            )}
+                          </Flex>
+                          <Stack
+                            flex={1}
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            p={1}
+                            pt={2}
+                          >
+                            <Heading fontSize={"2xl"} fontFamily={"body"}>
+                              {item.name}
+                            </Heading>
+                            <Text
+                              fontWeight={600}
+                              color={"gray.500"}
+                              size="sm"
+                              mb={4}
                             >
-                              Detail
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
+                              {item.lastName}
+                            </Text>
+                            <Stack
+                              width={"100%"}
+                              mt={"2rem"}
+                              direction={"row"}
+                              padding={2}
+                              justifyContent={"space-between"}
+                              alignItems={"center"}
+                            >
+                              <Button
+                                flex={1}
+                                fontSize={"sm"}
+                                rounded={"full"}
+                                bg={"blue.400"}
+                                color={"white"}
+                                boxShadow={
+                                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                                }
+                                _hover={{
+                                  bg: "blue.500",
+                                }}
+                                _focus={{
+                                  bg: "blue.500",
+                                }}
+                              >
+                                <Link
+                                  href={`/authors/detail/${item.externalId}`}
+                                >
+                                  Detail
+                                </Link>
+                              </Button>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Center>
                     </>
                   );
                 })}

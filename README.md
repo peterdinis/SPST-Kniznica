@@ -9,6 +9,7 @@
 - Typescript
 - Tailwind css
 - React Query
+- Chakra UI
 
 ## How to run
 

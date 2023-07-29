@@ -7,5 +7,5 @@ export const queryCache = new QueryCache({
 
   onSuccess: data => {
     console.log(data);
-  },
+  }
 })

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import DateTimePicker from "../shared/DateTimePicker";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
+import Link from "next/link";
+import { schollURL } from "@/constants/url";
 
 const Hero: React.FC = () => {
 
@@ -64,6 +66,13 @@ const Hero: React.FC = () => {
         >
           Knihy sú jedinečne prenosné kúzlo -{" "}
           <span className="font-bold">Stephen King</span>
+        </motion.div>
+        <motion.div
+          className="ml-8 text-gray-800 text-xl font-regular mb-8 mt-6"
+          variants={containerVariants}
+        >
+          Návrat na školskú stránku - {" "}
+          <Link href="https://www.spsbj.sk" className="font-bold">Školská stránka</Link>
         </motion.div>
       </motion.div>
     </motion.div>

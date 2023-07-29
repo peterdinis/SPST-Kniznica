@@ -11,7 +11,7 @@ const GlobalErrorComponent: React.FC<IGlobalErrorProps> = ({statusCode, message}
       <h1 className="text-9xl font-extrabold text-black tracking-widest">
         {statusCode}
       </h1>
-      <div className="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
+      <div className="bg-[#FF6A3D] mt-4px-2 text-sm rounded rotate-12 absolute">
         {message}
       </div>
       <div className="mt-5">

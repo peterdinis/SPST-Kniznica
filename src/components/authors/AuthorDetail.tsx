@@ -10,8 +10,8 @@ import { WarningIcon } from "@chakra-ui/icons";
 import { FallbackLoader, Header, FallbackRender } from "../shared";
 import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
-import CustomTooltip from "../shared/tooltip/CustomTooltip";
-import { HelperModal } from "../shared/modals";
+import {CustomTooltip} from "../shared/tooltip";
+import { ApiModal } from "../shared/modals";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -159,20 +159,22 @@ const AuthorDetail: React.FC = () => {
               {(teacher || admin) && (
                 <>
                   <button className="float-right">
-                    <HelperModal
-                      btnName={"Uprav Kategóriu"}
-                      modalHeader={"Upraviť kategóriu"}
+                    <ApiModal
+                      modalButtonText={"Uprav kategóriu"}
+                      modalHeaderText={"Uprav kategóriu"}
+                      modalCloseText={"Zatvor"}
                     >
                       CHILDREN
-                    </HelperModal>
+                    </ApiModal>
                   </button>
                   <button className="mr-4 float-right">
-                    <HelperModal
-                      btnName={"Zmať Kategóriu"}
-                      modalHeader={"Zmazať kategóriu"}
+                    <ApiModal
+                      modalButtonText={"Zmazať kategóriu"}
+                      modalHeaderText={"Zmazať kategóriu"}
+                      modalCloseText={"Zatvor"}
                     >
                       CHILDREN
-                    </HelperModal>
+                    </ApiModal>
                   </button>
                 </>
               )}

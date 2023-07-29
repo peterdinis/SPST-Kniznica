@@ -26,7 +26,8 @@ const RegisterForm: React.FC = () => {
         errorRegister();
       }
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      Cookies.set("studentAdminData", JSON.stringify(data));
       router.push("/admin/login");
     },
   });
@@ -42,7 +43,6 @@ const RegisterForm: React.FC = () => {
   
   const onHandleSubmit: SubmitHandler<createAdminRegisterType> = (data: IRegister) => {
     try {
-      Cookies.set("studentAdminData", JSON.stringify(data));
       mutation.mutate(data);
       notify();
       router.push("/admin/login");

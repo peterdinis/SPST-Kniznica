@@ -12,7 +12,7 @@ import { IAuthor } from "@/interfaces/IAuthor";
 import { useRouter } from "next/router";
 import { notify, errorRegister, allAuthorFieldsError } from "../shared/toasts/authorToasts";
 import { Header } from "../shared";
-import CustomTooltip from "../shared/tooltip/CustomTooltip";
+import {CustomTooltip} from "../shared/tooltip";
 import { Checkbox, Input, Textarea } from "@chakra-ui/react";
 
 const CreateAuthorForm: React.FC = () => {

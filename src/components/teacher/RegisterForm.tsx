@@ -19,6 +19,7 @@ import {
 } from "../shared/toasts/applicationToasts";
 import { TEACHER } from "@/constants/applicationConstants";
 import { Header } from "../shared";
+import {CustomTooltip} from "../shared/tooltip";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -42,7 +43,8 @@ const RegisterForm: React.FC = () => {
         errorRegister();
       }
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      Cookies.set("teacherRegisterData", JSON.stringify(data));
       router.push("/teacher/login");
     },
   });
@@ -50,11 +52,11 @@ const RegisterForm: React.FC = () => {
   const onHandleSubmit: SubmitHandler<createRegisterTeacherType> = async (
     data: IRegister
   ) => {
-    if(data.role !== TEACHER) {
+    if (data.role !== TEACHER) {
       teacherRoleError();
+      return;
     }
     try {
-      Cookies.set("teacherRegisterData", JSON.stringify(data));
       mutation.mutate(data);
       notify();
     } catch (err: any) {
@@ -217,31 +219,36 @@ const RegisterForm: React.FC = () => {
               </p>
             </div>
 
-            <div className="mb-2">
-              <label
-                className="block text-grey-darker text-sm font-bold mb-2"
-                htmlFor="role"
-              >
-                Rola
-              </label>
-              <input
-                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
-                id="Heslo"
-                type="text"
-                autoFocus
-                placeholder="TEACHER"
-                {...register("role", {
-                  required: "Rola je povinný",
-                })}
-                onKeyUp={() => {
-                  trigger("role");
-                }}
-              />
+            <CustomTooltip
+              label={"Pri registrácií učiteľa rola musí mať názov TEACHER"}
+              placement={"start-start"}
+            >
+              <div className="mb-2">
+                <label
+                  className="block text-grey-darker text-sm font-bold mb-2"
+                  htmlFor="role"
+                >
+                  Rola
+                </label>
+                <input
+                  className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                  id="Heslo"
+                  type="text"
+                  autoFocus
+                  placeholder="TEACHER"
+                  {...register("role", {
+                    required: "Rola je povinný",
+                  })}
+                  onKeyUp={() => {
+                    trigger("role");
+                  }}
+                />
 
-              <p className="text-red-800">
-                {errors.role && errors.role.message}
-              </p>
-            </div>
+                <p className="text-red-800">
+                  {errors.role && errors.role.message}
+                </p>
+              </div>
+            </CustomTooltip>
             <div>
               <button
                 className="mt-4 bg-red-700 rounded-lg p-2 text-white"

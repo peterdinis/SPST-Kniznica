@@ -1,7 +1,8 @@
 import { ILoginStudentInfo } from "@/interfaces/IStudent";
 import Dayjs from "dayjs";
 
-export const placeholderStudent = [{
+export const placeholderStudent = [
+  {
     name: "Name",
     createdAt: Dayjs().format(new Date().toISOString()),
     classRoom: "1.A",
@@ -10,6 +11,6 @@ export const placeholderStudent = [{
     password: "ROROROROROPTPT/R/R/",
     role: "STUDENT",
     updatedAt: Dayjs().format(new Date().toISOString()),
-    username: "ITITITITITITIT"
-
-}] as unknown as ILoginStudentInfo[];
+    username: "ITITITITITITIT",
+  },
+] as unknown as ILoginStudentInfo[];

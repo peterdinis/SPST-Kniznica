@@ -9,6 +9,7 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { WarningIcon } from "@chakra-ui/icons";
 import { ApiModal } from "../shared/modals";
+import {Tag} from "@chakra-ui/react";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
@@ -81,12 +82,13 @@ const CategoryInfo: React.FC = () => {
                   <div>
                     {data.books.map((item: { name: string }) => {
                       return (
-                        <div
+                        <Tag
                           key={item.name}
-                          className="mt-1 pt-2 text-lg text-gray-900 sm:col-span-2 sm:mt-0"
+                          variant='solid' colorScheme='teal'
+                          mr={4}
                         >
-                          {item.name} {""}
-                        </div>
+                          {item.name}
+                        </Tag>
                       );
                     })}
                   </div>

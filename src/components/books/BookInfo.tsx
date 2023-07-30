@@ -24,9 +24,8 @@ import { motion } from "framer-motion";
 import useStudent from "@/hooks/useStudent";
 import useAdmin from "@/hooks/useAdmin";
 import useTeacher from "@/hooks/useTeacher";
-import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
-import { Text } from "@chakra-ui/react";
+import { Text, Tag } from "@chakra-ui/react";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -179,7 +178,9 @@ const BookInfo: React.FC = () => {
 
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Kategória</span>:{" "}
-                {data.category && data.category.name}
+                <Tag colorScheme='teal' variant="solid" size="md">
+                  {data.category && data.category.name}
+                </Tag>
               </p>
 
               {data.book && data.book.status !== "Dostupná" && (

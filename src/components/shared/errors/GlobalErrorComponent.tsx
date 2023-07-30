@@ -1,11 +1,14 @@
 import Link from "next/link";
 
 interface IGlobalErrorProps {
-    statusCode: string;
-    message: string;
-};
+  statusCode: string;
+  message: string;
+}
 
-const GlobalErrorComponent: React.FC<IGlobalErrorProps> = ({statusCode, message}) => {
+const GlobalErrorComponent: React.FC<IGlobalErrorProps> = ({
+  statusCode,
+  message,
+}) => {
   return (
     <main className="h-screen w-full flex flex-col justify-center items-center">
       <h1 className="text-9xl font-extrabold text-black tracking-widest">

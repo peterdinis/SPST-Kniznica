@@ -63,7 +63,6 @@ const ProfileBody: React.FC = () => {
               <div className="px-4 py-2  ">Obnovenie účtu študent</div>
               <div className="px-4 py-2 text-red-500 ">
                 <SmallModal
-                  className="w-10"
                   modalButtonText={"Obnov účet študentovi"}
                   modalHeaderText={"Obnov účet študentovi"}
                   modalCloseText={"Zatvor"}

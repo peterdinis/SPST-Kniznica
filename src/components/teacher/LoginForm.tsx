@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";

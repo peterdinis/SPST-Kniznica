@@ -1,5 +1,3 @@
-"use client"
-
 import Header from "../shared/Header";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/categoryMutation";

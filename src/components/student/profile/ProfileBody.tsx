@@ -1,8 +1,8 @@
 import useStudent from "@/hooks/useStudent";
 import useCopyToClipboard from "@/hooks/useCopy";
-import { Icon } from '@chakra-ui/react';
-import { HiUser, HiClipboardCopy } from 'react-icons/hi'; 
-
+import { Icon } from "@chakra-ui/react";
+import { HiUser, HiClipboardCopy } from "react-icons/hi";
+import { SmallModal } from "@/components/shared/modals";
 
 const ProfileBody: React.FC = () => {
   const { student } = useStudent();
@@ -33,7 +33,9 @@ const ProfileBody: React.FC = () => {
               <div className="px-4 py-2 ">Používateľské meno</div>
               <div className="px-4 py-2">
                 {student?.data.user.username}
-                <Icon as={HiClipboardCopy} boxSize={6} 
+                <Icon
+                  as={HiClipboardCopy}
+                  boxSize={6}
                   onClick={() =>
                     copy(student?.data.user.username as unknown as string)
                   }
@@ -55,7 +57,21 @@ const ProfileBody: React.FC = () => {
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 ">Moje požičané knihy</div>
               <div className="px-4 py-2">
-                <button className="text-red-500" onClick={goToMyBooks}>Moje knihy</button>
+                <button className="text-red-500" onClick={goToMyBooks}>
+                  Moje knihy
+                </button>
+              </div>
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="px-4 py-2 ">Deaktivovať účet</div>
+              <div className="px-4 py-2 text-red-500">
+                <SmallModal
+                  modalButtonText={"Deaktivovať účet"}
+                  modalHeaderText={"Deaktivovať účet"}
+                  modalCloseText={"Zavrieť"}
+                >
+                  Children
+                </SmallModal>
               </div>
             </div>
           </div>

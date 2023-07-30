@@ -1,7 +1,7 @@
-"use client"
-
 import { motion } from "framer-motion";
-function Footer() {
+
+const Footer: React.FC = () => {
+  
   const footerVariants = {
     hidden: { opacity: 0 },
     visible: {

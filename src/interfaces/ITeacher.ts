@@ -57,6 +57,8 @@ export type IUpdateTeacher = Partial<ILoginTeacherPersonalInfo>;
 
 export type ITeacherInfo = Partial<ILoginTeacherInfo>;
 
+export type IDeactivatedAccountRestartAccount = Pick<ILoginTeacherPersonalInfo, 'username'>;
+
 export interface ITeacherInfoUpdate extends ITeacherInfo, UsePaginationState<ITeacherInfo>, UsePaginationInstanceProps<ITeacherInfo> {
   headerGroups?: HeaderGroup<ITeacherInfo>[];
   getTableBodyProps: (props?: ITableProps) => ITableProps;

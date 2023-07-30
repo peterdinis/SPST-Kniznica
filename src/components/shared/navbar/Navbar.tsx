@@ -4,7 +4,7 @@ import { Icon } from '@chakra-ui/react';
 import { HiMenuAlt1, HiX } from 'react-icons/hi'; 
 import { NavbarLinks } from "..";
 
-export default function Navbar() {
+const Navbar: React.FC = () =>{
   const [navbar, setNavbar] = useState<Boolean>(false);
 
   return (
@@ -44,3 +44,6 @@ export default function Navbar() {
     </nav>
   );
 }
+
+
+export default Navbar;

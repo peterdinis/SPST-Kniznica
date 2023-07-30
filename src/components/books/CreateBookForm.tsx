@@ -1,5 +1,3 @@
-"use client";
-
 import Header from "../shared/Header";
 import * as mut from "../../api/mutations/bookMutations";
 import { SubmitHandler, useForm } from "react-hook-form";

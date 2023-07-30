@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Icon } from '@chakra-ui/react';
-import { HiBell } from 'react-icons/hi';
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import Cookies from "js-cookie";
+import {HamburgerIcon} from "@chakra-ui/icons";
 
 const AdminDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,19 +27,16 @@ const AdminDropdown: React.FC = () => {
 
   return (
     <div className="relative z-20">
-      <button
+       <button
         className="flex items-center justify-center text-gray-600 hover:text-gray-900 focus:outline-none"
         onClick={toggleDropdown}
       >
-        <Icon as={HiBell} boxSize={6}  className="w-6 h-6" /> 0
+       <Icon as={HamburgerIcon} boxSize={6} className="w-6 h-6" /> 
       </button>
 
       {isOpen && (
         <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
           <ul className="py-2">
-            <li className="px-6 w-32 py-2 hover:bg-gray-100">
-              Žiadne správy
-            </li>
             <dd onClick={logoutFromApp} className="text-lg text-center text-red-700">
               Odlhásenie
             </dd>

@@ -71,7 +71,7 @@ const ProfileBody: React.FC = () => {
                 Obnovenie účtu učiteľ
               </div>
               <div className="px-4 py-2 text-red-500 ">
-                <button onClick={goToMyBooks}>Obnov účet učiteľ</button>
+                <button onClick={goToMyBooks}>Obnov účet učiteľovi</button>
               </div>
             </div>
             <div className="grid grid-cols-2">
@@ -79,7 +79,7 @@ const ProfileBody: React.FC = () => {
                 Deaktivácia učtu učiteľ
               </div>
               <div className="px-4 py-2 text-red-500">
-                <button onClick={goToMyBooks}>Deaktivuj učet učiteľ</button>
+                <button onClick={goToMyBooks}>Deaktivuj učet učiteľovi</button>
               </div>
             </div>
             <div className="grid grid-cols-2">
@@ -87,7 +87,7 @@ const ProfileBody: React.FC = () => {
                 Deaktivácia učtu žiak
               </div>
               <div className="px-4 py-2 text-red-500 ">
-                <button onClick={goToMyBooks}>Deaktivuj učet žiak</button>
+                <button onClick={goToMyBooks}>Deaktivuj učet žiakovi</button>
               </div>
             </div>
           </div>

@@ -37,7 +37,7 @@ const AdminDropdown: React.FC = () => {
       {isOpen && (
         <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
           <ul className="py-2">
-            <dd onClick={logoutFromApp} className="text-lg text-center text-red-700">
+            <dd onClick={logoutFromApp} className="text-lg p-2 text-center text-red-700">
               Odlhásenie
             </dd>
           </ul>

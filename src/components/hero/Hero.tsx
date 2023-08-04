@@ -3,6 +3,7 @@ import DateTimePicker from "../shared/DateTimePicker";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import Link from "next/link";
+
 const Hero: React.FC = () => {
 
   const containerVariants = {

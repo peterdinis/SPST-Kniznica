@@ -21,5 +21,9 @@ export const loginStudentSchema = z.object({
     .min(8, "Heslo musí mať viac ako 8 znakov"),
 });
 
+export const deleteStudentSchema = z.object({
+  username: z.string().min(1, "Používateľské meno je povinné").max(100),
+});
+
 export type createStudentRegisterType = z.infer<typeof registerStudentSchema>;
 export type createStudentLoginType = z.infer<typeof loginStudentSchema>;

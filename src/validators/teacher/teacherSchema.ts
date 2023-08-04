@@ -33,7 +33,11 @@ export const loginTeacherSchema = z.object({
     password: z.string({
         required_error: "Heslo nesmie byť prádzne"
     }),
-})
+});
+
+export const deleteTeacherSchema = z.object({
+    username: z.string().min(1, "Používateľské meno je povinné").max(100),
+  });
 
 export type createLoginTeacherType = z.infer<typeof loginTeacherSchema>;
 export type createRegisterTeacherType = z.infer<typeof registerTeacherSchema>;

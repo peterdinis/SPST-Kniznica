@@ -48,16 +48,11 @@ export interface ILoginTeacherPersonalInfo {
 
 export type TeacherBasicInfo = Pick<ILoginTeacherPersonalInfo, 'name' | 'username' | 'createdAt' >;
 
-export interface INewPasswordTeacher {
-  username: string;
-  newPassword: string;
-}
-
 export type IUpdateTeacher = Partial<ILoginTeacherPersonalInfo>;
 
 export type ITeacherInfo = Partial<ILoginTeacherInfo>;
 
-export type IDeactivatedAccountRestartAccount = Pick<ILoginTeacherPersonalInfo, 'username'>;
+export type IDeleteTeacher = Pick<ILoginTeacherPersonalInfo, 'username'>;
 
 export interface ITeacherInfoUpdate extends ITeacherInfo, UsePaginationState<ITeacherInfo>, UsePaginationInstanceProps<ITeacherInfo> {
   headerGroups?: HeaderGroup<ITeacherInfo>[];

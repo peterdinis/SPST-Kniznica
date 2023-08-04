@@ -3,6 +3,7 @@ import useCopyToClipboard from "@/hooks/useCopy";
 import useAdmin from "@/hooks/useAdmin";
 import { Options } from "..";
 import { ApiModal, SmallModal } from "@/components/shared/modals";
+import { Button, Input } from "@chakra-ui/react";
 
 const ProfileBody: React.FC = () => {
   const { admin } = useAdmin();
@@ -67,7 +68,10 @@ const ProfileBody: React.FC = () => {
                   modalHeaderText={"Zmazať účet študentovi"}
                   modalCloseText={"Zatvor"}
                 >
-                  Children
+                  <form action="#">
+                    <Input placeholder="Študent ID" />
+                    <Button mt={4} color="whiteAlpha.800" backgroundColor="red.700">Zmaž</Button>
+                  </form>
                 </SmallModal>
               </div>
             </div>
@@ -79,7 +83,10 @@ const ProfileBody: React.FC = () => {
                   modalHeaderText={"Zmazať účet učiteľovi"}
                   modalCloseText={"Zatvor"}
                 >
-                  Children
+                  <form action="#">
+                    <Input placeholder="Učiteľ ID" />
+                    <Button mt={4} color="whiteAlpha.800" backgroundColor="red.700">Zmaž</Button>
+                  </form>
                 </SmallModal>
               </div>
             </div>

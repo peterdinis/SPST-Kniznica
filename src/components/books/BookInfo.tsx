@@ -271,8 +271,6 @@ const BookInfo: React.FC = () => {
                         <p className="text-red-800">
                           {errors.from && errors.from.message}
                         </p>
-
-                        {/* TODO: Aktuálny dátum od + 7 dní do inputu do */}
                         <label className="mt-4 block text-grey-darker text-sm font-bold mb-2">
                           Do
                         </label>

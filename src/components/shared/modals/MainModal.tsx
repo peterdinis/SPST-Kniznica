@@ -18,7 +18,7 @@ interface IApiModalProps {
   className?: string;
 }
 
-const ApiModal: React.FC<IApiModalProps> = ({
+const MainModal: React.FC<IApiModalProps> = ({
   children,
   modalButtonText,
   modalCloseText,
@@ -53,4 +53,4 @@ const ApiModal: React.FC<IApiModalProps> = ({
   );
 };
 
-export default ApiModal;
+export default MainModal;

@@ -11,7 +11,7 @@ import {
     Text
   } from "@chakra-ui/react";
   
-  interface IApiModalProps {
+  interface ISecondaryModalProps {
     children?: React.ReactNode;
     modalButtonText: string;
     modalHeaderText: string;
@@ -19,13 +19,13 @@ import {
     className?: string;
   }
   
-  const ApiModal: React.FC<IApiModalProps> = ({
+  const SecondaryModal: React.FC<ISecondaryModalProps> = ({
     children,
     modalButtonText,
     modalCloseText,
     modalHeaderText,
     className,
-  }: IApiModalProps) => {
+  }: ISecondaryModalProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
       <>
@@ -54,5 +54,5 @@ import {
     );
   };
   
-  export default ApiModal;
+  export default SecondaryModal;
   

@@ -16,7 +16,6 @@ import {
   Center,
   Flex,
   Heading,
-  Image,
   Stack,
   Text,
   useColorModeValue,
@@ -91,13 +90,11 @@ const GetAllAuthors: React.FC = () => {
                     <Flex flex={1} bg="blue.200">
                       {item.image == null ? (
                         <>
-                          <Image
-                            objectFit="cover"
-                            boxSize="100%"
+                          <LazyLoadImage
                             src={
                               'https://picsum.photos/200/300'
                             }
-                            alt="#"
+                            alt="Image load failed"
                           />
                         </>
                       ) : (

@@ -2,8 +2,7 @@ import { ChatIcon, CopyIcon } from "@chakra-ui/icons";
 import useCopyToClipboard from "@/hooks/useCopy";
 import useAdmin from "@/hooks/useAdmin";
 import { Options } from "..";
-import { ApiModal, SmallModal } from "@/components/shared/modals";
-import { Button, Input } from "@chakra-ui/react";
+import DeleteModals from "./DeleteModals";
 
 const ProfileBody: React.FC = () => {
   const { admin } = useAdmin();
@@ -60,36 +59,7 @@ const ProfileBody: React.FC = () => {
                 <button onClick={goToMyBooks}>Moje knihy</button>
               </div>
             </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 ">Zmazať účet študentovi</div>
-              <div className="px-4 py-2 text-red-500">
-                <SmallModal
-                  modalButtonText={"Zmazať účet študentovi"}
-                  modalHeaderText={"Zmazať účet študentovi"}
-                  modalCloseText={"Zatvor"}
-                >
-                  <form action="#">
-                    <Input placeholder="Študent ID" />
-                    <Button mt={4} color="whiteAlpha.800" backgroundColor="red.700">Zmaž</Button>
-                  </form>
-                </SmallModal>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2  ">Zmazať učet učiteľovi</div>
-              <div className="px-4 py-2 text-red-500 ">
-                <SmallModal
-                  modalButtonText={"Zmazať účet učiteľovi"}
-                  modalHeaderText={"Zmazať účet učiteľovi"}
-                  modalCloseText={"Zatvor"}
-                >
-                  <form action="#">
-                    <Input placeholder="Učiteľ ID" />
-                    <Button mt={4} color="whiteAlpha.800" backgroundColor="red.700">Zmaž</Button>
-                  </form>
-                </SmallModal>
-              </div>
-            </div>
+            <DeleteModals />
           </div>
         </div>
       </div>

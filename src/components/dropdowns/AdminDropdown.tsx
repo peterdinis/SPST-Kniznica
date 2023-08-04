@@ -25,6 +25,10 @@ const AdminDropdown: React.FC = () => {
     window.location.replace("/admin/login");
   };
 
+  const goToEdupage = () => {
+    window.location.replace("https://spsbj.edupage.org/")
+  }
+
   return (
     <div className="relative z-20">
        <button
@@ -39,6 +43,9 @@ const AdminDropdown: React.FC = () => {
           <ul className="py-2">
             <dd onClick={logoutFromApp} className="text-lg p-2 text-center text-red-700">
               Odlhásenie
+            </dd>
+            <dd onClick={goToEdupage} className="text-lg p-2 text-center text-red-700">
+              Edupage
             </dd>
           </ul>
         </div>

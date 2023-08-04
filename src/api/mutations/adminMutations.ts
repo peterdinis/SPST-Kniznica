@@ -12,3 +12,12 @@ export const register = (data: IRegister) => {
 export const login = (data: ILogin) => {
   return api.post("admin/login", data);
 };
+
+
+export const deleteTeacher = () => {
+  return;
+}
+
+export const deleteAuthor = () => {
+  return;
+}

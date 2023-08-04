@@ -8,3 +8,12 @@ const api = axios.create({
 export const createNewAuthor = (data: IAuthor) => {
   return api.post("authors", data)
 }
+
+export const updateAuthor = () => {
+  return;
+
+}
+
+export const deleteAuthor = () => {
+  return;
+}

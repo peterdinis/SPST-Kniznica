@@ -12,7 +12,3 @@ export const register = (data: IRegister) => {
 export const login = (data: ILogin) => {
 return api.post("teacher/login", data);
 }
-
-export const deleteProfile = (username: string) => {
-  return api.delete(`teacher/profile/update/${username}`);
-}

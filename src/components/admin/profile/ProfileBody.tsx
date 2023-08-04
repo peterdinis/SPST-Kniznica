@@ -60,35 +60,11 @@ const ProfileBody: React.FC = () => {
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2  ">Obnovenie účtu študent</div>
-              <div className="px-4 py-2 text-red-500 ">
-                <SmallModal
-                  modalButtonText={"Obnov účet študentovi"}
-                  modalHeaderText={"Obnov účet študentovi"}
-                  modalCloseText={"Zatvor"}
-                >
-                  Children
-                </SmallModal>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 ">Obnovenie účtu učiteľ</div>
-              <div className="px-4 py-2 text-red-500 ">
-                <SmallModal
-                  modalButtonText={"Obnov účet učiteľovi"}
-                  modalHeaderText={"Obnov účet učiteľovi"}
-                  modalCloseText={"Zatvor"}
-                >
-                  Children
-                </SmallModal>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 ">Deaktivácia učtu študent</div>
+              <div className="px-4 py-2 ">Zmazať účet študentovi</div>
               <div className="px-4 py-2 text-red-500">
                 <SmallModal
-                  modalButtonText={"Deaktivuj účet študentovi"}
-                  modalHeaderText={"Deaktivuj účet študentovi"}
+                  modalButtonText={"Zmazať účet študentovi"}
+                  modalHeaderText={"Zmazať účet študentovi"}
                   modalCloseText={"Zatvor"}
                 >
                   Children
@@ -96,11 +72,11 @@ const ProfileBody: React.FC = () => {
               </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="px-4 py-2  ">Deaktivácia učtu učiteľ</div>
+              <div className="px-4 py-2  ">Zmazať učet učiteľovi</div>
               <div className="px-4 py-2 text-red-500 ">
                 <SmallModal
-                  modalButtonText={"Deaktivuj účet učiteľovi"}
-                  modalHeaderText={"Deaktivuj účet učiteľovi"}
+                  modalButtonText={"Zmazať účet učiteľovi"}
+                  modalHeaderText={"Zmazať účet učiteľovi"}
                   modalCloseText={"Zatvor"}
                 >
                   Children

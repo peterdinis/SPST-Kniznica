@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import "@/styles/tailwind.css";
+import "@/styles/main.css";
 import type { AppProps } from "next/app";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";

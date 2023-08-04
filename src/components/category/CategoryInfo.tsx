@@ -42,8 +42,6 @@ const CategoryInfo: React.FC = () => {
     router.push("/category/all");
   };
 
-  console.log(teacher);
-
   return (
     <>
       <Header name="Detail Kategórie" />

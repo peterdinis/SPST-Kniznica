@@ -35,9 +35,5 @@ export const loginTeacherSchema = z.object({
     }),
 });
 
-export const deleteTeacherSchema = z.object({
-    username: z.string().min(1, "Používateľské meno je povinné").max(100),
-  });
-
 export type createLoginTeacherType = z.infer<typeof loginTeacherSchema>;
 export type createRegisterTeacherType = z.infer<typeof registerTeacherSchema>;

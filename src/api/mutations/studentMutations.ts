@@ -13,7 +13,6 @@ export const loginStudent = (data: ILogin) => {
   return api.post("student/login", data);
 }
 
-// TODO: fix any
-export const deleteStudent = (data: any) => {
-  return api.delete("student/profile/delete", data);
+export const deleteStudent = (studentId: number) => {
+  return api.delete(`student/profile/delete/${studentId}`);
 }

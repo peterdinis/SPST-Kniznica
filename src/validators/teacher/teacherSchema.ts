@@ -33,7 +33,7 @@ export const loginTeacherSchema = z.object({
     password: z.string({
         required_error: "Heslo nesmie byť prádzne"
     }),
-})
+});
 
 export type createLoginTeacherType = z.infer<typeof loginTeacherSchema>;
 export type createRegisterTeacherType = z.infer<typeof registerTeacherSchema>;

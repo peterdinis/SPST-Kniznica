@@ -2,7 +2,7 @@ import { ChatIcon, CopyIcon } from "@chakra-ui/icons";
 import useCopyToClipboard from "@/hooks/useCopy";
 import useAdmin from "@/hooks/useAdmin";
 import { Options } from "..";
-import { ApiModal, SmallModal } from "@/components/shared/modals";
+import DeleteModals from "./DeleteModals";
 
 const ProfileBody: React.FC = () => {
   const { admin } = useAdmin();
@@ -59,54 +59,7 @@ const ProfileBody: React.FC = () => {
                 <button onClick={goToMyBooks}>Moje knihy</button>
               </div>
             </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2  ">Obnovenie účtu študent</div>
-              <div className="px-4 py-2 text-red-500 ">
-                <SmallModal
-                  modalButtonText={"Obnov účet študentovi"}
-                  modalHeaderText={"Obnov účet študentovi"}
-                  modalCloseText={"Zatvor"}
-                >
-                  Children
-                </SmallModal>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 ">Obnovenie účtu učiteľ</div>
-              <div className="px-4 py-2 text-red-500 ">
-                <SmallModal
-                  modalButtonText={"Obnov účet učiteľovi"}
-                  modalHeaderText={"Obnov účet učiteľovi"}
-                  modalCloseText={"Zatvor"}
-                >
-                  Children
-                </SmallModal>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 ">Deaktivácia učtu študent</div>
-              <div className="px-4 py-2 text-red-500">
-                <SmallModal
-                  modalButtonText={"Deaktivuj účet študentovi"}
-                  modalHeaderText={"Deaktivuj účet študentovi"}
-                  modalCloseText={"Zatvor"}
-                >
-                  Children
-                </SmallModal>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2  ">Deaktivácia učtu učiteľ</div>
-              <div className="px-4 py-2 text-red-500 ">
-                <SmallModal
-                  modalButtonText={"Deaktivuj účet učiteľovi"}
-                  modalHeaderText={"Deaktivuj účet učiteľovi"}
-                  modalCloseText={"Zatvor"}
-                >
-                  Children
-                </SmallModal>
-              </div>
-            </div>
+            <DeleteModals />
           </div>
         </div>
       </div>

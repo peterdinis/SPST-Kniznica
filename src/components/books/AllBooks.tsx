@@ -64,7 +64,7 @@ const AllBooks: React.FC = () => {
           </div>
         )}
         {paginatedData.data.result &&
-          paginatedData.data.result.map((item: IBook, index: number) => {
+          paginatedData.data.result.map((item: IBook) => {
             return (
               <motion.div
                 key={item.id}

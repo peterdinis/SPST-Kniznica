@@ -2,7 +2,6 @@ import useStudent from "@/hooks/useStudent";
 import useCopyToClipboard from "@/hooks/useCopy";
 import { Icon } from "@chakra-ui/react";
 import { HiUser, HiClipboardCopy } from "react-icons/hi";
-import { SmallModal } from "@/components/shared/modals";
 
 const ProfileBody: React.FC = () => {
   const { student } = useStudent();
@@ -60,18 +59,6 @@ const ProfileBody: React.FC = () => {
                 <button className="text-red-500" onClick={goToMyBooks}>
                   Moje knihy
                 </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 ">Deaktivovať účet</div>
-              <div className="px-4 py-2 text-red-500">
-                <SmallModal
-                  modalButtonText={"Deaktivovať účet"}
-                  modalHeaderText={"Deaktivovať účet"}
-                  modalCloseText={"Zavrieť"}
-                >
-                  Children
-                </SmallModal>
               </div>
             </div>
           </div>

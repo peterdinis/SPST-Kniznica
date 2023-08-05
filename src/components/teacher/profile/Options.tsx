@@ -68,22 +68,6 @@ const Options: React.FC = () => {
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 ">
-                  Zoznam všetkých žiakov
-                </div>
-                <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/students/all">Zoznam žiakov</Link>
-                </div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Zoznam všetkých učiteľov
-                </div>
-                <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/teachers/all">Zoznam učiteľov</Link>
-                </div>
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
                   Návrat na edupage
                 </div>
                 <div className="px-4 py-2">

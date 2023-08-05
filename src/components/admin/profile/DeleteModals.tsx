@@ -1,7 +1,28 @@
 import { SmallModal } from "@/components/shared/modals";
 import { Input, Button, Text } from "@chakra-ui/react";
+import * as mutT from "@/api/mutations/teacherMutations";
+import * as mutS from "@/api/mutations/studentMutations";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const DeleteModals: React.FC = () => {
+  const { handleSubmit, register } = useForm();
+  const [deletedStudentId, setDeletedStudentId] = useState<number | null>(null);
+  const [deletedTeacherId, setDeletedTeacherId] = useState<number | null>(null);
+
+  const deleteStudentHandler = () => {
+    if (deletedStudentId !== null) {
+      mutS.deleteStudent(deletedStudentId);
+      setDeletedStudentId(null);
+    }
+  };
+
+  const deleteTeacherHandler = () => {
+    if (deletedTeacherId !== null) {
+      mutT.deleteTeacher(deletedTeacherId);
+      setDeletedTeacherId(null);
+    }
+  };
   return (
     <>
       <div className="grid grid-cols-2">
@@ -12,9 +33,19 @@ const DeleteModals: React.FC = () => {
             modalHeaderText={"Zmazať účet študentovi"}
             modalCloseText={"Zatvor"}
           >
-            <form action="#">
-              <Input type="text" placeholder="Študent username" />
-              <Button mt={4} color="whiteAlpha.800" backgroundColor="red.700">
+            <form onSubmit={handleSubmit(deleteStudentHandler)}>
+              <Input
+                type="number"
+                placeholder="Študent ID"
+                {...register("studentId", { required: true })}
+                onChange={(e) => setDeletedStudentId(parseInt(e.target.value))}
+              />
+              <Button
+                mt={4}
+                color="whiteAlpha.800"
+                backgroundColor="red.700"
+                type="submit"
+              >
                 Zmaž
               </Button>
               <Text mt={8} color="red.700" fontWeight={"bold"}>
@@ -33,8 +64,13 @@ const DeleteModals: React.FC = () => {
             modalHeaderText={"Zmazať účet učiteľovi"}
             modalCloseText={"Zatvor"}
           >
-            <form action="#">
-              <Input type="text" placeholder="Učiteľ username" />
+            <form onSubmit={handleSubmit(deleteTeacherHandler)}>
+              <Input
+                {...register("teacherId", { required: true })}
+                onChange={(e) => setDeletedTeacherId(parseInt(e.target.value))}
+                type="number"
+                placeholder="Učiteľ ID"
+              />
               <Button mt={4} color="whiteAlpha.800" backgroundColor="red.700">
                 Zmaž
               </Button>

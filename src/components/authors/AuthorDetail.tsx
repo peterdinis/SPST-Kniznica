@@ -13,9 +13,12 @@ import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
 import { Tag } from "@chakra-ui/react";
+import { CopyIcon } from "@chakra-ui/icons";
+import useCopyToClipboard from "@/hooks/useCopy";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();
+  const [value, copy] = useCopyToClipboard();
 
   if (!isReady) {
     return <FallbackLoader />;
@@ -79,7 +82,15 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold">Priezvisko</span>: {data.lastName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Celé meno</span>: {data.fullName}
+                <span className="font-bold">Celé meno</span>: {data.fullName} {teacher ||
+                  (admin && (
+                    <>
+                      {" "}
+                      <CopyIcon
+                        onClick={() => copy(data.name as unknown as string)}
+                      />
+                    </>
+                  ))}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Dátum Narodenia</span>:{" "}

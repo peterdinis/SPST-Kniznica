@@ -4,6 +4,7 @@ import * as mutT from "@/api/mutations/teacherMutations";
 import * as mutS from "@/api/mutations/studentMutations";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import CustomTooltip from "@/components/shared/tooltip/CustomTooltip";
 
 const DeleteModals: React.FC = () => {
   const { handleSubmit, register } = useForm();
@@ -34,12 +35,19 @@ const DeleteModals: React.FC = () => {
             modalCloseText={"Zatvor"}
           >
             <form onSubmit={handleSubmit(deleteStudentHandler)}>
-              <Input
-                type="number"
-                placeholder="Študent ID"
-                {...register("studentId", { required: true })}
-                onChange={(e) => setDeletedStudentId(parseInt(e.target.value))}
-              />
+              <CustomTooltip
+                label={"ID študenta nájdete v Moje možnosti/Zoznam žiakov"}
+                placement={"end"}
+              >
+                <Input
+                  type="number"
+                  placeholder="Študent ID"
+                  {...register("studentId", { required: true })}
+                  onChange={(e) =>
+                    setDeletedStudentId(parseInt(e.target.value))
+                  }
+                />
+              </CustomTooltip>
               <Button
                 mt={4}
                 color="whiteAlpha.800"
@@ -65,12 +73,19 @@ const DeleteModals: React.FC = () => {
             modalCloseText={"Zatvor"}
           >
             <form onSubmit={handleSubmit(deleteTeacherHandler)}>
-              <Input
-                {...register("teacherId", { required: true })}
-                onChange={(e) => setDeletedTeacherId(parseInt(e.target.value))}
-                type="number"
-                placeholder="Učiteľ ID"
-              />
+              <CustomTooltip
+                label={"ID učiteľa nájdete v Moje možnosti/Zoznam učiteľov"}
+                placement={"end"}
+              >
+                <Input
+                  {...register("teacherId", { required: true })}
+                  onChange={(e) =>
+                    setDeletedTeacherId(parseInt(e.target.value))
+                  }
+                  type="number"
+                  placeholder="Učiteľ ID"
+                />
+              </CustomTooltip>
               <Button mt={4} color="whiteAlpha.800" backgroundColor="red.700">
                 Zmaž
               </Button>

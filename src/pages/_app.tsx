@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import "@/styles/main.css";
 import type { AppProps } from "next/app";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -8,10 +7,10 @@ import { Montserrat } from "@next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
-import { FallbackLoader, Layout } from "@/components/shared";
+import {  Layout } from "@/components/shared";
 import { ChakraProvider } from "@chakra-ui/react";
 
-const roboto = Montserrat({
+const montserrat = Montserrat({
   weight: ["400"],
   style: ["normal"],
   subsets: ["latin"],
@@ -21,19 +20,17 @@ const roboto = Montserrat({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<FallbackLoader />}>
-        <div className={roboto.className}>
-          <ChakraProvider>
-            <Layout>
-              <ErrorBoundary>
-                <Component {...pageProps} />
-                <ToastContainer />
-                <ReactQueryDevtools />
-              </ErrorBoundary>
-            </Layout>
-          </ChakraProvider>
-        </div>
-      </Suspense>
+      <div className={montserrat.className}>
+        <ChakraProvider>
+          <Layout>
+            <ErrorBoundary>
+              <Component {...pageProps} />
+              <ToastContainer />
+              <ReactQueryDevtools />
+            </ErrorBoundary>
+          </Layout>
+        </ChakraProvider>
+      </div>
     </QueryClientProvider>
   );
 }

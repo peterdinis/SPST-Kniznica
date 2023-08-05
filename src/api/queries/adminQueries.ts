@@ -1,4 +1,5 @@
-import adminApi from "../interceptors/adminInterceptor";
+/* import adminApi from "../interceptors/adminInterceptor";
 
-export const getStudentProfile = () =>
+export const getAdminProfile = () =>
   adminApi.get("admin/profile").then((res) => res.data);
+ */

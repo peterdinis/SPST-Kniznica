@@ -19,6 +19,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import defaultImage from "@/images/noImage.png";
 
 const SearchAuthorsForm: React.FC = () => {
   const initialSearchValue: never[] = [];
@@ -108,7 +109,7 @@ const SearchAuthorsForm: React.FC = () => {
                                 <Image
                                   objectFit="cover"
                                   boxSize="100%"
-                                  src={"https://picsum.photos/200/300"}
+                                  src={defaultImage as unknown as string}
                                   alt="#"
                                 />
                               </>

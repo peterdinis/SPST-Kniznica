@@ -19,7 +19,8 @@ import {
   Stack,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
+import defaultImage from "@/images/noImage.png";
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -92,7 +93,7 @@ const GetAllAuthors: React.FC = () => {
                         <>
                           <LazyLoadImage
                             src={
-                              'https://picsum.photos/200/300'
+                              defaultImage as unknown as string
                             }
                             alt="Image load failed"
                           />

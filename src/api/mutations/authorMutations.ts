@@ -1,4 +1,4 @@
-import { IAuthor } from "@/interfaces/IAuthor";
+import { IAuthor, IUpdateAuthor } from "@/interfaces/IAuthor";
 import axios from "axios";
 
 const api = axios.create({
@@ -9,11 +9,19 @@ export const createNewAuthor = (data: IAuthor) => {
   return api.post("authors", data)
 }
 
-export const updateAuthor = () => {
-  return;
+export const updateAuthor = (id: number, data: IUpdateAuthor) => {
+  if(!id) {
+    return;
+  }
+
+  return api.patch(`author/${id}`, data);
 
 }
 
 export const deleteAuthor = (id: number) => {
-  return;
+  if(!id) {
+    return;
+  }
+
+  return api.delete(`author/${id}`);
 }

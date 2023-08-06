@@ -12,10 +12,10 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
-import { Tag } from "@chakra-ui/react";
+import { Input, Tag } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { queryClient } from "@/api/queryClient";
-import * as mut from "@/api/mutations/authorMutations"
+import * as mut from "@/api/mutations/authorMutations";
 import { deleteSuccess } from "../shared/toasts/categoryToast";
 
 const AuthorDetail: React.FC = () => {
@@ -51,7 +51,7 @@ const AuthorDetail: React.FC = () => {
 
   const { register, handleSubmit, setError, reset } = useForm();
 
-  const deleteAuthoSubmit = async (id: any) => {
+  const deleteAuthorSubmit = async (id: any) => {
     try {
       await mut.deleteAuthor(Number(id));
       deleteSuccess();
@@ -100,7 +100,7 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold">Priezvisko</span>: {data.lastName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Celé meno</span>: {data.fullName} 
+                <span className="font-bold">Celé meno</span>: {data.fullName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Dátum Narodenia</span>:{" "}
@@ -196,6 +196,25 @@ const AuthorDetail: React.FC = () => {
                       modalHeaderText={"Zmazať autora/ku"}
                       modalCloseText={"Zatvor"}
                     >
+                      <form
+                        onSubmit={handleSubmit((formData) =>
+                          deleteAuthorSubmit(formData.id)
+                        )}
+                      >
+                        <Input
+                          {...register("id", {
+                            valueAsNumber: true,
+                            required: "Author ID is required",
+                          })}
+                          placeholder="Id Kategórie"
+                        />
+                        <button
+                          type="submit"
+                          className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                        >
+                          Zmaž autora/ku
+                        </button>
+                      </form>
                     </ApiModal>
                   </button>
                 </>

@@ -13,6 +13,10 @@ import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
 import { Tag } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+import { queryClient } from "@/api/queryClient";
+import * as mut from "@/api/mutations/authorMutations"
+import { deleteSuccess } from "../shared/toasts/categoryToast";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -43,6 +47,23 @@ const AuthorDetail: React.FC = () => {
 
   const navigateToAuthors = () => {
     router.push("/authors/all");
+  };
+
+  const { register, handleSubmit, setError, reset } = useForm();
+
+  const deleteAuthoSubmit = async (id: any) => {
+    try {
+      await mut.deleteAuthor(Number(id));
+      deleteSuccess();
+      queryClient.invalidateQueries(["authorDetail", Number(id)]); // prefetch query after delete
+      reset();
+      router.push("/");
+    } catch (error) {
+      setError("id", {
+        type: "manual",
+        message: "An error occurred while deleting the author.",
+      });
+    }
   };
 
   return (

@@ -14,6 +14,6 @@ export const updateAuthor = () => {
 
 }
 
-export const deleteAuthor = () => {
+export const deleteAuthor = (id: number) => {
   return;
 }

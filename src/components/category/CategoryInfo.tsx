@@ -13,6 +13,8 @@ import { Input, Tag } from "@chakra-ui/react";
 import * as mut from "@/api/mutations/categoryMutation";
 import { useForm } from "react-hook-form";
 import { queryClient } from "@/api/queryClient";
+import { deleteSuccess } from "../shared/toasts/categoryToast";
+import { IUpdateCategory } from "@/interfaces/ICategory";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
@@ -48,10 +50,22 @@ const CategoryInfo: React.FC = () => {
 
   const { register, handleSubmit, setError, reset } = useForm();
 
-  const onSubmit = async (id: any) => {
+  const updateCategorySubmit = async (id: number, newData: IUpdateCategory) => {
     try {
-      console.log(id);
+      await mut.updateCategory(id, newData);
+
+      queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
+      return newData;
+    } catch (error) {
+      console.error("Error updating category:", error);
+      throw error;
+    }
+  };
+
+  const deleteCategorySubmit = async (id: any) => {
+    try {
       await mut.deleteCategory(Number(id));
+      deleteSuccess();
       queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
       reset();
     } catch (error) {
@@ -131,7 +145,40 @@ const CategoryInfo: React.FC = () => {
               modalHeaderText={"Uprav kategóriu"}
               modalCloseText={"Zatvor"}
             >
-              CHILDREN
+              <form
+                onSubmit={handleSubmit(async (formData) => {
+                  try {
+                    await updateCategorySubmit(Number(formData.id), {
+                      name: formData.name,
+                      description: formData.description,
+                    });
+                    queryClient.invalidateQueries([
+                      "categoryDetail",
+                      Number(formData.id),
+                    ]);
+                    reset();
+                  } catch (error) {
+                    setError("id", {
+                      type: "manual",
+                      message: "An error occurred while updating the category.",
+                    });
+                  }
+                })}
+              >
+                <Input {...register("name")} placeholder="Meno kategórie" />
+                <br />
+                <Input
+                  mt={6}
+                  {...register("description")}
+                  placeholder="Popis kategórie"
+                />
+                <button
+                  type="submit"
+                  className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                >
+                  Uprav kategóriu
+                </button>
+              </form>
             </ApiModal>
           </button>
           <button className="mr-4 float-right">
@@ -141,7 +188,9 @@ const CategoryInfo: React.FC = () => {
               modalCloseText={"Zatvor"}
             >
               <form
-                onSubmit={handleSubmit((formData) => onSubmit(formData.id))}
+                onSubmit={handleSubmit((formData) =>
+                  deleteCategorySubmit(formData.id)
+                )}
               >
                 <Input
                   {...register("id", {

@@ -103,7 +103,7 @@ const CreateAuthorForm: React.FC = () => {
               placeholder="Rok narodenia"
             />
           </div>
-          <CustomTooltip label={"Ak je autor/ka nažive nemusí byť daný element vyplnený"} placement={"start-start"}>
+          <CustomTooltip label={"Ak je autor/ka nažive nemusí byť daný element vyplnený"}>
             <div className="relative z-0 mb-6 group">
               <Checkbox
                 type="checkbox"

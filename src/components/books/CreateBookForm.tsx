@@ -78,7 +78,6 @@ const CreateBookForm: React.FC = () => {
             label={
               "Skontrolujte či author existuje. Ak neexistuje najprv vytvorte authorka/ku"
             }
-            placement={"start-start"}
           >
             <div className="relative z-0 mb-6 group">
               <Input
@@ -158,7 +157,6 @@ const CreateBookForm: React.FC = () => {
             label={
               "Skontroluje si či kategória existuje. Ak neexistuje najprv vytvorte kategóriu"
             }
-            placement={"end"}
           >
             <div className="relative z-0 mb-6 group">
               <Input

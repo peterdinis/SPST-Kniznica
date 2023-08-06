@@ -220,7 +220,6 @@ const RegisterForm: React.FC = () => {
 
             <CustomTooltip
               label={"Pri registrácií učiteľa rola musí mať názov TEACHER"}
-              placement={"start-start"}
             >
               <div className="mb-2">
                 <label

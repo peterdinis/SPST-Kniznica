@@ -37,7 +37,6 @@ const DeleteModals: React.FC = () => {
             <form onSubmit={handleSubmit(deleteStudentHandler)}>
               <CustomTooltip
                 label={"ID študenta nájdete v Moje možnosti/Zoznam žiakov"}
-                placement={"end"}
               >
                 <Input
                   type="number"
@@ -75,7 +74,6 @@ const DeleteModals: React.FC = () => {
             <form onSubmit={handleSubmit(deleteTeacherHandler)}>
               <CustomTooltip
                 label={"ID učiteľa nájdete v Moje možnosti/Zoznam učiteľov"}
-                placement={"end"}
               >
                 <Input
                   {...register("teacherId", { required: true, valueAsNumber: true })}

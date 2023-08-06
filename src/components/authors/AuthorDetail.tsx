@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/authorQueries";
 import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -13,6 +13,10 @@ import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
 import { Input, Tag } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+import { queryClient } from "@/api/queryClient";
+import * as mut from "@/api/mutations/authorMutations";
+import { deleteSuccess } from "../shared/toasts/categoryToast";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -43,6 +47,23 @@ const AuthorDetail: React.FC = () => {
 
   const navigateToAuthors = () => {
     router.push("/authors/all");
+  };
+
+  const { register, handleSubmit, setError, reset } = useForm();
+
+  const deleteAuthorSubmit = async (id: any) => {
+    try {
+      await mut.deleteAuthor(Number(id));
+      deleteSuccess();
+      queryClient.invalidateQueries(["authorDetail", Number(id)]); // prefetch query after delete
+      reset();
+      router.push("/");
+    } catch (error) {
+      setError("id", {
+        type: "manual",
+        message: "An error occurred while deleting the author.",
+      });
+    }
   };
 
   return (
@@ -79,7 +100,7 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold">Priezvisko</span>: {data.lastName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Celé meno</span>: {data.fullName} 
+                <span className="font-bold">Celé meno</span>: {data.fullName}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Dátum Narodenia</span>:{" "}
@@ -93,7 +114,6 @@ const AuthorDetail: React.FC = () => {
                       label={
                         "Ak je autor/ka živý/á dátum úmrtia nie je uvedený"
                       }
-                      placement={"start-start"}
                     >
                       <span className="font-bold text-green-800">
                         Author/ka je medzi živymi
@@ -176,6 +196,25 @@ const AuthorDetail: React.FC = () => {
                       modalHeaderText={"Zmazať autora/ku"}
                       modalCloseText={"Zatvor"}
                     >
+                      <form
+                        onSubmit={handleSubmit((formData) =>
+                          deleteAuthorSubmit(formData.id)
+                        )}
+                      >
+                        <Input
+                          {...register("id", {
+                            valueAsNumber: true,
+                            required: "Author ID is required",
+                          })}
+                          placeholder="Id Kategórie"
+                        />
+                        <button
+                          type="submit"
+                          className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                        >
+                          Zmaž autora/ku
+                        </button>
+                      </form>
                     </ApiModal>
                   </button>
                 </>

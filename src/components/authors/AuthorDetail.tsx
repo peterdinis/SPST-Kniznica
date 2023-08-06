@@ -12,7 +12,7 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
-import { Input, Tag } from "@chakra-ui/react";
+import { Tag } from "@chakra-ui/react";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -93,7 +93,6 @@ const AuthorDetail: React.FC = () => {
                       label={
                         "Ak je autor/ka živý/á dátum úmrtia nie je uvedený"
                       }
-                      placement={"start-start"}
                     >
                       <span className="font-bold text-green-800">
                         Author/ka je medzi živymi

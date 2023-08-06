@@ -42,7 +42,7 @@ const DeleteModals: React.FC = () => {
                 <Input
                   type="number"
                   placeholder="Študent ID"
-                  {...register("studentId", { required: true })}
+                  {...register("studentId", { required: true, valueAsNumber: true })}
                   onChange={(e) =>
                     setDeletedStudentId(parseInt(e.target.value))
                   }
@@ -78,7 +78,7 @@ const DeleteModals: React.FC = () => {
                 placement={"end"}
               >
                 <Input
-                  {...register("teacherId", { required: true })}
+                  {...register("teacherId", { required: true, valueAsNumber: true })}
                   onChange={(e) =>
                     setDeletedTeacherId(parseInt(e.target.value))
                   }

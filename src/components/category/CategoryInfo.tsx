@@ -10,15 +10,12 @@ import useAdmin from "@/hooks/useAdmin";
 import { WarningIcon } from "@chakra-ui/icons";
 import { ApiModal } from "../shared/modals";
 import { Tag } from "@chakra-ui/react";
-import useCopyToClipboard from "@/hooks/useCopy";
-import { CopyIcon } from "@chakra-ui/icons";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
   const { query, isReady } = useRouter();
   const { teacher } = useTeacher();
   const { admin } = useAdmin();
-  const [value, copy] = useCopyToClipboard();
 
   if (!isReady) {
     return <FallbackLoader />;
@@ -57,15 +54,6 @@ const CategoryInfo: React.FC = () => {
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                 {data.name}{" "}
-                {teacher ||
-                  (admin && (
-                    <>
-                      {" "}
-                      <CopyIcon
-                        onClick={() => copy(data.name as unknown as string)}
-                      />
-                    </>
-                  ))}
               </dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

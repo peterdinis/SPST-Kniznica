@@ -1,4 +1,5 @@
 import { MyProfile } from "@/components/student";
+import AccessRoute from "@/routes/AccessRoute";
 import { NextPage } from "next";
 
 const ProfileStudentPage: NextPage = () => {
@@ -8,4 +9,4 @@ const ProfileStudentPage: NextPage = () => {
 }
 
 
-export default ProfileStudentPage;
+export default AccessRoute(ProfileStudentPage);

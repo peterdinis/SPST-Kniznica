@@ -58,7 +58,6 @@ const RegisterForm: React.FC = () => {
     }
     try {
       mutation.mutate(data);
-      notify();
     } catch (err: any) {
       if (err.response?.data?.message === "Email already exists") {
         emailAlreadyExistsToast();

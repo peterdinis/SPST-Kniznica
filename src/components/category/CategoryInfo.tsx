@@ -9,13 +9,14 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { WarningIcon } from "@chakra-ui/icons";
 import { ApiModal } from "../shared/modals";
-import {Tag} from "@chakra-ui/react";
+import { Input, Tag } from "@chakra-ui/react";
+import * as mut from "@/api/mutations/categoryMutation";
+import { useForm } from "react-hook-form";
+import { queryClient } from "@/api/queryClient";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
   const { query, isReady } = useRouter();
-  const { teacher } = useTeacher();
-  const { admin } = useAdmin();
 
   if (!isReady) {
     return <FallbackLoader />;
@@ -42,6 +43,25 @@ const CategoryInfo: React.FC = () => {
     router.push("/category/all");
   };
 
+  const { teacher } = useTeacher();
+  const { admin } = useAdmin();
+
+  const { register, handleSubmit, setError, reset } = useForm();
+
+  const onSubmit = async (id: any) => {
+    try {
+      console.log(id);
+      await mut.deleteCategory(Number(id));
+      queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
+      reset();
+    } catch (error) {
+      setError("id", {
+        type: "manual",
+        message: "An error occurred while deleting the category.",
+      });
+    }
+  };
+
   return (
     <>
       <Header name="Detail Kategórie" />
@@ -53,7 +73,7 @@ const CategoryInfo: React.FC = () => {
                 Meno kategórie
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                {data.name}
+                {data.name}{" "}
               </dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -82,7 +102,8 @@ const CategoryInfo: React.FC = () => {
                       return (
                         <Tag
                           key={item.name}
-                          variant='solid' colorScheme='teal'
+                          variant="solid"
+                          colorScheme="teal"
                           mr={4}
                         >
                           {item.name}
@@ -119,7 +140,23 @@ const CategoryInfo: React.FC = () => {
               modalHeaderText={"Zmazať kategóriu"}
               modalCloseText={"Zatvor"}
             >
-              CHILDREN
+              <form
+                onSubmit={handleSubmit((formData) => onSubmit(formData.id))}
+              >
+                <Input
+                  {...register("id", {
+                    valueAsNumber: true,
+                    required: "Category ID is required",
+                  })}
+                  placeholder="Id Kategórie"
+                />
+                <button
+                  type="submit"
+                  className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                >
+                  Zmaž kategóriu
+                </button>
+              </form>
             </ApiModal>
           </button>
         </>

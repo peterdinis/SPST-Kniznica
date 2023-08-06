@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/authorQueries";
 import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";

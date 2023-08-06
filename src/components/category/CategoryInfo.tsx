@@ -1,7 +1,7 @@
 import Header from "../shared/Header";
 import * as api from "../../api/queries/categoryQueries";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import FallbackRender from "../shared/errors/FallbackRender";
 import FallbackLoader from "../shared/FallbackLoader";
 import { placeholderCategory } from "@/data/placeholderCategory";
@@ -9,13 +9,14 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { WarningIcon } from "@chakra-ui/icons";
 import { ApiModal } from "../shared/modals";
-import { Tag } from "@chakra-ui/react";
+import { Button, Input, Tag } from "@chakra-ui/react";
+import * as mut from "@/api/mutations/categoryMutation";
+import { ICategory } from "@/interfaces/ICategory";
+import { useForm } from "react-hook-form";
 
 const CategoryInfo: React.FC = () => {
   const router = useRouter();
   const { query, isReady } = useRouter();
-  const { teacher } = useTeacher();
-  const { admin } = useAdmin();
 
   if (!isReady) {
     return <FallbackLoader />;
@@ -40,6 +41,19 @@ const CategoryInfo: React.FC = () => {
 
   const navigateToCategories = () => {
     router.push("/category/all");
+  };
+
+  const { teacher } = useTeacher();
+  const { admin } = useAdmin();
+
+  const { register, handleSubmit, setError} = useForm();
+
+  const onSubmit = async (id: any) => {
+    try {
+      await mut.deleteCategory(id);
+    } catch (error) {
+      setError('categoryId', { type: 'manual', message: 'An error occurred while deleting the category.' });
+    }
   };
 
   return (
@@ -120,7 +134,10 @@ const CategoryInfo: React.FC = () => {
               modalHeaderText={"Zmazať kategóriu"}
               modalCloseText={"Zatvor"}
             >
-              CHILDREN
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Input {...register('id', { valueAsNumber: true, required: 'Category ID is required' })} placeholder="Id Kategórie" />
+                <button type="submit" className="bg-red-800 text-white rounded-lg p-2 mt-5">Zmaž kategóriu</button>
+              </form>
             </ApiModal>
           </button>
         </>

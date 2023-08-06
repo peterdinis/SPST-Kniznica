@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import * as api from "../../api/queries/authorQueries";
 import { placeholderAuthor } from "@/data/placeholderAuthor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -12,7 +12,7 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
-import { Tag } from "@chakra-ui/react";
+import { Input, Tag } from "@chakra-ui/react";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -176,7 +176,6 @@ const AuthorDetail: React.FC = () => {
                       modalHeaderText={"Zmazať autora/ku"}
                       modalCloseText={"Zatvor"}
                     >
-                      CHILDREN
                     </ApiModal>
                   </button>
                 </>

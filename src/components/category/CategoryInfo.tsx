@@ -53,7 +53,7 @@ const CategoryInfo: React.FC = () => {
   const updateCategorySubmit = async (id: number, newData: IUpdateCategory) => {
     try {
       await mut.updateCategory(id, newData);
-
+      console.log(newData)
       queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
       return newData;
     } catch (error) {

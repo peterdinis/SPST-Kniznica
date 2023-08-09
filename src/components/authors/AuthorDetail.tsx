@@ -213,7 +213,7 @@ const AuthorDetail: React.FC = () => {
                             valueAsNumber: true,
                             required: "Author ID is required",
                           })}
-                          placeholder="Id Kategórie"
+                          placeholder="Id Autora/ky"
                         />
                         <button
                           type="submit"

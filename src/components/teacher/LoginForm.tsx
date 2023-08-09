@@ -49,7 +49,6 @@ const LoginForm: React.FC = () => {
     try {
       Cookies.set("teacherData", JSON.stringify(data));
       mutation.mutate(data);
-      notify();
     } catch (err: any) {
       if (err.response?.data?.message === "Email already exists") {
         emailAlreadyExistsToast();

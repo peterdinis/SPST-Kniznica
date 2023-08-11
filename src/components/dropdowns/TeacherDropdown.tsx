@@ -5,6 +5,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
 
 import Cookies from "js-cookie";
+import { edupageURL } from "@/constants/url";
 
 const TeacherDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,7 @@ const TeacherDropdown: React.FC = () => {
   };
 
   const goToEdupage = () => {
-    window.location.replace("https://spsbj.edupage.org/");
+    window.location.replace(edupageURL);
   };
 
   return (

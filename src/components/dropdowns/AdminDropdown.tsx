@@ -4,6 +4,7 @@ import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import Cookies from "js-cookie";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
+import { edupageURL } from "@/constants/url";
 
 const AdminDropdown: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const AdminDropdown: React.FC = () => {
     };
 
     const goToEdupage = () => {
-        window.location.replace("https://spsbj.edupage.org/")
+        window.location.replace(edupageURL)
     }
 
     return (

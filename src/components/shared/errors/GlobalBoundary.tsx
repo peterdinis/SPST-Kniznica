@@ -46,16 +46,6 @@ class ErrorBoundary extends Component<Props, State> {
               </span>
             </button>
           </div>
-          <div className="mt-5">
-            <button
-              onClick={() => window.location.replace("/")}
-              className="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring"
-            >
-              <span className="relative block px-8 py-3 bg-[#1A2238] border border-current">
-                Návrat na hlavnú stránku
-              </span>
-            </button>
-          </div>
         </main>
       );
     }

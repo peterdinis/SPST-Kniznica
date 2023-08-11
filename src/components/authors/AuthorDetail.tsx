@@ -96,6 +96,13 @@ const AuthorDetail: React.FC = () => {
                   <span className="font-bold">Meno</span>: {data.name}
                 </h1>
               </div>
+              {(teacher || admin) && (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed mb-4 text-gray-800">
+                    <span className="font-bold">Id autora/ky</span>: {data.id}
+                  </p>
+                </>
+              )}
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">Priezvisko</span>: {data.lastName}
               </p>
@@ -206,7 +213,7 @@ const AuthorDetail: React.FC = () => {
                             valueAsNumber: true,
                             required: "Author ID is required",
                           })}
-                          placeholder="Id Kategórie"
+                          placeholder="Id Autora/ky"
                         />
                         <button
                           type="submit"

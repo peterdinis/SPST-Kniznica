@@ -18,7 +18,7 @@ import {
   studentRoleError,
 } from "../shared/toasts/applicationToasts";
 import Header from "../shared/Header";
-import { STUDENT } from "@/constants/applicationConstants";
+import { STUDENT } from "@/constants/roles";
 import {CustomTooltip} from "../shared/tooltip";
 
 const RegisterForm: React.FC = () => {

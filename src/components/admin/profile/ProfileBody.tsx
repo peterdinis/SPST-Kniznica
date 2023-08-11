@@ -2,7 +2,7 @@ import { ChatIcon, CopyIcon } from "@chakra-ui/icons";
 import useCopyToClipboard from "@/hooks/useCopy";
 import useAdmin from "@/hooks/useAdmin";
 import { Options } from "..";
-import DeleteModals from "./DeleteModals";
+
 
 const ProfileBody: React.FC = () => {
   const { admin } = useAdmin();
@@ -59,7 +59,6 @@ const ProfileBody: React.FC = () => {
                 <button onClick={goToMyBooks}>Moje knihy</button>
               </div>
             </div>
-            <DeleteModals />
           </div>
         </div>
       </div>

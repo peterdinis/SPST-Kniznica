@@ -159,10 +159,22 @@ const BookInfo: React.FC = () => {
                 />{" "}
                 {data.book && data.book.id}
               </p>
-              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Author</span>:{" "}
-                {data.author && data.author.fullName}
-              </p>
+              {!data.author ? (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-red-800">
+                    <span className="font-bold">Autor / ka neexistuje</span>:{" "}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                    <span className="font-bold">Autor / ka</span>:{" "}
+                    <Tag colorScheme="teal" variant="solid" size="md">
+                      {data.author && data.author.fullName}
+                    </Tag>
+                  </p>
+                </>
+              )}
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold"> Rok</span>:{" "}
                 {data.book && data.book.year}
@@ -176,12 +188,22 @@ const BookInfo: React.FC = () => {
                 {data.book && data.book.quantity}
               </p>
 
-              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Kategória</span>:{" "}
-                <Tag colorScheme='teal' variant="solid" size="md">
-                  {data.category && data.category.name}
-                </Tag>
-              </p>
+              {!data.category ? (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-red-800">
+                    <span className="font-bold">Kategória neexistuje</span>:{" "}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                    <span className="font-bold">Kategória</span>:{" "}
+                    <Tag colorScheme="teal" variant="solid" size="md">
+                      {data.category && data.category.name}
+                    </Tag>
+                  </p>
+                </>
+              )}
 
               {data.book && data.book.status !== "Dostupná" && (
                 <div>

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Icon } from "@chakra-ui/react";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
 
 import Cookies from "js-cookie";
+
 const TeacherDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,24 +43,31 @@ const TeacherDropdown: React.FC = () => {
         <Icon as={HamburgerIcon} boxSize={6} className="w-6 h-6" />
       </button>
 
-      {isOpen && (
-        <div className="absolute right-0 mt-2 bg-white border rounded shadow z-30">
-          <ul className="py-2">
-            <dd
-              onClick={logoutFromApp}
-              className="text-lg p-2 text-center text-red-700"
-            >
-              Odlhásenie
-            </dd>
-            <dd
-              onClick={goToEdupage}
-              className="text-lg p-2 text-center text-red-700"
-            >
-              Edupage
-            </dd>
-          </ul>
-        </div>
-      )}
+      <AnimatePresence> {}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            exit={{ opacity: 0, y: -20 }} 
+            className="absolute right-0 mt-2 bg-white border rounded shadow z-30"
+          >
+            <ul className="py-2">
+              <dd
+                onClick={logoutFromApp}
+                className="text-lg p-2 text-center text-red-700"
+              >
+                Odlhásenie
+              </dd>
+              <dd
+                onClick={goToEdupage}
+                className="text-lg p-2 text-center text-red-700"
+              >
+                Edupage
+              </dd>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

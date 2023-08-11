@@ -1,4 +1,4 @@
-import { Tag } from "@chakra-ui/react";
+import { Tag, Text } from "@chakra-ui/react";
 
 interface ITagProps {
   children?: React.ReactNode;
@@ -15,7 +15,7 @@ const CustomTag: React.FC<ITagProps> = ({
 }: ITagProps) => {
   return (
     <Tag colorScheme={colorScheme} variant={variant} size={size}>
-      {children}
+      <Text fontSize={"2xl"}>{children}</Text>
     </Tag>
   );
 };

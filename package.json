@@ -1,16 +1,12 @@
 {
   "name": "spst-next-app",
-  "version": "2.9",
+  "version": "2.9.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "analyze": "cross-env ANALYZE=true next build",
-    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
-    "depcheck": "npx depcheck"
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.0",

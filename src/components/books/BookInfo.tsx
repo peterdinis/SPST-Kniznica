@@ -159,7 +159,7 @@ const BookInfo: React.FC = () => {
                 />{" "}
                 {data.book && data.book.id}
               </p>
-              {!data.author && !data.author.fullName ? (
+              {!data.author ? (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-red-800">
                     <span className="font-bold">Autor / ka neexistuje</span>:{" "}
@@ -188,7 +188,7 @@ const BookInfo: React.FC = () => {
                 {data.book && data.book.quantity}
               </p>
 
-              {!data.category && !data.category.name ? (
+              {!data.category ? (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-red-800">
                     <span className="font-bold">Kategória neexistuje</span>:{" "}

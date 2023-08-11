@@ -3,7 +3,7 @@ import { Icon } from '@chakra-ui/react';
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import Cookies from "js-cookie";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
+import { motion, AnimatePresence } from "framer-motion"; 
 import { edupageURL } from "@/constants/url";
 
 const AdminDropdown: React.FC = () => {

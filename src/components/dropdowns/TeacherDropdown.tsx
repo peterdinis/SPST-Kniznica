@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Icon } from "@chakra-ui/react";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
+import { motion, AnimatePresence } from "framer-motion";
 
 import Cookies from "js-cookie";
 import { edupageURL } from "@/constants/url";

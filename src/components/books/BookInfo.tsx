@@ -146,9 +146,12 @@ const BookInfo: React.FC = () => {
                 </h1>
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Krátke info</span>:{" "}
-                <span className="break-words">
+                <span className="font-bold">
+                  <ApiModal modalButtonText={"Prečítaj si informácie o knihe"} modalHeaderText={"Krátke info o knihe"} modalCloseText={"Zavrieť"}>
+                  <span className="break-words">
                   {data.book && data.book.description}
+                </span>
+                  </ApiModal>  
                 </span>
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">

@@ -140,8 +140,10 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold"> Krajina</span>: {data.country}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                <ApiModal modalButtonText={"Prečítaj si informácie o autorovi alebo autorke"} modalHeaderText={"Krátke info o autorovi / autorke"} modalCloseText={"Zavrieť"}>
                 <span className="font-bold">Krátke info o autorovi/ke</span>:{" "}
                 <span className="break-words">{data.description}</span>
+                </ApiModal>
               </p>
 
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">

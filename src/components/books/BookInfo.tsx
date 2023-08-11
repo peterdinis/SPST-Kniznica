@@ -159,10 +159,22 @@ const BookInfo: React.FC = () => {
                 />{" "}
                 {data.book && data.book.id}
               </p>
-              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Autor / ka</span>:{" "}
-                {data.author && data.author.fullName}
-              </p>
+              {!data.author && !data.author.fullName ? (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-red-800">
+                    <span className="font-bold">Autor / ka neexistuje</span>:{" "}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                    <span className="font-bold">Autor / ka</span>:{" "}
+                    <Tag colorScheme="teal" variant="solid" size="md">
+                      {data.author && data.author.fullName}
+                    </Tag>
+                  </p>
+                </>
+              )}
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold"> Rok</span>:{" "}
                 {data.book && data.book.year}

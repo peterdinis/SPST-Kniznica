@@ -62,9 +62,9 @@ const CategoryInfo: React.FC = () => {
     }
   };
 
-  const deleteCategorySubmit = async (id: any) => {
+  const deleteCategorySubmit = async (id: number) => {
     try {
-      await mut.deleteCategory(Number(id));
+      await mut.deleteCategory(id);
       deleteSuccess();
       queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
       reset();
@@ -113,7 +113,7 @@ const CategoryInfo: React.FC = () => {
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">
-                Počet kníh ktoré majú túto kategóriu
+                Knihy ktoré majú túto kategóriu
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                 {!data.books || data.books.length === 0 ? (

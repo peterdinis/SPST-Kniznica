@@ -5,7 +5,7 @@ import ScrollToTop from "@/hooks/useScroll";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useState } from "react";
 import { Icon } from "@chakra-ui/icons";
-import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
+import { IoArrowForward, IoArrowBack } from "react-icons/io5";
 import { WarningIcon } from "@chakra-ui/icons";
 import { IAuthor } from "@/interfaces/IAuthor";
 import { getAllAuthorsError } from "../../constants/errorMessages";
@@ -19,8 +19,9 @@ import {
   Stack,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 import defaultImage from "@/images/noImage.png";
+import prefetchAuthors from "@/hooks/usePrefetchAuthors";
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -59,7 +60,7 @@ const GetAllAuthors: React.FC = () => {
   };
 
   return (
-    <>
+    <div onLoad={prefetchAuthors}>
       <Header name="Všetci Autori" />
       <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/authors/search">Hľadať konkretného authora </Link>
@@ -67,12 +68,11 @@ const GetAllAuthors: React.FC = () => {
       <div className="grid gap-8 space-x-1 lg:grid-cols-6">
         {paginatedData?.data.result.length === 0 && (
           <div className="text-center font-bold mt-4">
-            Žiadných spisovateľov som nenanšiel{" "}
-            <WarningIcon />
+            Žiadných spisovateľov som nenanšiel <WarningIcon />
           </div>
         )}
         {paginatedData?.data.result &&
-          paginatedData?.data.result.map((item: IAuthor, index: number) => {
+          paginatedData?.data.result.map((item: IAuthor) => {
             return (
               <motion.div
                 key={item.id}
@@ -84,17 +84,16 @@ const GetAllAuthors: React.FC = () => {
                   <Stack
                     borderWidth="1px"
                     borderRadius="lg"
-                    direction={{ base: 'column', md: 'row' }}
+                    direction={{ base: "column", md: "row" }}
                     // eslint-disable-next-line react-hooks/rules-of-hooks
-                    bg={useColorModeValue('white', 'gray.900')}
-                    boxShadow={'2xl'}>
+                    bg={useColorModeValue("white", "gray.900")}
+                    boxShadow={"2xl"}
+                  >
                     <Flex flex={1} bg="blue.200">
                       {item.image == null ? (
                         <>
                           <LazyLoadImage
-                            src={
-                              defaultImage as unknown as string
-                            }
+                            src={defaultImage as unknown as string}
                             alt="Image load failed"
                           />
                         </>
@@ -114,40 +113,46 @@ const GetAllAuthors: React.FC = () => {
                       justifyContent="center"
                       alignItems="center"
                       p={1}
-                      pt={2}>
-                      <Heading fontSize={'2xl'} fontFamily={'body'}>
-                      {item.name}
+                      pt={2}
+                    >
+                      <Heading fontSize={"2xl"} fontFamily={"body"}>
+                        {item.name}
                       </Heading>
-                      <Text fontWeight={600} color={'gray.500'} size="sm" mb={4}>
-                      {item.lastName}
+                      <Text
+                        fontWeight={600}
+                        color={"gray.500"}
+                        size="sm"
+                        mb={4}
+                      >
+                        {item.lastName}
                       </Text>
                       <Stack
-                        width={'100%'}
-                        mt={'2rem'}
-                        direction={'row'}
+                        width={"100%"}
+                        mt={"2rem"}
+                        direction={"row"}
                         padding={2}
-                        justifyContent={'space-between'}
-                        alignItems={'center'}>
+                        justifyContent={"space-between"}
+                        alignItems={"center"}
+                      >
                         <Button
                           flex={1}
-                          fontSize={'sm'}
-                          rounded={'full'}
-                          bg={'blue.400'}
-                          color={'white'}
+                          fontSize={"sm"}
+                          rounded={"full"}
+                          bg={"blue.400"}
+                          color={"white"}
                           boxShadow={
-                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                            "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
                           }
                           _hover={{
-                            bg: 'blue.500',
+                            bg: "blue.500",
                           }}
                           _focus={{
-                            bg: 'blue.500',
-                          }}>
-                           <Link
-                        href={`/authors/detail/${item.externalId}`}
-                      >
-                        Detail
-                      </Link>
+                            bg: "blue.500",
+                          }}
+                        >
+                          <Link href={`/authors/detail/${item.externalId}`}>
+                            Detail
+                          </Link>
                         </Button>
                       </Stack>
                     </Stack>
@@ -188,7 +193,7 @@ const GetAllAuthors: React.FC = () => {
           {isFetching ? <FallbackLoader /> : null}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

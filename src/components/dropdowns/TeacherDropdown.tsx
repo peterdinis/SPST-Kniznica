@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Icon } from "@chakra-ui/react";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
+import { motion, AnimatePresence } from "framer-motion";
 
 import Cookies from "js-cookie";
+import { edupageURL } from "@/constants/urls";
 
 const TeacherDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,7 @@ const TeacherDropdown: React.FC = () => {
   };
 
   const goToEdupage = () => {
-    window.location.replace("https://spsbj.edupage.org/");
+    window.location.replace(edupageURL);
   };
 
   return (

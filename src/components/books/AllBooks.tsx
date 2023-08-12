@@ -14,6 +14,7 @@ import { WarningIcon } from "@chakra-ui/icons";
 import { IPaginatedBooks } from "@/data/placeholderPaginatedBooks";
 import { getAllBooksError } from "../../constants/errorMessages";
 import { motion } from "framer-motion";
+import prefetchBooks from "@/hooks/usePrefetchBooks";
 
 const AllBooks: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -52,7 +53,7 @@ const AllBooks: React.FC = () => {
   };
 
   return (
-    <>
+    <div onLoad={prefetchBooks}>
       <Header name="Všetky knihy" />
       <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/books/search">Hľadať konkretnú knihu</Link>
@@ -129,7 +130,7 @@ const AllBooks: React.FC = () => {
           {isFetching ? <FallbackLoader /> : null}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

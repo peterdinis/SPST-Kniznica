@@ -12,6 +12,7 @@ import { WarningIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
 import { motion } from "framer-motion";
+import prefetchCategories from "@/hooks/usePrefetchCategories";
 
 const AllCategories: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -53,7 +54,7 @@ const AllCategories: React.FC = () => {
   };
 
   return (
-    <>
+    <div onLoad={prefetchCategories}>
       <Header name="Všetky kategórie" />
       <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/category/search">Hľadať konkretnú kategóriu</Link>
@@ -65,7 +66,7 @@ const AllCategories: React.FC = () => {
           </div>
         )}
         {paginatedData.data.result &&
-          paginatedData.data.result.map((item: ICategory, index: number) => {
+          paginatedData.data.result.map((item: ICategory) => {
             return (
               <motion.div
                 key={item.id}
@@ -125,7 +126,7 @@ const AllCategories: React.FC = () => {
           {isFetching ? <FallbackLoader /> : null}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

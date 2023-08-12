@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { IRegister } from "@/interfaces/ITeacher";
+import { IRegister, ITeacherInfo } from "@/interfaces/ITeacher";
 import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/teacherMutations";
 import Cookies from "js-cookie";
@@ -43,7 +43,7 @@ const RegisterForm: React.FC = () => {
         errorRegister();
       }
     },
-    onSuccess: (data: any) => {
+    onSuccess: (data: ITeacherInfo) => {
       Cookies.set("teacherRegisterData", JSON.stringify(data));
       router.push("/teacher/login");
     },

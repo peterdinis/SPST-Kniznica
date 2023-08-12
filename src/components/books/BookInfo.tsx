@@ -91,7 +91,7 @@ const BookInfo: React.FC = () => {
   ) => {
     try {
       if (!student && !admin && !teacher) {
-        router.push("/forbidden");
+        router.push("/conflict");
       } else {
         mutation.mutate(data);
         reset();
@@ -172,9 +172,7 @@ const BookInfo: React.FC = () => {
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                     <span className="font-bold">Autor / ka</span>:{" "}
-                    <Tag colorScheme="teal" variant="solid" size="md">
                       {data.author && data.author.fullName}
-                    </Tag>
                   </p>
                 </>
               )}
@@ -201,9 +199,7 @@ const BookInfo: React.FC = () => {
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                     <span className="font-bold">Kategória</span>:{" "}
-                    <Tag colorScheme="teal" variant="solid" size="md">
                       {data.category && data.category.name}
-                    </Tag>
                   </p>
                 </>
               )}

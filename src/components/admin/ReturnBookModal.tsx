@@ -11,7 +11,7 @@ import { notify, errorRegister } from "../shared/toasts/loginToasts";
 import { ApiModal } from "../shared/modals";
 
 const ReturnBookModal: React.FC = () => {
-  const { register, handleSubmit } = useForm<returnBookingType>({
+  const { register, handleSubmit, reset } = useForm<returnBookingType>({
     resolver: zodResolver(returnBookingSchema),
   });
 
@@ -29,6 +29,7 @@ const ReturnBookModal: React.FC = () => {
     data: IReturnBooking
   ) => {
     mutation.mutate(data);
+    reset();
   };
 
   return (

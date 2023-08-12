@@ -30,9 +30,9 @@ const AdminBooks: React.FC = () => {
       },
 
       {
-        Header: "Detail",
-        accessor: "description",
-      },
+        Header: "Počet Kusov",
+        accessor: "quantity"
+      }
     ],
     []
   );

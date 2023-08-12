@@ -32,7 +32,8 @@ const AllBooks: React.FC = () => {
     keepPreviousData: true,
     initialData: initialBooks,
     retry: 2,
-    refetchInterval: 100000
+    refetchInterval: 3000,
+    refetchIntervalInBackground: false
   });
 
   if (isLoading) {

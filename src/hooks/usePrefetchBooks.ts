@@ -3,7 +3,7 @@ import * as api from "@/api/queries/bookQueries";
 
 const prefetchBooks= async () => {
     await queryClient.prefetchQuery({
-      queryKey: ['allBooksPrefetc'],
+      queryKey: ['allBooksPrefetch'],
       queryFn: api.getBooks
     })
   }

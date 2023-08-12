@@ -21,6 +21,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import defaultImage from "@/images/noImage.png";
+import prefetchAuthors from "@/hooks/usePrefetchAuthors";
 
 const GetAllAuthors: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -59,7 +60,7 @@ const GetAllAuthors: React.FC = () => {
   };
 
   return (
-    <>
+    <div onLoad={prefetchAuthors}>
       <Header name="Všetci Autori" />
       <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/authors/search">Hľadať konkretného authora </Link>
@@ -192,7 +193,7 @@ const GetAllAuthors: React.FC = () => {
           {isFetching ? <FallbackLoader /> : null}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

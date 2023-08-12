@@ -23,3 +23,4 @@ export const apiError: string = "Chyba na strane applikácie opakujte request ne
 export const failedLoginError: string = "Prihlásenie nebolo úspešne";
 export const forbiddenError: string = "K tejto stránke nemáte prístup";
 export const notFoundError: string = "Stránka nebola najdená";
+export const conflictError: string = "Aby ste si mohli požičať knihu musíte byť zaregistrovaný v applikácií"

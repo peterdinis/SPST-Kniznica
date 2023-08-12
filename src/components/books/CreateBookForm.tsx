@@ -102,6 +102,7 @@ const CreateBookForm: React.FC = () => {
             />
           </div>
           <div className="relative z-0 mb-6 group">
+            <CustomTooltip label={"Kniha musí mať status Dostupná ak vytvráme novú knihu"}>
             <Input
               type="string"
               className="mt-4 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -110,6 +111,7 @@ const CreateBookForm: React.FC = () => {
               })}
               placeholder="Status knihy"
             />
+            </CustomTooltip>
           </div>
           <div className="relative z-0 mb-6 group">
             <Input

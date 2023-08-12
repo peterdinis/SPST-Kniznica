@@ -4,7 +4,7 @@ import { useTable, usePagination, Column } from "react-table";
 import ScrollToTop from "@/hooks/useScroll";
 import { IStudentInfo, IStudentInfoUpdate } from "@/interfaces/IStudent";
 import { CustomTableState } from "@/interfaces/ITable";
-import { backendURL } from "@/constants/url";
+import { backendURL } from "@/constants/urls";
 import { Header } from "@/components/shared";
 
 const AdminStudents: React.FC = () => {

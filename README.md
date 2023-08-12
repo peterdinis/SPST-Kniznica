@@ -1,8 +1,19 @@
-## Application Status: Development!!!
+## SPŠT Knižnica
 
-- frontend app for spst-kniznica
+# Krátky popis ku applikácií
 
-## Technologies:
+Projekt Má tri role:
+- Učiteľ
+- Študent
+- Admin
+
+1.Študent vie sa prihlásiť do applikácie vie si požičať / vrátiť knihu
+2.Učiteľ to isté čo žiak + vie crud operácie pre knihu spisovateľa/Ku kategóriu
+3.Admin to isté čo študent a žiak + vie vymazať študentov / učiteľov učet
+
+
+
+## Použité technológie
 
 - React.js
 - Next.js
@@ -11,9 +22,9 @@
 - React Query
 - Chakra UI
 
-## How to run
+## Spustenie applikácie
 
-- clone the repo
-- create .env file and use variables from .env.example
-- run npm install or npm i
-- run npm run dev
+- git clone repozitár
+- vytvoriť .env súbor a použiť premenné z .env.example
+- spustiť npm i 
+- spustiť npm run dev

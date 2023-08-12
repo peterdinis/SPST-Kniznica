@@ -38,6 +38,7 @@ const GetAllAuthors: React.FC = () => {
     {
       keepPreviousData: true,
       retry: 2,
+      refetchInterval: 100000
     }
   );
 

@@ -68,7 +68,7 @@ const CategoryInfo: React.FC = () => {
       deleteSuccess();
       queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
       reset();
-      router.push("/");
+      router.push("/category/all");
     } catch (error) {
       setError("id", {
         type: "manual",

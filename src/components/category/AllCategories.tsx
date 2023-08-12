@@ -8,9 +8,10 @@ import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 import { ICategory } from "@/interfaces/ICategory";
 import ScrollToTop from "@/hooks/useScroll";
 import { WarningIcon } from "@chakra-ui/icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
 import { motion } from "framer-motion";
+import { queryClient } from "@/api/queryClient";
 
 const AllCategories: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -30,6 +31,7 @@ const AllCategories: React.FC = () => {
       keepPreviousData: true,
       initialData: initialCategories,
       retry: 2,
+      refetchInterval: 100000
     }
   );
 

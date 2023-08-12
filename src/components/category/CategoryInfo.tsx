@@ -62,9 +62,9 @@ const CategoryInfo: React.FC = () => {
     }
   };
 
-  const deleteCategorySubmit = async (id: any) => {
+  const deleteCategorySubmit = async (id: number) => {
     try {
-      await mut.deleteCategory(Number(id));
+      await mut.deleteCategory(id);
       deleteSuccess();
       queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
       reset();

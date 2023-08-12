@@ -11,6 +11,7 @@ import { notify, errorRegister } from "../shared/toasts/loginToasts";
 import { IErrorMessage } from "@/interfaces/IError";
 import { applicationErrorToast, emailAlreadyExistsToast } from "../shared/toasts/applicationToasts";
 import { Header } from "../shared";
+import { IStudentInfo } from "@/interfaces/IStudent";
 
 const RegisterForm: React.FC = () => {
 
@@ -26,7 +27,7 @@ const RegisterForm: React.FC = () => {
         errorRegister();
       }
     },
-    onSuccess: (data: any) => {
+    onSuccess: (data: IStudentInfo) => {
       Cookies.set("studentAdminData", JSON.stringify(data));
       router.push("/admin/login");
     },

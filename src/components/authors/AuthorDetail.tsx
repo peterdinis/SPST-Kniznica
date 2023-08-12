@@ -51,9 +51,9 @@ const AuthorDetail: React.FC = () => {
 
   const { register, handleSubmit, setError, reset } = useForm();
 
-  const deleteAuthorSubmit = async (id: any) => {
+  const deleteAuthorSubmit = async (id: number) => {
     try {
-      await mut.deleteAuthor(Number(id));
+      await mut.deleteAuthor(id);
       deleteSuccess();
       queryClient.invalidateQueries(["authorDetail", Number(id)]); // prefetch query after delete
       reset();

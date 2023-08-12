@@ -72,9 +72,9 @@ const AuthorDetail: React.FC = () => {
       <section className="mt-2 text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-12 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            {data.picture === null ||
-            data.picture === undefined ||
-            data.picture === "string" ? (
+            {data.image === null ||
+            data.image === undefined ||
+            data.image === "string" ? (
               <Image
                 alt="No Image"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
@@ -87,7 +87,7 @@ const AuthorDetail: React.FC = () => {
               <LazyLoadImage
                 alt="ecommerce"
                 className="lg:w-1/2 w-full object-cover object-center rounded-lg border drop-shadow-md"
-                src={data.picture}
+                src={data.image}
               />
             )}
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

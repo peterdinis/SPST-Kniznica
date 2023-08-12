@@ -19,12 +19,12 @@ const ReturnBookModal: React.FC = () => {
   const router = useRouter();
 
   const mutation = useMutation(mut.returnBooking, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       notify();
       router.push("/student/profile");
     },
 
-    onError: (data) => {
+    onError: () => {
       errorRegister();
     },
   });

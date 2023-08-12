@@ -6,6 +6,7 @@ import { IStudentInfo, IStudentInfoUpdate } from "@/interfaces/IStudent";
 import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/urls";
 import { Header } from "@/components/shared";
+import prefetchStudents from "@/hooks/usePrefetchStudents";
 
 const AdminStudents: React.FC = () => {
   const [tableData, setTableData] = useState<IStudentInfo[]>([]);
@@ -72,7 +73,7 @@ const AdminStudents: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div onLoad={prefetchStudents}>
       <Header name="Zoznam všetkých študentov" />
       <section className="container mx-auto p-6 font-mono">
         <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">

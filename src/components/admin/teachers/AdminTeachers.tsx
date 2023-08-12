@@ -6,6 +6,7 @@ import { ITeacherInfo, ITeacherInfoUpdate } from "@/interfaces/ITeacher";
 import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/urls";
 import { Header } from "@/components/shared";
+import prefetchTeachers from "@/hooks/usePrefetchTeachers";
 
 const AdminTeachers: React.FC = () => {
   const [tableData, setTableData] = useState<ITeacherInfo[]>([]);
@@ -67,7 +68,7 @@ const AdminTeachers: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div onLoad={prefetchTeachers}>
       <Header name="Zoznam všetkých učiteľov" />
       <section className="container mx-auto p-6 font-mono">
         <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">

@@ -9,13 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ErrorBoundary from "@/components/shared/errors/GlobalBoundary";
 import {  Layout } from "@/components/shared";
 import { ChakraProvider } from "@chakra-ui/react";
-
-const montserrat = Montserrat({
-  weight: ["400"],
-  style: ["normal"],
-  subsets: ["latin"],
-  display: "auto",
-});
+import { montserrat } from "./font";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

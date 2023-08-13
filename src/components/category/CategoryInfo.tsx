@@ -12,7 +12,6 @@ import { ApiModal } from "../shared/modals";
 import { Input, Tag } from "@chakra-ui/react";
 import * as mut from "@/api/mutations/categoryMutation";
 import { useForm } from "react-hook-form";
-import { queryClient } from "@/api/queryClient";
 import { deleteSuccess } from "../shared/toasts/categoryToast";
 import { IUpdateCategory } from "@/interfaces/ICategory";
 
@@ -28,7 +27,6 @@ const CategoryInfo: React.FC = () => {
     ["categoryDetail", query.id as unknown as number],
     () => api.getOneCategory(Number(query.id) as unknown as string),
     {
-      retry: 2,
       placeholderData: placeholderCategory,
     }
   );
@@ -54,7 +52,6 @@ const CategoryInfo: React.FC = () => {
     try {
       await mut.updateCategory(id, newData);
       console.log(newData)
-      queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
       return newData;
     } catch (error) {
       console.error("Error updating category:", error);
@@ -66,9 +63,8 @@ const CategoryInfo: React.FC = () => {
     try {
       await mut.deleteCategory(id);
       deleteSuccess();
-      queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
       reset();
-      router.push("/");
+      window.location.replace("/category/all");
     } catch (error) {
       setError("id", {
         type: "manual",
@@ -165,10 +161,6 @@ const CategoryInfo: React.FC = () => {
                       name: formData.name,
                       description: formData.description,
                     });
-                    queryClient.invalidateQueries([
-                      "categoryDetail",
-                      Number(formData.id),
-                    ]);
                     reset();
                   } catch (error) {
                     setError("id", {

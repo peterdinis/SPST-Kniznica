@@ -4,7 +4,7 @@ import { useTable, usePagination, Column } from "react-table";
 import ScrollToTop from "@/hooks/useScroll";
 import { IStudentInfo, IStudentInfoUpdate } from "@/interfaces/IStudent";
 import { CustomTableState } from "@/interfaces/ITable";
-import { backendURL } from "@/constants/urls";
+import { backendURL } from "@/constants/envUrls";
 import { Header } from "@/components/shared";
 import prefetchStudents from "@/hooks/usePrefetchStudents";
 

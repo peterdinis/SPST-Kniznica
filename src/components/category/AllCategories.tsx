@@ -4,15 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import * as api from "../../api/queries/categoryQueries";
 import FallbackLoader from "../shared/FallbackLoader";
 import FallbackRender from "../shared/errors/FallbackRender";
-import { Icon } from '@chakra-ui/react';
-import { IoArrowForward, IoArrowBack } from 'react-icons/io5'; // Import the Chakra UI icons
+import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 import { ICategory } from "@/interfaces/ICategory";
 import ScrollToTop from "@/hooks/useScroll";
 import { WarningIcon } from "@chakra-ui/icons";
-import { useState } from "react";
+import { useState} from "react";
 import { IPaginatedCategories } from "@/data/placeholderPaginatedCategories";
 import { motion } from "framer-motion";
-import prefetchCategories from "@/hooks/usePrefetchCategories";
 
 const AllCategories: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -34,7 +32,6 @@ const AllCategories: React.FC = () => {
       retry: 2,
     }
   );
-
   if (isLoading) {
     return <FallbackLoader />;
   }
@@ -54,7 +51,7 @@ const AllCategories: React.FC = () => {
   };
 
   return (
-    <div onLoad={prefetchCategories}>
+    <div>
       <Header name="Všetky kategórie" />
       <div className="mt-4 font-bold text-center text-red-800 text-xl">
         <Link href="/category/search">Hľadať konkretnú kategóriu</Link>

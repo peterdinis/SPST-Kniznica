@@ -12,7 +12,7 @@ import { ApiModal } from "../shared/modals";
 import { Input, Tag } from "@chakra-ui/react";
 import * as mut from "@/api/mutations/categoryMutation";
 import { useForm } from "react-hook-form";
-import { deleteSuccess } from "../shared/toasts/categoryToast";
+import { deleteSuccess, updateError } from "../shared/toasts/categoryToast";
 import { IUpdateCategory } from "@/interfaces/ICategory";
 
 const CategoryInfo: React.FC = () => {
@@ -50,9 +50,8 @@ const CategoryInfo: React.FC = () => {
 
   const updateCategorySubmit = async (id: number, newData: IUpdateCategory) => {
     try {
-      await mut.updateCategory(id, newData);
-      console.log(newData)
-      return newData;
+      const updatedCategory = await mut.updateCategory(id, newData);
+      return updatedCategory;
     } catch (error) {
       console.error("Error updating category:", error);
       throw error;
@@ -157,10 +156,21 @@ const CategoryInfo: React.FC = () => {
               <form
                 onSubmit={handleSubmit(async (formData) => {
                   try {
-                    await updateCategorySubmit(Number(formData.id), {
+                    const updatedData = {
                       name: formData.name,
                       description: formData.description,
-                    });
+                    };
+
+                    if(updatedData.name === "" || updatedData.description === "") {
+                      updateError();
+                      return;
+                    }
+
+                     await updateCategorySubmit(
+                      Number(formData.id),
+                      updatedData
+                    );
+
                     reset();
                   } catch (error) {
                     setError("id", {
@@ -170,6 +180,7 @@ const CategoryInfo: React.FC = () => {
                   }
                 })}
               >
+                <Input {...register("id")} type="hidden" value={data.id} />
                 <Input {...register("name")} placeholder="Meno kategórie" />
                 <br />
                 <Input

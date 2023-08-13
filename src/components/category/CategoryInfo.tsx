@@ -53,7 +53,11 @@ const CategoryInfo: React.FC = () => {
     try {
       await mut.updateCategory(id, newData);
       console.log(newData)
-      queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
+      queryClient.invalidateQueries([
+        "paginatedCategories"
+      ], {
+        stale: true
+      }); // prefetch query after delete
       return newData;
     } catch (error) {
       console.error("Error updating category:", error);
@@ -65,9 +69,13 @@ const CategoryInfo: React.FC = () => {
     try {
       await mut.deleteCategory(id);
       deleteSuccess();
-      queryClient.invalidateQueries(["categoryDetail", Number(id)]); // prefetch query after delete
+      queryClient.invalidateQueries([
+        "paginatedCategories"
+      ], {
+        
+      }); // prefetch query after delete
       reset();
-      router.push("/category/all");
+      window.location.replace("/category/all");
     } catch (error) {
       setError("id", {
         type: "manual",

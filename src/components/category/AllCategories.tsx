@@ -30,11 +30,8 @@ const AllCategories: React.FC = () => {
       keepPreviousData: true,
       initialData: initialCategories,
       retry: 2,
-      refetchInterval: 3000,
-      refetchIntervalInBackground: false
     }
   );
-
   if (isLoading) {
     return <FallbackLoader />;
   }

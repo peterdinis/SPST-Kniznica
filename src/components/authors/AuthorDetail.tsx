@@ -14,7 +14,6 @@ import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
 import { Input, Tag } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { queryClient } from "@/api/queryClient";
 import * as mut from "@/api/mutations/authorMutations";
 import { deleteAuthorSuccess } from "../shared/toasts/authorToasts";
 
@@ -55,9 +54,8 @@ const AuthorDetail: React.FC = () => {
     try {
       await mut.deleteAuthor(id);
       deleteAuthorSuccess();
-      queryClient.invalidateQueries(["authorDetail", Number(id)]); // prefetch query after delete
       reset();
-      router.push("/");
+      window.location.replace("/authors/all");
     } catch (error) {
       setError("id", {
         type: "manual",

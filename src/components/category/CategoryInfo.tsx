@@ -12,7 +12,7 @@ import { ApiModal } from "../shared/modals";
 import { Input, Tag } from "@chakra-ui/react";
 import * as mut from "@/api/mutations/categoryMutation";
 import { useForm } from "react-hook-form";
-import { deleteSuccess, updateError } from "../shared/toasts/categoryToast";
+import { allFieldsErrors, deleteSuccess} from "../shared/toasts/categoryToast";
 import { IUpdateCategory } from "@/interfaces/ICategory";
 
 const CategoryInfo: React.FC = () => {
@@ -162,7 +162,7 @@ const CategoryInfo: React.FC = () => {
                     };
 
                     if(updatedData.name === "" || updatedData.description === "") {
-                      updateError();
+                      allFieldsErrors();
                       return;
                     }
 

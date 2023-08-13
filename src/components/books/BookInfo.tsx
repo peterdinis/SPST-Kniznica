@@ -15,6 +15,10 @@ import useAdmin from "@/hooks/useAdmin";
 import useTeacher from "@/hooks/useTeacher";
 import { ApiModal } from "../shared/modals";
 import BookingModal from "./BookingModal";
+import { useForm } from "react-hook-form";
+import { deleteBookSuccess } from "../shared/toasts/bookToasts";
+import * as mut from "@/api/mutations/bookMutations";
+import { Input } from "@chakra-ui/react";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -44,6 +48,22 @@ const BookInfo: React.FC = () => {
   }
   const [value, copy] = useCopyToClipboard();
   const router = useRouter();
+
+  const { register, handleSubmit, setError, reset } = useForm();
+
+  const deleteBookSubmit = async (id: number) => {
+    try {
+      await mut.deleteBook(id);
+      deleteBookSuccess();
+      reset();
+      window.location.replace("/category/all");
+    } catch (error) {
+      setError("id", {
+        type: "manual",
+        message: "An error occurred while deleting the category.",
+      });
+    }
+  };
 
   const navigateToBooks = () => {
     router.push("/books/all");
@@ -85,11 +105,15 @@ const BookInfo: React.FC = () => {
               </div>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                 <span className="font-bold">
-                  <ApiModal modalButtonText={"Prečítaj si informácie o knihe"} modalHeaderText={"Krátke info o knihe"} modalCloseText={"Zavrieť"}>
-                  <span className="break-words">
-                  {data.book && data.book.description}
-                </span>
-                  </ApiModal>  
+                  <ApiModal
+                    modalButtonText={"Prečítaj si informácie o knihe"}
+                    modalHeaderText={"Krátke info o knihe"}
+                    modalCloseText={"Zavrieť"}
+                  >
+                    <span className="break-words">
+                      {data.book && data.book.description}
+                    </span>
+                  </ApiModal>
                 </span>
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
@@ -110,7 +134,7 @@ const BookInfo: React.FC = () => {
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                     <span className="font-bold">Autor / ka</span>:{" "}
-                      {data.author && data.author.fullName}
+                    {data.author && data.author.fullName}
                   </p>
                 </>
               )}
@@ -137,7 +161,7 @@ const BookInfo: React.FC = () => {
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                     <span className="font-bold">Kategória</span>:{" "}
-                      {data.category && data.category.name}
+                    {data.category && data.category.name}
                   </p>
                 </>
               )}
@@ -188,7 +212,25 @@ const BookInfo: React.FC = () => {
                       modalHeaderText={"Zmazať knihu"}
                       modalCloseText={"Zatvor"}
                     >
-                      CHILDREN
+                      <form
+                        onSubmit={handleSubmit((formData) =>
+                          deleteBookSubmit(formData.id)
+                        )}
+                      >
+                        <Input
+                          {...register("id", {
+                            valueAsNumber: true,
+                            required: "Book ID is required",
+                          })}
+                          placeholder="Id Kategórie"
+                        />
+                        <button
+                          type="submit"
+                          className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                        >
+                          Zmaž knihu
+                        </button>
+                      </form>
                     </ApiModal>
                   </button>
                 </>

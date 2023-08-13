@@ -4,7 +4,7 @@ import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import Cookies from "js-cookie";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence } from "framer-motion"; 
-import { edupageURL } from "@/constants/urls";
+import { edupageURL } from "@/constants/envUrls";
 
 const AdminDropdown: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);

@@ -5,7 +5,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Cookies from "js-cookie";
-import { edupageURL } from "@/constants/urls";
+import { edupageURL } from "@/constants/envUrls";
 
 const TeacherDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

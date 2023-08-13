@@ -4,7 +4,7 @@ import { useTable, usePagination, Column } from "react-table";
 import { IAuthorInfo, IAuthorInfoUpdate } from "@/interfaces/IAuthor";
 import ScrollToTop from "@/hooks/useScroll";
 import { CustomTableState } from "@/interfaces/ITable";
-import { backendURL } from "@/constants/urls";
+import { backendURL } from "@/constants/envUrls";
 import { Header} from "@/components/shared";
 
 const AdminAuthors: React.FC = () => {

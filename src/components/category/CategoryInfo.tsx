@@ -12,7 +12,6 @@ import { ApiModal } from "../shared/modals";
 import { Input, Tag } from "@chakra-ui/react";
 import * as mut from "@/api/mutations/categoryMutation";
 import { useForm } from "react-hook-form";
-import { queryClient } from "@/api/queryClient";
 import { deleteSuccess } from "../shared/toasts/categoryToast";
 import { IUpdateCategory } from "@/interfaces/ICategory";
 
@@ -53,11 +52,6 @@ const CategoryInfo: React.FC = () => {
     try {
       await mut.updateCategory(id, newData);
       console.log(newData)
-      queryClient.invalidateQueries([
-        "paginatedCategories"
-      ], {
-        stale: true
-      }); // prefetch query after delete
       return newData;
     } catch (error) {
       console.error("Error updating category:", error);
@@ -69,11 +63,6 @@ const CategoryInfo: React.FC = () => {
     try {
       await mut.deleteCategory(id);
       deleteSuccess();
-      queryClient.invalidateQueries([
-        "paginatedCategories"
-      ], {
-        
-      }); // prefetch query after delete
       reset();
       window.location.replace("/category/all");
     } catch (error) {
@@ -172,10 +161,6 @@ const CategoryInfo: React.FC = () => {
                       name: formData.name,
                       description: formData.description,
                     });
-                    queryClient.invalidateQueries([
-                      "categoryDetail",
-                      Number(formData.id),
-                    ]);
                     reset();
                   } catch (error) {
                     setError("id", {

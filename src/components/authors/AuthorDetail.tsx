@@ -50,6 +50,14 @@ const AuthorDetail: React.FC = () => {
 
   const { register, handleSubmit, setError, reset } = useForm();
 
+  const updateAuthorSubmit = async() => {
+     try {
+
+     } catch(error)  {
+      throw error;
+     }
+  }
+
   const deleteAuthorSubmit = async (id: number) => {
     try {
       await mut.deleteAuthor(id);

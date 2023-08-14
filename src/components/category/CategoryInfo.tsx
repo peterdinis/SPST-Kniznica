@@ -52,6 +52,7 @@ const CategoryInfo: React.FC = () => {
     try {
       const updatedCategory = await mut.updateCategory(id, newData);
       updateSuccess();
+      window.location.replace("/category/all");
       return updatedCategory;
     } catch (error) {
       console.error("Error updating category:", error);

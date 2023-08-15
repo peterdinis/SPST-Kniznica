@@ -15,7 +15,12 @@ import { ApiModal } from "../shared/modals";
 import { Input, Tag } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import * as mut from "@/api/mutations/authorMutations";
-import { deleteAuthorSuccess } from "../shared/toasts/authorToasts";
+import {
+  allFieldsError,
+  deleteAuthorSuccess,
+  updateAuthorSuccess,
+} from "../shared/toasts/authorToasts";
+import { IUpdateAuthor } from "@/interfaces/IAuthor";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -50,13 +55,16 @@ const AuthorDetail: React.FC = () => {
 
   const { register, handleSubmit, setError, reset } = useForm();
 
-  const updateAuthorSubmit = async() => {
-     try {
-
-     } catch(error)  {
+  const updateAuthorSubmit = async (id: number, newData: IUpdateAuthor) => {
+    try {
+      const updatedCategory = await mut.updateAuthor(id, newData);
+      updateAuthorSuccess();
+      window.location.replace("/category/all");
+      return updatedCategory;
+    } catch (error) {
       throw error;
-     }
-  }
+    }
+  };
 
   const deleteAuthorSubmit = async (id: number) => {
     try {
@@ -146,8 +154,14 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold"> Krajina</span>: {data.country}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <ApiModal modalButtonText={"Prečítaj si informácie o autorovi alebo autorke"} modalHeaderText={"Krátke info o autorovi / autorke"} modalCloseText={"Zavrieť"}>
-                <span className="break-words">{data.description}</span>
+                <ApiModal
+                  modalButtonText={
+                    "Prečítaj si informácie o autorovi alebo autorke"
+                  }
+                  modalHeaderText={"Krátke info o autorovi / autorke"}
+                  modalCloseText={"Zavrieť"}
+                >
+                  <span className="break-words">{data.description}</span>
                 </ApiModal>
               </p>
 
@@ -201,7 +215,51 @@ const AuthorDetail: React.FC = () => {
                       modalHeaderText={"Uprav autora/ku"}
                       modalCloseText={"Zatvor"}
                     >
-                      CHILDREN
+                      <form
+                        onSubmit={handleSubmit(async (formData) => {
+                          try {
+                            const updatedData = {
+                              name: formData.name,
+                              lastName: formData.lastName,
+                              fullName: formData.fullName,
+                              image: formData.image,
+                              birthYear: formData.birthYear,
+                              isAlive: formData.isAlive,
+                              description: formData.description,
+                              litPeriod: formData.litPeriod,
+                            };
+
+                            if (
+                              updatedData.name === "" ||
+                              updatedData.lastName === "" ||
+                              updatedData.fullName === "" ||
+                              updatedData.image === "" ||
+                              updatedData.birthYear === null
+                              || updatedData.isAlive === null
+                              || updatedData.description === ""
+                              || updatedData.litPeriod === ""
+                            ) {
+                              allFieldsError();
+                              return;
+                            }
+                            await updateAuthorSubmit(Number(formData.id), updatedData);
+
+                            reset();
+                          } catch (error) {
+                            setError("id", {
+                              type: "manual",
+                              message:
+                                "An error occurred while updating the category.",
+                            });
+                          }
+                        })}
+                      >
+                        <Input {...register("id")} type="hidden" value={data.id} />
+                        <Input {...register("name")} placeholder="Meno autora / ky" />
+                        <Input {...register("lastName")} placeholder="Priezvisko autora /ky" />
+                        <Input {...register("fullName")} placeholder="Celé meno autora /ky" />
+
+                      </form>
                     </ApiModal>
                   </button>
                   <button className="mr-4 float-right">

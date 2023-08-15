@@ -12,7 +12,7 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
-import { Input, Tag } from "@chakra-ui/react";
+import { Checkbox, Input, Tag } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import * as mut from "@/api/mutations/authorMutations";
 import {
@@ -59,7 +59,7 @@ const AuthorDetail: React.FC = () => {
     try {
       const updatedCategory = await mut.updateAuthor(id, newData);
       updateAuthorSuccess();
-      window.location.replace("/category/all");
+      window.location.replace("/authors/all");
       return updatedCategory;
     } catch (error) {
       throw error;
@@ -234,15 +234,18 @@ const AuthorDetail: React.FC = () => {
                               updatedData.lastName === "" ||
                               updatedData.fullName === "" ||
                               updatedData.image === "" ||
-                              updatedData.birthYear === null
-                              || updatedData.isAlive === null
-                              || updatedData.description === ""
-                              || updatedData.litPeriod === ""
+                              updatedData.birthYear === null ||
+                              updatedData.isAlive === null ||
+                              updatedData.description === "" ||
+                              updatedData.litPeriod === ""
                             ) {
                               allFieldsError();
                               return;
                             }
-                            await updateAuthorSubmit(Number(formData.id), updatedData);
+                            await updateAuthorSubmit(
+                              Number(formData.id),
+                              updatedData
+                            );
 
                             reset();
                           } catch (error) {
@@ -254,11 +257,65 @@ const AuthorDetail: React.FC = () => {
                           }
                         })}
                       >
-                        <Input {...register("id")} type="hidden" value={data.id} />
-                        <Input {...register("name")} placeholder="Meno autora / ky" />
-                        <Input {...register("lastName")} placeholder="Priezvisko autora /ky" />
-                        <Input {...register("fullName")} placeholder="Celé meno autora /ky" />
-
+                        <Input
+                          {...register("id")}
+                          type="hidden"
+                          value={data.id}
+                        />
+                        <Input
+                          {...register("name")}
+                          placeholder="Meno autora / ky"
+                        />{" "}
+                        <br />
+                        <Input
+                          {...register("lastName")}
+                          placeholder="Priezvisko autora /ky"
+                        />
+                        <br />
+                        <Input
+                          {...register("fullName")}
+                          placeholder="Celé meno autora /ky"
+                        />
+                        <br />
+                        <Input {...register("image")} placeholder="Obrázok" />
+                        <br />
+                        <Input
+                          type="number"
+                          {...register("birthYear", { valueAsNumber: true })}
+                          placeholder="Rok narodenia"
+                        />
+                        <br />
+                        <Checkbox
+                          type="checkbox"
+                          placeholder="Nemusí byť vyplnené ak autor/autorka je nažive"
+                          className="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out"
+                          {...register("isAlive", {
+                            required: true,
+                          })}
+                        />
+                        <label
+                          htmlFor="description"
+                          className="ml-2 text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Je spisovtateľ/ka nažive
+                        </label>
+                        <br />
+                        <Input
+                          {...register("description")}
+                          placeholder="Krátky popis autora /ky"
+                        />
+                        <br />
+                        <Input
+                          {...register("litPeriod")}
+                          placeholder="Literárne obdobie"
+                        />
+                        <br />
+                        <button
+                          type="submit"
+                          className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                        >
+                          Uprav autora / ku
+                        </button>
                       </form>
                     </ApiModal>
                   </button>

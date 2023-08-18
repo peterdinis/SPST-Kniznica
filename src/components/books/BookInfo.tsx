@@ -60,7 +60,7 @@ const BookInfo: React.FC = () => {
     } catch (error) {
       setError("id", {
         type: "manual",
-        message: "An error occurred while deleting the category.",
+        message: "An error occurred while deleting the book.",
       });
     }
   };
@@ -222,7 +222,7 @@ const BookInfo: React.FC = () => {
                             valueAsNumber: true,
                             required: "Book ID is required",
                           })}
-                          placeholder="Id Kategórie"
+                          placeholder="Id Knihy"
                         />
                         <button
                           type="submit"

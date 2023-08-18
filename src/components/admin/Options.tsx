@@ -4,34 +4,40 @@ import { SmallModal } from "../shared/modals";
 import { useForm } from "react-hook-form";
 import * as mut from "@/api/mutations/teacherMutations";
 import * as smut from "@/api/mutations/studentMutations";
-import { deleteTeacherError, deleteTeacherSuccess } from "../shared/toasts/teacherToasts";
-import { deleteStudentError, deleteStudentSuccess } from "../shared/toasts/studentToasts";
+import {
+  deleteTeacherError,
+  deleteTeacherSuccess,
+} from "../shared/toasts/teacherToasts";
+import {
+  deleteStudentError,
+  deleteStudentSuccess,
+} from "../shared/toasts/studentToasts";
+import { Input } from "@chakra-ui/react";
 
 const Options: React.FC = () => {
   const { register, handleSubmit, setError, reset } = useForm();
 
-  const deleteTeacher = async(id: number) => {
+  const deleteTeacher = async (id: number) => {
     try {
       await mut.deleteTeacher(id);
       deleteTeacherSuccess();
       reset();
       window.location.replace("/admin/profile");
-    } catch(error) {
+    } catch (error) {
       deleteTeacherError();
     }
+  };
 
-  }
-
-  const deleteStudent = async(id: number) => {
+  const deleteStudent = async (id: number) => {
     try {
       await smut.deleteStudent(id);
       deleteStudentSuccess();
       reset();
       window.location.replace("/admin/profile");
-    } catch(error) {
+    } catch (error) {
       deleteStudentError();
     }
-  }
+  };
 
   return (
     <>
@@ -139,7 +145,25 @@ const Options: React.FC = () => {
                     modalHeaderText={"Zmazať učiteľa"}
                     modalCloseText={"Zavrieť"}
                   >
-                    CHILDREN
+                    <form
+                      onSubmit={handleSubmit((formData) =>
+                        deleteTeacher(formData.id)
+                      )}
+                    >
+                      <Input
+                        {...register("id", {
+                          valueAsNumber: true,
+                          required: "Id teacher is required",
+                        })}
+                        placeholder="Id Učiteľa"
+                      />
+                      <button
+                        type="submit"
+                        className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                      >
+                        Zmaž učiteľa
+                      </button>
+                    </form>
                   </SmallModal>
                 </div>
               </div>
@@ -150,7 +174,25 @@ const Options: React.FC = () => {
                   modalHeaderText={"Zmazať žiaka"}
                   modalCloseText={"Zavrieť"}
                 >
-                  CHILDREN
+                   <form
+                      onSubmit={handleSubmit((formData) =>
+                        deleteStudent(formData.id)
+                      )}
+                    >
+                      <Input
+                        {...register("id", {
+                          valueAsNumber: true,
+                          required: "Id student is required",
+                        })}
+                        placeholder="Id Študenta"
+                      />
+                      <button
+                        type="submit"
+                        className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                      >
+                        Zmaž študenta
+                      </button>
+                    </form>
                 </SmallModal>
               </div>
             </div>

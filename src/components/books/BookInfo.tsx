@@ -16,9 +16,14 @@ import useTeacher from "@/hooks/useTeacher";
 import { ApiModal } from "../shared/modals";
 import BookingModal from "./BookingModal";
 import { useForm } from "react-hook-form";
-import { deleteBookSuccess } from "../shared/toasts/bookToasts";
+import {
+  allFieldsBooksError,
+  deleteBookSuccess,
+  updateBookSuccess,
+} from "../shared/toasts/bookToasts";
 import * as mut from "@/api/mutations/bookMutations";
 import { Input } from "@chakra-ui/react";
+import { IUpdateBook } from "@/interfaces/IBook";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -62,6 +67,16 @@ const BookInfo: React.FC = () => {
         type: "manual",
         message: "An error occurred while deleting the book.",
       });
+    }
+  };
+
+  const updateBookSubmit = async (id: number, newData: IUpdateBook) => {
+    try {
+      await mut.updateBook(id, newData);
+      updateBookSuccess();
+      window.location.replace("/books/all");
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -203,7 +218,85 @@ const BookInfo: React.FC = () => {
                       modalHeaderText={"Uprav knihu"}
                       modalCloseText={"Zatvor"}
                     >
-                      CHILDREN
+                      <form
+                        onSubmit={handleSubmit(async (formData) => {
+                          const updatedData = {
+                            name: formData.name,
+                            description: formData.description,
+                            year: formData.year,
+                            pages: formData.pages,
+                            publisher: formData.publisher,
+                            image: formData.image,
+                            status: formData.status,
+                          };
+
+                          if (
+                            updatedData.name === "" ||
+                            updatedData.description === "" ||
+                            Number.isNaN(updatedData.year) ||
+                            Number.isNaN(updatedData.pages) ||
+                            updatedData.publisher === "" ||
+                            updatedData.image === "" ||
+                            updatedData.status === ""
+                          ) {
+                            allFieldsBooksError();
+                          }
+
+                          await updateBookSubmit(
+                            Number(formData.id),
+                            updatedData
+                          );
+                        })}
+                      >
+                        <Input
+                          {...register("id")}
+                          type="hidden"
+                          value={data.id}
+                        />
+                        <Input
+                          {...register("name")}
+                          placeholder="Meno knihy"
+                          mb={10}
+                        />{" "}
+                        <Input
+                          {...register("description")}
+                          placeholder="Meno autora / ky"
+                          mb={10}
+                        />{" "}
+                        <Input
+                          type="number"
+                          {...register("year", { valueAsNumber: true })}
+                          placeholder="Rok vydania"
+                          mb={10}
+                        />
+                        <Input
+                          type="number"
+                          {...register("pages", { valueAsNumber: true })}
+                          placeholder="Počet strán"
+                          mb={10}
+                        />
+                        <Input
+                          {...register("publisher")}
+                          placeholder="Vydavateľstvo"
+                          mb={10}
+                        />{" "}
+                        <Input
+                          {...register("image")}
+                          placeholder="Obrázok"
+                          mb={10}
+                        />{" "}
+                        <Input
+                          {...register("status")}
+                          placeholder="Status knihy"
+                          mb={10}
+                        />{" "}
+                        <button
+                          type="submit"
+                          className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                        >
+                          Uprav knihu
+                        </button>
+                      </form>
                     </ApiModal>
                   </button>
                   <button className="mr-4 float-right">

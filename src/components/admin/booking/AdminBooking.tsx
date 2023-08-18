@@ -6,7 +6,6 @@ import { IBookingInfo, IBookingInfoUpdate } from "@/interfaces/IBooking";
 import { CustomTableState } from "@/interfaces/ITable";
 import { backendURL } from "@/constants/envUrls";
 import { Header } from "@/components/shared";
-import prefetchBookings from "@/hooks/usePrefetchBookings";
 
 const AdminBookings: React.FC = () => {
   const [tableData, setTableData] = useState<IBookingInfo[]>([]);
@@ -73,7 +72,7 @@ const AdminBookings: React.FC = () => {
   }, []);
 
   return (
-    <div onLoad={prefetchBookings}>
+    <div>
       <Header name="Zoznam všetkých objednávok" />
       <section className="container mx-auto p-6 font-mono">
         <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">

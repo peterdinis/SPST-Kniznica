@@ -15,7 +15,7 @@ import {
 import { Input } from "@chakra-ui/react";
 
 const Options: React.FC = () => {
-  const { register, handleSubmit, setError, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const deleteTeacher = async (id: number) => {
     try {

@@ -1,5 +1,6 @@
-import { SettingsIcon } from '@chakra-ui/icons';
+import { SettingsIcon } from "@chakra-ui/icons";
 import Link from "next/link";
+import { ApiModal, SmallModal } from "../shared/modals";
 
 const Options: React.FC = () => {
   return (
@@ -13,27 +14,30 @@ const Options: React.FC = () => {
           <div className="text-gray-700">
             <div className="grid md:grid-cols-2 text-sm">
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Zobraziť všetky knihy
-                </div>
+                <div className="px-4 py-2 ">Zobraziť všetky knihy</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/books/all">Všetky knihy</Link>
+                  <Link className="text-red-500" href="/admin/books/all">
+                    Všetky knihy
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Zobraziť všetkých autorov
-                </div>
+                <div className="px-4 py-2 ">Zobraziť všetkých autorov</div>
                 <div className="px-4 py-2">
-                  <Link className="break-words text-red-500" href="/admin/authors/all">Všetci Autori</Link>
+                  <Link
+                    className="break-words text-red-500"
+                    href="/admin/authors/all"
+                  >
+                    Všetci Autori
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Zobraziť všetky kategórie
-                </div>
+                <div className="px-4 py-2 ">Zobraziť všetky kategórie</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/categories/all">Všetky kategórie</Link>
+                  <Link className="text-red-500" href="/admin/categories/all">
+                    Všetky kategórie
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
@@ -41,70 +45,83 @@ const Options: React.FC = () => {
                   Zobraziť všetky vypožičané knihy
                 </div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/booking/all">Všetky vypožičané knihy</Link>
+                  <Link className="text-red-500" href="/admin/booking/all">
+                    Všetky vypožičané knihy
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
                 <div className="px-4 py-2 ">Pridať novú knihu</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/books/create">Nová kniha</Link>
+                  <Link className="text-red-500" href="/books/create">
+                    Nová kniha
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Pridanie novej kategórie
-                </div>
+                <div className="px-4 py-2 ">Pridanie novej kategórie</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/category/create">Nová kategória</Link>
+                  <Link className="text-red-500" href="/category/create">
+                    Nová kategória
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Pridanie nového autora
-                </div>
+                <div className="px-4 py-2 ">Pridanie nového autora</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/authors/create">Nový autor</Link>
+                  <Link className="text-red-500" href="/authors/create">
+                    Nový autor
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Zoznam všetkých žiakov
-                </div>
+                <div className="px-4 py-2 ">Zoznam všetkých žiakov</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/students/all">Zoznam žiakov</Link>
+                  <Link className="text-red-500" href="/admin/students/all">
+                    Zoznam žiakov
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Zoznam všetkých učiteľov
-                </div>
+                <div className="px-4 py-2 ">Zoznam všetkých učiteľov</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="/admin/teachers/all">Zoznam učiteľov</Link>
+                  <Link className="text-red-500" href="/admin/teachers/all">
+                    Zoznam učiteľov
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Návrat na edupage
-                </div>
+                <div className="px-4 py-2 ">Návrat na edupage</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="https://spsbj.edupage.org/">Edupage</Link>
+                  <Link
+                    className="text-red-500"
+                    href="https://spsbj.edupage.org/"
+                  >
+                    Edupage
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                  Zmazať učiteľa
-                </div>
+                <div className="px-4 py-2 ">Zmazať učiteľa</div>
                 <div className="px-4 py-2">
-                  <Link className="text-red-500" href="https://spsbj.edupage.org/">Edupage</Link>
+                  <SmallModal
+                    modalButtonText={"Zmazať učiteľa"}
+                    modalHeaderText={"Zmazať učiteľa"}
+                    modalCloseText={"Zavrieť"}
+                  >
+                    CHILDREN
+                  </SmallModal>
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 ">
-                 Zmazať žiaka
-                </div>
-                <div className="px-4 py-2">
-                  <Link className="text-red-500" href="https://spsbj.edupage.org/">Edupage</Link>
-                </div>
+                <div className="px-4 py-2 ">Zmazať žiaka</div>
+                <SmallModal
+                  modalButtonText={"Zmazať žiaka"}
+                  modalHeaderText={"Zmazať žiaka"}
+                  modalCloseText={"Zavrieť"}
+                >
+                  CHILDREN
+                </SmallModal>
               </div>
             </div>
           </div>

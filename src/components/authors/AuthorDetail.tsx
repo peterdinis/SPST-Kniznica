@@ -265,24 +265,32 @@ const AuthorDetail: React.FC = () => {
                         <Input
                           {...register("name")}
                           placeholder="Meno autora / ky"
+                          mb={10}
                         />{" "}
                         <br />
                         <Input
                           {...register("lastName")}
                           placeholder="Priezvisko autora /ky"
+                          mb={10}
                         />
                         <br />
                         <Input
                           {...register("fullName")}
                           placeholder="Celé meno autora /ky"
+                          mb={10}
                         />
                         <br />
-                        <Input {...register("image")} placeholder="Obrázok" />
+                        <Input
+                          {...register("image")}
+                          placeholder="Obrázok"
+                          mb={10}
+                        />
                         <br />
                         <Input
                           type="number"
                           {...register("birthYear", { valueAsNumber: true })}
                           placeholder="Rok narodenia"
+                          mb={10}
                         />
                         <br />
                         <Checkbox
@@ -292,6 +300,7 @@ const AuthorDetail: React.FC = () => {
                           {...register("isAlive", {
                             required: true,
                           })}
+                          mb={10}
                         />
                         <label
                           htmlFor="description"
@@ -303,11 +312,13 @@ const AuthorDetail: React.FC = () => {
                         <Input
                           {...register("description")}
                           placeholder="Krátky popis autora /ky"
+                          mb={10}
                         />
                         <br />
                         <Input
                           {...register("litPeriod")}
                           placeholder="Literárne obdobie"
+                          mb={10}
                         />
                         <br />
                         <button

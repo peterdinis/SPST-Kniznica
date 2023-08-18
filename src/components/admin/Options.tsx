@@ -1,8 +1,38 @@
 import { SettingsIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import { ApiModal, SmallModal } from "../shared/modals";
+import { SmallModal } from "../shared/modals";
+import { useForm } from "react-hook-form";
+import * as mut from "@/api/mutations/teacherMutations";
+import * as smut from "@/api/mutations/studentMutations";
+import { deleteTeacherError, deleteTeacherSuccess } from "../shared/toasts/teacherToasts";
+import { deleteStudentError, deleteStudentSuccess } from "../shared/toasts/studentToasts";
 
 const Options: React.FC = () => {
+  const { register, handleSubmit, setError, reset } = useForm();
+
+  const deleteTeacher = async(id: number) => {
+    try {
+      await mut.deleteTeacher(id);
+      deleteTeacherSuccess();
+      reset();
+      window.location.replace("/admin/profile");
+    } catch(error) {
+      deleteTeacherError();
+    }
+
+  }
+
+  const deleteStudent = async(id: number) => {
+    try {
+      await smut.deleteStudent(id);
+      deleteStudentSuccess();
+      reset();
+      window.location.replace("/admin/profile");
+    } catch(error) {
+      deleteStudentError();
+    }
+  }
+
   return (
     <>
       <div className="mt-10 w-full md:w-9/12 mx-2 h-64">

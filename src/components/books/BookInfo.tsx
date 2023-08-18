@@ -56,7 +56,7 @@ const BookInfo: React.FC = () => {
       await mut.deleteBook(id);
       deleteBookSuccess();
       reset();
-      window.location.replace("/category/all");
+      window.location.replace("/books/all");
     } catch (error) {
       setError("id", {
         type: "manual",

@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import * as mut from "@/api/mutations/authorMutations";
 import {
   allFieldsError,
+  deleteAuthorError,
   deleteAuthorSuccess,
   updateAuthorSuccess,
 } from "../shared/toasts/authorToasts";
@@ -73,6 +74,7 @@ const AuthorDetail: React.FC = () => {
       reset();
       window.location.replace("/authors/all");
     } catch (error) {
+      deleteAuthorError();
       setError("id", {
         type: "manual",
         message: "An error occurred while deleting the author.",

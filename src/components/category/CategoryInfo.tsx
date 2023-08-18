@@ -12,7 +12,7 @@ import { ApiModal } from "../shared/modals";
 import { Input, Tag } from "@chakra-ui/react";
 import * as mut from "@/api/mutations/categoryMutation";
 import { useForm } from "react-hook-form";
-import { allFieldsErrors, deleteSuccess, updateSuccess} from "../shared/toasts/categoryToast";
+import { allFieldsErrors, deleteError, deleteSuccess, updateSuccess} from "../shared/toasts/categoryToast";
 import { IUpdateCategory } from "@/interfaces/ICategory";
 
 const CategoryInfo: React.FC = () => {
@@ -67,6 +67,7 @@ const CategoryInfo: React.FC = () => {
       reset();
       window.location.replace("/category/all");
     } catch (error) {
+      deleteError();
       setError("id", {
         type: "manual",
         message: "An error occurred while deleting the category.",

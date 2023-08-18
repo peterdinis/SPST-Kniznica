@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import {
   allFieldsBooksError,
   deleteBookSuccess,
+  updateBookError,
   updateBookSuccess,
 } from "../shared/toasts/bookToasts";
 import * as mut from "@/api/mutations/bookMutations";
@@ -76,7 +77,7 @@ const BookInfo: React.FC = () => {
       updateBookSuccess();
       window.location.replace("/books/all");
     } catch (error) {
-      throw error;
+      updateBookError();
     }
   };
 

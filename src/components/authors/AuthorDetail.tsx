@@ -12,10 +12,15 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
-import { Input, Tag } from "@chakra-ui/react";
+import { Checkbox, Input, Tag } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import * as mut from "@/api/mutations/authorMutations";
-import { deleteAuthorSuccess } from "../shared/toasts/authorToasts";
+import {
+  allFieldsError,
+  deleteAuthorSuccess,
+  updateAuthorSuccess,
+} from "../shared/toasts/authorToasts";
+import { IUpdateAuthor } from "@/interfaces/IAuthor";
 
 const AuthorDetail: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -49,6 +54,17 @@ const AuthorDetail: React.FC = () => {
   };
 
   const { register, handleSubmit, setError, reset } = useForm();
+
+  const updateAuthorSubmit = async (id: number, newData: IUpdateAuthor) => {
+    try {
+      const updatedCategory = await mut.updateAuthor(id, newData);
+      updateAuthorSuccess();
+      window.location.replace("/authors/all");
+      return updatedCategory;
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const deleteAuthorSubmit = async (id: number) => {
     try {
@@ -138,8 +154,14 @@ const AuthorDetail: React.FC = () => {
                 <span className="font-bold"> Krajina</span>: {data.country}
               </p>
               <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <ApiModal modalButtonText={"Prečítaj si informácie o autorovi alebo autorke"} modalHeaderText={"Krátke info o autorovi / autorke"} modalCloseText={"Zavrieť"}>
-                <span className="break-words">{data.description}</span>
+                <ApiModal
+                  modalButtonText={
+                    "Prečítaj si informácie o autorovi alebo autorke"
+                  }
+                  modalHeaderText={"Krátke info o autorovi / autorke"}
+                  modalCloseText={"Zavrieť"}
+                >
+                  <span className="break-words">{data.description}</span>
                 </ApiModal>
               </p>
 
@@ -193,7 +215,119 @@ const AuthorDetail: React.FC = () => {
                       modalHeaderText={"Uprav autora/ku"}
                       modalCloseText={"Zatvor"}
                     >
-                      CHILDREN
+                      <form
+                        onSubmit={handleSubmit(async (formData) => {
+                          try {
+                            const updatedData = {
+                              name: formData.name,
+                              lastName: formData.lastName,
+                              fullName: formData.fullName,
+                              image: formData.image,
+                              birthYear: formData.birthYear,
+                              isAlive: formData.isAlive,
+                              description: formData.description,
+                              litPeriod: formData.litPeriod,
+                            };
+
+                            if (
+                              updatedData.name === "" ||
+                              updatedData.lastName === "" ||
+                              updatedData.fullName === "" ||
+                              updatedData.image === "" ||
+                              updatedData.birthYear === null ||
+                              updatedData.isAlive === null ||
+                              updatedData.description === "" ||
+                              updatedData.litPeriod === ""
+                            ) {
+                              allFieldsError();
+                              return;
+                            }
+                            await updateAuthorSubmit(
+                              Number(formData.id),
+                              updatedData
+                            );
+
+                            reset();
+                          } catch (error) {
+                            setError("id", {
+                              type: "manual",
+                              message:
+                                "An error occurred while updating the category.",
+                            });
+                          }
+                        })}
+                      >
+                        <Input
+                          {...register("id")}
+                          type="hidden"
+                          value={data.id}
+                        />
+                        <Input
+                          {...register("name")}
+                          placeholder="Meno autora / ky"
+                          mb={10}
+                        />{" "}
+                        <br />
+                        <Input
+                          {...register("lastName")}
+                          placeholder="Priezvisko autora /ky"
+                          mb={10}
+                        />
+                        <br />
+                        <Input
+                          {...register("fullName")}
+                          placeholder="Celé meno autora /ky"
+                          mb={10}
+                        />
+                        <br />
+                        <Input
+                          {...register("image")}
+                          placeholder="Obrázok"
+                          mb={10}
+                        />
+                        <br />
+                        <Input
+                          type="number"
+                          {...register("birthYear", { valueAsNumber: true })}
+                          placeholder="Rok narodenia"
+                          mb={10}
+                        />
+                        <br />
+                        <Checkbox
+                          type="checkbox"
+                          placeholder="Nemusí byť vyplnené ak autor/autorka je nažive"
+                          className="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out"
+                          {...register("isAlive", {
+                            required: true,
+                          })}
+                          mb={10}
+                        />
+                        <label
+                          htmlFor="description"
+                          className="ml-2 text-lg text-gray-900 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Je spisovtateľ/ka nažive
+                        </label>
+                        <br />
+                        <Input
+                          {...register("description")}
+                          placeholder="Krátky popis autora /ky"
+                          mb={10}
+                        />
+                        <br />
+                        <Input
+                          {...register("litPeriod")}
+                          placeholder="Literárne obdobie"
+                          mb={10}
+                        />
+                        <br />
+                        <button
+                          type="submit"
+                          className="bg-red-800 text-white rounded-lg p-2 mt-5"
+                        >
+                          Uprav autora / ku
+                        </button>
+                      </form>
                     </ApiModal>
                   </button>
                   <button className="mr-4 float-right">

@@ -10,3 +10,5 @@ export const updateAuthorError = () => toast.error("Autor nebol upravený");
 
 export const deleteAuthorError = () => toast.error("Autor nebol vytvorený");
 export const deleteAuthorSuccess = () => toast.success("Autor bol vytvorený");
+
+export const allFieldsError = () => toast.error("Všetky veci musia byť vyplnené");

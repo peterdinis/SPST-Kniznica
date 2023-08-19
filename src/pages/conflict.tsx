@@ -1,5 +1,5 @@
 import { GlobalErrorComponent } from "@/components/shared/errors";
-import { conflictError} from "@/constants/errorMessages";
+import { conflictError } from "@/constants/errorMessages";
 import { NextPage } from "next";
 
 const ConflictPage: NextPage = () => {

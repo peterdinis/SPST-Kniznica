@@ -12,11 +12,12 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { CustomTooltip } from "../shared/tooltip";
 import { ApiModal } from "../shared/modals";
-import { Checkbox, Input, Tag } from "@chakra-ui/react";
+import { Checkbox, Input, Tag, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import * as mut from "@/api/mutations/authorMutations";
 import {
   allFieldsError,
+  deleteAuthorError,
   deleteAuthorSuccess,
   updateAuthorSuccess,
 } from "../shared/toasts/authorToasts";
@@ -73,6 +74,7 @@ const AuthorDetail: React.FC = () => {
       reset();
       window.location.replace("/authors/all");
     } catch (error) {
+      deleteAuthorError();
       setError("id", {
         type: "manual",
         message: "An error occurred while deleting the author.",
@@ -327,6 +329,9 @@ const AuthorDetail: React.FC = () => {
                         >
                           Uprav autora / ku
                         </button>
+                        <Text mt={5} color="red.400" fontWeight={"bold"}>
+                          Nemusia byť vyplnené všetky údaje
+                        </Text>
                       </form>
                     </ApiModal>
                   </button>

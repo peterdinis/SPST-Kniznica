@@ -19,10 +19,11 @@ import { useForm } from "react-hook-form";
 import {
   allFieldsBooksError,
   deleteBookSuccess,
+  updateBookError,
   updateBookSuccess,
 } from "../shared/toasts/bookToasts";
 import * as mut from "@/api/mutations/bookMutations";
-import { Input } from "@chakra-ui/react";
+import { Input, Text } from "@chakra-ui/react";
 import { IUpdateBook } from "@/interfaces/IBook";
 
 const BookInfo: React.FC = () => {
@@ -76,7 +77,7 @@ const BookInfo: React.FC = () => {
       updateBookSuccess();
       window.location.replace("/books/all");
     } catch (error) {
-      throw error;
+      updateBookError();
     }
   };
 
@@ -296,6 +297,9 @@ const BookInfo: React.FC = () => {
                         >
                           Uprav knihu
                         </button>
+                        <Text mt={5} color="red.400" fontWeight={"bold"}>
+                          Nemusia byť vyplnené všetky údaje
+                        </Text>
                       </form>
                     </ApiModal>
                   </button>

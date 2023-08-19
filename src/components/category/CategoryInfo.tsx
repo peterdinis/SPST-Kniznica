@@ -9,10 +9,15 @@ import useTeacher from "@/hooks/useTeacher";
 import useAdmin from "@/hooks/useAdmin";
 import { WarningIcon } from "@chakra-ui/icons";
 import { ApiModal } from "../shared/modals";
-import { Input, Tag } from "@chakra-ui/react";
+import { Input, Tag, Text } from "@chakra-ui/react";
 import * as mut from "@/api/mutations/categoryMutation";
 import { useForm } from "react-hook-form";
-import { allFieldsErrors, deleteSuccess, updateSuccess} from "../shared/toasts/categoryToast";
+import {
+  allFieldsErrors,
+  deleteError,
+  deleteSuccess,
+  updateSuccess,
+} from "../shared/toasts/categoryToast";
 import { IUpdateCategory } from "@/interfaces/ICategory";
 
 const CategoryInfo: React.FC = () => {
@@ -67,6 +72,7 @@ const CategoryInfo: React.FC = () => {
       reset();
       window.location.replace("/category/all");
     } catch (error) {
+      deleteError();
       setError("id", {
         type: "manual",
         message: "An error occurred while deleting the category.",
@@ -163,12 +169,15 @@ const CategoryInfo: React.FC = () => {
                       description: formData.description,
                     };
 
-                    if(updatedData.name === "" || updatedData.description === "") {
+                    if (
+                      updatedData.name === "" ||
+                      updatedData.description === ""
+                    ) {
                       allFieldsErrors();
                       return;
                     }
 
-                     await updateCategorySubmit(
+                    await updateCategorySubmit(
                       Number(formData.id),
                       updatedData
                     );
@@ -196,6 +205,9 @@ const CategoryInfo: React.FC = () => {
                 >
                   Uprav kategóriu
                 </button>
+                <Text mt={5} color="red.400" fontWeight={"bold"}>
+                  Nemusia byť vyplnené všetky údaje
+                </Text>
               </form>
             </ApiModal>
           </button>

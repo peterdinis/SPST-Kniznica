@@ -4,8 +4,8 @@ import { useTable, usePagination, Column } from "react-table";
 import ScrollToTop from "@/hooks/useScroll";
 import { IStudentInfo, IStudentInfoUpdate } from "@/interfaces/IStudent";
 import { CustomTableState } from "@/interfaces/ITable";
-import { backendURL } from "@/constants/envUrls";
 import { Header } from "@/components/shared";
+import { env } from "@/env.mjs";
 
 const AdminStudents: React.FC = () => {
   const [tableData, setTableData] = useState<IStudentInfo[]>([]);
@@ -61,7 +61,7 @@ const AdminStudents: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<IStudentInfo[]>(backendURL + "students")
+      .get<IStudentInfo[]>(env.NEXT_PUBLIC_BACKEND_URL + "students")
       .then((response) => {
         const data = response.data;
         setTableData(data);

@@ -4,8 +4,8 @@ import { useTable, usePagination, Column } from "react-table";
 import ScrollToTop from "@/hooks/useScroll";
 import { ICategoryInfo, ICategoryInfoUpdate } from "@/interfaces/ICategory";
 import { CustomTableState } from "@/interfaces/ITable";
-import { backendURL } from "@/constants/envUrls";
 import { Header } from "@/components/shared";
+import { env } from "@/env.mjs";
 
 const AdminCategories: React.FC = () => {
   const [tableData, setTableData] = useState<ICategoryInfo[]>([]);
@@ -52,7 +52,7 @@ const AdminCategories: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<ICategoryInfo[]>(backendURL + "categories")
+      .get<ICategoryInfo[]>(env.NEXT_PUBLIC_BACKEND_URL + "categories")
       .then((response) => {
         const data = response.data;
         setTableData(data);

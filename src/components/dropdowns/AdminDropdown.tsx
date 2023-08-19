@@ -4,7 +4,7 @@ import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import Cookies from "js-cookie";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence } from "framer-motion"; 
-import { edupageURL } from "@/constants/envUrls";
+import {env} from "../../env.mjs";
 
 const AdminDropdown: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ const AdminDropdown: React.FC = () => {
     };
 
     const goToEdupage = () => {
-        window.location.replace(edupageURL)
+        window.location.replace(env.NEXT_PUBLIC_EDUPAGE_URL)
     }
 
     return (

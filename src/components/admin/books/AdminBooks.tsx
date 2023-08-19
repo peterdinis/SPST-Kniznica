@@ -4,8 +4,8 @@ import { useTable, usePagination, Column } from "react-table";
 import ScrollToTop from "@/hooks/useScroll";
 import { IBookInfo, IBookInfoUpdate } from "@/interfaces/IBook";
 import { CustomTableState } from "@/interfaces/ITable";
-import { backendURL } from "@/constants/envUrls";
 import { Header } from "@/components/shared";
+import { env } from "@/env.mjs";
 
 const AdminBooks: React.FC = () => {
   const [tableData, setTableData] = useState<IBookInfo[]>([]);
@@ -59,7 +59,7 @@ const AdminBooks: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<IBookInfo[]>(backendURL + "books")
+      .get<IBookInfo[]>(env.NEXT_PUBLIC_BACKEND_URL + "books")
       .then((response) => {
         const data = response.data;
         setTableData(data);

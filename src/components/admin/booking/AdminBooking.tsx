@@ -4,7 +4,7 @@ import { useTable, usePagination, Column } from "react-table";
 import ScrollToTop from "@/hooks/useScroll";
 import { IBookingInfo, IBookingInfoUpdate } from "@/interfaces/IBooking";
 import { CustomTableState } from "@/interfaces/ITable";
-import { backendURL } from "@/constants/envUrls";
+import {env} from "@/env.mjs"
 import { Header } from "@/components/shared";
 
 const AdminBookings: React.FC = () => {
@@ -61,7 +61,7 @@ const AdminBookings: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<IBookingInfo[]>(backendURL + "bookings")
+      .get<IBookingInfo[]>(env.NEXT_PUBLIC_BACKEND_URL + "bookings")
       .then((response) => {
         const data = response.data;
         setTableData(data);

@@ -3,9 +3,8 @@ import { Icon } from "@chakra-ui/react";
 import { logoutToast } from "@/components/shared/toasts/adminToasts";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence } from "framer-motion";
-
+import {env} from "../../env.mjs";
 import Cookies from "js-cookie";
-import { edupageURL } from "@/constants/envUrls";
 
 const TeacherDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +31,7 @@ const TeacherDropdown: React.FC = () => {
   };
 
   const goToEdupage = () => {
-    window.location.replace(edupageURL);
+    window.location.replace(env.NEXT_PUBLIC_EDUPAGE_URL);
   };
 
   return (

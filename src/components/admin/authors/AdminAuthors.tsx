@@ -4,7 +4,7 @@ import { useTable, usePagination, Column } from "react-table";
 import { IAuthorInfo, IAuthorInfoUpdate } from "@/interfaces/IAuthor";
 import ScrollToTop from "@/hooks/useScroll";
 import { CustomTableState } from "@/interfaces/ITable";
-import { backendURL } from "@/constants/envUrls";
+import { env } from "@/env.mjs";
 import { Header} from "@/components/shared";
 
 const AdminAuthors: React.FC = () => {
@@ -56,7 +56,7 @@ const AdminAuthors: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<IAuthorInfo[]>(backendURL + "authors")
+      .get<IAuthorInfo[]>(env.NEXT_PUBLIC_BACKEND_URL + "authors")
       .then((response) => {
         const data = response.data;
         setTableData(data);

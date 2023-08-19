@@ -14,7 +14,7 @@ export const updateAuthor = (id: number, data: IUpdateAuthor) => {
     return;
   }
 
-  return api.patch(`author/${id}`, data);
+  return api.put(`author/${id}`, data);
 
 }
 

@@ -14,7 +14,7 @@ export const updateBook = (id: number, data: IUpdateBook) => {
     return;
   }
 
-  return api.patch(`book/${id}`, data);
+  return api.put(`book/${id}`, data);
 }
 
 export const deleteBook = (id: number) => {

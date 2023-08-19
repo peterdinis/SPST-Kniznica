@@ -254,6 +254,7 @@ const BookInfo: React.FC = () => {
                           type="hidden"
                           value={data.id}
                         />
+
                         <Input
                           {...register("name")}
                           placeholder="Meno knihy"

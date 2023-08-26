@@ -134,9 +134,9 @@ const BookInfo: React.FC = () => {
                   </ApiModal>
                 </span>
               </p>
-              {admin ||
-                teacher ||
-                (student && (
+              {admin?.data.admin.name ||
+                teacher?.data.user.name ||
+                (student?.data.user.name && (
                   <>
                     <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
                       <span className="font-bold">Id knihy pre požičanie</span>:{" "}

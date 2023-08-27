@@ -90,6 +90,8 @@ const BookInfo: React.FC = () => {
   const { teacher } = useTeacher();
   const { student } = useStudent();
 
+  console.log("Data", data);
+
   return (
     <>
       <Header name="Detail Knihy" />
@@ -263,6 +265,16 @@ const BookInfo: React.FC = () => {
                           value={data.id}
                         />
                         <Input
+                          {...register("authorName")}
+                          type="hidden"
+                          value={data.author && data.author.fullName}
+                        />
+                        <Input
+                          {...register("categoryName")}
+                          type="hidden"
+                          value={data.category && data.category.name}
+                        />
+                        <Input
                           {...register("name")}
                           placeholder="Meno knihy"
                           mb={10}
@@ -305,6 +317,9 @@ const BookInfo: React.FC = () => {
                         >
                           Uprav knihu
                         </button>
+                        <Text mt={5} color="red.400" fontWeight={"bold"}>
+                          Názov kategórie a meno spisovateľa / ky sa neupravuje
+                        </Text>
                         <Text mt={5} color="red.400" fontWeight={"bold"}>
                           Nemusia byť vyplnené všetky údaje
                         </Text>

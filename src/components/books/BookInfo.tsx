@@ -25,6 +25,7 @@ import {
 import * as mut from "@/api/mutations/bookMutations";
 import { Input, Text } from "@chakra-ui/react";
 import { IUpdateBook } from "@/interfaces/IBook";
+import useStudent from "@/hooks/useStudent";
 
 const BookInfo: React.FC = () => {
   const { query, isReady } = useRouter();
@@ -87,6 +88,9 @@ const BookInfo: React.FC = () => {
 
   const { admin } = useAdmin();
   const { teacher } = useTeacher();
+  const { student } = useStudent();
+
+  console.log("Data", data);
 
   return (
     <>
@@ -132,14 +136,20 @@ const BookInfo: React.FC = () => {
                   </ApiModal>
                 </span>
               </p>
-              <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
-                <span className="font-bold">Id knihy pre požičanie</span>:{" "}
-                <CopyIcon
-                  className="transform scale-10"
-                  onClick={() => copy(data.book.id)}
-                />{" "}
-                {data.book && data.book.id}
-              </p>
+              {admin?.data.admin.name ||
+                teacher?.data.user.name ||
+                (student?.data.user.name && (
+                  <>
+                    <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-gray-800">
+                      <span className="font-bold">Id knihy pre požičanie</span>:{" "}
+                      <CopyIcon
+                        className="transform scale-10"
+                        onClick={() => copy(data.book.id)}
+                      />{" "}
+                      {data.book && data.book.id}
+                    </p>
+                  </>
+                ))}
               {!data.author ? (
                 <>
                   <p className="text-2xl mt-3 font-light leading-relaxed  mb-4 text-red-800">
@@ -255,6 +265,16 @@ const BookInfo: React.FC = () => {
                           value={data.id}
                         />
                         <Input
+                          {...register("authorName")}
+                          type="hidden"
+                          value={data.author && data.author.fullName}
+                        />
+                        <Input
+                          {...register("categoryName")}
+                          type="hidden"
+                          value={data.category && data.category.name}
+                        />
+                        <Input
                           {...register("name")}
                           placeholder="Meno knihy"
                           mb={10}
@@ -297,6 +317,9 @@ const BookInfo: React.FC = () => {
                         >
                           Uprav knihu
                         </button>
+                        <Text mt={5} color="red.400" fontWeight={"bold"}>
+                          Názov kategórie a meno spisovateľa / ky sa neupravuje
+                        </Text>
                         <Text mt={5} color="red.400" fontWeight={"bold"}>
                           Nemusia byť vyplnené všetky údaje
                         </Text>

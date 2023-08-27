@@ -17,7 +17,7 @@ import {
   emailAlreadyExistsToast,
   teacherRoleError,
 } from "../shared/toasts/applicationToasts";
-import { TEACHER } from "@/constants/roles";
+import { TEACHER } from "@/constants/applicationRoles";
 import { Header } from "../shared";
 import {CustomTooltip} from "../shared/tooltip";
 

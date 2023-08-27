@@ -3,6 +3,9 @@ import DateTimePicker from "../shared/DateTimePicker";
 import HeroImage from "../../images/heroImage.png";
 import Image from "next/image";
 import Link from "next/link";
+import { env } from "@/env.mjs";
+
+const SCHOLL_URL = env.NEXT_PUBLIC_SCHOLL_URL;
 
 const Hero: React.FC = () => {
 
@@ -69,7 +72,7 @@ const Hero: React.FC = () => {
           variants={containerVariants}
         >
           Návrat na školskú stránku - {" "}
-          <Link href="https://www.spsbj.sk" className="font-bold">Školská stránka</Link>
+          <Link href={SCHOLL_URL} className="font-bold">Školská stránka</Link>
         </motion.div>
       </motion.div>
     </motion.div>

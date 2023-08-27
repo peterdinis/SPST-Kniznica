@@ -32,6 +32,8 @@ const LoginForm: React.FC = () => {
       Cookies.set("adminData", JSON.stringify(data));
       Cookies.set("adminPersonalData", JSON.stringify(data.data.admin));
       Cookies.set("adminAccessToken", JSON.stringify(data.data.token));
+      Cookies.remove("studentData");
+      Cookies.remove("teacherData");
       notify();
       window.location.replace("/admin/profile");
     },

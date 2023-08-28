@@ -64,7 +64,7 @@ const Services: React.FC = () => {
                     tabIndex={0}
                     className="focus:outline-none text-lg font-medium leading-6 text-gray-800 text-center pt-5"
                   >
-                    Ľahké že 👀
+                    Ľahké že ? 👀
                   </h4>
                 </motion.div>
               </motion.div>

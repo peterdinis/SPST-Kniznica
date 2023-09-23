@@ -90,8 +90,6 @@ const BookInfo: React.FC = () => {
   const { teacher } = useTeacher();
   const { student } = useStudent();
 
-  console.log("Data", data);
-
   return (
     <>
       <Header name="Detail Knihy" />
@@ -211,7 +209,17 @@ const BookInfo: React.FC = () => {
                       {data.book && data.book.status}
                     </span>
                   </p>
-                  <BookingModal />
+                  <p className="mt-4">
+                    <span className="font-bold text-red-800">
+                      Knihu je možné si požičať len vtedy ak je dostupná a
+                      zároveň je prihlásení žiak alebo učiteľ alebo admin
+                    </span>
+                  </p>
+                  {teacher === null && student === null && admin === null ? (
+                    <></>
+                  ) : (
+                    <BookingModal />
+                  )}
                 </>
               )}
               <button

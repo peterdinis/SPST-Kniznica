@@ -12,6 +12,7 @@ import { IErrorMessage } from "@/interfaces/IError";
 import { applicationErrorToast, emailAlreadyExistsToast } from "../shared/toasts/applicationToasts";
 import { Header } from "../shared";
 import { IStudentInfo } from "@/interfaces/IStudent";
+import { Text } from "@chakra-ui/react";
 
 const RegisterForm: React.FC = () => {
 
@@ -222,6 +223,9 @@ const RegisterForm: React.FC = () => {
                 </Link>
               </div>
             </div>
+            <Text mt={6} color="red.800" fontWeight={"bold"}>
+              Všetky veci pri registrácií musia byť vyplnené
+            </Text>
           </div>
         </div>
       </form>

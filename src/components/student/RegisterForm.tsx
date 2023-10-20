@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import * as mut from "../../api/mutations/studentMutations";
 import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Text } from "@chakra-ui/react";
 import {
   createStudentRegisterType,
   registerStudentSchema,
@@ -19,7 +20,7 @@ import {
 } from "../shared/toasts/applicationToasts";
 import Header from "../shared/Header";
 import { STUDENT } from "@/constants/applicationRoles";
-import {CustomTooltip} from "../shared/tooltip";
+import { CustomTooltip } from "../shared/tooltip";
 
 const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -285,6 +286,9 @@ const RegisterForm: React.FC = () => {
                 </Link>
               </div>
             </div>
+            <Text mt={6} color="red.800" fontWeight={"bold"}>
+              Všetky veci pri registrácií musia byť vyplnené
+            </Text>
           </div>
         </div>
       </form>

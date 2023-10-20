@@ -10,7 +10,7 @@ import {
   createRegisterTeacherType,
   registerTeacherSchema,
 } from "@/validators/teacher/teacherSchema";
-import { notify, errorRegister } from "../shared/toasts/registerToasts";
+import { errorRegister } from "../shared/toasts/registerToasts";
 import { IErrorMessage } from "@/interfaces/IError";
 import {
   applicationErrorToast,
